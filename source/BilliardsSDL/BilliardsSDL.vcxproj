@@ -204,13 +204,26 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application\BilliardsApplication.cpp" />
+    <ClCompile Include="Application\Systems\Input\InputSystem.cpp" />
+    <ClCompile Include="Application\Systems\Input\KeyState.cpp" />
+    <ClCompile Include="Application\Systems\Input\WindowInputs.cpp" />
     <ClCompile Include="Application\Systems\Render\RenderSystem.cpp" />
+    <ClCompile Include="Application\Systems\Time\TimeSystem.cpp" />
+    <ClCompile Include="Game\BilliardsGame.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\ApplicationSpecifications.h" />
     <ClInclude Include="Application\BilliardsApplication.h" />
+    <ClInclude Include="Application\Systems\Input\IInputState.h" />
+    <ClInclude Include="Application\Systems\Input\InputSystem.h" />
+    <ClInclude Include="Application\Systems\Input\KeyCode.h" />
+    <ClInclude Include="Application\Systems\Input\KeyState.h" />
+    <ClInclude Include="Application\Systems\Input\WindowInputs.h" />
     <ClInclude Include="Application\Systems\Render\RenderSystem.h" />
+    <ClInclude Include="Application\Systems\Time\ITimeState.h" />
+    <ClInclude Include="Application\Systems\Time\TimeSystem.h" />
+    <ClInclude Include="Game\BilliardsGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

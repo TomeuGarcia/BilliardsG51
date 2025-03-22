@@ -4,6 +4,10 @@
 //#include <SDL_ttf.h>
 
 #include "Systems/Render/RenderSystem.h"
+#include "Systems/Time/TimeSystem.h"
+#include "Systems/Input/InputSystem.h"
+
+#include "../Game/BilliardsGame.h"
 
 
 class BilliardsApplication
@@ -22,10 +26,17 @@ private:
 
 private:
 	void GameLoop();
+	void UpdateRunningFlag();
 
 
 private:
+	bool _running;
+	
 	ApplicationSpecifications _specifications;
+	InputSystem _inputSystem;
+	TimeSystem _timeSystem;
 	RenderSystem _renderSystem;
+
+	BilliardsGame _game;
 };
 
