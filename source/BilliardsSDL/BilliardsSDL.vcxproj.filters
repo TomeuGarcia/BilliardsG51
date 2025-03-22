@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{dd11d921-8e6c-4e6c-b05d-fba850dc2434}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Application\Systems">
+      <UniqueIdentifier>{286b0438-5878-43f5-9037-e5c3672acebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application\Systems\Render">
+      <UniqueIdentifier>{0bfe5580-4902-4b7c-ac78-212d34b730a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,9 +33,18 @@
     <ClCompile Include="Application\BilliardsApplication.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Systems\Render\RenderSystem.cpp">
+      <Filter>Source Files\Application\Systems\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
+      <Filter>Source Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Render\RenderSystem.h">
+      <Filter>Source Files\Application\Systems\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\ApplicationSpecifications.h">
       <Filter>Source Files\Application</Filter>
     </ClInclude>
   </ItemGroup>
