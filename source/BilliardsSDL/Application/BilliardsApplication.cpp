@@ -1,14 +1,14 @@
 #include "BilliardsApplication.h"
 
 BilliardsApplication::BilliardsApplication()
-	: _specifications(640, 480), _renderSystem()
+	: _running(true), _specifications(640, 480), 
+	_inputSystem(), _timeSystem(), _renderSystem(),
+	_game()
 {
-	printf("App created\n");
 }
 
 BilliardsApplication::~BilliardsApplication()
 {
-	printf("App destroyed\n");
 }
 
 void BilliardsApplication::Run()
@@ -35,7 +35,9 @@ void BilliardsApplication::InitSDL()
 
 void BilliardsApplication::InitSystems()
 {
-	_renderSystem.Init(_specifications);
+	_inputSystem.Init();
+	_timeSystem.Init();
+	_renderSystem.Init(_specifications);	
 }
 
 
@@ -53,4 +55,22 @@ void BilliardsApplication::CleanupSDL()
 
 void BilliardsApplication::GameLoop()
 {
+	_running = true;
+	while (_running)
+	{
+		_timeSystem.Update();
+		_inputSystem.Update();
+		_game.Update();
+
+		_renderSystem.ClearRenderer();
+		_game.Render();
+		_renderSystem.DrawRenderer();
+
+		UpdateRunningFlag();
+	}
+}
+
+void BilliardsApplication::UpdateRunningFlag()
+{
+	_running = !_inputSystem.GetWindowInputs().closeWindow;
 }
