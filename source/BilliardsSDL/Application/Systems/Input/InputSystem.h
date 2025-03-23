@@ -6,7 +6,8 @@
 #include "KeyState.h"
 #include "IInputState.h"
 
-class InputSystem : IInputState
+
+class InputSystem : public IInputState
 {
 public:
 	InputSystem();
@@ -33,14 +34,14 @@ public:
 	virtual bool GetKeyDown(const KeyCode keyCode) override;
 	virtual bool GetKey(const KeyCode keyCode) override;
 	virtual bool GetKeyUp(const KeyCode keyCode) override;
+	virtual const Vector2<int> GetMouseScreenPosition() const override;
 
 
 private:		
-	WindowInputs _windowInputs;
+	WindowInputs m_windowInputs;
 
-	std::unordered_map<SDL_Keycode, KeyCode> _sdlKeysMap;
-	std::unordered_map<KeyCode, KeyState> _keyStatesByCode;
+	std::unordered_map<SDL_Keycode, KeyCode> m_sdlKeysMap;
+	std::unordered_map<KeyCode, KeyState> m_keyStatesByCode;
 
-	int _mouseScreenPositionX;
-	int _mouseScreenPositionY;
+	Vector2<int> m_mouseScreenPosition;
 };

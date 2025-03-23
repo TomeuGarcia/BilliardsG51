@@ -1,7 +1,7 @@
 #include "RenderSystem.h"
 
 RenderSystem::RenderSystem()
-	: _window(nullptr), _renderer(nullptr)
+	: m_window(nullptr), m_renderer(nullptr), m_backgroundColor{ Colors::Black }, m_windowSize(0,0)
 {
 }
 
@@ -9,11 +9,12 @@ RenderSystem::~RenderSystem()
 {
 }
 
-void RenderSystem::Init(const ApplicationSpecifications& specifications)
+void RenderSystem::Init(const Vector2<int>& windowSize)
 {
-	int initResult = SDL_CreateWindowAndRenderer(specifications.windowWidth, specifications.windowHeight,
+	m_windowSize = windowSize;
+	int initResult = SDL_CreateWindowAndRenderer(m_windowSize.x, m_windowSize.y,
 												 SDL_WINDOW_SHOWN,
-												 &_window, &_renderer);
+												 &m_window, &m_renderer);
 	bool initialized = initResult >= 0;
 	if (!initialized)
 	{
@@ -23,17 +24,33 @@ void RenderSystem::Init(const ApplicationSpecifications& specifications)
 
 void RenderSystem::Cleanup()
 {
-	SDL_DestroyRenderer(_renderer);
-	SDL_DestroyWindow(_window);
+	SDL_DestroyRenderer(m_renderer);
+	SDL_DestroyWindow(m_window);
 }
 
 
 void RenderSystem::ClearRenderer()
 {
-	SDL_RenderClear(_renderer);
+	SDL_SetRenderDrawColor(m_renderer, m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a);
+	SDL_RenderClear(m_renderer);
 }
 
 void RenderSystem::DrawRenderer()
 {
-	SDL_RenderPresent(_renderer);
+	SDL_RenderPresent(m_renderer);
+}
+
+SDL_Renderer* RenderSystem::GetRenderer() const
+{
+	return m_renderer;
+}
+
+const Vector2<int> RenderSystem::GetWindowSize() const
+{
+	return m_windowSize;
+}
+
+void RenderSystem::SetBackgroundColor(const Color& color)
+{
+	m_backgroundColor = color;
 }

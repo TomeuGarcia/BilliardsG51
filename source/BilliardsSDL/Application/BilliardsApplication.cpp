@@ -1,9 +1,9 @@
 #include "BilliardsApplication.h"
 
 BilliardsApplication::BilliardsApplication()
-	: _running(true), _specifications(640, 480), 
-	_inputSystem(), _timeSystem(), _renderSystem(),
-	_game()
+	: m_running(true), m_specifications(Vector2<int>(960, 540)), 
+	m_inputSystem(), m_timeSystem(), m_renderSystem(),
+	m_game()
 {
 }
 
@@ -15,9 +15,11 @@ void BilliardsApplication::Run()
 {
 	InitSDL();
 	InitSystems();
+	InitGame();
 
 	GameLoop();
 
+	CleanupGame();
 	CleanupSystems();
 	CleanupSDL();
 }
@@ -35,16 +37,27 @@ void BilliardsApplication::InitSDL()
 
 void BilliardsApplication::InitSystems()
 {
-	_inputSystem.Init();
-	_timeSystem.Init();
-	_renderSystem.Init(_specifications);	
+	m_inputSystem.Init();
+	m_timeSystem.Init();
+	m_renderSystem.Init(m_specifications.p_windowSize);	
+}
+
+void BilliardsApplication::InitGame()
+{
+	GameSystems gameSystems{ &m_inputSystem, &m_renderSystem, &m_timeSystem };
+	m_game.Init(gameSystems);
 }
 
 
 
+void BilliardsApplication::CleanupGame()
+{
+	m_game.Cleanup();
+}
+
 void BilliardsApplication::CleanupSystems()
 {
-	_renderSystem.Cleanup();
+	m_renderSystem.Cleanup();
 }
 
 void BilliardsApplication::CleanupSDL()
@@ -55,16 +68,17 @@ void BilliardsApplication::CleanupSDL()
 
 void BilliardsApplication::GameLoop()
 {
-	_running = true;
-	while (_running)
+	m_running = true;
+	while (m_running)
 	{
-		_timeSystem.Update();
-		_inputSystem.Update();
-		_game.Update();
+		m_renderSystem.ClearRenderer();
 
-		_renderSystem.ClearRenderer();
-		_game.Render();
-		_renderSystem.DrawRenderer();
+		m_timeSystem.Update();
+		m_inputSystem.Update();
+		m_game.Update();
+
+		m_game.Render();
+		m_renderSystem.DrawRenderer();
 
 		UpdateRunningFlag();
 	}
@@ -72,5 +86,6 @@ void BilliardsApplication::GameLoop()
 
 void BilliardsApplication::UpdateRunningFlag()
 {
-	_running = !_inputSystem.GetWindowInputs().closeWindow;
+	m_running = !m_inputSystem.GetWindowInputs().p_closeWindow || 
+				 m_game.p_quitApplication;
 }

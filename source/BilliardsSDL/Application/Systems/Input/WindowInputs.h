@@ -8,5 +8,5 @@ public:
 	~WindowInputs();
 
 public:
-	bool closeWindow;
+	bool p_closeWindow;
 };

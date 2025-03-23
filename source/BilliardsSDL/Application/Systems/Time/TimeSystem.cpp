@@ -1,8 +1,8 @@
 #include "TimeSystem.h"
 
 TimeSystem::TimeSystem()
-	: _applicationInitTime(), _previousTime(), _currentTime(),
-	_time(0), _deltaTime(0)
+	: m_applicationInitTime(), m_previousTime(), m_currentTime(),
+	m_time(0), m_deltaTime(0)
 {
 	auto xd = std::chrono::system_clock::now();
 	std::chrono::duration<float> duration = xd - xd;
@@ -14,16 +14,18 @@ TimeSystem::~TimeSystem()
 
 void TimeSystem::Init()
 {
-	_applicationInitTime = _currentTime = GetCurrentTime();
+	m_applicationInitTime = m_currentTime = GetCurrentTime();
 }
 
 void TimeSystem::Update()
 {
-	_previousTime = _currentTime;
-	_currentTime = GetCurrentTime();
+	m_previousTime = m_currentTime;
+	m_currentTime = GetCurrentTime();
 
-	_deltaTime = (_currentTime - _previousTime).count();
-	_time += _deltaTime;
+	std::chrono::duration<float> elapsedTime = m_currentTime - m_previousTime;
+
+	m_deltaTime = elapsedTime.count();
+	m_time += m_deltaTime;
 }
 
 const std::chrono::system_clock::time_point TimeSystem::GetCurrentTime() const
@@ -33,10 +35,10 @@ const std::chrono::system_clock::time_point TimeSystem::GetCurrentTime() const
 
 float TimeSystem::GetTime()
 {
-	return _time;
+	return m_time;
 }
 
 float TimeSystem::GetDeltaTime()
 {
-	return _deltaTime;
+	return m_deltaTime;
 }

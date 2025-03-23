@@ -31,6 +31,27 @@
     <Filter Include="Source Files\Application\Systems\Input">
       <UniqueIdentifier>{df60c397-5bd6-4de5-8924-c733aff8ea6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Scenes">
+      <UniqueIdentifier>{b5c21307-7e24-485a-b586-bf0417fdcd36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects">
+      <UniqueIdentifier>{1451d728-6872-4118-97b0-11bc2fc2cf98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Render">
+      <UniqueIdentifier>{44e286a6-e10d-455d-a9ea-0c6764a5b06b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared">
+      <UniqueIdentifier>{9136c7cc-494e-49cb-a877-92869de611ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Types">
+      <UniqueIdentifier>{e1e45f1b-6291-4348-b34a-c67589756307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Types\Color">
+      <UniqueIdentifier>{cbb97479-3b34-4937-82f4-d715f806f927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Types\Vector2">
+      <UniqueIdentifier>{58bd2b76-32fd-491b-883a-dc2a5f0d5dc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="Application\Systems\Input\WindowInputs.cpp">
       <Filter>Source Files\Application\Systems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameSystems.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\GameRenderManager.cpp">
+      <Filter>Source Files\Game\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +118,30 @@
     </ClInclude>
     <ClInclude Include="Application\Systems\Input\WindowInputs.h">
       <Filter>Source Files\Application\Systems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameSystems.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\SceneManager.h">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\SceneName.h">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\Scene.h">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\GameObject.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\GameRenderManager.h">
+      <Filter>Source Files\Game\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Types\Color\Color.h">
+      <Filter>Source Files\Shared\Types\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Types\Vector2\Vector2.h">
+      <Filter>Source Files\Shared\Types\Vector2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
