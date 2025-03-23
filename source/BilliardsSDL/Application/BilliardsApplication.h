@@ -20,7 +20,9 @@ public:
 private:
 	void InitSDL();
 	void InitSystems();
+	void InitGame();
 
+	void CleanupGame();
 	void CleanupSystems();
 	void CleanupSDL();
 
@@ -30,13 +32,13 @@ private:
 
 
 private:
-	bool _running;
-	
-	ApplicationSpecifications _specifications;
-	InputSystem _inputSystem;
-	TimeSystem _timeSystem;
-	RenderSystem _renderSystem;
+	bool m_running;	
+	ApplicationSpecifications m_specifications;
 
-	BilliardsGame _game;
+	InputSystem m_inputSystem;
+	TimeSystem m_timeSystem;
+	RenderSystem m_renderSystem;
+
+	BilliardsGame m_game;
 };
 

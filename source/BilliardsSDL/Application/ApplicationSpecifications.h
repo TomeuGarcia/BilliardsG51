@@ -1,14 +1,14 @@
 #pragma once
+#include "../../../Shared/Types/Vector2/Vector2.h"
 
 struct ApplicationSpecifications
 {
 public:
-	ApplicationSpecifications(int startWindowWidth, int startWindowHeight)
-		: windowWidth(startWindowWidth), windowHeight(startWindowHeight)
+	ApplicationSpecifications(const Vector2<int>& windowSize)
+		: p_windowSize(windowSize)
 	{
 	}
 
 public:
-	int windowWidth;
-	int windowHeight;
+	Vector2<int> p_windowSize;
 };

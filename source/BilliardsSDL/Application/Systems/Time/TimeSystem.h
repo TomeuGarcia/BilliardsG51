@@ -2,7 +2,7 @@
 #include <chrono>
 #include "ITimeState.h"
 
-class TimeSystem : ITimeState
+class TimeSystem : public ITimeState
 {
 public: 
 	TimeSystem();
@@ -19,10 +19,10 @@ private:
 
 
 private:
-	std::chrono::system_clock::time_point _applicationInitTime;
-	std::chrono::system_clock::time_point _previousTime;
-	std::chrono::system_clock::time_point _currentTime;
+	std::chrono::system_clock::time_point m_applicationInitTime;
+	std::chrono::system_clock::time_point m_previousTime;
+	std::chrono::system_clock::time_point m_currentTime;
 	
-	float _time;
-	float _deltaTime;
+	float m_time;
+	float m_deltaTime;
 };

@@ -1,7 +1,7 @@
 #include "InputSystem.h"
 
 InputSystem::InputSystem()
-	: _windowInputs(), _sdlKeysMap(3), _keyStatesByCode(3), _mouseScreenPositionX(0), _mouseScreenPositionY(0)
+	: m_windowInputs(), m_sdlKeysMap(3), m_keyStatesByCode(3), m_mouseScreenPosition{0,0}
 {
 }
 
@@ -18,8 +18,8 @@ void InputSystem::Init()
 
 void InputSystem::AddKeyEntry(const SDL_Keycode sdlKeyCode, const KeyCode keyCode)
 {
-	_sdlKeysMap[sdlKeyCode] = keyCode;
-	_keyStatesByCode[keyCode] = KeyState{};
+	m_sdlKeysMap[sdlKeyCode] = keyCode;
+	m_keyStatesByCode[keyCode] = KeyState{};
 }
 
 
@@ -33,7 +33,7 @@ void InputSystem::Update()
 
 void InputSystem::UpdatePreviousState()
 {
-	for (auto keyStateIt = _keyStatesByCode.begin(); keyStateIt != _keyStatesByCode.end(); ++keyStateIt)
+	for (auto keyStateIt = m_keyStatesByCode.begin(); keyStateIt != m_keyStatesByCode.end(); ++keyStateIt)
 	{
 		keyStateIt->second.UpdatePrevious();
 	}
@@ -46,8 +46,8 @@ void InputSystem::ProcessEvents()
 	{
 		if (polledEvent.motion.type == SDL_MOUSEMOTION)
 		{
-			_mouseScreenPositionX = polledEvent.motion.x;
-			_mouseScreenPositionY = polledEvent.motion.y;
+			m_mouseScreenPosition.x = polledEvent.motion.x;
+			m_mouseScreenPosition.y = polledEvent.motion.y;
 		}
 		else if (polledEvent.type == SDL_MOUSEBUTTONDOWN)
 		{
@@ -72,13 +72,13 @@ void InputSystem::ProcessEvents()
 
 void InputSystem::UpdateKeyState(const SDL_Keycode sdlKeyCode, const bool isPressed)
 {
-	auto keyCodeIt = _sdlKeysMap.find(sdlKeyCode);
-	if (keyCodeIt == _sdlKeysMap.end())
+	auto keyCodeIt = m_sdlKeysMap.find(sdlKeyCode);
+	if (keyCodeIt == m_sdlKeysMap.end())
 	{
 		return;
 	}
 
-	KeyState* keyState = &(_keyStatesByCode.find(keyCodeIt->second)->second);
+	KeyState* keyState = &(m_keyStatesByCode.find(keyCodeIt->second)->second);
 	keyState->SetPressed(isPressed);
 }
 
@@ -86,7 +86,7 @@ void InputSystem::UpdateWindowEvent(const Uint8 windowEventId)
 {
 	if (windowEventId == SDL_WindowEventID::SDL_WINDOWEVENT_CLOSE)
 	{
-		_windowInputs.closeWindow = true;
+		m_windowInputs.p_closeWindow = true;
 	}
 }
 
@@ -94,7 +94,7 @@ void InputSystem::UpdateWindowEvent(const Uint8 windowEventId)
 
 const WindowInputs& InputSystem::GetWindowInputs()
 {
-	return _windowInputs;
+	return m_windowInputs;
 }
 
 
@@ -102,15 +102,20 @@ const WindowInputs& InputSystem::GetWindowInputs()
 
 bool InputSystem::GetKeyDown(const KeyCode keyCode)
 {
-	return _keyStatesByCode.find(keyCode)->second.WasPressedThisFrame();
+	return m_keyStatesByCode.find(keyCode)->second.WasPressedThisFrame();
 }
 
 bool InputSystem::GetKey(const KeyCode keyCode)
 {
-	return _keyStatesByCode.find(keyCode)->second.IsPressed();
+	return m_keyStatesByCode.find(keyCode)->second.IsPressed();
 }
 
 bool InputSystem::GetKeyUp(const KeyCode keyCode)
 {
-	return _keyStatesByCode.find(keyCode)->second.WasReleasedThisFrame();
+	return m_keyStatesByCode.find(keyCode)->second.WasReleasedThisFrame();
+}
+
+const Vector2<int> InputSystem::GetMouseScreenPosition() const
+{
+	return m_mouseScreenPosition;
 }

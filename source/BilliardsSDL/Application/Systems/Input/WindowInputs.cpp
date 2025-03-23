@@ -1,7 +1,7 @@
 #include "WindowInputs.h"
 
 WindowInputs::WindowInputs()
-	: closeWindow(false)
+	: p_closeWindow(false)
 {
 }
 

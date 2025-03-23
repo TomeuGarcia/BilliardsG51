@@ -1,7 +1,7 @@
 #include "KeyState.h"
 
 KeyState::KeyState()
-	: _isPressed(false), _wasPressed(false)
+	: m_isPressed(false), m_wasPressed(false)
 {
 }
 
@@ -11,25 +11,25 @@ KeyState::~KeyState()
 
 void KeyState::UpdatePrevious()
 {
-	_wasPressed = _isPressed;
+	m_wasPressed = m_isPressed;
 }
 
 void KeyState::SetPressed(const bool isPressed)
 {
-	_isPressed = isPressed;
+	m_isPressed = isPressed;
 }
 
 bool KeyState::WasPressedThisFrame()
 {
-	return _isPressed && !_wasPressed;
+	return m_isPressed && !m_wasPressed;
 }
 
 bool KeyState::IsPressed()
 {
-	return _isPressed;
+	return m_isPressed;
 }
 
 bool KeyState::WasReleasedThisFrame()
 {
-	return !_isPressed && _wasPressed;
+	return !m_isPressed && m_wasPressed;
 }

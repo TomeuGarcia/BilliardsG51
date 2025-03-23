@@ -14,6 +14,6 @@ public:
 	bool WasReleasedThisFrame();	
 
 private:
-	bool _wasPressed;
-	bool _isPressed;
+	bool m_wasPressed;
+	bool m_isPressed;
 };

@@ -210,6 +210,8 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Application\Systems\Render\RenderSystem.cpp" />
     <ClCompile Include="Application\Systems\Time\TimeSystem.cpp" />
     <ClCompile Include="Game\BilliardsGame.cpp" />
+    <ClCompile Include="Game\GameSystems.cpp" />
+    <ClCompile Include="Game\Render\GameRenderManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +226,14 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Application\Systems\Time\ITimeState.h" />
     <ClInclude Include="Application\Systems\Time\TimeSystem.h" />
     <ClInclude Include="Game\BilliardsGame.h" />
+    <ClInclude Include="Game\GameSystems.h" />
+    <ClInclude Include="Game\GameObjects\GameObject.h" />
+    <ClInclude Include="Game\Render\GameRenderManager.h" />
+    <ClInclude Include="Game\Scenes\Scene.h" />
+    <ClInclude Include="Game\Scenes\SceneManager.h" />
+    <ClInclude Include="Game\Scenes\SceneName.h" />
+    <ClInclude Include="Shared\Types\Color\Color.h" />
+    <ClInclude Include="Shared\Types\Vector2\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
