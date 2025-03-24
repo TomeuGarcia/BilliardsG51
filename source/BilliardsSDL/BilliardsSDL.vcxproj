@@ -210,8 +210,18 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Application\Systems\Render\RenderSystem.cpp" />
     <ClCompile Include="Application\Systems\Time\TimeSystem.cpp" />
     <ClCompile Include="Game\BilliardsGame.cpp" />
-    <ClCompile Include="Game\GameSystems.cpp" />
+    <ClCompile Include="Game\GameObjects\GameObject.cpp" />
+    <ClCompile Include="Game\GameObjects\Transform.cpp" />
     <ClCompile Include="Game\Render\GameRenderManager.cpp" />
+    <ClCompile Include="Game\Render\Renderers\Image.cpp" />
+    <ClCompile Include="Game\Render\Renderers\ImageResourceData.cpp" />
+    <ClCompile Include="Game\Render\Renderers\Renderer.cpp" />
+    <ClCompile Include="Game\Scenes\CustomScenes\EmptyScene.cpp" />
+    <ClCompile Include="Game\Scenes\Scene.cpp" />
+    <ClCompile Include="Game\Scenes\SceneManager.cpp" />
+    <ClCompile Include="Game\Systems\GameAssetResources.cpp" />
+    <ClCompile Include="Game\Systems\GameInput.cpp" />
+    <ClCompile Include="Game\Systems\GameTime.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -226,12 +236,20 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Application\Systems\Time\ITimeState.h" />
     <ClInclude Include="Application\Systems\Time\TimeSystem.h" />
     <ClInclude Include="Game\BilliardsGame.h" />
-    <ClInclude Include="Game\GameSystems.h" />
+    <ClInclude Include="Game\GameObjects\Transform.h" />
     <ClInclude Include="Game\GameObjects\GameObject.h" />
+    <ClInclude Include="Game\GameSpecifications.h" />
     <ClInclude Include="Game\Render\GameRenderManager.h" />
+    <ClInclude Include="Game\Render\Renderers\Image.h" />
+    <ClInclude Include="Game\Render\Renderers\Renderer.h" />
+    <ClInclude Include="Game\Render\Renderers\ImageResourceData.h" />
+    <ClInclude Include="Game\Scenes\CustomScenes\EmptyScene.h" />
     <ClInclude Include="Game\Scenes\Scene.h" />
     <ClInclude Include="Game\Scenes\SceneManager.h" />
     <ClInclude Include="Game\Scenes\SceneName.h" />
+    <ClInclude Include="Game\Systems\GameAssetResources.h" />
+    <ClInclude Include="Game\Systems\GameInput.h" />
+    <ClInclude Include="Game\Systems\GameTime.h" />
     <ClInclude Include="Shared\Types\Color\Color.h" />
     <ClInclude Include="Shared\Types\Vector2\Vector2.h" />
   </ItemGroup>

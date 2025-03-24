@@ -1,7 +1,7 @@
 #include "BilliardsApplication.h"
 
 BilliardsApplication::BilliardsApplication()
-	: m_running(true), m_specifications(Vector2<int>(960, 540)), 
+	: m_running(true), m_specifications(), 
 	m_inputSystem(), m_timeSystem(), m_renderSystem(),
 	m_game()
 {
@@ -44,8 +44,7 @@ void BilliardsApplication::InitSystems()
 
 void BilliardsApplication::InitGame()
 {
-	GameSystems gameSystems{ &m_inputSystem, &m_renderSystem, &m_timeSystem };
-	m_game.Init(gameSystems);
+	m_game.Init(m_specifications.p_gameSpecifications, &m_inputSystem, &m_renderSystem, &m_timeSystem);
 }
 
 

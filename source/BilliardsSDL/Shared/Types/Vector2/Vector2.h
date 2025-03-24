@@ -100,6 +100,12 @@ public:
     }
 
 
+    static Vector2& Lerp(Vector2& v1, const Vector2& v2, const float t)
+    {
+        return v1 + (v2 - v1) * t;
+    }
+
+
 public:
     T x;
     T y;

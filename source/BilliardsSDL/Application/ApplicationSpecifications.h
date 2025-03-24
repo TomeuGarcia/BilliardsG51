@@ -1,14 +1,16 @@
 #pragma once
-#include "../../../Shared/Types/Vector2/Vector2.h"
+#include "../Game/GameSpecifications.h"
 
 struct ApplicationSpecifications
 {
 public:
-	ApplicationSpecifications(const Vector2<int>& windowSize)
-		: p_windowSize(windowSize)
+	ApplicationSpecifications()	: 
+		p_windowSize(960, 540), 
+		p_gameSpecifications()
 	{
 	}
 
 public:
 	Vector2<int> p_windowSize;
+	GameSpecifications p_gameSpecifications;
 };
