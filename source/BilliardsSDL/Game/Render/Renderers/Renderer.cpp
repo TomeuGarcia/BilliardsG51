@@ -1,8 +1,8 @@
 #include "Renderer.h"
 
 
-Renderer::Renderer(Transform* transform, const Vector2<int>& size)
-    : m_transform(transform), p_size(size), p_rotationInDegrees(0)
+Renderer::Renderer(GameObject* gameObject, const Vector2<int>& size)
+    : m_gameObject(gameObject), p_size(size), p_rotationInDegrees(0)
 {
 }
 
@@ -19,7 +19,7 @@ void Renderer::Render(SDL_Renderer* outputRenderer)
 
 const SDL_Rect Renderer::ComputeDestination()
 {
-    const Vector2<int> position = m_transform->p_position;
+    const Vector2<int> position = m_gameObject->GetTransform()->p_position;
     const Vector2<int> halfSize = p_size / 2;
 
     SDL_Rect destinationRect{};

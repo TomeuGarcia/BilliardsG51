@@ -210,6 +210,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Application\Systems\Render\RenderSystem.cpp" />
     <ClCompile Include="Application\Systems\Time\TimeSystem.cpp" />
     <ClCompile Include="Game\BilliardsGame.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp" />
     <ClCompile Include="Game\GameObjects\GameObject.cpp" />
     <ClCompile Include="Game\GameObjects\Transform.cpp" />
     <ClCompile Include="Game\Render\GameRenderManager.cpp" />
@@ -236,6 +237,8 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Application\Systems\Time\ITimeState.h" />
     <ClInclude Include="Application\Systems\Time\TimeSystem.h" />
     <ClInclude Include="Game\BilliardsGame.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Behaviour.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h" />
     <ClInclude Include="Game\GameObjects\Transform.h" />
     <ClInclude Include="Game\GameObjects\GameObject.h" />
     <ClInclude Include="Game\GameSpecifications.h" />

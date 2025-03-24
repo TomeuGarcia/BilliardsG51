@@ -61,6 +61,9 @@
     <Filter Include="Source Files\Game\Systems">
       <UniqueIdentifier>{387e9090-f365-4b67-b508-1008a5703bfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours">
+      <UniqueIdentifier>{7210d3a6-3a36-44b0-9f11-bef44a15b59f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -122,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="Game\Systems\GameAssetResources.cpp">
       <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +211,12 @@
     </ClInclude>
     <ClInclude Include="Game\GameSpecifications.h">
       <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Behaviour.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 #include "Image.h"
 
 
-Image::Image(Transform* transform, const Vector2<int>& size)
-	: Renderer(transform, size)
+Image::Image(GameObject* gameObject, const Vector2<int>& size)
+	: Renderer(gameObject, size)
 {
 }
 

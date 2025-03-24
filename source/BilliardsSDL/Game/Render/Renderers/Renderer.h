@@ -1,14 +1,12 @@
 #pragma once
-
 #include <SDL_image.h>
-#include "../../GameObjects/Transform.h"
-
+#include "../../GameObjects/GameObject.h"
 
 
 class Renderer
 {
 public:
-	Renderer(Transform* transform, const Vector2<int>& size);
+	Renderer(GameObject* gameObject, const Vector2<int>& size);
 	virtual ~Renderer();
 
 	void Render(SDL_Renderer* outputRenderer);
@@ -27,5 +25,5 @@ protected:
 	SDL_Texture* r_texture;
 
 private:
-	Transform* m_transform;
+	GameObject* m_gameObject;
 };

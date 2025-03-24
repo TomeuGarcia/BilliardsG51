@@ -30,9 +30,6 @@ protected:
 
 	virtual void Start() = 0;
 
-private:
-	void SetupGameObjectRenderers();
-
 
 private:
 	std::vector<GameObject> m_gameObjects;

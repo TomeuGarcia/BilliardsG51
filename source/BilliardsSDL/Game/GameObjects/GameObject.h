@@ -1,7 +1,8 @@
 #pragma once
 #include <memory>
+#include <vector>
 #include "Transform.h"
-#include "../Render/Renderers/Renderer.h"
+#include "Behaviours/Behaviour.h"
 
 
 class GameObject
@@ -9,20 +10,17 @@ class GameObject
 public:
 	GameObject(const Vector2<int>& position);
 	virtual ~GameObject();
+
+	virtual void Start();
 	virtual void Update();
 
-public:
-	Transform* const GetTransform();
+	void AttachBehaviour(const std::shared_ptr<Behaviour>& behaviour);
 
-	
-	bool HasAttachedRenderer() const;
-	Renderer* GetRenderer() const;
-	void AttachRenderer(const std::shared_ptr<Renderer>& renderer);
-	
+public:
+	Transform* const GetTransform();	
+	const std::vector<std::shared_ptr<Behaviour>>& GetBehaviours();
 
 private:
-	Transform m_transform;
-	
-	std::shared_ptr<Renderer> m_renderer;
-	
+	Transform m_transform;	
+	std::vector<std::shared_ptr<Behaviour>> m_behaviours;
 };

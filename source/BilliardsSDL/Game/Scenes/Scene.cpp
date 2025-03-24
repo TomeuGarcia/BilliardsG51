@@ -14,7 +14,6 @@ Scene::~Scene()
 void Scene::Init()
 {
 	CreateGameObjects();
-	SetupGameObjectRenderers();
 	Start();
 }
 
@@ -26,7 +25,10 @@ void Scene::Cleanup()
 
 void Scene::Update()
 {
-	printf("%f\n", GameTime::GetInstance()->GetTime());
+	for (auto it = m_gameObjects.begin(); it != m_gameObjects.end(); ++it)
+	{
+		it->Update();
+	}
 }
 
 void Scene::Render()
@@ -43,28 +45,11 @@ GameObject* Scene::CreateGameObject(const Vector2<int>& position)
 }
 
 std::shared_ptr<Image> Scene::CreateImageComponent(GameObject* owner, const ImageResourceData& resourceData, const Vector2<int>& size)
-{
-	std::shared_ptr<Image> backgroundImage = std::make_shared<Image>(owner->GetTransform(), size);
-	backgroundImage->Init(*GameRenderManager::GetInstance(), resourceData);
-	owner->AttachRenderer(backgroundImage);
+{	
+	std::shared_ptr<Image> image = std::make_shared<Image>(owner, size);
+	image->Init(*GameRenderManager::GetInstance(), resourceData);
 
-	return backgroundImage;
-}
+	GameRenderManager::GetInstance()->AddToRenderQueue(image);
 
-
-
-void Scene::SetupGameObjectRenderers()
-{
-	std::vector<Renderer*> renderersInScene{};
-	renderersInScene.reserve(m_gameObjects.size());
-
-	for (auto it = m_gameObjects.begin(); it != m_gameObjects.end(); ++it)
-	{
-		if (it->HasAttachedRenderer())
-		{
-			renderersInScene.emplace_back(it->GetRenderer());
-		}
-	}
-
-	GameRenderManager::GetInstance()->FillRenderQueue(renderersInScene);	
+	return image;
 }

@@ -16,7 +16,11 @@ void EmptyScene::CreateGameObjects()
 	Vector2<int> position = GameRenderManager::GetInstance()->GetWindowSize() / 2;
 	GameObject* backgroundGameObject = CreateGameObject(position);
 
-	CreateImageComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugImageData(), Vector2<int>(400, 400));
+	std::shared_ptr<Image> image =
+		CreateImageComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugImageData(), Vector2<int>(400, 400));
+
+	std::shared_ptr<TestBehaviour> test = std::make_shared<TestBehaviour>(image);
+	backgroundGameObject->AttachBehaviour(test);
 }
 
 void EmptyScene::Start()
