@@ -1,28 +1,45 @@
 #pragma once
 #include <SDL_image.h>
+#include <vector>
 
 #include "../../Shared/Types/Color/Color.h"
-#include "../../Shared/Types/Vector2/Vector2.h"
 #include "../../Application/Systems/Render/RenderSystem.h"
+#include "Renderers/ImageResourceData.h"
+#include "Renderers/Renderer.h"
 
 
 class GameRenderManager
 {
 public:
-	GameRenderManager();
 	GameRenderManager(RenderSystem* renderSystem);
 	~GameRenderManager();
 
+public:
+	static GameRenderManager* GetInstance();
+
+public:
 	const Vector2<int> GetWindowSize() const;
 	void SetBackgroundColor(const Color& color) const;
 	void DrawLine(const Color& color, const Vector2<int>& start, const Vector2<int>& end) const;
+
+public:
+	SDL_Texture* LoadImageTexture(const ImageResourceData& imageResourceData) const;
+
+public:
+	void FillRenderQueue(const std::vector<Renderer*>& renderers);
+	void ClearRenderQueue();
+	void DrawRendererQueue();
 
 
 private:
 	void SetDrawColor(const Color& color) const;
 
 
+
 private:
 	RenderSystem* m_renderSystem;
+	std::vector<Renderer*> m_renderersQueue;
 
+private:
+	static GameRenderManager* s_instance;
 };

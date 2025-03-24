@@ -1,24 +1,33 @@
 #pragma once
 #include <utility>
 #include <iostream>
-#include "GameSystems.h"
+
+#include "Systems/GameTime.h"
+#include "Systems/GameInput.h"
+#include "Systems/GameAssetResources.h"
+#include "Render/GameRenderManager.h"
+#include "Scenes/SceneManager.h"
+
 
 class BilliardsGame
 {
 public:
 	BilliardsGame();
 	~BilliardsGame();
-	void Init(const GameSystems& systems);
+	void Init(const GameSpecifications& specifications,
+			  IInputState* inputState, RenderSystem* renderSystem, ITimeState* timeState);
 	void Cleanup();
 
 	void Update();
-	void Render() const;
-
+	void Render();
 
 
 public:
 	bool p_quitApplication;
 private:
-	GameSystems m_systems;
-
+	GameTime* m_gameTime;
+	GameInput* m_gameInput;
+	GameRenderManager* m_gameRenderManager;
+	SceneManager* m_sceneManager;
+	GameAssetResources* m_gameAssetResources;
 };

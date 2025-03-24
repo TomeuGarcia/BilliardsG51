@@ -52,6 +52,15 @@
     <Filter Include="Source Files\Shared\Types\Vector2">
       <UniqueIdentifier>{58bd2b76-32fd-491b-883a-dc2a5f0d5dc9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Scenes\CustomScenes">
+      <UniqueIdentifier>{7d18fc7d-87f0-41e6-86fd-4841a130ee92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Render\Renderers">
+      <UniqueIdentifier>{720d72fd-946b-45af-a7a2-2619292c81c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Systems">
+      <UniqueIdentifier>{387e9090-f365-4b67-b508-1008a5703bfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,11 +87,41 @@
     <ClCompile Include="Application\Systems\Input\WindowInputs.cpp">
       <Filter>Source Files\Application\Systems\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameSystems.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Render\GameRenderManager.cpp">
       <Filter>Source Files\Game\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\SceneManager.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\Scene.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CustomScenes\EmptyScene.cpp">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Transform.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Renderers\Renderer.cpp">
+      <Filter>Source Files\Game\Render\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\GameObject.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Renderers\Image.cpp">
+      <Filter>Source Files\Game\Render\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Renderers\ImageResourceData.cpp">
+      <Filter>Source Files\Game\Render\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameTime.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameInput.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameAssetResources.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,9 +158,6 @@
     <ClInclude Include="Application\Systems\Input\WindowInputs.h">
       <Filter>Source Files\Application\Systems\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Game\GameSystems.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Scenes\SceneManager.h">
       <Filter>Source Files\Game\Scenes</Filter>
     </ClInclude>
@@ -142,6 +178,33 @@
     </ClInclude>
     <ClInclude Include="Shared\Types\Vector2\Vector2.h">
       <Filter>Source Files\Shared\Types\Vector2</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CustomScenes\EmptyScene.h">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Transform.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Renderers\Renderer.h">
+      <Filter>Source Files\Game\Render\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Renderers\Image.h">
+      <Filter>Source Files\Game\Render\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Renderers\ImageResourceData.h">
+      <Filter>Source Files\Game\Render\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameTime.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameInput.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameAssetResources.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameSpecifications.h">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
