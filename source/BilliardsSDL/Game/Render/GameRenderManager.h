@@ -26,7 +26,7 @@ public:
 	SDL_Texture* LoadImageTexture(const ImageResourceData& imageResourceData) const;
 
 public:
-	void FillRenderQueue(const std::vector<Renderer*>& renderers);
+	void AddToRenderQueue(const std::shared_ptr<Renderer> renderer);
 	void ClearRenderQueue();
 	void DrawRendererQueue();
 
@@ -38,7 +38,7 @@ private:
 
 private:
 	RenderSystem* m_renderSystem;
-	std::vector<Renderer*> m_renderersQueue;
+	std::vector<std::shared_ptr<Renderer>> m_renderersQueue;
 
 private:
 	static GameRenderManager* s_instance;

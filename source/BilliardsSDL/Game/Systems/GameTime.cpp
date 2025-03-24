@@ -22,7 +22,6 @@ GameTime* GameTime::GetInstance()
 }
 
 
-
 float GameTime::GetTime() const
 {
     return m_timeState->GetTime();

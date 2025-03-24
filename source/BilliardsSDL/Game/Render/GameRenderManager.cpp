@@ -52,12 +52,9 @@ SDL_Texture* GameRenderManager::LoadImageTexture(const ImageResourceData& imageR
 
 
 
-void GameRenderManager::FillRenderQueue(const std::vector<Renderer*>& renderers)
+void GameRenderManager::AddToRenderQueue(const std::shared_ptr<Renderer> renderer)
 {
-	for (auto it = renderers.begin(); it != renderers.end(); ++it)
-	{
-		m_renderersQueue.emplace_back(*it);
-	}
+	m_renderersQueue.emplace_back(renderer);
 }
 
 void GameRenderManager::ClearRenderQueue()

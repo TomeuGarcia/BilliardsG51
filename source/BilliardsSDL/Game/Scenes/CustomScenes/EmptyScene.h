@@ -1,6 +1,6 @@
 #pragma once
 #include "../Scene.h"
-
+#include "../../GameObjects/Behaviours/TestBehaviour.h"
 
 class EmptyScene : public Scene
 {
