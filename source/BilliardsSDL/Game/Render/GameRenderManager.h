@@ -1,10 +1,12 @@
 #pragma once
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <vector>
 
 #include "../../Shared/Types/Color/Color.h"
 #include "../../Application/Systems/Render/RenderSystem.h"
-#include "Renderers/ImageResourceData.h"
+#include "Renderers/Image/ImageResourceData.h"
+#include "Renderers/Text/TextResourceData.h"
 #include "Renderers/Renderer.h"
 
 
@@ -24,6 +26,9 @@ public:
 
 public:
 	SDL_Texture* LoadImageTexture(const ImageResourceData& imageResourceData) const;
+	SDL_Texture* LoadTextTexture(const TextResourceData& textResourceData,
+								 const std::string& text, const int pointSize, const Color& color,
+								 Vector2<int>& outTextSize) const;
 
 public:
 	void AddToRenderQueue(const std::shared_ptr<Renderer> renderer);

@@ -6,7 +6,7 @@ struct ApplicationSpecifications
 public:
 	ApplicationSpecifications()	: 
 		p_windowSize(960, 540), 
-		p_gameSpecifications()
+		p_gameSpecifications("../../resources/Assets/")
 	{
 	}
 

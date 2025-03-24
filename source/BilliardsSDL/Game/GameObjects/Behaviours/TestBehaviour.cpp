@@ -1,7 +1,7 @@
 #include "TestBehaviour.h"
 
-TestBehaviour::TestBehaviour(const std::shared_ptr<Image>& image)
-	: m_image(image)
+TestBehaviour::TestBehaviour(const std::shared_ptr<Image>& image, const std::shared_ptr<Text>& text)
+	: m_image(image), m_text(text)
 {
 }
 
@@ -11,5 +11,11 @@ TestBehaviour::~TestBehaviour()
 
 void TestBehaviour::Update()
 {
-	m_image->p_rotationInDegrees = GameTime::GetInstance()->GetTime() * 50.0f;
+	const float time{ GameTime::GetInstance()->GetTime() };
+	m_image->p_rotationInDegrees = time * 50.0f;
+
+
+	const float t{ fmod(time, 1.0f) };
+	Color textColor = Color::Lerp(Colors::SoftBlue, Colors::SoftGreen, t);
+	m_text->SetColorTint(textColor);
 }

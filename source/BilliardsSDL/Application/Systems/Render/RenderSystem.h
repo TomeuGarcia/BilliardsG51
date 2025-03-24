@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <iostream>
 #include "../../ApplicationSpecifications.h"
 #include "../../../Shared/Types/Color/Color.h"

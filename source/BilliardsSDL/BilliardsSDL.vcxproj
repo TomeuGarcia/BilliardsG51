@@ -214,9 +214,11 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\GameObject.cpp" />
     <ClCompile Include="Game\GameObjects\Transform.cpp" />
     <ClCompile Include="Game\Render\GameRenderManager.cpp" />
-    <ClCompile Include="Game\Render\Renderers\Image.cpp" />
-    <ClCompile Include="Game\Render\Renderers\ImageResourceData.cpp" />
+    <ClCompile Include="Game\Render\Renderers\Image\Image.cpp" />
+    <ClCompile Include="Game\Render\Renderers\Image\ImageResourceData.cpp" />
     <ClCompile Include="Game\Render\Renderers\Renderer.cpp" />
+    <ClCompile Include="Game\Render\Renderers\Text\Text.cpp" />
+    <ClCompile Include="Game\Render\Renderers\Text\TextResourceData.cpp" />
     <ClCompile Include="Game\Scenes\CustomScenes\EmptyScene.cpp" />
     <ClCompile Include="Game\Scenes\Scene.cpp" />
     <ClCompile Include="Game\Scenes\SceneManager.cpp" />
@@ -224,6 +226,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Systems\GameInput.cpp" />
     <ClCompile Include="Game\Systems\GameTime.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Shared\Types\Color\Color.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\ApplicationSpecifications.h" />
@@ -243,9 +246,11 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\GameObject.h" />
     <ClInclude Include="Game\GameSpecifications.h" />
     <ClInclude Include="Game\Render\GameRenderManager.h" />
-    <ClInclude Include="Game\Render\Renderers\Image.h" />
+    <ClInclude Include="Game\Render\Renderers\Image\Image.h" />
+    <ClInclude Include="Game\Render\Renderers\Image\ImageResourceData.h" />
     <ClInclude Include="Game\Render\Renderers\Renderer.h" />
-    <ClInclude Include="Game\Render\Renderers\ImageResourceData.h" />
+    <ClInclude Include="Game\Render\Renderers\Text\Text.h" />
+    <ClInclude Include="Game\Render\Renderers\Text\TextResourceData.h" />
     <ClInclude Include="Game\Scenes\CustomScenes\EmptyScene.h" />
     <ClInclude Include="Game\Scenes\Scene.h" />
     <ClInclude Include="Game\Scenes\SceneManager.h" />

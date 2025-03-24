@@ -64,6 +64,12 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours">
       <UniqueIdentifier>{7210d3a6-3a36-44b0-9f11-bef44a15b59f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Render\Renderers\Image">
+      <UniqueIdentifier>{5fcd3b5b-3191-4cd6-a51d-eba404ef20df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Render\Renderers\Text">
+      <UniqueIdentifier>{f4c951f9-84e4-4085-b955-c24ea61fea13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -111,12 +117,6 @@
     <ClCompile Include="Game\GameObjects\GameObject.cpp">
       <Filter>Source Files\Game\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Render\Renderers\Image.cpp">
-      <Filter>Source Files\Game\Render\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Render\Renderers\ImageResourceData.cpp">
-      <Filter>Source Files\Game\Render\Renderers</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Systems\GameTime.cpp">
       <Filter>Source Files\Game\Systems</Filter>
     </ClCompile>
@@ -128,6 +128,21 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Renderers\Image\Image.cpp">
+      <Filter>Source Files\Game\Render\Renderers\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Renderers\Image\ImageResourceData.cpp">
+      <Filter>Source Files\Game\Render\Renderers\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Renderers\Text\Text.cpp">
+      <Filter>Source Files\Game\Render\Renderers\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Renderers\Text\TextResourceData.cpp">
+      <Filter>Source Files\Game\Render\Renderers\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared\Types\Color\Color.cpp">
+      <Filter>Source Files\Shared\Types\Color</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,12 +209,6 @@
     <ClInclude Include="Game\Render\Renderers\Renderer.h">
       <Filter>Source Files\Game\Render\Renderers</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Render\Renderers\Image.h">
-      <Filter>Source Files\Game\Render\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Render\Renderers\ImageResourceData.h">
-      <Filter>Source Files\Game\Render\Renderers</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Systems\GameTime.h">
       <Filter>Source Files\Game\Systems</Filter>
     </ClInclude>
@@ -217,6 +226,18 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h">
       <Filter>Source Files\Game\GameObjects\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Renderers\Image\Image.h">
+      <Filter>Source Files\Game\Render\Renderers\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Renderers\Image\ImageResourceData.h">
+      <Filter>Source Files\Game\Render\Renderers\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Renderers\Text\Text.h">
+      <Filter>Source Files\Game\Render\Renderers\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Renderers\Text\TextResourceData.h">
+      <Filter>Source Files\Game\Render\Renderers\Text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

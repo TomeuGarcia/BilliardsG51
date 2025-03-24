@@ -20,10 +20,13 @@ void RenderSystem::Init(const Vector2<int>& windowSize)
 	{
 		std::cout << SDL_GetError() << std::endl;
 	}
+
+	TTF_Init();
 }
 
 void RenderSystem::Cleanup()
 {
+	TTF_Quit();
 	SDL_DestroyRenderer(m_renderer);
 	SDL_DestroyWindow(m_window);
 }

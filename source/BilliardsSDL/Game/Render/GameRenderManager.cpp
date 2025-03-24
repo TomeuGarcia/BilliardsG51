@@ -50,6 +50,22 @@ SDL_Texture* GameRenderManager::LoadImageTexture(const ImageResourceData& imageR
 	return texture;
 }
 
+SDL_Texture* GameRenderManager::LoadTextTexture(const TextResourceData& textResourceData,
+												const std::string& text, const int pointSize, const Color& color,
+												Vector2<int>& outTextSize) const
+{
+	const char* pathString = textResourceData.p_sourcePath.c_str();
+	const char* textString = text.c_str();
+
+	TTF_Font* font = TTF_OpenFont(pathString, pointSize);
+	SDL_Surface* surface = TTF_RenderText_Blended(font, textString, color.ToSDLColor());
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_renderSystem->GetRenderer(), surface);
+	SDL_FreeSurface(surface);
+	TTF_SizeText(font, textString, &outTextSize.x, &outTextSize.y);
+
+	return texture;
+}
+
 
 
 void GameRenderManager::AddToRenderQueue(const std::shared_ptr<Renderer> renderer)
