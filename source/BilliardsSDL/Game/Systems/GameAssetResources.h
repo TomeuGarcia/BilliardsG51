@@ -16,11 +16,13 @@ public:
 
 public:
 	const ImageResourceData& GetDebugImageData();
+	const ImageResourceData& GetDebugTransparentImageData();
 	const TextResourceData& GetDebugTextFontData();
 
 
 private:
 	ImageResourceData m_debugImageData;
+	ImageResourceData m_debugTransparentImageData;
 	TextResourceData m_debugTextFontData;
 
 private:

@@ -1,7 +1,7 @@
 #include "Image.h"
 
 
-Image::Image(GameObject* gameObject, const Vector2<int>& size)
+Image::Image(GameObject* gameObject, const Vector2<float>& size)
 	: Renderer(gameObject, size), 
 	m_sourceRect()
 {

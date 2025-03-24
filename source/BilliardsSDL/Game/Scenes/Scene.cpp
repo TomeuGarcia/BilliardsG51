@@ -38,13 +38,13 @@ void Scene::Render()
 
 
 
-GameObject* Scene::CreateGameObject(const Vector2<int>& position)
+GameObject* Scene::CreateGameObject(const Vector2<float>& position)
 {
 	m_gameObjects.emplace_back(position);
 	return &(*m_gameObjects.rbegin());
 }
 
-std::shared_ptr<Image> Scene::CreateImageComponent(GameObject* owner, const ImageResourceData& resourceData, const Vector2<int>& size)
+std::shared_ptr<Image> Scene::CreateImageComponent(GameObject* owner, const ImageResourceData& resourceData, const Vector2<float>& size)
 {	
 	std::shared_ptr<Image> image = std::make_shared<Image>(owner, size);
 	image->Init(*GameRenderManager::GetInstance(), resourceData);

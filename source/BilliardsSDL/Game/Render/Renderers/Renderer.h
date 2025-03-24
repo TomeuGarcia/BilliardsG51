@@ -7,7 +7,7 @@
 class Renderer
 {
 public:
-	Renderer(GameObject* gameObject, const Vector2<int>& size);
+	Renderer(GameObject* gameObject, const Vector2<float>& worldSize);
 	virtual ~Renderer();
 
 	void Render(SDL_Renderer* outputRenderer);
@@ -28,7 +28,7 @@ public:
 	Vector2<float> p_scale;
 
 protected:
-	Vector2<int> r_size;
+	Vector2<float> r_worldSize;
 	SDL_Texture* r_texture;
 
 private:

@@ -8,7 +8,7 @@
 class GameObject
 {
 public:
-	GameObject(const Vector2<int>& position);
+	GameObject(const Vector2<float>& position);
 	virtual ~GameObject();
 
 	virtual void Start();

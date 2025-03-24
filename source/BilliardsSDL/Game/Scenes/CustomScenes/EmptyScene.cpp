@@ -13,11 +13,11 @@ EmptyScene::~EmptyScene()
 
 void EmptyScene::CreateGameObjects()
 {		
-	Vector2<int> position = GameRenderManager::GetInstance()->GetWindowSize() / 2;
+	Vector2<float> position{ 0.0f, 2.0f };
 	GameObject* backgroundGameObject = CreateGameObject(position);
 
 	std::shared_ptr<Image> image =
-		CreateImageComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugImageData(), Vector2<int>(400, 400));
+		CreateImageComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugTransparentImageData(), Vector2<float>(1, 1));
 
 	std::shared_ptr<Text> text = CreateTextComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(),
 													 "Nomadic Defender", 64);

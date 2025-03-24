@@ -70,6 +70,12 @@
     <Filter Include="Source Files\Game\Render\Renderers\Text">
       <UniqueIdentifier>{f4c951f9-84e4-4085-b955-c24ea61fea13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Physics">
+      <UniqueIdentifier>{7a2bf5cd-e66d-427b-b74b-cad7906e3012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Physics\Colliders">
+      <UniqueIdentifier>{e2561c09-40fe-4f32-a3ca-9b9e0e4eb774}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -143,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="Shared\Types\Color\Color.cpp">
       <Filter>Source Files\Shared\Types\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameSpacesComputer.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="Game\Render\Renderers\Text\TextResourceData.h">
       <Filter>Source Files\Game\Render\Renderers\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameSpacesComputer.h">
+      <Filter>Source Files\Game\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 #include "Renderer.h"
 
 
-Renderer::Renderer(GameObject* gameObject, const Vector2<int>& size)
-    : m_gameObject(gameObject), p_scale(1.0f, 1.0f), r_size(size), p_rotationInDegrees(0),
+Renderer::Renderer(GameObject* gameObject, const Vector2<float>& worldSize)
+    : m_gameObject(gameObject), p_scale(1.0f, 1.0f), r_worldSize(worldSize), p_rotationInDegrees(0),
     p_flip(SDL_FLIP_NONE), m_colorTint(Colors::White)
 {
 }
@@ -32,8 +32,11 @@ Color Renderer::GetColorTint() const
 
 const SDL_Rect Renderer::ComputeDestination()
 {
-    const Vector2<int> position = m_gameObject->GetTransform()->p_position;
-    const Vector2<int> scaledSize{ (int)(r_size.x * p_scale.x), (int)(r_size.y * p_scale.y) };
+    const Vector2<int> position = GameSpacesComputer::GetInstance()->WorldToWindowPosition(
+        m_gameObject->GetTransform()->p_worldPosition);
+    Vector2<int> scaledSize = GameSpacesComputer::GetInstance()->WorldToWindowVector(
+        { r_worldSize.x * p_scale.x, r_worldSize.y * p_scale.y });
+
     const Vector2<int> halfScaledSize = scaledSize / 2;
 
     SDL_Rect destinationRect{};

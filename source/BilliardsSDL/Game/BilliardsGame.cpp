@@ -2,17 +2,19 @@
 
 
 BilliardsGame::BilliardsGame()
-	: p_quitApplication(false), m_gameTime(nullptr), m_gameInput(nullptr), m_gameRenderManager(nullptr)
+	: p_quitApplication(false), m_gameTime(nullptr), m_gameInput(nullptr), m_gameRenderManager(nullptr),
+	m_gameSpacesComputer(nullptr)
 {
 }
 
 BilliardsGame::~BilliardsGame()
 {
-	delete m_gameTime;
-	delete m_gameInput;
-	delete m_gameRenderManager;
-	delete m_sceneManager;
+	delete m_gameSpacesComputer;
 	delete m_gameAssetResources;
+	delete m_sceneManager;
+	delete m_gameRenderManager;
+	delete m_gameInput;
+	delete m_gameTime;
 }
 
 void BilliardsGame::Init(const GameSpecifications& specifications, 
@@ -26,6 +28,8 @@ void BilliardsGame::Init(const GameSpecifications& specifications,
 	m_gameAssetResources = new GameAssetResources(specifications.p_pathToResourceImages,
 												  specifications.p_pathToResourceFonts,
 												  specifications.p_pathToResourceAudios);
+	m_gameSpacesComputer = new GameSpacesComputer(renderSystem, specifications.p_worldWidthInWindow);
+	m_gameSpacesComputer->Update();
 
 	m_sceneManager->Init(specifications.p_startingScene);
 }
@@ -38,6 +42,7 @@ void BilliardsGame::Cleanup()
 
 void BilliardsGame::Update()
 {
+	m_gameSpacesComputer->Update();
 	m_sceneManager->GetActiveScene()->Update();
 	
 	/*

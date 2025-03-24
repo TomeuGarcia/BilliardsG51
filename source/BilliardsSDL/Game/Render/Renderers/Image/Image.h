@@ -7,7 +7,7 @@
 class Image : public Renderer
 {
 public:
-	Image(GameObject* gameObject, const Vector2<int>& size);
+	Image(GameObject* gameObject, const Vector2<float>& size);
 	virtual ~Image();
 
 	void Init(const GameRenderManager& renderManager, const ImageResourceData& resourceData);
