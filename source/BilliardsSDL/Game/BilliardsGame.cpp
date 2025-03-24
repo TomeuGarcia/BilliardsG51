@@ -23,7 +23,9 @@ void BilliardsGame::Init(const GameSpecifications& specifications,
 	m_gameInput = new GameInput(inputState);
 	m_gameRenderManager = new GameRenderManager(renderSystem);
 	m_sceneManager = new SceneManager();
-	m_gameAssetResources = new GameAssetResources(specifications.p_pathToResources);
+	m_gameAssetResources = new GameAssetResources(specifications.p_pathToResourceImages,
+												  specifications.p_pathToResourceFonts,
+												  specifications.p_pathToResourceAudios);
 
 	m_sceneManager->Init(specifications.p_startingScene);
 }

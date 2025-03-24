@@ -19,8 +19,14 @@ void EmptyScene::CreateGameObjects()
 	std::shared_ptr<Image> image =
 		CreateImageComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugImageData(), Vector2<int>(400, 400));
 
-	std::shared_ptr<TestBehaviour> test = std::make_shared<TestBehaviour>(image);
+	std::shared_ptr<Text> text = CreateTextComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(),
+													 "Nomadic Defender", 64);
+
+	std::shared_ptr<TestBehaviour> test = std::make_shared<TestBehaviour>(image, text);
 	backgroundGameObject->AttachBehaviour(test);
+
+
+
 }
 
 void EmptyScene::Start()

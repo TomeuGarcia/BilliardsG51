@@ -105,6 +105,11 @@ public:
         return v1 + (v2 - v1) * t;
     }
 
+    static Vector2 Zero() 
+    {
+        return { 0,0 };
+    }
+
 
 public:
     T x;

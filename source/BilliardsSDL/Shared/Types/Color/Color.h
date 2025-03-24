@@ -1,10 +1,45 @@
 #pragma once
 #include <cstdint>
+#include <SDL.h>
 
 struct Color
 {
 public:
-	uint8_t r, g, b, a;	
+	Color operator+(const Color& other) const
+    {
+        return Color{ 
+			r + other.r, 
+			g + other.g, 
+			b + other.b, 
+			a + other.a };
+    }
+
+	Color operator-(const Color& other) const
+    {
+		return Color{
+			r + other.r,
+			g + other.g,
+			b + other.b,
+			a + other.a };
+    }
+	
+	Color operator*(const float& scalar) const
+    {
+		return Color{
+			(uint32_t)(r * scalar),
+			(uint32_t)(g * scalar),
+			(uint32_t)(b * scalar),
+			(uint32_t)(a * scalar) };
+    }
+
+	SDL_Color ToSDLColor() const;
+
+public:
+	static Color Lerp(const Color& a, const Color& b, const float& t);
+
+
+public:
+	uint32_t r, g, b, a;	
 };
 
 

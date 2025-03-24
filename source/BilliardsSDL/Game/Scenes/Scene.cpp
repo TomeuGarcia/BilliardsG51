@@ -53,3 +53,14 @@ std::shared_ptr<Image> Scene::CreateImageComponent(GameObject* owner, const Imag
 
 	return image;
 }
+
+std::shared_ptr<Text> Scene::CreateTextComponent(GameObject* owner, const TextResourceData& resourceData,
+												 const std::string& textString, const int pointSize)
+{
+	std::shared_ptr<Text> text = std::make_shared<Text>(owner, textString, pointSize);
+	text->Init(*GameRenderManager::GetInstance(), resourceData);
+
+	GameRenderManager::GetInstance()->AddToRenderQueue(text);
+
+	return text;
+}

@@ -5,7 +5,8 @@
 #include "../Systems/GameTime.h"
 #include "../Systems/GameAssetResources.h"
 #include "../Render/GameRenderManager.h"
-#include "../Render/Renderers/Image.h"
+#include "../Render/Renderers/Image/Image.h"
+#include "../Render/Renderers/Text/Text.h"
 #include "../../Shared/Types/Color/Color.h"
 
 
@@ -26,6 +27,8 @@ protected:
 	virtual void CreateGameObjects() = 0;
 	GameObject* CreateGameObject(const Vector2<int>& position);
 	std::shared_ptr<Image> CreateImageComponent(GameObject* owner, const ImageResourceData& resourceData, const Vector2<int>& size);
+	std::shared_ptr<Text> CreateTextComponent(GameObject* owner, const TextResourceData& resourceData,
+											  const std::string& textString, const int pointSize);
 
 
 	virtual void Start() = 0;

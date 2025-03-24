@@ -1,12 +1,16 @@
 #pragma once
 #include "Behaviour.h"
-#include "../../Render/Renderers/Image.h"
+#include "../../Render/Renderers/Image/Image.h"
+#include "../../Render/Renderers/Text/Text.h"
 #include "../../Systems/GameTime.h"
+
+#include <cmath>
+
 
 class TestBehaviour : public Behaviour
 {
 public:
-	TestBehaviour(const std::shared_ptr<Image>& image);
+	TestBehaviour(const std::shared_ptr<Image>& image, const std::shared_ptr<Text>& text);
 	virtual ~TestBehaviour();
 
 public:
@@ -15,4 +19,5 @@ public:
 
 private:
 	std::shared_ptr<Image> m_image;
+	std::shared_ptr<Text> m_text;
 };
