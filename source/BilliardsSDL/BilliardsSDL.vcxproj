@@ -224,6 +224,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Scenes\SceneManager.cpp" />
     <ClCompile Include="Game\Systems\GameAssetResources.cpp" />
     <ClCompile Include="Game\Systems\GameInput.cpp" />
+    <ClCompile Include="Game\Systems\GameSpacesComputer.cpp" />
     <ClCompile Include="Game\Systems\GameTime.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shared\Types\Color\Color.cpp" />
@@ -257,6 +258,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Scenes\SceneName.h" />
     <ClInclude Include="Game\Systems\GameAssetResources.h" />
     <ClInclude Include="Game\Systems\GameInput.h" />
+    <ClInclude Include="Game\Systems\GameSpacesComputer.h" />
     <ClInclude Include="Game\Systems\GameTime.h" />
     <ClInclude Include="Shared\Types\Color\Color.h" />
     <ClInclude Include="Shared\Types\Vector2\Vector2.h" />

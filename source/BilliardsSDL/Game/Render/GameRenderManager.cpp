@@ -45,6 +45,11 @@ SDL_Texture* GameRenderManager::LoadImageTexture(const ImageResourceData& imageR
 {
 	SDL_Surface* surface = IMG_Load(imageResourceData.p_sourcePath.c_str());
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_renderSystem->GetRenderer(), surface);
+	if (imageResourceData.p_alphaTransparency)
+	{
+		SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+	}
+
 	SDL_FreeSurface(surface);
 
 	return texture;
@@ -80,6 +85,8 @@ void GameRenderManager::ClearRenderQueue()
 
 void GameRenderManager::DrawRendererQueue()
 {
+	SDL_SetRenderDrawBlendMode(m_renderSystem->GetRenderer(), SDL_BLENDMODE_BLEND); // Always draw transparents (for now)
+
 	for (auto it = m_renderersQueue.begin(); it != m_renderersQueue.end(); ++it)
 	{
 		(*it)->Render(m_renderSystem->GetRenderer());

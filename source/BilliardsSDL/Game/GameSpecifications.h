@@ -10,7 +10,8 @@ public:
 		p_pathToResourceImages(pathToResourceAssets + "Images/"),
 		p_pathToResourceFonts(pathToResourceAssets + "Fonts/"),
 		p_pathToResourceAudios(pathToResourceAssets + "Audios/"),
-		p_startingScene(SceneName::MainMenu)
+		p_startingScene(SceneName::MainMenu),
+		p_worldWidthInWindow(9.6f)
 	{
 	}
 
@@ -19,4 +20,5 @@ public:
 	std::string p_pathToResourceFonts;
 	std::string p_pathToResourceAudios;
 	SceneName p_startingScene;
+	float p_worldWidthInWindow;
 };

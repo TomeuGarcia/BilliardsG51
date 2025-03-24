@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(const Vector2<int>& position)
+GameObject::GameObject(const Vector2<float>& position)
 	: m_transform(position), m_behaviours()
 {
 	m_behaviours.reserve(1);

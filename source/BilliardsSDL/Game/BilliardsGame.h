@@ -5,6 +5,7 @@
 #include "Systems/GameTime.h"
 #include "Systems/GameInput.h"
 #include "Systems/GameAssetResources.h"
+#include "Systems/GameSpacesComputer.h"
 #include "Render/GameRenderManager.h"
 #include "Scenes/SceneManager.h"
 
@@ -30,4 +31,5 @@ private:
 	GameRenderManager* m_gameRenderManager;
 	SceneManager* m_sceneManager;
 	GameAssetResources* m_gameAssetResources;
+	GameSpacesComputer* m_gameSpacesComputer;
 };
