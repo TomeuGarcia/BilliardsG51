@@ -11,6 +11,8 @@ GameObject::~GameObject()
 {
 }
 
+
+
 void GameObject::Start()
 {
 	for (auto it = m_behaviours.begin(); it != m_behaviours.end(); ++it)
@@ -26,6 +28,8 @@ void GameObject::Update()
 		(*it)->Update();
 	}
 }
+
+
 
 void GameObject::AttachBehaviour(const std::shared_ptr<Behaviour>& behaviour)
 {

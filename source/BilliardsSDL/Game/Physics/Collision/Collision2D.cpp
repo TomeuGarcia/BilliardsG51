@@ -15,7 +15,7 @@ void Collision2D::UpdateStatus(const bool& keepColliding)
 	{
 		if (m_status == Status::None)
 		{
-			m_status = Status::Enter;
+			m_status = Status::Enter;		
 		}
 		else if (m_status == Status::Enter)
 		{

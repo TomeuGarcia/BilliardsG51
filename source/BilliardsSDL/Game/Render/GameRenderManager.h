@@ -3,6 +3,7 @@
 #include <SDL_ttf.h>
 #include <vector>
 
+#include "../../Shared/Types/Rect/Rect.h"
 #include "../../Shared/Types/Color/Color.h"
 #include "../../Application/Systems/Render/RenderSystem.h"
 #include "Renderers/Image/ImageResourceData.h"
@@ -22,7 +23,8 @@ public:
 public:
 	const Vector2<int> GetWindowSize() const;
 	void SetBackgroundColor(const Color& color) const;
-	void DrawLine(const Color& color, const Vector2<int>& start, const Vector2<int>& end) const;
+	void DrawDebugLine(const Color& color, const Vector2<int>& start, const Vector2<int>& end) const;
+	void DrawDebugRect(const Color& color, const Rect<int>& rect) const;
 
 public:
 	SDL_Texture* LoadImageTexture(const ImageResourceData& imageResourceData) const;

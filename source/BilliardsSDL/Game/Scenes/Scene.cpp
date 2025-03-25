@@ -81,24 +81,28 @@ std::shared_ptr<Text> Scene::CreateTextComponent(GameObject* owner, const TextRe
 
 
 
-std::shared_ptr<CircleCollider2D> Scene::CreateCircleColliderComponent(GameObject* owner, const float& radius)
+std::shared_ptr<Rigidbody2D> Scene::CreateRigidbodyComponent(GameObject* gameObject,
+	const std::shared_ptr<PhysicMaterial>& physicMaterial,
+	const float& mass, const float& gravityScale)
 {
-	std::shared_ptr<CircleCollider2D> circleCollider = std::make_shared<CircleCollider2D>(owner, radius);
+	std::shared_ptr<Rigidbody2D> rigidbody = std::make_shared<Rigidbody2D>(gameObject, physicMaterial, mass, gravityScale);
+	return rigidbody;
+}
 
-	Physics2DManager::GetInstance()->AddRigidbodylessCollider(circleCollider);
+std::shared_ptr<CircleCollider2D> Scene::CreateCircleColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const float& radius)
+{
+	std::shared_ptr<CircleCollider2D> circleCollider = std::make_shared<CircleCollider2D>(owner, optionalRigidbody, radius);
+
+	Physics2DManager::GetInstance()->AddCircleCollider(circleCollider);
 
 	return circleCollider;
 }
 
-std::shared_ptr<Rigidbody2D> Scene::CreateRigidbodyComponent(const std::shared_ptr<Collider2D>& collider, 
-															 const std::shared_ptr<PhysicMaterial>& physicMaterial,
-															 const float& mass, const float& gravityScale)
+std::shared_ptr<AABoxCollider2D> Scene::CreateAABoxColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const Vector2<float>& size)
 {
-	std::shared_ptr<Rigidbody2D> rigidbody = std::make_shared<Rigidbody2D>(collider, physicMaterial, mass, gravityScale);
+	std::shared_ptr<AABoxCollider2D> aaBoxCollider = std::make_shared<AABoxCollider2D>(owner, optionalRigidbody, size);
 
-	Physics2DManager::GetInstance()->RemoveRigidbodylessCollider(collider); // Remove previously added collider (it is kinda ugly though)
-	Physics2DManager::GetInstance()->AddRigidbody(rigidbody);
+	Physics2DManager::GetInstance()->AddAABoxCollider(aaBoxCollider);
 
-	return rigidbody;
+	return aaBoxCollider;
 }
-

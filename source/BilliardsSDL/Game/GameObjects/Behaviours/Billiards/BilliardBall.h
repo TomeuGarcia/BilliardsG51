@@ -5,6 +5,8 @@
 #include "../../../Render/Renderers/Text/Text.h"
 #include "../../../Physics/Rigidbodies/Rigidbody2D.h"
 #include "../../../Systems/GameRandom.h"
+#include "../../../Systems/GameSpacesComputer.h"
+#include "../../../Render/GameRenderManager.h"
 
 
 
@@ -16,6 +18,7 @@ public:
 
 public:
 	virtual void Start() override;
+	virtual void Update() override;
 
 public:
 	void SetPosition(const Vector2<float>& position);

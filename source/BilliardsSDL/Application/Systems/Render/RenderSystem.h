@@ -19,14 +19,21 @@ public:
 	void ClearRenderer();
 	void DrawRenderer();
 
+	void StartDrawingToDebug();
+	void StopDrawingToDebug();
+
 	SDL_Renderer* GetRenderer() const;
 	const Vector2<int> GetWindowSize() const;
 	void SetBackgroundColor(const Color& color);
 
 
+
+
 private:
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
+	SDL_Texture* m_debugTexture;
+
 	Color m_backgroundColor;
 	Vector2<int> m_windowSize;
 };

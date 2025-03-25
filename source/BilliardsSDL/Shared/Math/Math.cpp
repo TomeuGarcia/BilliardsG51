@@ -38,7 +38,7 @@ namespace Math
 			&& vector.y > rect.y;
 	}
 
-	bool AreRectsIntersecting(const Rect<float>& rectA, const Rect<float>& rectB)
+	bool AreAARectsIntersecting(const Rect<float>& rectA, const Rect<float>& rectB)
 	{
 		return rectA.x + rectA.width > rectB.x
 			&& rectA.x < rectB.x + rectB.width

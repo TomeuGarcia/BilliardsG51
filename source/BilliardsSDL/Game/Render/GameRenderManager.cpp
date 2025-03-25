@@ -33,10 +33,23 @@ void GameRenderManager::SetBackgroundColor(const Color& color) const
 	m_renderSystem->SetBackgroundColor(color);
 }
 
-void GameRenderManager::DrawLine(const Color& color, const Vector2<int>& start, const Vector2<int>& end) const
+
+
+void GameRenderManager::DrawDebugLine(const Color& color, const Vector2<int>& start, const Vector2<int>& end) const
 {
+	m_renderSystem->StartDrawingToDebug();
 	SetDrawColor(color);
 	SDL_RenderDrawLine(m_renderSystem->GetRenderer(), start.x, start.y, end.x, end.y);
+	m_renderSystem->StopDrawingToDebug();
+}
+
+void GameRenderManager::DrawDebugRect(const Color& color, const Rect<int>& rect) const
+{
+	m_renderSystem->StartDrawingToDebug();
+	SetDrawColor(color);
+	SDL_Rect sdlRect = rect.ToSDLRect();
+	SDL_RenderDrawRect(m_renderSystem->GetRenderer(), &sdlRect);
+	m_renderSystem->StopDrawingToDebug();
 }
 
 

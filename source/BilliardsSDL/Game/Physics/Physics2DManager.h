@@ -1,7 +1,12 @@
 #pragma once
+#include <map>
 #include "../../Shared/Math/Math.h"
-#include "EulerSolver.h"
+#include "Solvers/EulerSolver.h"
 #include "Collision/Collision2D.h"
+#include "Colliders/CircleCollider2D.h"
+#include "Colliders/AABoxCollider2D.h"
+#include "CircleCollider2DGroup.h"
+#include "AABoxCollider2DGroup.h"
 
 
 class Physics2DManager
@@ -16,24 +21,29 @@ public:
 
 public:
 	void ClearReferences();
-	void AddRigidbody(const std::shared_ptr<Rigidbody2D>& rigidbody);
-	void AddRigidbodylessCollider(const std::shared_ptr<Collider2D>& collider);
-	void RemoveRigidbodylessCollider(const std::shared_ptr<Collider2D>& collider);
+
+	void AddCircleCollider(const std::shared_ptr<CircleCollider2D>& collider);
+	void AddAABoxCollider(const std::shared_ptr<AABoxCollider2D>& collider);
+
 
 	void Update(const float& deltaTime);
+
 
 private:
 	void UpdateRigidbodies(const float& deltaTime);
 	void UpdateRigidbodylessColliders();
 	void UpdateCollisions();
 
+	void CheckCircleWithCircle(CircleCollider2D* circleColliderA, CircleCollider2D* circleColliderB);
+	void CheckCircleWithAABox(CircleCollider2D* circleColliderA, AABoxCollider2D* aaBoxColliderB);
+	void CheckAABoxWithAABox(AABoxCollider2D* aaBoxColliderA, AABoxCollider2D* aaBoxColliderB);
+	void CheckAABoxWithCircle(AABoxCollider2D* aaBoxColliderA, CircleCollider2D* circleColliderB);
+
 
 private:
 	EulerSolver m_solver;
-
-	std::vector<std::shared_ptr<Rigidbody2D>> m_rigidbodies;
-	std::vector<std::shared_ptr<Collider2D>> m_rigidbodylessColliders;
-	std::vector<Collision2D> m_activeCollisions;
+	CircleCollider2DGroup m_circleCollidersGroup;
+	AABoxCollider2DGroup m_aaBoxCollidersGroup;
 
 private:
 	static Physics2DManager* s_instance;

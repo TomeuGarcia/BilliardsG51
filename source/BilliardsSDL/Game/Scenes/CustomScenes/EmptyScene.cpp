@@ -13,17 +13,20 @@ EmptyScene::~EmptyScene()
 
 void EmptyScene::CreateGameObjects()
 {		
-	GameObject* testGameObject = 
-		CreateGameObject(Vector2<float>(0.0f, 2.0f));
+	for (int i = 0; i < 20; ++i) 
+	{
+		GameObject* testGameObject =
+			CreateGameObject(Vector2<float>(i -5, i - 5));
 
-	std::shared_ptr<Image> image =
-		CreateImageComponent(testGameObject, GameAssetResources::GetInstance()->GetDebugTransparentImageData(), Vector2<float>(1.0f, 1.0f));
+		std::shared_ptr<Image> image =
+			CreateImageComponent(testGameObject, GameAssetResources::GetInstance()->GetDebugTransparentImageData(), Vector2<float>(1.0f, 1.0f));
 
-	std::shared_ptr<Text> text = 
-		CreateTextComponent(testGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Nomadic Defender", 64);
+		std::shared_ptr<Text> text =
+			CreateTextComponent(testGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Nomadic Defender", 64);
 
-	std::shared_ptr<TestBehaviour> testBehaviour = std::make_shared<TestBehaviour>(image, text);
-	testGameObject->AttachBehaviour(testBehaviour);
+		std::shared_ptr<TestBehaviour> testBehaviour = std::make_shared<TestBehaviour>(image, text);
+		testGameObject->AttachBehaviour(testBehaviour);
+	}
 }
 
 void EmptyScene::DoStart()

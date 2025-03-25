@@ -11,6 +11,7 @@
 #include "../../Shared/Types/Color/Color.h"
 #include "../Physics/Physics2DManager.h"
 #include "../Physics/Colliders/CircleCollider2D.h"
+#include "../Physics/Colliders/AABoxCollider2D.h"
 #include "../Physics/Rigidbodies/Rigidbody2D.h"
 
 
@@ -35,10 +36,11 @@ protected:
 	std::shared_ptr<Text> CreateTextComponent(GameObject* owner, const TextResourceData& resourceData,
 											  const std::string& textString, const int pointSize);
 
-	std::shared_ptr<CircleCollider2D> CreateCircleColliderComponent(GameObject* owner, const float& radius);
-	std::shared_ptr<Rigidbody2D> CreateRigidbodyComponent(const std::shared_ptr<Collider2D>& collider, 
+	std::shared_ptr<Rigidbody2D> CreateRigidbodyComponent(GameObject* gameObject, 
 														  const std::shared_ptr<PhysicMaterial>& physicMaterial,
 														  const float& mass, const float& gravityScale);
+	std::shared_ptr<CircleCollider2D> CreateCircleColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const float& radius);
+	std::shared_ptr<AABoxCollider2D> CreateAABoxColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const Vector2<float>& size);
 
 
 	virtual void DoStart() = 0;

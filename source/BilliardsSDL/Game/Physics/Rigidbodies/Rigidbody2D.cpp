@@ -1,9 +1,10 @@
 #include "Rigidbody2D.h"
 
-Rigidbody2D::Rigidbody2D(const std::shared_ptr<Collider2D>& collider, const std::shared_ptr<PhysicMaterial>& physicMaterial,
-						 const float& mass, const float& gravityScale)
-	: m_collider(collider), m_physicMaterial(physicMaterial), p_mass(mass), p_gravityScale(gravityScale),
-	p_position(collider->GetGameObject()->GetTransform()->p_worldPosition),
+Rigidbody2D::Rigidbody2D(GameObject* gameObject, 
+						const std::shared_ptr<PhysicMaterial>& physicMaterial,
+						const float& mass, const float& gravityScale)
+	: m_gameObject(gameObject), m_physicMaterial(physicMaterial), p_mass(mass), p_gravityScale(gravityScale),
+	p_position(gameObject->GetTransform()->p_worldPosition),
 	p_velocity(Vector2<float>::Zero()),
 	m_acceleration(Vector2<float>::Zero()),
 	m_deceleration(Vector2<float>::Zero())
@@ -26,16 +27,16 @@ PhysicMaterial* Rigidbody2D::GetPhysicMaterial() const
 	return m_physicMaterial.get();
 }
 
-Collider2D* Rigidbody2D::GetCollider() const
+GameObject* Rigidbody2D::GetGameObject() const
 {
-	return m_collider.get();
+	return m_gameObject;
 }
 
 
 
 void Rigidbody2D::UpdatePosition()
 {
-	m_collider->GetGameObject()->GetTransform()->p_worldPosition = p_position;
+	m_gameObject->GetTransform()->p_worldPosition = p_position;
 }
 
 void Rigidbody2D::ApplyFriction()
