@@ -4,10 +4,14 @@
 #include "../GameObjects/GameObject.h"
 #include "../Systems/GameTime.h"
 #include "../Systems/GameAssetResources.h"
+#include "../Systems/GameRandom.h"
 #include "../Render/GameRenderManager.h"
 #include "../Render/Renderers/Image/Image.h"
 #include "../Render/Renderers/Text/Text.h"
 #include "../../Shared/Types/Color/Color.h"
+#include "../Physics/Physics2DManager.h"
+#include "../Physics/Colliders/CircleCollider2D.h"
+#include "../Physics/Rigidbodies/Rigidbody2D.h"
 
 
 class Scene
@@ -19,6 +23,7 @@ public:
 	void Init();
 	void Cleanup();
 
+	void Start();
 	void Update();
 	void Render();
 
@@ -30,8 +35,13 @@ protected:
 	std::shared_ptr<Text> CreateTextComponent(GameObject* owner, const TextResourceData& resourceData,
 											  const std::string& textString, const int pointSize);
 
+	std::shared_ptr<CircleCollider2D> CreateCircleColliderComponent(GameObject* owner, const float& radius);
+	std::shared_ptr<Rigidbody2D> CreateRigidbodyComponent(const std::shared_ptr<Collider2D>& collider, 
+														  const std::shared_ptr<PhysicMaterial>& physicMaterial,
+														  const float& mass, const float& gravityScale);
 
-	virtual void Start() = 0;
+
+	virtual void DoStart() = 0;
 
 
 private:

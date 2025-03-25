@@ -2,8 +2,8 @@
 
 BilliardsApplication::BilliardsApplication()
 	: m_running(true), m_specifications(), 
-	m_inputSystem(), m_timeSystem(), m_renderSystem(),
-	m_game()
+	m_inputSystem(), m_timeSystem(), m_renderSystem(), m_rngSystem(),
+	m_gameEngine()
 {
 }
 
@@ -15,11 +15,11 @@ void BilliardsApplication::Run()
 {
 	InitSDL();
 	InitSystems();
-	InitGame();
+	InitGameEngine();
 
 	GameLoop();
 
-	CleanupGame();
+	CleanupGameEngine();
 	CleanupSystems();
 	CleanupSDL();
 }
@@ -40,18 +40,20 @@ void BilliardsApplication::InitSystems()
 	m_inputSystem.Init();
 	m_timeSystem.Init();
 	m_renderSystem.Init(m_specifications.p_windowSize);	
+	m_rngSystem.Init();
 }
 
-void BilliardsApplication::InitGame()
+void BilliardsApplication::InitGameEngine()
 {
-	m_game.Init(m_specifications.p_gameSpecifications, &m_inputSystem, &m_renderSystem, &m_timeSystem);
+	m_gameEngine.Init(m_specifications.p_gameSpecifications, &m_inputSystem, &m_renderSystem,
+				&m_timeSystem, &m_rngSystem);
 }
 
 
 
-void BilliardsApplication::CleanupGame()
+void BilliardsApplication::CleanupGameEngine()
 {
-	m_game.Cleanup();
+	m_gameEngine.Cleanup();
 }
 
 void BilliardsApplication::CleanupSystems()
@@ -74,9 +76,9 @@ void BilliardsApplication::GameLoop()
 
 		m_timeSystem.Update();
 		m_inputSystem.Update();
-		m_game.Update();
+		m_gameEngine.Update();
 
-		m_game.Render();
+		m_gameEngine.Render();
 		m_renderSystem.DrawRenderer();
 
 		UpdateRunningFlag();
@@ -86,5 +88,5 @@ void BilliardsApplication::GameLoop()
 void BilliardsApplication::UpdateRunningFlag()
 {
 	m_running = !m_inputSystem.GetWindowInputs().p_closeWindow || 
-				 m_game.p_quitApplication;
+		m_gameEngine.p_quitApplication;
 }

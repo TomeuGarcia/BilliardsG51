@@ -4,6 +4,10 @@
 class Behaviour
 {
 public:
+	Behaviour() {}
+	~Behaviour() {}
+
+public:
 	virtual void Start() {}
 	virtual void Update() {}
 

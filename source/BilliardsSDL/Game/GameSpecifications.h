@@ -10,8 +10,8 @@ public:
 		p_pathToResourceImages(pathToResourceAssets + "Images/"),
 		p_pathToResourceFonts(pathToResourceAssets + "Fonts/"),
 		p_pathToResourceAudios(pathToResourceAssets + "Audios/"),
-		p_startingScene(SceneName::MainMenu),
-		p_worldWidthInWindow(9.6f)
+		p_startingScene(SceneName::BilliardGame),
+		p_worldWidthInWindow(14.4f)
 	{
 	}
 

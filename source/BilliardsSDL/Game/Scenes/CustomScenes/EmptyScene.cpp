@@ -13,23 +13,20 @@ EmptyScene::~EmptyScene()
 
 void EmptyScene::CreateGameObjects()
 {		
-	Vector2<float> position{ 0.0f, 2.0f };
-	GameObject* backgroundGameObject = CreateGameObject(position);
+	GameObject* testGameObject = 
+		CreateGameObject(Vector2<float>(0.0f, 2.0f));
 
 	std::shared_ptr<Image> image =
-		CreateImageComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugTransparentImageData(), Vector2<float>(1, 1));
+		CreateImageComponent(testGameObject, GameAssetResources::GetInstance()->GetDebugTransparentImageData(), Vector2<float>(1.0f, 1.0f));
 
-	std::shared_ptr<Text> text = CreateTextComponent(backgroundGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(),
-													 "Nomadic Defender", 64);
+	std::shared_ptr<Text> text = 
+		CreateTextComponent(testGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Nomadic Defender", 64);
 
-	std::shared_ptr<TestBehaviour> test = std::make_shared<TestBehaviour>(image, text);
-	backgroundGameObject->AttachBehaviour(test);
-
-
-
+	std::shared_ptr<TestBehaviour> testBehaviour = std::make_shared<TestBehaviour>(image, text);
+	testGameObject->AttachBehaviour(testBehaviour);
 }
 
-void EmptyScene::Start()
+void EmptyScene::DoStart()
 {
 	GameRenderManager::GetInstance()->SetBackgroundColor(m_backgroundColor);
 }

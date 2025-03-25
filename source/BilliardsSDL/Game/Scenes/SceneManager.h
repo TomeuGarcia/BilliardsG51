@@ -2,6 +2,7 @@
 #include "../../Shared/Types/Color/Color.h"
 #include "SceneName.h"
 #include "CustomScenes/EmptyScene.h"
+#include "CustomScenes/BilliardsGameScene.h"
 
 
 class SceneManager
@@ -16,6 +17,7 @@ public:
 public:
 	void Init(const SceneName startingSceneName);
 	void Cleanup();
+	void UpdateLoading();
 	Scene* GetActiveScene() const;
 
 
@@ -24,12 +26,16 @@ public:
 
 
 private:
+	void LoadQueuedScene();	
+	void DoLoadScene(const SceneName sceneName);	
 	Scene* MakeNewSceneByName(const SceneName sceneName);
 	void InitNewActiveScene(Scene* newScene);
 	void CleanupActiveScene();
 
 
 private:
+	bool m_queuedLoadScene;
+	SceneName m_queuedLoadSceneName;
 	Scene* m_activeScene;
 
 private:
