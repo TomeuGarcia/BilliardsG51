@@ -2,20 +2,19 @@
 #include "../../../Shared/Types/Vector2/Vector2.h"
 #include "../../GameObjects/GameObject.h"
 #include "PhysicMaterial.h"
-#include "../Colliders/Collider2D.h"
 
 
 class Rigidbody2D
 {
 public:
-	Rigidbody2D(const std::shared_ptr<Collider2D>& collider,
+	Rigidbody2D(GameObject* gameObject,
 				const std::shared_ptr<PhysicMaterial>& physicMaterial,
 				const float& mass, const float& gravityScale);
 	~Rigidbody2D();
 
 	Vector2<float> GetAcceleration() const;
 	PhysicMaterial* GetPhysicMaterial() const;
-	Collider2D* GetCollider() const;
+	GameObject* GetGameObject() const;
 
 	void UpdatePosition();
 	void ApplyFriction();
@@ -37,5 +36,5 @@ private:
 	Vector2<float> m_acceleration;
 	Vector2<float> m_deceleration;
 	std::shared_ptr<PhysicMaterial> m_physicMaterial;
-	std::shared_ptr<Collider2D> m_collider;
+	GameObject* m_gameObject;
 };

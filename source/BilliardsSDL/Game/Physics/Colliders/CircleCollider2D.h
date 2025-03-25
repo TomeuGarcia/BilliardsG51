@@ -6,11 +6,11 @@
 class CircleCollider2D : public Collider2D
 {
 public:
-	CircleCollider2D(GameObject* gameObject, const float& radius);
+	CircleCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const float& radius);
 	virtual ~CircleCollider2D();
 
 
-	void SetRadius(const float radius);
+	void SetRadius(const float& radius);
 	const Circle& GetShape() const;
 
 	virtual void UpdateShape() override;
@@ -18,4 +18,5 @@ public:
 
 private:
 	Circle m_shape;
+
 };

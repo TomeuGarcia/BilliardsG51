@@ -1,7 +1,8 @@
 #include "CircleCollider2D.h"
 
-CircleCollider2D::CircleCollider2D(GameObject* gameObject, const float& radius)
-	: Collider2D(gameObject), m_shape(gameObject->GetTransform()->p_worldPosition, radius)
+CircleCollider2D::CircleCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const float& radius)
+	: Collider2D(gameObject, optionalRigidbody), 
+	m_shape(gameObject->GetTransform()->p_worldPosition, radius)
 {
 }
 
@@ -9,7 +10,7 @@ CircleCollider2D::~CircleCollider2D()
 {
 }
 
-void CircleCollider2D::SetRadius(const float radius)
+void CircleCollider2D::SetRadius(const float& radius)
 {
 	m_shape.SetRadius(radius);
 }

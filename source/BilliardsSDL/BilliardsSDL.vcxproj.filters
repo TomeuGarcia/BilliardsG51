@@ -100,6 +100,12 @@
     <Filter Include="Source Files\Game\Physics\Collision">
       <UniqueIdentifier>{39bfc6a9-4c08-40aa-9526-8e82e61903a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Debug">
+      <UniqueIdentifier>{8a7b00eb-b7c2-4107-917f-0fcd65f6d6bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Physics\Solvers">
+      <UniqueIdentifier>{1d993e6c-b838-4110-8796-cbcd01db9982}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -198,9 +204,6 @@
     <ClCompile Include="Game\Physics\Rigidbodies\PhysicMaterial.cpp">
       <Filter>Source Files\Game\Physics\Rigidbodies</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Physics\EulerSolver.cpp">
-      <Filter>Source Files\Game\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Physics\Collision\Collision2D.cpp">
       <Filter>Source Files\Game\Physics\Collision</Filter>
     </ClCompile>
@@ -212,6 +215,21 @@
     </ClCompile>
     <ClCompile Include="Shared\Math\Math.cpp">
       <Filter>Source Files\Shared\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Colliders\AABoxCollider2D.cpp">
+      <Filter>Source Files\Game\Physics\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Debug\AABoxColliderDrawer.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Solvers\EulerSolver.cpp">
+      <Filter>Source Files\Game\Physics\Solvers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\CircleCollider2DGroup.cpp">
+      <Filter>Source Files\Game\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\AABoxCollider2DGroup.cpp">
+      <Filter>Source Files\Game\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -350,11 +368,23 @@
     <ClInclude Include="Game\Physics\Rigidbodies\PhysicMaterial.h">
       <Filter>Source Files\Game\Physics\Rigidbodies</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Physics\EulerSolver.h">
-      <Filter>Source Files\Game\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Physics\Collision\Collision2D.h">
       <Filter>Source Files\Game\Physics\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Colliders\AABoxCollider2D.h">
+      <Filter>Source Files\Game\Physics\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Debug\AABoxColliderDrawer.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Solvers\EulerSolver.h">
+      <Filter>Source Files\Game\Physics\Solvers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\CircleCollider2DGroup.h">
+      <Filter>Source Files\Game\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\AABoxCollider2DGroup.h">
+      <Filter>Source Files\Game\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

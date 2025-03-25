@@ -11,8 +11,8 @@ public:
 	GameObject(const Vector2<float>& position);
 	virtual ~GameObject();
 
-	virtual void Start();
-	virtual void Update();
+	void Start();
+	void Update();
 
 	void AttachBehaviour(const std::shared_ptr<Behaviour>& behaviour);
 

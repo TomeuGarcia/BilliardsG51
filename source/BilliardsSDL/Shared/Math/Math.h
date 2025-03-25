@@ -17,7 +17,7 @@ namespace Math
 
 
 	bool IsPointInsideRect(const Rect<float>& rect, const Vector2<float>& vector);
-	bool AreRectsIntersecting(const Rect<float>& rectA, const Rect<float>& rectB);
+	bool AreAARectsIntersecting(const Rect<float>& rectA, const Rect<float>& rectB);
 
 	
 	bool IsPointInsideCircle(const Vector2<float>& point, const Circle& circle);
