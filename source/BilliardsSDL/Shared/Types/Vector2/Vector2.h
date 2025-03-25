@@ -13,8 +13,10 @@ template <typename T>
 class Vector2
 {
 public:
-    Vector2() : x(0), y(0) {}
-    Vector2(T X, T Y) : x(X), y(Y) {}
+    Vector2() : x(0), y(0) 
+    {}
+    Vector2(T X, T Y) : x(X), y(Y) 
+    {}
 
     [[nodiscard]] T Length() const 
     { 
@@ -32,6 +34,10 @@ public:
         return v1;
     }
 
+    Vector2 operator-() const 
+    { 
+        return { -x , -y }; 
+    }
     Vector2 operator-(const Vector2& v2) const 
     { 
         return { x - v2.x, y - v2.y }; 
@@ -55,8 +61,8 @@ public:
     }
     Vector2& operator*=(T scalar)
     {
-        x /= scalar;
-        y /= scalar;
+        x *= scalar;
+        y *= scalar;
         return *this;
     }
 
@@ -99,15 +105,40 @@ public:
         return *this;
     }
 
+    static T Distance(const Vector2& v1, const Vector2& v2)
+    {
+        return (v2 - v2).Length();
+    }
 
-    static Vector2& Lerp(Vector2& v1, const Vector2& v2, const float t)
+    static T Dot(const Vector2& v1, const Vector2& v2)
+    {
+        return (v1.x * v2.x) + (v1.y * v2.y);
+    }
+
+    static Vector2 Lerp(const Vector2& v1, const Vector2& v2, const float t)
     {
         return v1 + (v2 - v1) * t;
     }
 
     static Vector2 Zero() 
     {
-        return { 0,0 };
+        return { 0, 0 };
+    }
+    static Vector2 Right() 
+    {
+        return { 1, 0 };
+    }
+    static Vector2 Left() 
+    {
+        return { -1, 0 };
+    }
+    static Vector2 Up() 
+    {
+        return { 0, 1 };
+    }
+    static Vector2 Down() 
+    {
+        return { 0, -1 };
     }
 
 

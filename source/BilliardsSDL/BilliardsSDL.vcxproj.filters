@@ -76,6 +76,30 @@
     <Filter Include="Source Files\Game\Physics\Colliders">
       <UniqueIdentifier>{e2561c09-40fe-4f32-a3ca-9b9e0e4eb774}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Application\Systems\Random">
+      <UniqueIdentifier>{f97c9579-953b-4637-8bc5-0d5f5af9d6b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards">
+      <UniqueIdentifier>{8a308ee7-0545-4b6c-aa6a-0d1a4e02ae54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Math">
+      <UniqueIdentifier>{cb848c4a-029e-4b23-b357-4a2911256ed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Types\Rect">
+      <UniqueIdentifier>{9c7a78fa-37d5-485d-85c6-3b896a432528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Types\Circle">
+      <UniqueIdentifier>{8b6901ef-4241-4746-8004-10abc8fdef4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Types\Line">
+      <UniqueIdentifier>{ec12ce1a-5ad7-4852-a933-cfacd573b529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Physics\Rigidbodies">
+      <UniqueIdentifier>{f8829660-828b-490c-89ae-46f120c7e733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Physics\Collision">
+      <UniqueIdentifier>{39bfc6a9-4c08-40aa-9526-8e82e61903a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,7 +120,7 @@
     <ClCompile Include="Application\Systems\Input\KeyState.cpp">
       <Filter>Source Files\Application\Systems\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Game\BilliardsGame.cpp">
+    <ClCompile Include="Game\BilliardsGameEngine.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Application\Systems\Input\WindowInputs.cpp">
@@ -153,6 +177,42 @@
     <ClCompile Include="Game\Systems\GameSpacesComputer.cpp">
       <Filter>Source Files\Game\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Scenes\CustomScenes\BilliardsGameScene.cpp">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Random\RNGSystem.cpp">
+      <Filter>Source Files\Application\Systems\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameRandom.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardBall.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Physics2DManager.cpp">
+      <Filter>Source Files\Game\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Rigidbodies\Rigidbody2D.cpp">
+      <Filter>Source Files\Game\Physics\Rigidbodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Rigidbodies\PhysicMaterial.cpp">
+      <Filter>Source Files\Game\Physics\Rigidbodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\EulerSolver.cpp">
+      <Filter>Source Files\Game\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Collision\Collision2D.cpp">
+      <Filter>Source Files\Game\Physics\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Colliders\Collider2D.cpp">
+      <Filter>Source Files\Game\Physics\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Colliders\CircleCollider2D.cpp">
+      <Filter>Source Files\Game\Physics\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared\Math\Math.cpp">
+      <Filter>Source Files\Shared\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
@@ -182,7 +242,7 @@
     <ClInclude Include="Application\Systems\Input\IInputState.h">
       <Filter>Source Files\Application\Systems\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Game\BilliardsGame.h">
+    <ClInclude Include="Game\BilliardsGameEngine.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Application\Systems\Input\WindowInputs.h">
@@ -250,6 +310,51 @@
     </ClInclude>
     <ClInclude Include="Game\Systems\GameSpacesComputer.h">
       <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CustomScenes\BilliardsGameScene.h">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Random\RNGSystem.h">
+      <Filter>Source Files\Application\Systems\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameRandom.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardBall.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Colliders\Collider2D.h">
+      <Filter>Source Files\Game\Physics\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Physics2DManager.h">
+      <Filter>Source Files\Game\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Colliders\CircleCollider2D.h">
+      <Filter>Source Files\Game\Physics\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Math\Math.h">
+      <Filter>Source Files\Shared\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Types\Rect\Rect.h">
+      <Filter>Source Files\Shared\Types\Rect</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Types\Circle\Circle.h">
+      <Filter>Source Files\Shared\Types\Circle</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Types\Line\Line.h">
+      <Filter>Source Files\Shared\Types\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Rigidbodies\Rigidbody2D.h">
+      <Filter>Source Files\Game\Physics\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Rigidbodies\PhysicMaterial.h">
+      <Filter>Source Files\Game\Physics\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\EulerSolver.h">
+      <Filter>Source Files\Game\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Collision\Collision2D.h">
+      <Filter>Source Files\Game\Physics\Collision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

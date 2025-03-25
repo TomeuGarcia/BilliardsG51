@@ -33,6 +33,15 @@ void SceneManager::Cleanup()
 	CleanupActiveScene();
 }
 
+void SceneManager::UpdateLoading()
+{
+	if (m_queuedLoadScene)
+	{
+		LoadQueuedScene();
+		m_queuedLoadScene = false;
+	}
+}
+
 Scene* SceneManager::GetActiveScene() const
 {
 	return m_activeScene;
@@ -40,12 +49,23 @@ Scene* SceneManager::GetActiveScene() const
 
 void SceneManager::LoadScene(const SceneName sceneName)
 {
+	m_queuedLoadScene = true;
+	m_queuedLoadSceneName = sceneName;
+}
+
+
+
+void SceneManager::LoadQueuedScene()
+{
+	DoLoadScene(m_queuedLoadSceneName);
+}
+
+void SceneManager::DoLoadScene(const SceneName sceneName)
+{
 	Scene* newScene{ MakeNewSceneByName(sceneName) };
 	CleanupActiveScene();
 	InitNewActiveScene(newScene);
 }
-
-
 
 Scene* SceneManager::MakeNewSceneByName(const SceneName sceneName)
 {
@@ -58,7 +78,7 @@ Scene* SceneManager::MakeNewSceneByName(const SceneName sceneName)
 			return new EmptyScene(Colors::Green);
 			break;
 		case SceneName::BilliardGame:
-			return new EmptyScene(Colors::Blue);
+			return new BilliardsGameScene();
 			break;
 		default:
 			return nullptr;

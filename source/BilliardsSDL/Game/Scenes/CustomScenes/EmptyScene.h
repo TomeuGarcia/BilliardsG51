@@ -10,7 +10,7 @@ public:
 
 protected:
 	virtual void CreateGameObjects() override;
-	virtual void Start() override;
+	virtual void DoStart() override;
 
 
 private:

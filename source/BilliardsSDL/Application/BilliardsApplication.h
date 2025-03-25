@@ -6,8 +6,9 @@
 #include "Systems/Render/RenderSystem.h"
 #include "Systems/Time/TimeSystem.h"
 #include "Systems/Input/InputSystem.h"
+#include "Systems/Random/RNGSystem.h"
 
-#include "../Game/BilliardsGame.h"
+#include "../Game/BilliardsGameEngine.h"
 
 
 class BilliardsApplication
@@ -20,9 +21,9 @@ public:
 private:
 	void InitSDL();
 	void InitSystems();
-	void InitGame();
+	void InitGameEngine();
 
-	void CleanupGame();
+	void CleanupGameEngine();
 	void CleanupSystems();
 	void CleanupSDL();
 
@@ -38,7 +39,8 @@ private:
 	InputSystem m_inputSystem;
 	TimeSystem m_timeSystem;
 	RenderSystem m_renderSystem;
+	RNGSystem m_rngSystem;
 
-	BilliardsGame m_game;
+	BilliardsGameEngine m_gameEngine;
 };
 
