@@ -68,10 +68,53 @@ namespace Math
 		return distanceLineToCircle;
 	}
 
-	float ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle)
+
+
+	bool ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle, Vector2<float>& outPointInLine, float& outDistanceToPoint)
 	{
-		return ComputeLineToPointDistance(line, circle.p_position) - circle.GetRadius();
+		// First check if point projects on line segment
+		// - if true, compute and return
+
+		Vector2<float> lineOriginToCirclePosition = circle.p_position - line.GetOrigin();
+		float distanceLineOriginToCircleProjectedOnLine = Vector2<float>::Dot(lineOriginToCirclePosition, line.GetDirection());
+		bool projectsOnLine = distanceLineOriginToCircleProjectedOnLine > 0 &&
+							  distanceLineOriginToCircleProjectedOnLine < line.GetTotalDistance();
+
+		if (projectsOnLine)
+		{
+			outPointInLine = line.GetOrigin() + (line.GetDirection() * distanceLineOriginToCircleProjectedOnLine);
+			outDistanceToPoint = Vector2<float>::Distance(circle.p_position, outPointInLine);
+			
+			return true;
+		}
+
+
+
+		// Second check if line end points are inside circle
+		// - if true, compute closest and return
+		const float circleToLineOriginDistance = lineOriginToCirclePosition.Length();
+		const bool circlePenetratingOrigin = circleToLineOriginDistance < circle.GetRadius();
+		if (circlePenetratingOrigin)
+		{
+			outPointInLine = line.GetOrigin();
+			outDistanceToPoint = circleToLineOriginDistance;
+			return true;
+		}		
+
+		const float circleToLineEndDistance = (circle.p_position - line.GetEnd()).Length();
+		const bool circlePenetratingEnd = circleToLineEndDistance < circle.GetRadius();
+		if (circlePenetratingEnd)
+		{
+			outPointInLine = line.GetEnd();
+			outDistanceToPoint = circleToLineEndDistance;
+			return true;
+		}
+
+
+		return false;
 	}
+
+
 
 
 
@@ -126,5 +169,68 @@ namespace Math
 
 
 		return closestEdge;
+	}
+
+
+
+	bool GetCollisiontRectEdgeLineWithCircle(const Circle& circle, const Rect<float>& rect, 
+		Line<float>& outCollisionLineEdge, Vector2<float>& collisionPointOnEdge, float& outDistanceToClosestEdge)
+	{
+		float leftDistance;
+		Vector2<float> leftCollisionPoint;
+		Line<float> leftEdge = rect.MakeLeftEdgeLine();
+		const bool leftCollision = ComputeLineToCircleDistance(leftEdge, circle, leftCollisionPoint, leftDistance);
+
+
+		float rightDistance;
+		Vector2<float> rightCollisionPoint;
+		Line<float> rightEdge = rect.MakeRightEdgeLine();
+		const bool rightCollision = ComputeLineToCircleDistance(rightEdge, circle, rightCollisionPoint, rightDistance);
+
+
+		float bottomDistance;
+		Vector2<float> bottomCollisionPoint;
+		Line<float> bottomEdge = rect.MakeBottomEdgeLine();
+		const bool bottomCollision = ComputeLineToCircleDistance(bottomEdge, circle, bottomCollisionPoint, bottomDistance);
+
+
+		float topDistance;
+		Vector2<float> topCollisionPoint;
+		Line<float> topEdge = rect.MakeTopEdgeLine();
+		const bool topCollision = ComputeLineToCircleDistance(topEdge, circle, topCollisionPoint, topDistance);
+
+
+
+
+		Line<float>& closestEdge = leftEdge;
+		collisionPointOnEdge = leftCollisionPoint;
+		outDistanceToClosestEdge = leftDistance;
+		bool collided = leftCollision;
+
+
+		if (rightCollision && rightDistance < outDistanceToClosestEdge)
+		{
+			closestEdge = rightEdge;
+			collisionPointOnEdge = rightCollisionPoint;
+			outDistanceToClosestEdge = rightDistance;
+			collided = true;
+		}
+		if (bottomCollision && bottomDistance < outDistanceToClosestEdge)
+		{
+			closestEdge = bottomEdge;
+			collisionPointOnEdge = bottomCollisionPoint;
+			outDistanceToClosestEdge = bottomDistance;
+			collided = true;
+		}
+		if (topCollision && topDistance < outDistanceToClosestEdge)
+		{
+			closestEdge = topEdge;
+			collisionPointOnEdge = topCollisionPoint;
+			outDistanceToClosestEdge = topDistance;
+			collided = true;
+		}
+
+
+		return collided;
 	}
 }

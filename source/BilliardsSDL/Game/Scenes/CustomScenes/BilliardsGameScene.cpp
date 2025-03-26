@@ -84,6 +84,9 @@ BilliardBall* BilliardsGameScene::CreateBilliardBall(const Vector2<float>& posit
 
 void BilliardsGameScene::CreateBoardWalls(const Vector2<float>& boardCenter)
 {
+	CreateInvisibleWall(Vector2<float>(0, 2), Vector2<float>(10, 1));
+	return; //////
+
 	const Vector2<float> horizontalsSize{ 4.1f, 0.45f };
 
 	const float hSidewaysOffset{ 2.3f };

@@ -19,10 +19,23 @@ namespace CollisionHelper
 	bool ComputeCircleAARectCollisionWithOutputData(const Circle& circleA, const Rect<float>& aaRectB,
 		Vector2<float>& outNormalForA, Vector2<float>& outNormalForB, float& outHalfIntersectionDistance)
 	{
+		Line<float> collisionLineEdge;
+		Vector2<float> collisionPointOnEdge;
+		float circleDistanceToEdge;
+		const bool collided = Math::GetCollisiontRectEdgeLineWithCircle(circleA, aaRectB,
+			collisionLineEdge, collisionPointOnEdge, circleDistanceToEdge);
+
+		if (!collided)
+		{
+			return false;
+		}
+
+
+
 		const Vector2<float> rectCenter = aaRectB.GetCenterPosition();
 		const Vector2<float> ab = rectCenter - circleA.p_position;
-		const float distanceBetweenRectAndCircle= ab.Length();
-			
+		const float distanceBetweenRectAndCircle = ab.Length();
+
 		outNormalForB = ab / distanceBetweenRectAndCircle;
 
 		const bool circleIsInside = Math::IsPointInsideRect(aaRectB, circleA.p_position);
@@ -33,12 +46,8 @@ namespace CollisionHelper
 			outHalfIntersectionDistance = (Vector2<float>::Dot(rectHalfSize, outNormalForB)) / 2.0f;
 		}
 
-
-		float distanceToEdge;
-		const Line<float>& closestRectEdgeLine = Math::GetClosestRectEdgeLineToPoint(circleA.p_position, aaRectB, distanceToEdge);
-		Vector2<float> perpendicularPointOnEdge = closestRectEdgeLine.GetPointAtRatio(0.5f);
+		Vector2<float> perpendicularPointOnEdge = collisionLineEdge.GetPointAtRatio(0.5f);
 		outNormalForA = (perpendicularPointOnEdge - rectCenter).Normalized();
-
 
 		if (circleIsInside)
 		{
@@ -46,16 +55,7 @@ namespace CollisionHelper
 		}
 
 
-		// from here on circle is outside
-		const float distanceEdgeToCircle = distanceToEdge - circleA.GetRadius();
-		bool collideFromOutside = distanceEdgeToCircle < distanceToEdge;
-
-		if (!collideFromOutside)
-		{
-			return false;
-		}
-
-		outHalfIntersectionDistance = distanceEdgeToCircle / 2.0f;
+		outHalfIntersectionDistance = circleDistanceToEdge / 2.0f;
 		return true;
 	}
 
