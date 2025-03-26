@@ -22,6 +22,12 @@ namespace Math
 	
 	bool IsPointInsideCircle(const Vector2<float>& point, const Circle& circle);
 	bool AreCirclesIntersecting(const Circle& circleA, const Circle& circleB);
-	bool AreLineAndCircleIntersecting(const Line& line, const Circle& circle);
+
+	float ComputeLineToPointDistance(const Line<float>& line, const Vector2<float>& point);
+	float ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle);
+	bool AreLineAndCircleIntersecting(const Line<float>& line, const Circle& circle);
 	bool AreRectAndCircleIntersecting(const Rect<float>& rect, const Circle& circle);
+
+
+	Line<float> GetClosestRectEdgeLineToPoint(const Vector2<float>& point, const Rect<float>& rect, float& outDistanceToClosestEdge);
 }

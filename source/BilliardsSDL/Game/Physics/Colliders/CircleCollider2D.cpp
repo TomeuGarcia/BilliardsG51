@@ -4,6 +4,7 @@ CircleCollider2D::CircleCollider2D(GameObject* gameObject, Rigidbody2D* optional
 	: Collider2D(gameObject, optionalRigidbody), 
 	m_shape(gameObject->GetTransform()->p_worldPosition, radius)
 {
+	UpdateShape();
 }
 
 CircleCollider2D::~CircleCollider2D()

@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Application/Systems/Render/RenderSystem.h"
 #include "../../Shared/Types/Vector2/Vector2.h"
+#include "../../Shared/Types/Rect/Rect.h"
 
 
 class GameSpacesComputer
@@ -20,6 +21,9 @@ public:
 
 	Vector2<int> WorldToWindowVector(const Vector2<float>& worldVector);
 	Vector2<float> WindowToWorldVector(const Vector2<int>& windowVector);
+
+	Rect<int> WorldToWindowRect(const Rect<float>& worldRect);
+	Rect<float> WindowToWorldRect(const Rect<int>& windowRect);
 
 
 private:
