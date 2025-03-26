@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Application/Systems/Input/IInputState.h"
+#include "GameSpacesComputer.h"
 
 
 class GameInput
@@ -15,7 +16,8 @@ public:
 	bool GetKeyDown(const KeyCode keyCode);
 	bool GetKey(const KeyCode keyCode);
 	bool GetKeyUp(const KeyCode keyCode);
-	const Vector2<int> GetMouseScreenPosition() const;
+	const Vector2<int> GetMouseWindowPosition() const;
+	const Vector2<float> GetMouseWorldPosition() const;
 
 
 

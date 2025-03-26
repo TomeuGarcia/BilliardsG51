@@ -238,4 +238,53 @@ namespace Math
 
 		return collided;
 	}
+
+
+
+	bool AreLinesIntersecting(const Line<float>& lineA, const Line<float>& lineB)
+	{
+		// 4 cases: parallel, collinear, cross, don't cross
+		// Solving for: A + alpha*AB = C + beta*CD
+
+		float denominator = ( (lineB.GetEnd().x - lineB.GetOrigin().x) * (lineA.GetEnd().y - lineA.GetOrigin().y) ) -
+							( (lineB.GetEnd().y - lineB.GetOrigin().y) * (lineA.GetEnd().x - lineA.GetOrigin().x) );
+
+		float numeratorA = ( (lineB.GetEnd().x - lineB.GetOrigin().x) * (lineB.GetOrigin().y - lineA.GetEnd().y) ) -
+						   ( (lineB.GetEnd().y - lineB.GetOrigin().y) * (lineB.GetOrigin().x - lineA.GetEnd().x) );
+
+		if (denominator == 0.0f)
+		{
+			const bool areCollinear = numeratorA == 0.0f;
+			return areCollinear;
+		}
+
+
+		float numeratorB = ((lineA.GetEnd().x - lineA.GetOrigin().x) * (lineB.GetOrigin().y - lineA.GetOrigin().y)) -
+						   ((lineA.GetEnd().y - lineA.GetOrigin().y) * (lineB.GetOrigin().x - lineA.GetOrigin().x));
+
+		float alpha = numeratorA / denominator;
+		float beta = numeratorB / denominator;
+
+		const bool cross = (alpha > 0 && alpha < 1) && (beta > 0 && beta < 1);
+		return cross;
+	}
+
+	bool IsLineIntersectingAARect(const Line<float>& line, const Rect<float>& rect)
+	{
+		// 2 cases: line inside rect, line crossing rect
+
+		if (IsPointInsideRect(rect, line.GetOrigin()) || IsPointInsideRect(rect, line.GetEnd()))
+		{
+			return true;
+		}
+
+		return AreLinesIntersecting(line, rect.MakeLeftEdgeLine()) ||
+			AreLinesIntersecting(line, rect.MakeRightEdgeLine()) ||
+			AreLinesIntersecting(line, rect.MakeBottomEdgeLine()) ||
+			AreLinesIntersecting(line, rect.MakeTopEdgeLine());
+	}
+
+
+
+
 }

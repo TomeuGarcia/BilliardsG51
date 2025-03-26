@@ -11,6 +11,7 @@ public:
 protected:
 	virtual void CreateGameObjects() override;
 	virtual void DoStart() override;
+	virtual void DoUpdate() override;
 
 
 private:

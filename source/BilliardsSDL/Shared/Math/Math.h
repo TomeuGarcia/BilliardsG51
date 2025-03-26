@@ -36,4 +36,9 @@ namespace Math
 
 	bool GetCollisiontRectEdgeLineWithCircle(const Circle& circle, const Rect<float>& rect,
 		Line<float>& outCollisionLineEdge, Vector2<float>& collisionPointOnEdge, float& outDistanceEdgeToCircleCenter);
+
+
+	bool AreLinesIntersecting(const Line<float>& lineA, const Line<float>& lineB);
+	bool IsLineIntersectingAARect(const Line<float>& line, const Rect<float>& rect);
+
 }

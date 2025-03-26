@@ -62,6 +62,42 @@ void BilliardsGameScene::DoStart()
 	GameRenderManager::GetInstance()->SetBackgroundColor(Colors::SoftBlue);
 }
 
+void BilliardsGameScene::DoUpdate()
+{
+	Vector2<int> mouseWindowPosition = GameInput::GetInstance()->GetMouseWindowPosition();
+	Vector2<float> mouseWorldPosition = GameInput::GetInstance()->GetMouseWorldPosition();
+
+	const float rayLength = 2.0f;
+	if (GameInput::GetInstance()->GetKey(KeyCode::MouseLeft))
+	{
+		GameRenderManager::GetInstance()->DrawDebugLine(Colors::White,
+			mouseWindowPosition,
+			mouseWindowPosition + GameSpacesComputer::GetInstance()->WorldToWindowVector(Vector2<float>::Up() * -rayLength));
+	}
+	if (GameInput::GetInstance()->GetKeyUp(KeyCode::MouseLeft))
+	{
+		std::list<Collider2D*> overlaps = Physics2DManager::GetInstance()->Raycast(
+			Line<float>(mouseWorldPosition, mouseWorldPosition + Vector2<float>::Up() * rayLength));
+
+		printf("Overlaps: %i \n", overlaps.size());
+	}
+	
+
+	const float radius = 0.5f;
+	if (GameInput::GetInstance()->GetKey(KeyCode::MouseRight))
+	{
+		GameRenderManager::GetInstance()->DrawDebugRect(Colors::White, 
+			Rect<int>(mouseWindowPosition, GameSpacesComputer::GetInstance()->WorldToWindowVector({ radius*2, radius*2 })));
+	}
+	if (GameInput::GetInstance()->GetKeyUp(KeyCode::MouseRight))
+	{
+		std::list<Collider2D*> overlaps = Physics2DManager::GetInstance()->CircleOverlap(
+			mouseWorldPosition, radius);
+
+		printf("Overlaps: %i \n", overlaps.size());
+	}
+}
+
 
 
 BilliardBall* BilliardsGameScene::CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData)

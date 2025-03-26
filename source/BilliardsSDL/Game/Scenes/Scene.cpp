@@ -41,6 +41,8 @@ void Scene::Update()
 	{
 		it->Update();
 	}
+
+	DoUpdate();
 }
 
 void Scene::Render()

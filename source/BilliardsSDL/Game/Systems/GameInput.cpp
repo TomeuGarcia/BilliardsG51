@@ -38,8 +38,13 @@ bool GameInput::GetKeyUp(const KeyCode keyCode)
 	return m_inputState->GetKeyUp(keyCode);
 }
 
-const Vector2<int> GameInput::GetMouseScreenPosition() const
+const Vector2<int> GameInput::GetMouseWindowPosition() const
 {
 	return m_inputState->GetMouseScreenPosition();
+}
+
+const Vector2<float> GameInput::GetMouseWorldPosition() const
+{
+	return GameSpacesComputer::GetInstance()->WindowToWorldPosition(m_inputState->GetMouseScreenPosition());
 }
 
