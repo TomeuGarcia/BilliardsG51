@@ -7,40 +7,123 @@ template <typename T>
 struct Rect
 {
 public:
-    Rect() : x(0), y(0)
+    Rect() 
+        : m_centerPosition(), m_size()
+    {}
+
+    Rect(Vector2<T> centerPosition, T width, T height) 
+        : m_centerPosition(centerPosition), m_size(width, height)
     {
-    }
-    Rect(T X, T Y, T Width, T Height) : x(X), y(Y), width(Width), height(Height)
-    {
+        UpdateCorners();
     }
 
-    Rect(const Vector2<T>& position, const Vector2<T>& size) : x(position.x), y(position.y), width(size.x), height(size.y)
+    Rect(const Vector2<T>& centerPosition, const Vector2<T>& size)
+        : m_centerPosition(centerPosition), m_size(size)
     {
+        UpdateCorners();
     }
 
-    Line MakeLeftEdgeLine() const
+    
+    Vector2<T> GetCenterPosition() const
     {
-        return Line(Vector2<float>(x, y), Vector2<float>(x, y + height));
+        return m_centerPosition;
     }
-    Line MakeRightEdgeLine() const
+    
+    Vector2<T> GetSize() const
     {
-        return Line(Vector2<float>(x + width, y), Vector2<float>(x + width, y + height));
+        return m_size;
     }
-    Line MakeBottomEdgeLine() const
+
+    Vector2<T> GetHalfSize() const
     {
-        return Line(Vector2<float>(x, y), Vector2<float>(x + width, y));
+        return m_size / 2.0f;
     }
-    Line MakeTopEdgeLine() const
+
+    T GetBottomLeftX() const
     {
-        return Line(Vector2<float>(x, y + height), Vector2<float>(x + width, y + height));
+        return m_bottomLeftCorner.x;
     }
+    T GetBottomLeftY() const
+    {
+        return m_bottomLeftCorner.y;
+    }
+
+    T GetWidth() const
+    {
+        return m_size.x;
+    }
+    T GetHeight() const
+    {
+        return m_size.y;
+    }
+
+    void SetCenterPosition(const Vector2<T>& centerPosition)
+    {
+        m_centerPosition = centerPosition;
+        UpdateCorners();
+    }
+    
+    void SetSize(const Vector2<T>& size)
+    {
+        m_size = size;
+        UpdateCorners();
+    }
+
+
+
+    Line<T> MakeLeftEdgeLine() const
+    {
+        return Line<T>(m_bottomLeftCorner, MakeTopLeft());
+    }
+    Line<T> MakeRightEdgeLine() const
+    {
+        return Line<T>(MakeBottomRight(), m_topRightCorner);
+    }
+    Line<T> MakeBottomEdgeLine() const
+    {
+        return Line<T>(m_bottomLeftCorner, MakeBottomRight());
+    }
+    Line<T> MakeTopEdgeLine() const
+    {
+        return Line<T>(MakeTopLeft(), m_topRightCorner);
+    }
+
 
     SDL_Rect ToSDLRect() const
     {
-        return SDL_Rect{ x, y, width, height };
+        return SDL_Rect{ m_bottomLeftCorner.x, m_bottomLeftCorner.y, m_size.x, m_size.y };
     }
 
 
-public:
-    T x, y, width, height;
+
+private:
+    void UpdateCorners()
+    {
+        const T halfWidth = m_size.x / 2;
+        const T halfHeight = m_size.y / 2;
+
+        m_bottomLeftCorner.x = m_centerPosition.x - halfWidth;
+        m_bottomLeftCorner.y = m_centerPosition.y - halfHeight;
+
+        m_topRightCorner.x = m_centerPosition.x + halfWidth;
+        m_topRightCorner.y = m_centerPosition.y + halfHeight;
+    }
+
+    Vector2<T> MakeBottomRight() const
+    {
+        return Vector2<T>(m_topRightCorner.x, m_bottomLeftCorner.y);
+    }
+    Vector2<T> MakeTopLeft() const
+    {
+        return Vector2<T>(m_bottomLeftCorner.x, m_topRightCorner.y);
+    }
+
+
+
+private:
+    Vector2<T> m_centerPosition;
+    Vector2<T> m_size;
+
+    Vector2<T> m_bottomLeftCorner;
+    Vector2<T> m_topRightCorner;
 };

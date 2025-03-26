@@ -19,6 +19,8 @@ public:
 	void UpdatePosition();
 	void ApplyFriction();
 
+	void ClearVelocity();
+
 	void ApplyForce(const Vector2<float>& force);
 	Vector2<float> ComputeGravityForceAcceleration(const Vector2<float>& gravityForce);
 

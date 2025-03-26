@@ -152,7 +152,7 @@ void Physics2DManager::UpdateCollisions()
 		//Rb circle check with aaBox
 		for (auto itB = rigidbodyLESSAABoxColliders.begin(); itB != rigidbodyLESSAABoxColliders.end(); ++itB)
 		{
-			CheckCircleWithAABox(itRbC->get(), itB->get());
+			//CheckCircleWithAABox(itRbC->get(), itB->get());
 		}
 	}
 
@@ -186,10 +186,21 @@ void Physics2DManager::UpdateCollisions()
 
 void Physics2DManager::CheckCircleWithCircle(CircleCollider2D* circleColliderA, CircleCollider2D* circleColliderB)
 {
-	const bool bHasRigidbody{ circleColliderB->HasRigidbody() };
+	Vector2<float> abNormal;
+	float halfIntersectDistance;
+	const bool areColliding = CollisionHelper::ComputeCirclesCollisionWithOutputData(
+		circleColliderA->GetShape(),circleColliderB->GetShape(),
+		abNormal, halfIntersectDistance);
+	
+	if (areColliding)
+	{
+		CollisionHelper::ApplyContactCollision(circleColliderA->GetRigidbody(), abNormal, halfIntersectDistance);
 
-	const bool areColliding{ false }; // TODO
-	// Do math
+		if (circleColliderB->HasRigidbody())
+		{
+			CollisionHelper::ApplyContactCollision(circleColliderB->GetRigidbody(), -abNormal, halfIntersectDistance);
+		}
+	}
 
 
 	m_circleCollidersGroup.UpdateActiveCollision(circleColliderA, circleColliderB, areColliding);
@@ -199,10 +210,21 @@ void Physics2DManager::CheckCircleWithCircle(CircleCollider2D* circleColliderA, 
 
 void Physics2DManager::CheckCircleWithAABox(CircleCollider2D * circleColliderA, AABoxCollider2D * aaBoxColliderB)
 {
-	const bool bHasRigidbody{ aaBoxColliderB->HasRigidbody() };
+	Vector2<float> aNormal, bNormal;
+	float halfIntersectDistance;
+	const bool areColliding = CollisionHelper::ComputeCircleAARectCollisionWithOutputData(
+		circleColliderA->GetShape(), aaBoxColliderB->GetShape(),
+		aNormal, bNormal, halfIntersectDistance);
 
-	const bool areColliding{ false }; // TODO
-	// Do math
+	if (areColliding)
+	{
+		CollisionHelper::ApplyContactCollision(circleColliderA->GetRigidbody(), aNormal, halfIntersectDistance);
+
+		if (aaBoxColliderB->HasRigidbody())
+		{
+			CollisionHelper::ApplyContactCollision(aaBoxColliderB->GetRigidbody(), bNormal, halfIntersectDistance);
+		}
+	}
 
 
 	m_circleCollidersGroup.UpdateActiveCollision(circleColliderA, aaBoxColliderB, areColliding);
@@ -210,28 +232,47 @@ void Physics2DManager::CheckCircleWithAABox(CircleCollider2D * circleColliderA, 
 
 
 
-void Physics2DManager::CheckAABoxWithAABox(AABoxCollider2D * aaBoxColliderA, AABoxCollider2D * aaBoxColliderB)
-{
-	const bool bHasRigidbody{ aaBoxColliderB->HasRigidbody() };
-
-	const bool areColliding{ false }; // TODO
-	// Do math
-
-
-	m_aaBoxCollidersGroup.UpdateActiveCollision(aaBoxColliderA, aaBoxColliderB, areColliding);
-}
-
 
 void Physics2DManager::CheckAABoxWithCircle(AABoxCollider2D* aaBoxColliderA, CircleCollider2D* circleColliderB)
 {
-	const bool bHasRigidbody{ circleColliderB->HasRigidbody() };
+	Vector2<float> aNormal, bNormal;
+	float halfIntersectDistance;
+	const bool areColliding = CollisionHelper::ComputeCircleAARectCollisionWithOutputData(
+		circleColliderB->GetShape(), aaBoxColliderA->GetShape(),
+		bNormal, aNormal, halfIntersectDistance);
 
-	const bool areColliding{ false }; // TODO
-	// Do math
+	if (areColliding)
+	{
+		CollisionHelper::ApplyContactCollision(aaBoxColliderA->GetRigidbody(), aNormal, halfIntersectDistance);
 
+		if (circleColliderB->HasRigidbody())
+		{
+			CollisionHelper::ApplyContactCollision(circleColliderB->GetRigidbody(), bNormal, halfIntersectDistance);
+		}
+	}
 
 	m_aaBoxCollidersGroup.UpdateActiveCollision(aaBoxColliderA, circleColliderB, areColliding);
 }
 
 
 
+void Physics2DManager::CheckAABoxWithAABox(AABoxCollider2D * aaBoxColliderA, AABoxCollider2D * aaBoxColliderB)
+{
+	Vector2<float> aNormal;
+	float halfIntersectDistance;
+	const bool areColliding = CollisionHelper::ComputeAARectsCollisionWithOutputData(
+		aaBoxColliderA->GetShape(), aaBoxColliderA->GetShape(),
+		aNormal, halfIntersectDistance);
+
+	if (areColliding)
+	{
+		CollisionHelper::ApplyContactCollision(aaBoxColliderA->GetRigidbody(), aNormal, halfIntersectDistance);
+
+		if (aaBoxColliderB->HasRigidbody())
+		{
+			CollisionHelper::ApplyContactCollision(aaBoxColliderB->GetRigidbody(), -aNormal, halfIntersectDistance);
+		}
+	}
+
+	m_aaBoxCollidersGroup.UpdateActiveCollision(aaBoxColliderA, aaBoxColliderB, areColliding);
+}

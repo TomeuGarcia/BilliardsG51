@@ -7,6 +7,7 @@
 #include "Colliders/AABoxCollider2D.h"
 #include "CircleCollider2DGroup.h"
 #include "AABoxCollider2DGroup.h"
+#include "Helpers/CollisionHelper.h"
 
 
 class Physics2DManager
@@ -36,8 +37,8 @@ private:
 
 	void CheckCircleWithCircle(CircleCollider2D* circleColliderA, CircleCollider2D* circleColliderB);
 	void CheckCircleWithAABox(CircleCollider2D* circleColliderA, AABoxCollider2D* aaBoxColliderB);
-	void CheckAABoxWithAABox(AABoxCollider2D* aaBoxColliderA, AABoxCollider2D* aaBoxColliderB);
 	void CheckAABoxWithCircle(AABoxCollider2D* aaBoxColliderA, CircleCollider2D* circleColliderB);
+	void CheckAABoxWithAABox(AABoxCollider2D* aaBoxColliderA, AABoxCollider2D* aaBoxColliderB);
 
 
 private:

@@ -9,8 +9,7 @@ public:
 	virtual ~AABoxCollider2D();
 
 
-	void SetWidth(const float& width);
-	void SetHeight(const float& height);
+	void SetSize(const Vector2<float>& size);
 	const Rect<float>& GetShape() const;
 
 	virtual void UpdateShape() override;

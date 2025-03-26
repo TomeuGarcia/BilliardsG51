@@ -42,13 +42,18 @@ void Rigidbody2D::UpdatePosition()
 void Rigidbody2D::ApplyFriction()
 {
 	const float speed = p_velocity.Length();
-	if (speed < 0.01f)
+	if (speed < 0.1f)
 	{
-		m_deceleration = p_velocity = Vector2<float>::Zero();
+		ClearVelocity();
 		return;
 	}
 
 	m_deceleration = (p_velocity / speed) * -m_physicMaterial->GetFriction();
+}
+
+void Rigidbody2D::ClearVelocity()
+{
+	m_acceleration = m_deceleration = p_velocity = Vector2<float>::Zero();
 }
 
 

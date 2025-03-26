@@ -16,7 +16,7 @@ void BilliardsGameScene::CreateGameObjects()
 	CreateImageComponent(blueStick, GameAssetResources::GetInstance()->GetBlueStickImageData(), Vector2<float>(3.0f, 0.1f));
 
 
-	const Vector2<float> randomBounds{ 4.0f, 2.0f };
+	const Vector2<float> randomBounds{ 2.0f, 1.0f };
 
 	const Vector2<float> ballSize{ 0.25f, 0.25f };
 	std::array<BilliardBall*, 9> balls{}; // <---------- should be 16

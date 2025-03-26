@@ -70,3 +70,25 @@ Vector2<float> GameSpacesComputer::WindowToWorldVector(const Vector2<int>& windo
 	return worldVector;
 }
 
+
+
+Rect<int> GameSpacesComputer::WorldToWindowRect(const Rect<float>& worldRect)
+{
+	Rect<int> windowRect{
+		WorldToWindowPosition(worldRect.GetCenterPosition()),
+		WorldToWindowVector(worldRect.GetSize())
+	};
+
+	return windowRect;
+}
+
+Rect<float> GameSpacesComputer::WindowToWorldRect(const Rect<int>& windowRect)
+{
+	Rect<float> worldRect{
+		WindowToWorldPosition(windowRect.GetCenterPosition()),
+		WindowToWorldVector(windowRect.GetSize())
+	};
+
+	return worldRect;
+}
+
