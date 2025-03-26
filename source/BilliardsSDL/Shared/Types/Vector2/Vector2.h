@@ -114,6 +114,11 @@ public:
     {
         return (v1.x * v2.x) + (v1.y * v2.y);
     }
+    
+    static T Cross(const Vector2& v1, const Vector2& v2)
+    {
+        return (v1.x * v2.y) - (v1.y * v2.x);
+    }
 
     static Vector2 Lerp(const Vector2& v1, const Vector2& v2, const float t)
     {

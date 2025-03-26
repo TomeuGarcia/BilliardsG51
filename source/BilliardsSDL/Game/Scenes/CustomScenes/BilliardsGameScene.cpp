@@ -72,7 +72,7 @@ void BilliardsGameScene::DoUpdate()
 	{
 		GameRenderManager::GetInstance()->DrawDebugLine(Colors::White,
 			mouseWindowPosition,
-			mouseWindowPosition + GameSpacesComputer::GetInstance()->WorldToWindowVector(Vector2<float>::Up() * -rayLength));
+			GameSpacesComputer::GetInstance()->WorldToWindowPosition(mouseWorldPosition + Vector2<float>::Up() * rayLength));
 	}
 	if (GameInput::GetInstance()->GetKeyUp(KeyCode::MouseLeft))
 	{
