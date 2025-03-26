@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <list>
 #include "../../Shared/Math/Math.h"
 #include "Solvers/EulerSolver.h"
 #include "Collision/Collision2D.h"
@@ -26,7 +27,6 @@ public:
 	void AddCircleCollider(const std::shared_ptr<CircleCollider2D>& collider);
 	void AddAABoxCollider(const std::shared_ptr<AABoxCollider2D>& collider);
 
-
 	void Update(const float& deltaTime);
 
 
@@ -39,6 +39,12 @@ private:
 	void CheckCircleWithAABox(CircleCollider2D* circleColliderA, AABoxCollider2D* aaBoxColliderB);
 	void CheckAABoxWithCircle(AABoxCollider2D* aaBoxColliderA, CircleCollider2D* circleColliderB);
 	void CheckAABoxWithAABox(AABoxCollider2D* aaBoxColliderA, AABoxCollider2D* aaBoxColliderB);
+
+
+public:
+	// Probing functions
+	std::list<Collider2D*> CircleOverlap(const Vector2<float>& position, const float& radius);
+	std::list<Collider2D*> Raycast(const Line<float>& raySegment);
 
 
 private:

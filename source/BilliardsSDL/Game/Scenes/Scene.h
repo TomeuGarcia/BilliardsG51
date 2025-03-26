@@ -46,6 +46,7 @@ protected:
 
 
 	virtual void DoStart() = 0;
+	virtual void DoUpdate() = 0;
 
 
 private:

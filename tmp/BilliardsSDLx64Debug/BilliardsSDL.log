@@ -3,6 +3,14 @@
   0 File(s) copied
   0 File(s) copied
   BilliardsGameScene.cpp
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(82,10): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+      E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(82,10):
+      consider using '%zi' in the format string
+  
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(97,10): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+      E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(97,10):
+      consider using '%zi' in the format string
+  
   BilliardsSDL.vcxproj -> E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\binaries\x64Debug\BilliardsSDL.exe
   0 File(s) copied
   0 File(s) copied

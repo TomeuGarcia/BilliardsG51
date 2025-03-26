@@ -47,6 +47,7 @@ void Physics2DManager::AddAABoxCollider(const std::shared_ptr<AABoxCollider2D>&c
 
 
 
+
 void Physics2DManager::Update(const float& deltaTime)
 {
 	UpdateRigidbodies(deltaTime);
@@ -295,4 +296,120 @@ void Physics2DManager::CheckAABoxWithAABox(AABoxCollider2D* aaBoxColliderA, AABo
 	}
 
 	m_aaBoxCollidersGroup.UpdateActiveCollision(aaBoxColliderA, aaBoxColliderB, areColliding);
+}
+
+
+
+
+
+
+
+
+// Probing functions
+std::list<Collider2D*> Physics2DManager::CircleOverlap(const Vector2<float>& position, const float& radius)
+{
+	std::list<Collider2D*> overlappedColliders{};
+
+	const Circle overlapCircle(position, radius);
+	Vector2<float> normal;
+	float distance;
+
+	std::vector<std::shared_ptr<CircleCollider2D>>& rigidbodyCircleColliders =
+		m_circleCollidersGroup.p_rigidbodyColliders;
+	std::vector<std::shared_ptr<AABoxCollider2D>>& rigidbodyAABoxColliders =
+		m_aaBoxCollidersGroup.p_rigidbodyColliders;
+
+	std::vector<std::shared_ptr<CircleCollider2D>>& rigidbodyLESSCircleColliders =
+		m_circleCollidersGroup.p_rigidbodylessColliders;
+	std::vector<std::shared_ptr<AABoxCollider2D>>& rigidbodyLESSAABoxColliders =
+		m_aaBoxCollidersGroup.p_rigidbodylessColliders;
+
+
+	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
+	{
+		if (CollisionHelper::ComputeCirclesCollisionWithOutputData(overlapCircle, (*it)->GetShape(), normal, distance))
+		{
+			overlappedColliders.push_back(it->get());
+		}
+	}
+
+	for (auto it = rigidbodyLESSCircleColliders.begin(); it != rigidbodyLESSCircleColliders.end(); ++it)
+	{
+		if (CollisionHelper::ComputeCirclesCollisionWithOutputData(overlapCircle, (*it)->GetShape(), normal, distance))
+		{
+			overlappedColliders.push_back(it->get());
+		}
+	}
+
+	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
+	{
+		if (CollisionHelper::ComputeCircleAARectCollisionWithOutputData(overlapCircle, (*it)->GetShape(), normal, distance))
+		{
+			overlappedColliders.push_back(it->get());
+		}
+	}
+
+	for (auto it = rigidbodyLESSAABoxColliders.begin(); it != rigidbodyLESSAABoxColliders.end(); ++it)
+	{
+		if (CollisionHelper::ComputeCircleAARectCollisionWithOutputData(overlapCircle, (*it)->GetShape(), normal, distance))
+		{
+			overlappedColliders.push_back(it->get());
+		}
+	}
+
+	return overlappedColliders;
+}
+
+
+
+std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
+{
+	std::list<Collider2D*> overlappedColliders{};
+	Vector2<float> pointInLine;
+	float distance;
+
+	std::vector<std::shared_ptr<CircleCollider2D>>& rigidbodyCircleColliders =
+		m_circleCollidersGroup.p_rigidbodyColliders;
+	std::vector<std::shared_ptr<AABoxCollider2D>>& rigidbodyAABoxColliders =
+		m_aaBoxCollidersGroup.p_rigidbodyColliders;
+
+	std::vector<std::shared_ptr<CircleCollider2D>>& rigidbodyLESSCircleColliders =
+		m_circleCollidersGroup.p_rigidbodylessColliders;
+	std::vector<std::shared_ptr<AABoxCollider2D>>& rigidbodyLESSAABoxColliders =
+		m_aaBoxCollidersGroup.p_rigidbodylessColliders;
+
+
+	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
+	{		
+		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance)) // WRONG - not distance onyl travessing!!!!!!
+		{
+			overlappedColliders.push_back(it->get());
+		}
+	}
+
+	for (auto it = rigidbodyLESSCircleColliders.begin(); it != rigidbodyLESSCircleColliders.end(); ++it)
+	{
+		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance)) // WRONG - not distance onyl travessing!!!!!!
+		{
+			overlappedColliders.push_back(it->get());
+		}
+	}
+
+	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
+	{
+		if (Math::IsLineIntersectingAARect(raySegment, (*it)->GetShape()))
+		{
+			overlappedColliders.push_back(it->get());
+		}
+	}
+
+	for (auto it = rigidbodyLESSAABoxColliders.begin(); it != rigidbodyLESSAABoxColliders.end(); ++it)
+	{
+		if (Math::IsLineIntersectingAARect(raySegment, (*it)->GetShape()))
+		{
+			overlappedColliders.push_back(it->get());
+		}
+	}
+
+	return overlappedColliders;
 }

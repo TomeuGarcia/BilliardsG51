@@ -4,6 +4,7 @@
 #include "../../GameObjects/Behaviours/Billiards/BilliardBall.h"
 #include "../../GameObjects/Behaviours/Debug/AABoxColliderDrawer.h"
 #include "../../GameObjects/Behaviours/Debug/CircleColliderDrawer.h"
+#include "../../Systems/GameInput.h"
 
 
 class BilliardsGameScene : public Scene
@@ -11,6 +12,7 @@ class BilliardsGameScene : public Scene
 protected:
 	virtual void CreateGameObjects() override;
 	virtual void DoStart() override;
+	virtual void DoUpdate() override;
 
 private:
 	BilliardBall* CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData);

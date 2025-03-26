@@ -33,3 +33,7 @@ void EmptyScene::DoStart()
 {
 	GameRenderManager::GetInstance()->SetBackgroundColor(m_backgroundColor);
 }
+
+void EmptyScene::DoUpdate()
+{
+}
