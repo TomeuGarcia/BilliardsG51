@@ -1,5 +1,6 @@
 #pragma once
 #include "../Vector2/Vector2.h"
+#include "../Rect/Rect.h"
 
 struct Circle
 {
@@ -17,6 +18,11 @@ public:
 	float GetRadius() const
 	{
 		return m_radius;
+	}
+
+	Rect<float> MakeAARect() const
+	{
+		return Rect<float>(p_position, m_radius * 2, m_radius * 2);
 	}
 
 

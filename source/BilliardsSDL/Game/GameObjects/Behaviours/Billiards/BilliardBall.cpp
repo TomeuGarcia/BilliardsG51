@@ -14,8 +14,9 @@ void BilliardBall::Start()
 {
 	const Vector2<float> force =
 		GameRandom::GetInstance()->GetRandomUnitCircle() *
-		GameRandom::GetInstance()->GetRandomFloat(3.0f, 4.0f);
-
+		GameRandom::GetInstance()->GetRandomFloat(2.0f, 9.0f);
+	
+	m_startPosition = m_rigidbody->GetGameObject()->GetTransform()->p_worldPosition;
 	m_rigidbody.get()->ApplyForce(force);
 }
 

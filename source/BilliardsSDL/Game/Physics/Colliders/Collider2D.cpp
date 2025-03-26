@@ -1,7 +1,7 @@
 #include "Collider2D.h"
 
-Collider2D::Collider2D(GameObject* gameOject, Rigidbody2D* optionalRigidbody)
-	: m_gameObject(gameOject), m_rigidbody(optionalRigidbody)
+Collider2D::Collider2D(GameObject* gameOject, Rigidbody2D* optionalRigidbody, const bool& isTrigger)
+	: m_gameObject(gameOject), m_rigidbody(optionalRigidbody), m_isTrigger(isTrigger)
 {
 }
 
@@ -22,4 +22,9 @@ bool Collider2D::HasRigidbody()
 Rigidbody2D* Collider2D::GetRigidbody() const
 {
 	return m_rigidbody;
+}
+
+bool Collider2D::GetIsTrigger() const
+{
+	return m_isTrigger;
 }

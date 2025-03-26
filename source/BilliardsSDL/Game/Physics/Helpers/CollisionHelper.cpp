@@ -3,27 +3,27 @@
 namespace CollisionHelper
 {
 	bool ComputeCirclesCollisionWithOutputData(const Circle& circleA, const Circle& circleB,
-		Vector2<float>& outNormalForAB, float& outHalfIntersectionDistance)
+		Vector2<float>& outNormalForAB, float& outIntersectDistance)
 	{
 		const Vector2<float> ab = circleB.p_position - circleA.p_position;
 		const float distanceBetweenCircles = ab.Length();		
 		outNormalForAB = ab / distanceBetweenCircles;
 
 		const float radiusSum = circleA.GetRadius() + circleB.GetRadius();
-		outHalfIntersectionDistance = (radiusSum - distanceBetweenCircles) / 2.0f;
+		outIntersectDistance = radiusSum - distanceBetweenCircles;
 
 		return distanceBetweenCircles < radiusSum;
 	}
 
 
 	bool ComputeCircleAARectCollisionWithOutputData(const Circle& circleA, const Rect<float>& aaRectB,
-		Vector2<float>& outNormalForA, Vector2<float>& outNormalForB, float& outHalfIntersectionDistance)
+		Vector2<float>& outNormalForAB, float& outIntersectDistance)
 	{
 		Line<float> collisionLineEdge;
 		Vector2<float> collisionPointOnEdge;
-		float circleDistanceToEdge;
+		float distanceEdgeToCircleCenter;
 		const bool collided = Math::GetCollisiontRectEdgeLineWithCircle(circleA, aaRectB,
-			collisionLineEdge, collisionPointOnEdge, circleDistanceToEdge);
+			collisionLineEdge, collisionPointOnEdge, distanceEdgeToCircleCenter);
 
 		if (!collided)
 		{
@@ -36,33 +36,27 @@ namespace CollisionHelper
 		const Vector2<float> ab = rectCenter - circleA.p_position;
 		const float distanceBetweenRectAndCircle = ab.Length();
 
-		outNormalForB = ab / distanceBetweenRectAndCircle;
-
 		const bool circleIsInside = Math::IsPointInsideRect(aaRectB, circleA.p_position);
 
-		if (circleIsInside)
-		{
-			const Vector2<float> rectHalfSize = aaRectB.GetHalfSize();
-			outHalfIntersectionDistance = (Vector2<float>::Dot(rectHalfSize, outNormalForB)) / 2.0f;
-		}
-
 		Vector2<float> perpendicularPointOnEdge = collisionLineEdge.GetPointAtRatio(0.5f);
-		outNormalForA = (perpendicularPointOnEdge - rectCenter).Normalized();
+		outNormalForAB = (perpendicularPointOnEdge - rectCenter).Normalized();
 
 		if (circleIsInside)
 		{
-			return true;
+			outIntersectDistance = circleA.GetRadius() + distanceEdgeToCircleCenter;
 		}
-
-
-		outHalfIntersectionDistance = circleDistanceToEdge / 2.0f;
+		else
+		{			
+			outIntersectDistance = circleA.GetRadius() - distanceEdgeToCircleCenter;
+		}
+		
 		return true;
 	}
 
 
 
 	bool ComputeAARectsCollisionWithOutputData(const Rect<float>& aaRectA, const Rect<float>& aaRectB,
-		Vector2<float>& outNormalForAB, float& outHalfIntersectionDistance)
+		Vector2<float>& outNormalForAB, float& outIntersectDistance)
 	{
 		if (!Math::AreAARectsIntersecting(aaRectA, aaRectB))
 		{
@@ -78,31 +72,40 @@ namespace CollisionHelper
 
 		outNormalForAB = (perpendicularPointOnEdge - rectaBCenter).Normalized();
 
-		outHalfIntersectionDistance = distanceToEdge / 2.0f;
+		outIntersectDistance = distanceToEdge;
 
 		return true;
 	}
 
 
 
-	void ApplyContactCollision(Rigidbody2D* rigidbody, const Vector2<float>& contactNormal, const float& halfIntersectDistance)
+	void ApplyContactCollision(Rigidbody2D* rigidbody, const Vector2<float>& contactNormal, const float& intersectDistance)
 	{
-		const float bounce{ 1 + rigidbody->GetPhysicMaterial()->GetBounciness() };
-
 		// Position reflection
 		// Xt+dt = X't+dt - (1+BounceCoef)*(n·X't+dt + d)*n
-		// Xt+dt = X't+dt + (contactNormal * (1+BounceCoef + halfIntDist))
-		Vector2<float> position = rigidbody->p_position + (contactNormal * (bounce * halfIntersectDistance));
+		// Xt+dt = X't+dt + (contactNormal * (2 + halfIntDist))
+		Vector2<float> position = rigidbody->p_position + (contactNormal * (2 * intersectDistance));
 
 		rigidbody->p_position = position;
 
 
+
+		const float bounceE{ 1 + rigidbody->GetPhysicMaterial()->GetBounciness() };
+
 		// Velocity reflection
 		// Vt+dt = V't+dt - (1+BounceCoef)*(n·V't+dt)*n
 		Vector2<float> velocity = rigidbody->p_velocity -
-			(contactNormal * (bounce * Vector2<float>::Dot(contactNormal, rigidbody->p_velocity)));
+			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->p_velocity)));
 
 		rigidbody->p_velocity = velocity;
+
+				
+		// Acceleration reflection
+		// At+dt = A't+dt - (1+BounceCoef)*(n·A't+dt)*n
+		Vector2<float> acceleration = rigidbody->GetOnlyAcceleration() -
+			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetOnlyAcceleration())));
+
+		rigidbody->SetOnlyAcceleration(acceleration);				
 	}
 
 

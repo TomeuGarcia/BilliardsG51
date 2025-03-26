@@ -1,5 +1,7 @@
 #pragma once
+#include <iostream>
 #include <math.h>
+#include <limits>
 #include "../Types/Vector2/Vector2.h"
 #include "../Types/Rect/Rect.h"
 #include "../Types/Circle/Circle.h"
@@ -24,7 +26,7 @@ namespace Math
 	bool AreCirclesIntersecting(const Circle& circleA, const Circle& circleB);
 
 	float ComputeLineToPointDistance(const Line<float>& line, const Vector2<float>& point);
-	bool ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle, Vector2<float>& outPointInLine, float& outDistanceToPoint);
+	bool ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle, Vector2<float>& outPointInLine, float& outDistanceToCircleCenter);
 
 	bool AreLineAndCircleIntersecting(const Line<float>& line, const Circle& circle); //
 	bool AreRectAndCircleIntersecting(const Rect<float>& rect, const Circle& circle); //
@@ -33,5 +35,5 @@ namespace Math
 	Line<float> GetClosestRectEdgeLineToPoint(const Vector2<float>& point, const Rect<float>& rect, float& outDistanceToClosestEdge);
 
 	bool GetCollisiontRectEdgeLineWithCircle(const Circle& circle, const Rect<float>& rect,
-		Line<float>& outCollisionLineEdge, Vector2<float>& collisionPointOnEdge, float& outDistanceToClosestEdge);
+		Line<float>& outCollisionLineEdge, Vector2<float>& collisionPointOnEdge, float& outDistanceEdgeToCircleCenter);
 }

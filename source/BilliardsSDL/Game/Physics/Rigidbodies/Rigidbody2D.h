@@ -12,12 +12,15 @@ public:
 				const float& mass, const float& gravityScale);
 	~Rigidbody2D();
 
-	Vector2<float> GetAcceleration() const;
+	Vector2<float> GetAccelerationSum() const;
+	Vector2<float> GetOnlyAcceleration() const;
+	void SetOnlyAcceleration(const Vector2<float>& acceleration);
+
 	PhysicMaterial* GetPhysicMaterial() const;
 	GameObject* GetGameObject() const;
 
 	void UpdatePosition();
-	void ApplyFriction();
+	void ApplyFriction(const float& deltaTime);
 
 	void ClearVelocity();
 

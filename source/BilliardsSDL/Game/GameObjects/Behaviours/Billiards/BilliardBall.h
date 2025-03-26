@@ -26,4 +26,5 @@ public:
 
 private:
 	std::shared_ptr<Rigidbody2D> m_rigidbody;
+	Vector2<float> m_startPosition;
 };

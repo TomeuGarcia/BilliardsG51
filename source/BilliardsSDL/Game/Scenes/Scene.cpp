@@ -4,7 +4,7 @@
 Scene::Scene()
 	: m_gameObjects()
 {
-	m_gameObjects.reserve(20);
+	m_gameObjects.reserve(40); // For some reason this sets the maximum amount of possible gameObjects...
 }
 
 Scene::~Scene()
@@ -89,18 +89,18 @@ std::shared_ptr<Rigidbody2D> Scene::CreateRigidbodyComponent(GameObject* gameObj
 	return rigidbody;
 }
 
-std::shared_ptr<CircleCollider2D> Scene::CreateCircleColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const float& radius)
+std::shared_ptr<CircleCollider2D> Scene::CreateCircleColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const bool& isTrigger, const float& radius)
 {
-	std::shared_ptr<CircleCollider2D> circleCollider = std::make_shared<CircleCollider2D>(owner, optionalRigidbody, radius);
+	std::shared_ptr<CircleCollider2D> circleCollider = std::make_shared<CircleCollider2D>(owner, optionalRigidbody, isTrigger, radius);
 
 	Physics2DManager::GetInstance()->AddCircleCollider(circleCollider);
 
 	return circleCollider;
 }
 
-std::shared_ptr<AABoxCollider2D> Scene::CreateAABoxColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const Vector2<float>& size)
+std::shared_ptr<AABoxCollider2D> Scene::CreateAABoxColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const bool& isTrigger, const Vector2<float>& size)
 {
-	std::shared_ptr<AABoxCollider2D> aaBoxCollider = std::make_shared<AABoxCollider2D>(owner, optionalRigidbody, size);
+	std::shared_ptr<AABoxCollider2D> aaBoxCollider = std::make_shared<AABoxCollider2D>(owner, optionalRigidbody, isTrigger, size);
 
 	Physics2DManager::GetInstance()->AddAABoxCollider(aaBoxCollider);
 
