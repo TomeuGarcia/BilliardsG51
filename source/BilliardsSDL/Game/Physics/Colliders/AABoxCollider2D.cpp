@@ -1,7 +1,8 @@
 #include "AABoxCollider2D.h"
 
-AABoxCollider2D::AABoxCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const Vector2<float>& size)
-	: Collider2D(gameObject, optionalRigidbody)
+AABoxCollider2D::AABoxCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const bool& isTrigger, 
+	const Vector2<float>& size)
+	: Collider2D(gameObject, optionalRigidbody, isTrigger)
 {
 	SetSize(size);
 	UpdateShape();

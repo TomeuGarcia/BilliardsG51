@@ -107,7 +107,7 @@ public:
 
     static T Distance(const Vector2& v1, const Vector2& v2)
     {
-        return (v2 - v2).Length();
+        return (v2 - v1).Length();
     }
 
     static T Dot(const Vector2& v1, const Vector2& v2)

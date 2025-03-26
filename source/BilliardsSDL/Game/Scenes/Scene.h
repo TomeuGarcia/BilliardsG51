@@ -39,8 +39,10 @@ protected:
 	std::shared_ptr<Rigidbody2D> CreateRigidbodyComponent(GameObject* gameObject, 
 														  const std::shared_ptr<PhysicMaterial>& physicMaterial,
 														  const float& mass, const float& gravityScale);
-	std::shared_ptr<CircleCollider2D> CreateCircleColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const float& radius);
-	std::shared_ptr<AABoxCollider2D> CreateAABoxColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const Vector2<float>& size);
+	std::shared_ptr<CircleCollider2D> CreateCircleColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const bool& isTrigger, 
+																	const float& radius);
+	std::shared_ptr<AABoxCollider2D> CreateAABoxColliderComponent(GameObject* owner, Rigidbody2D* optionalRigidbody, const bool& isTrigger, 
+																  const Vector2<float>& size);
 
 
 	virtual void DoStart() = 0;

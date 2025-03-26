@@ -1,7 +1,8 @@
 #include "CircleCollider2D.h"
 
-CircleCollider2D::CircleCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const float& radius)
-	: Collider2D(gameObject, optionalRigidbody), 
+CircleCollider2D::CircleCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const bool& isTrigger, 
+	const float& radius)
+	: Collider2D(gameObject, optionalRigidbody, isTrigger), 
 	m_shape(gameObject->GetTransform()->p_worldPosition, radius)
 {
 	UpdateShape();

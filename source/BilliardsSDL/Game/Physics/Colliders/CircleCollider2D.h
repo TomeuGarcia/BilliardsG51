@@ -6,7 +6,8 @@
 class CircleCollider2D : public Collider2D
 {
 public:
-	CircleCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const float& radius);
+	CircleCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const bool& isTrigger, 
+		const float& radius);
 	virtual ~CircleCollider2D();
 
 

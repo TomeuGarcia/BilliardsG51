@@ -70,8 +70,9 @@ namespace Math
 
 
 
-	bool ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle, Vector2<float>& outPointInLine, float& outDistanceToPoint)
+	bool ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle, Vector2<float>& outPointInLine, float& outDistanceToCircleCenter)
 	{
+		outDistanceToCircleCenter = std::numeric_limits<float>::max();
 		// First check if point projects on line segment
 		// - if true, compute and return
 
@@ -83,9 +84,9 @@ namespace Math
 		if (projectsOnLine)
 		{
 			outPointInLine = line.GetOrigin() + (line.GetDirection() * distanceLineOriginToCircleProjectedOnLine);
-			outDistanceToPoint = Vector2<float>::Distance(circle.p_position, outPointInLine);
+			outDistanceToCircleCenter = Vector2<float>::Distance(circle.p_position, outPointInLine);
 			
-			return true;
+			return outDistanceToCircleCenter < circle.GetRadius();
 		}
 
 
@@ -97,7 +98,7 @@ namespace Math
 		if (circlePenetratingOrigin)
 		{
 			outPointInLine = line.GetOrigin();
-			outDistanceToPoint = circleToLineOriginDistance;
+			outDistanceToCircleCenter = circleToLineOriginDistance;
 			return true;
 		}		
 
@@ -106,7 +107,7 @@ namespace Math
 		if (circlePenetratingEnd)
 		{
 			outPointInLine = line.GetEnd();
-			outDistanceToPoint = circleToLineEndDistance;
+			outDistanceToCircleCenter = circleToLineEndDistance;
 			return true;
 		}
 
@@ -174,59 +175,63 @@ namespace Math
 
 
 	bool GetCollisiontRectEdgeLineWithCircle(const Circle& circle, const Rect<float>& rect, 
-		Line<float>& outCollisionLineEdge, Vector2<float>& collisionPointOnEdge, float& outDistanceToClosestEdge)
+		Line<float>& outCollisionLineEdge, Vector2<float>& collisionPointOnEdge, float& outDistanceEdgeToCircleCenter)
 	{
-		float leftDistance;
+		float leftDistanceToCircleCenter;
 		Vector2<float> leftCollisionPoint;
 		Line<float> leftEdge = rect.MakeLeftEdgeLine();
-		const bool leftCollision = ComputeLineToCircleDistance(leftEdge, circle, leftCollisionPoint, leftDistance);
+		const bool leftCollision = ComputeLineToCircleDistance(leftEdge, circle, leftCollisionPoint, leftDistanceToCircleCenter);
 
 
-		float rightDistance;
+		float rightDistanceToCircleCenter;
 		Vector2<float> rightCollisionPoint;
 		Line<float> rightEdge = rect.MakeRightEdgeLine();
-		const bool rightCollision = ComputeLineToCircleDistance(rightEdge, circle, rightCollisionPoint, rightDistance);
+		const bool rightCollision = ComputeLineToCircleDistance(rightEdge, circle, rightCollisionPoint, rightDistanceToCircleCenter);
 
 
-		float bottomDistance;
+		float bottomDistanceToCircleCenter;
 		Vector2<float> bottomCollisionPoint;
 		Line<float> bottomEdge = rect.MakeBottomEdgeLine();
-		const bool bottomCollision = ComputeLineToCircleDistance(bottomEdge, circle, bottomCollisionPoint, bottomDistance);
+		const bool bottomCollision = ComputeLineToCircleDistance(bottomEdge, circle, bottomCollisionPoint, bottomDistanceToCircleCenter);
 
 
-		float topDistance;
+		float topDistanceToCircleCenter;
 		Vector2<float> topCollisionPoint;
 		Line<float> topEdge = rect.MakeTopEdgeLine();
-		const bool topCollision = ComputeLineToCircleDistance(topEdge, circle, topCollisionPoint, topDistance);
+		const bool topCollision = ComputeLineToCircleDistance(topEdge, circle, topCollisionPoint, topDistanceToCircleCenter);
 
 
 
 
 		Line<float>& closestEdge = leftEdge;
 		collisionPointOnEdge = leftCollisionPoint;
-		outDistanceToClosestEdge = leftDistance;
+		outDistanceEdgeToCircleCenter = leftDistanceToCircleCenter;
+		outCollisionLineEdge = leftEdge;
 		bool collided = leftCollision;
 
 
-		if (rightCollision && rightDistance < outDistanceToClosestEdge)
+		if (rightCollision && rightDistanceToCircleCenter < outDistanceEdgeToCircleCenter)
 		{
 			closestEdge = rightEdge;
 			collisionPointOnEdge = rightCollisionPoint;
-			outDistanceToClosestEdge = rightDistance;
+			outDistanceEdgeToCircleCenter = rightDistanceToCircleCenter;
+			outCollisionLineEdge = rightEdge;
 			collided = true;
 		}
-		if (bottomCollision && bottomDistance < outDistanceToClosestEdge)
+		if (bottomCollision && bottomDistanceToCircleCenter < outDistanceEdgeToCircleCenter)
 		{
 			closestEdge = bottomEdge;
 			collisionPointOnEdge = bottomCollisionPoint;
-			outDistanceToClosestEdge = bottomDistance;
+			outDistanceEdgeToCircleCenter = bottomDistanceToCircleCenter;
+			outCollisionLineEdge = bottomEdge;
 			collided = true;
 		}
-		if (topCollision && topDistance < outDistanceToClosestEdge)
+		if (topCollision && topDistanceToCircleCenter < outDistanceEdgeToCircleCenter)
 		{
 			closestEdge = topEdge;
 			collisionPointOnEdge = topCollisionPoint;
-			outDistanceToClosestEdge = topDistance;
+			outDistanceEdgeToCircleCenter = topDistanceToCircleCenter;
+			outCollisionLineEdge = topEdge;
 			collided = true;
 		}
 

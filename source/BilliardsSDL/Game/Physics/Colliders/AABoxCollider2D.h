@@ -5,7 +5,8 @@
 class AABoxCollider2D : public Collider2D
 {
 public:
-	AABoxCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const Vector2<float>& size);
+	AABoxCollider2D(GameObject* gameObject, Rigidbody2D* optionalRigidbody, const bool& isTrigger, 
+		const Vector2<float>& size);
 	virtual ~AABoxCollider2D();
 
 
