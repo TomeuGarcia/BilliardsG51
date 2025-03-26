@@ -381,7 +381,7 @@ std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
 
 	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
 	{		
-		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance)) // WRONG - not distance onyl travessing!!!!!!
+		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
 			overlappedColliders.push_back(it->get());
 		}
@@ -389,7 +389,7 @@ std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
 
 	for (auto it = rigidbodyLESSCircleColliders.begin(); it != rigidbodyLESSCircleColliders.end(); ++it)
 	{
-		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance)) // WRONG - not distance onyl travessing!!!!!!
+		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
 			overlappedColliders.push_back(it->get());
 		}
