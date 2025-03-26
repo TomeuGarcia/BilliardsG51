@@ -24,10 +24,14 @@ namespace Math
 	bool AreCirclesIntersecting(const Circle& circleA, const Circle& circleB);
 
 	float ComputeLineToPointDistance(const Line<float>& line, const Vector2<float>& point);
-	float ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle);
-	bool AreLineAndCircleIntersecting(const Line<float>& line, const Circle& circle);
-	bool AreRectAndCircleIntersecting(const Rect<float>& rect, const Circle& circle);
+	bool ComputeLineToCircleDistance(const Line<float>& line, const Circle& circle, Vector2<float>& outPointInLine, float& outDistanceToPoint);
+
+	bool AreLineAndCircleIntersecting(const Line<float>& line, const Circle& circle); //
+	bool AreRectAndCircleIntersecting(const Rect<float>& rect, const Circle& circle); //
 
 
 	Line<float> GetClosestRectEdgeLineToPoint(const Vector2<float>& point, const Rect<float>& rect, float& outDistanceToClosestEdge);
+
+	bool GetCollisiontRectEdgeLineWithCircle(const Circle& circle, const Rect<float>& rect,
+		Line<float>& outCollisionLineEdge, Vector2<float>& collisionPointOnEdge, float& outDistanceToClosestEdge);
 }

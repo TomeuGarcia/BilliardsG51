@@ -152,7 +152,7 @@ void Physics2DManager::UpdateCollisions()
 		//Rb circle check with aaBox
 		for (auto itB = rigidbodyLESSAABoxColliders.begin(); itB != rigidbodyLESSAABoxColliders.end(); ++itB)
 		{
-			//CheckCircleWithAABox(itRbC->get(), itB->get());
+			CheckCircleWithAABox(itRbC->get(), itB->get());
 		}
 	}
 

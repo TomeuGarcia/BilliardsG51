@@ -5,12 +5,15 @@ template <typename T>
 struct Line
 {
 public:
+	Line()
+		:m_origin(), m_end(), m_direction(), m_totalDistance(0)
+	{}
 	Line(const Vector2<T>& origin, const Vector2<T>& end)
-		: m_origin(origin), m_end(end), m_direction((end - origin).Normalized())
+		: m_origin(origin), m_end(end), m_direction((end - origin).Normalized()), m_totalDistance((end-origin).Length())
 	{
 	}
 	Line(const Vector2<T>& origin, const Vector2<T>& direction, const T& distance)
-		: m_origin(origin), m_end(origin + (direction * distance)), m_direction(direction)
+		: m_origin(origin), m_end(origin + (direction * distance)), m_direction(direction), m_totalDistance(distance)
 	{
 	}
 
@@ -30,6 +33,11 @@ public:
 		return m_direction;
 	}
 
+	T GetTotalDistance() const
+	{
+		return m_totalDistance;
+	}
+
 	Vector2<T> GetPoint(const T& lambda) const
 	{
 		return m_origin + (m_direction * lambda);
@@ -45,4 +53,5 @@ private:
 	Vector2<T> m_origin;
 	Vector2<T> m_end;
 	Vector2<T> m_direction;
+	T m_totalDistance;
 };
