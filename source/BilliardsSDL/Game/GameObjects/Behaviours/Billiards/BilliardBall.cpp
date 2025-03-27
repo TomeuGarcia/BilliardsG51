@@ -12,11 +12,16 @@ BilliardBall::~BilliardBall()
 
 void BilliardBall::Start()
 {
+	m_startPosition = m_rigidbody->GetGameObject()->GetTransform()->p_worldPosition;
+
+	/*
 	const Vector2<float> force =
 		GameRandom::GetInstance()->GetRandomUnitCircle() *
-		GameRandom::GetInstance()->GetRandomFloat(2.0f, 9.0f);
+		GameRandom::GetInstance()->GetRandomFloat(7.0f, 9.0f);
+		*/
+
+	const Vector2<float> force = m_startPosition.Normalized() * -6.0f;
 	
-	m_startPosition = m_rigidbody->GetGameObject()->GetTransform()->p_worldPosition;
 	m_rigidbody.get()->ApplyForce(force);
 }
 
