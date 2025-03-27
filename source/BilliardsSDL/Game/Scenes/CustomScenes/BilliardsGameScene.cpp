@@ -2,6 +2,12 @@
 
 void BilliardsGameScene::CreateGameObjects()
 {
+	GameObject* managerGameObject = CreateGameObject(Vector2<float>::Zero(), "Manager");
+	std::shared_ptr<BilliardsGameplayManager> manager = std::make_shared<BilliardsGameplayManager>();
+	managerGameObject->AttachBehaviour(manager);
+
+
+
 	const Vector2<float> boardPosition = Vector2<float>::Zero();
 	GameObject* board = CreateGameObject(boardPosition, "Board");
 	CreateImageComponent(board, GameAssetResources::GetInstance()->GetBoardImageData(), Vector2<float>(10.0f, 5.6f));
@@ -9,24 +15,20 @@ void BilliardsGameScene::CreateGameObjects()
 	CreateBoardWalls(boardPosition);
 	CreateBoardHoles(boardPosition);
 
-	GameObject* redStick = CreateGameObject(boardPosition + Vector2<float>(3, 3), "Red stick");
-	CreateImageComponent(redStick, GameAssetResources::GetInstance()->GetRedStickImageData(), Vector2<float>(3.0f, 0.1f));
 	
-	GameObject* blueStick = CreateGameObject(boardPosition + Vector2<float>(-3, 3), "Blue stick");
-	CreateImageComponent(blueStick, GameAssetResources::GetInstance()->GetBlueStickImageData(), Vector2<float>(3.0f, 0.1f));
+
+	BilliardStick* redStick = CreateBilliardStick(boardPosition + Vector2<float>(3, 3),
+		GameAssetResources::GetInstance()->GetRedStickImageData(), "Red stick");
+	BilliardStick* blueStick = CreateBilliardStick(boardPosition + Vector2<float>(-3, 3),
+		GameAssetResources::GetInstance()->GetBlueStickImageData(), "Blue stick");
+	
+	manager->Init(redStick);
 
 
 	const Vector2<float> randomBounds{ 2.0f, 1.0f };
 
 	const Vector2<float> ballSize{ 0.25f, 0.25f };
-	std::array<BilliardBall*, 16> balls{}; // <---------- should be 16
-
-
-	/*
-	balls[0] = CreateBilliardBall(Vector2<float>(2.5f, 1.0f), GameAssetResources::GetInstance()->GetWhiteBallImageData(), 0);
-	balls[1] = CreateBilliardBall(Vector2<float>(0.0f, 0.0f), GameAssetResources::GetInstance()->GetBlackBallImageData(), 8);
-	return;
-	*/
+	std::array<BilliardBall*, 16> balls{};
 
 
 	BilliardBall* whiteBall = CreateBilliardBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds), 
@@ -56,13 +58,13 @@ void BilliardsGameScene::CreateGameObjects()
 
 
 
-	/*
+	
 	const std::array<Vector2<float>, 16> arrangedPositions = SortBallsAndComputeArrangePositions(balls, boardPosition, 0, 1);
 	for (size_t i = 0; i < arrangedPositions.size(); ++i)
 	{
-		balls[i]->GetTransform()->p_worldPosition = arrangedPositions[i];
+		balls[i]->SetPosition(arrangedPositions[i]);
 	}
-	*/
+	
 }
 
 void BilliardsGameScene::DoStart()
@@ -75,21 +77,6 @@ void BilliardsGameScene::DoUpdate()
 	Vector2<int> mouseWindowPosition = GameInput::GetInstance()->GetMouseWindowPosition();
 	Vector2<float> mouseWorldPosition = GameInput::GetInstance()->GetMouseWorldPosition();
 
-	const float rayLength = 2.0f;
-	if (GameInput::GetInstance()->GetKey(KeyCode::MouseLeft))
-	{
-		GameRenderManager::GetInstance()->DrawDebugLine(Colors::White,
-			mouseWindowPosition,
-			GameSpacesComputer::GetInstance()->WorldToWindowPosition(mouseWorldPosition + Vector2<float>::Up() * rayLength));
-	}
-	if (GameInput::GetInstance()->GetKeyUp(KeyCode::MouseLeft))
-	{
-		std::list<Collider2D*> overlaps = Physics2DManager::GetInstance()->Raycast(
-			Line<float>(mouseWorldPosition, mouseWorldPosition + Vector2<float>::Up() * rayLength));
-
-		printf("Overlaps: %i \n", overlaps.size());
-	}
-	
 
 	const float radius = 0.5f;
 	if (GameInput::GetInstance()->GetKey(KeyCode::MouseRight))
@@ -103,6 +90,25 @@ void BilliardsGameScene::DoUpdate()
 			mouseWorldPosition, radius);
 
 		printf("Overlaps: %i \n", overlaps.size());
+
+
+		std::list<BilliardBall*> ballOverlaps{};
+		for (auto it = overlaps.begin(); it != overlaps.end(); ++it)
+		{
+			const std::vector<std::shared_ptr<Behaviour>>& behaviours = (*it)->GetGameObject()->GetBehaviours();
+
+			for (int i = 0; i < behaviours.size(); ++i)
+			{
+				BilliardBall* ball = dynamic_cast<BilliardBall*>(behaviours[i].get());
+				if (ball != nullptr)
+				{
+					ballOverlaps.push_back(ball);
+				}
+			}
+		}
+
+		
+		printf("Balls: %i \n", ballOverlaps.size());
 	}
 
 
@@ -111,6 +117,20 @@ void BilliardsGameScene::DoUpdate()
 		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
 		system("cls");
 	}
+}
+
+
+
+BilliardStick* BilliardsGameScene::CreateBilliardStick(const Vector2<float>& position, const ImageResourceData& imageData, const std::string& name)
+{
+	GameObject* stickGameObject = CreateGameObject(position, name);
+	std::shared_ptr<Image> image = CreateImageComponent(stickGameObject, imageData, Vector2<float>(3.0f, 0.1f));
+
+	std::shared_ptr<BilliardStick> billiardStick = std::make_shared<BilliardStick>(
+		stickGameObject->GetTransform(), image.get(), Vector2<float>::Left(), 2.5f, 1.5f);
+	stickGameObject->AttachBehaviour(billiardStick);
+
+	return billiardStick.get();
 }
 
 

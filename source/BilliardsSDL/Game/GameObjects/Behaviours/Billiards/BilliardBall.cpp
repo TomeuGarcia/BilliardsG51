@@ -14,7 +14,7 @@ void BilliardBall::Start()
 {
 	m_startPosition = m_rigidbody->GetGameObject()->GetTransform()->p_worldPosition;
 
-	
+	/*
 	const Vector2<float> force =
 		GameRandom::GetInstance()->GetRandomUnitCircle() *
 		GameRandom::GetInstance()->GetRandomFloat(7.0f, 9.0f);
@@ -23,6 +23,7 @@ void BilliardBall::Start()
 	//const Vector2<float> force = m_startPosition * -2;
 	
 	m_rigidbody.get()->ApplyForce(force);
+	*/
 }
 
 void BilliardBall::Update()
@@ -38,5 +39,5 @@ void BilliardBall::Update()
 
 void BilliardBall::SetPosition(const Vector2<float>& position)
 {
-	m_rigidbody.get()->GetGameObject()->GetTransform()->p_worldPosition = position;
+	m_rigidbody->MoveToPosition(position);
 }

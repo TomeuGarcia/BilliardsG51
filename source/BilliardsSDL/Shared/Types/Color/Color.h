@@ -51,6 +51,7 @@ namespace Colors
 	constexpr const Color Green	{ 0,	255,	0,		255 };
 	constexpr const Color Blue	{ 0,	0,		255,	255 };
 	constexpr const Color Cyan	{ 0,	255,	255,	255 };
+	constexpr const Color Yellow{ 255,	255,	0,		255 };
 
 	constexpr const Color SoftRed	{ 230,	40,		60,		255 };
 	constexpr const Color SoftGreen	{ 40,	230,	120,	255 };

@@ -48,6 +48,12 @@ namespace Math
 		return std::cosf(radians);
 	}
 
+	float Angle(const Vector2<float>& from, const Vector2<float>& to)
+	{
+		return Rad2Deg(std::atan2(Vector2<float>::Dot(from, to), Vector2<float>::Cross(from, to)));
+	}
+
+
 	Vector2<float> Rotate(const Vector2<float>& vector, const float& degrees)
 	{
 		const float radians = Math::Deg2Rad(degrees);

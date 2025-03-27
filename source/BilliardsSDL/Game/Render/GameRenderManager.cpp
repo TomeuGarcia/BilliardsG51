@@ -43,6 +43,11 @@ void GameRenderManager::DrawDebugLine(const Color& color, const Vector2<int>& st
 	m_renderSystem->StopDrawingToDebug();
 }
 
+void GameRenderManager::DrawDebugLine(const Color& color, const Line<int>& line) const
+{
+	DrawDebugLine(color, line.GetOrigin(), line.GetEnd());
+}
+
 void GameRenderManager::DrawDebugLines(const Color& color, const std::vector<Vector2<int>>& points) const
 {
 	m_renderSystem->StartDrawingToDebug();

@@ -25,6 +25,9 @@ namespace Math
 	float Cos(const float& degrees);
 
 
+	float Angle(const Vector2<float>& from, const Vector2<float>& to);
+
+
 	Vector2<float> Rotate(const Vector2<float>& vector, const float& degrees);
 
 
