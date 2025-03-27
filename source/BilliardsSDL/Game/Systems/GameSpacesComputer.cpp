@@ -92,3 +92,10 @@ Rect<float> GameSpacesComputer::WindowToWorldRect(const Rect<int>& windowRect)
 	return worldRect;
 }
 
+Line<int> GameSpacesComputer::WorldToWindowLine(const Line<float>& worldLine)
+{
+	return Line<int>(
+		WorldToWindowPosition(worldLine.GetOrigin()), 
+		WorldToWindowPosition(worldLine.GetEnd()));
+}
+

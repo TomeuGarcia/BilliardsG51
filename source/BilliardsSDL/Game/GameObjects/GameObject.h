@@ -20,9 +20,9 @@ public:
 	Transform* const GetTransform();	
 	const std::string& GetName();
 	const std::vector<std::shared_ptr<Behaviour>>& GetBehaviours();
-
+	
 private:
-	Transform m_transform;	
 	std::string m_name;
+	Transform m_transform;	
 	std::vector<std::shared_ptr<Behaviour>> m_behaviours;
 };

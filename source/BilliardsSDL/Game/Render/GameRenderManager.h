@@ -24,6 +24,7 @@ public:
 	const Vector2<int> GetWindowSize() const;
 	void SetBackgroundColor(const Color& color) const;
 	void DrawDebugLine(const Color& color, const Vector2<int>& start, const Vector2<int>& end) const;
+	void DrawDebugLine(const Color& color, const Line<int>& line) const;
 	void DrawDebugLines(const Color& color, const std::vector<Vector2<int>>& points) const;
 	void DrawDebugRect(const Color& color, const Rect<int>& rect) const;
 

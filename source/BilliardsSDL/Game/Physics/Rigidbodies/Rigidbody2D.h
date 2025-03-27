@@ -21,6 +21,7 @@ public:
 	PhysicMaterial* GetPhysicMaterial() const;
 	GameObject* GetGameObject() const;
 
+	void MoveToPosition(const Vector2<float>& position);
 	void UpdatePosition();
 	void ApplyFriction(const float& deltaTime);
 

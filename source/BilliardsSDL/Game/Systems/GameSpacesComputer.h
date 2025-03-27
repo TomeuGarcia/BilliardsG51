@@ -25,6 +25,8 @@ public:
 	Rect<int> WorldToWindowRect(const Rect<float>& worldRect);
 	Rect<float> WindowToWorldRect(const Rect<int>& windowRect);
 
+	Line<int> WorldToWindowLine(const Line<float>& worldLine);
+
 
 private:
 	RenderSystem* m_renderSystem;

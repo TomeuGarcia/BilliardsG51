@@ -212,6 +212,13 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Application\Systems\Time\TimeSystem.cpp" />
     <ClCompile Include="Game\BilliardsGameEngine.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardBall.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingFSM.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Hitting.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Debug\AABoxColliderDrawer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Debug\CircleColliderDrawer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp" />
@@ -262,6 +269,13 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\BilliardsGameEngine.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Behaviour.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardBall.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingFSM.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Hitting.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Debug\AABoxColliderDrawer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Debug\CircleColliderDrawer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h" />

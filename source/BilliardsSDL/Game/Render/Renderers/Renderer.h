@@ -2,6 +2,7 @@
 #include <SDL_image.h>
 #include "../../GameObjects/GameObject.h"
 #include "../../../Shared/Types/Color/Color.h"
+#include "../../../Shared/Math/Math.h"
 
 
 class Renderer

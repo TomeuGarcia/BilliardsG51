@@ -109,6 +109,12 @@
     <Filter Include="Source Files\Game\Physics\Helpers">
       <UniqueIdentifier>{e2a870e8-8873-4a56-b609-4816c5dc1d2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\States">
+      <UniqueIdentifier>{74bbeccb-b84d-45a5-bccc-66884d2d1382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking">
+      <UniqueIdentifier>{54c60a8c-66b3-4eb0-afe3-79c9bcaac8f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -239,6 +245,27 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Debug\CircleColliderDrawer.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Hitting.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingFSM.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -400,6 +427,27 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Debug\CircleColliderDrawer.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingFSM.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Hitting.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

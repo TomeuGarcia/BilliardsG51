@@ -51,6 +51,12 @@ GameObject* Rigidbody2D::GetGameObject() const
 
 
 
+void Rigidbody2D::MoveToPosition(const Vector2<float>& position)
+{
+	p_position = position;
+	UpdatePosition();
+}
+
 void Rigidbody2D::UpdatePosition()
 {
 	m_gameObject->GetTransform()->p_worldPosition = p_position;

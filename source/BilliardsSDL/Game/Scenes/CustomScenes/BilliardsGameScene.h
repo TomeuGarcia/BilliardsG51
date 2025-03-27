@@ -1,11 +1,15 @@
 #pragma once
 #include <array>
 #include "../Scene.h"
-#include "../../GameObjects/Behaviours/Billiards/BilliardBall.h"
 #include "../../GameObjects/Behaviours/Debug/AABoxColliderDrawer.h"
 #include "../../GameObjects/Behaviours/Debug/CircleColliderDrawer.h"
 #include "../../Systems/GameInput.h"
 #include "../SceneManager.h"
+
+#include "../../GameObjects/Behaviours/Billiards/BilliardBall.h"
+#include "../../GameObjects/Behaviours/Billiards/BilliardStick.h"
+#include "../../GameObjects/Behaviours/Billiards/BilliardsGameplayManager.h"
+
 
 
 class BilliardsGameScene : public Scene
@@ -16,6 +20,8 @@ protected:
 	virtual void DoUpdate() override;
 
 private:
+	BilliardStick* CreateBilliardStick(const Vector2<float>& position, const ImageResourceData& imageData, const std::string& name);
+
 	BilliardBall* CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData, const int& number);
 	
 	void CreateBoardWalls(const Vector2<float>& boardCenter);
