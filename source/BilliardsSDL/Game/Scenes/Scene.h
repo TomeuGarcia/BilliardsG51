@@ -31,7 +31,7 @@ public:
 
 protected:
 	virtual void CreateGameObjects() = 0;
-	GameObject* CreateGameObject(const Vector2<float>& position);
+	GameObject* CreateGameObject(const Vector2<float>& position, const std::string& name);
 	std::shared_ptr<Image> CreateImageComponent(GameObject* owner, const ImageResourceData& resourceData, const Vector2<float>& size);
 	std::shared_ptr<Text> CreateTextComponent(GameObject* owner, const TextResourceData& resourceData,
 											  const std::string& textString, const int pointSize);

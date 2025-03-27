@@ -52,9 +52,9 @@ void Scene::Render()
 
 
 
-GameObject* Scene::CreateGameObject(const Vector2<float>& position)
+GameObject* Scene::CreateGameObject(const Vector2<float>& position, const std::string& name)
 {
-	m_gameObjects.emplace_back(position);
+	m_gameObjects.emplace_back(position, name);
 	return &(*m_gameObjects.rbegin());
 }
 

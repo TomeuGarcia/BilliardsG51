@@ -8,7 +8,7 @@
 class GameObject
 {
 public:
-	GameObject(const Vector2<float>& position);
+	GameObject(const Vector2<float>& position, const std::string& name);
 	virtual ~GameObject();
 
 	void Start();
@@ -18,9 +18,11 @@ public:
 
 public:
 	Transform* const GetTransform();	
+	const std::string& GetName();
 	const std::vector<std::shared_ptr<Behaviour>>& GetBehaviours();
 
 private:
 	Transform m_transform;	
+	std::string m_name;
 	std::vector<std::shared_ptr<Behaviour>> m_behaviours;
 };
