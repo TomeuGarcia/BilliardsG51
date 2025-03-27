@@ -6,5 +6,6 @@ enum class KeyCode
 	MouseLeft,
 	MouseRight,
 
-	Esc
+	Esc,
+	R
 };

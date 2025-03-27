@@ -16,13 +16,14 @@ public:
 
 	void AddCollider(const std::shared_ptr<AABoxCollider2D>& collider, const bool& hasRigidbody);
 
-	void UpdateActiveCollision(AABoxCollider2D* colliderA, Collider2D* colliderB, const bool& areColliding);
+	void UpdateActiveCollision(AABoxCollider2D* colliderA, Collider2D* colliderB, const bool& areColliding,
+		bool& outWereAlreadyColliding);
 
 
 private:
 	void AddActiveCollision(AABoxCollider2D* colliderWithRigidbody, Collider2D* otherCollider,
 		std::vector<Collision2D>::iterator& outCollisionIt);
-	bool GetActiveCollision(AABoxCollider2D* colliderWithRigidbody,
+	bool GetActiveCollision(AABoxCollider2D* colliderWithRigidbody, Collider2D* otherCollider,
 		std::vector<Collision2D>::iterator& outCollisionIt);
 	void RemoveActiveCollision(AABoxCollider2D* colliderWithRigidbody,
 		const std::vector<Collision2D>::iterator& collisionIt);

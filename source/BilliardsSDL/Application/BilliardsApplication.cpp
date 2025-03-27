@@ -40,9 +40,9 @@ void BilliardsApplication::InitSDL()
 
 void BilliardsApplication::InitSystems()
 {
-	m_inputSystem.Init();
-	m_timeSystem.Init();
 	m_renderSystem.Init(m_specifications.p_windowSize);	
+	m_inputSystem.Init(m_renderSystem.GetWindow());
+	m_timeSystem.Init();
 	m_rngSystem.Init();
 }
 
@@ -77,8 +77,8 @@ void BilliardsApplication::GameLoop()
 	{
 		m_renderSystem.ClearRenderer();
 
-		m_timeSystem.Update();
 		m_inputSystem.Update();
+		m_timeSystem.Update();
 		m_gameEngine.Update();
 
 		m_gameEngine.Render();

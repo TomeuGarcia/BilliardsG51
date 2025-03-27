@@ -12,13 +12,16 @@ class InputSystem : public IInputState
 public:
 	InputSystem();
 	~InputSystem();
-	void Init();
+	void Init(SDL_Window* window);
 private:
 	void AddKeyEntry(const SDL_Keycode sdlKeyCode, const KeyCode keyCode);
 
 
 public:
 	void Update();
+	bool WindowStopFocus();
+
+
 private:
 	void UpdatePreviousState();
 	void ProcessEvents();
@@ -38,6 +41,8 @@ public:
 
 
 private:		
+	SDL_Window* m_window;
+
 	WindowInputs m_windowInputs;
 
 	std::unordered_map<SDL_Keycode, KeyCode> m_sdlKeysMap;

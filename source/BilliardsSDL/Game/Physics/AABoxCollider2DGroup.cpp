@@ -39,11 +39,12 @@ void AABoxCollider2DGroup::AddCollider(const std::shared_ptr<AABoxCollider2D>& c
 
 
 
-void AABoxCollider2DGroup::UpdateActiveCollision(AABoxCollider2D* colliderA, Collider2D* colliderB,
-	const bool& areColliding)
+void AABoxCollider2DGroup::UpdateActiveCollision(AABoxCollider2D* colliderA, Collider2D* colliderB,	const bool& areColliding,
+	bool& outWereAlreadyColliding)
 {
 	std::vector<Collision2D>::iterator outActiveCollision;
-	if (GetActiveCollision(colliderA, outActiveCollision))
+	outWereAlreadyColliding = GetActiveCollision(colliderA, colliderB, outActiveCollision);
+	if (outWereAlreadyColliding)
 	{
 		outActiveCollision->UpdateStatus(areColliding);
 		if (outActiveCollision->GetStatus() == Collision2D::Status::Exit)
@@ -69,14 +70,15 @@ void AABoxCollider2DGroup::AddActiveCollision(AABoxCollider2D* colliderWithRigid
 }
 
 
-bool AABoxCollider2DGroup::GetActiveCollision(AABoxCollider2D* colliderWithRigidbody,
+bool AABoxCollider2DGroup::GetActiveCollision(AABoxCollider2D* colliderWithRigidbody, Collider2D* otherCollider,
 	std::vector<Collision2D>::iterator& outCollisionIt)
 {
 	std::vector<Collision2D>& collisions = m_activeCollisionsByRigidbodyCollider[colliderWithRigidbody];
 
 	for (auto it = collisions.begin(); it != collisions.end(); ++it)
 	{
-		if (it->GetColliderA() == colliderWithRigidbody)
+		if (it->GetColliderA() == colliderWithRigidbody &&
+			it->GetColliderB() == otherCollider)
 		{
 			outCollisionIt = it;
 			return true;

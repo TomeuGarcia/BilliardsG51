@@ -82,6 +82,7 @@ void Rigidbody2D::ClearMovement()
 void Rigidbody2D::ApplyForce(const Vector2<float>& force)
 {
 	m_acceleration += ComputeForceAcceleration(force);
+	SetVelocity(m_acceleration); // This might not be physically correct xd
 }
 
 Vector2<float> Rigidbody2D::ComputeGravityForceAcceleration(const Vector2<float>& gravityForce)

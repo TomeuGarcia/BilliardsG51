@@ -15,6 +15,8 @@ public:
 	void Init(const Vector2<int>& windowSize);
 	void Cleanup();
 
+	SDL_Window* GetWindow();
+
 public:
 	void ClearRenderer();
 	void DrawRenderer();

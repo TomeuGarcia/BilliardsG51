@@ -1,5 +1,6 @@
 #pragma once
 #include <chrono>
+#include "SDL.h"
 #include "ITimeState.h"
 
 class TimeSystem : public ITimeState

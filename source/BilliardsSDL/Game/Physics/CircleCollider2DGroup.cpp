@@ -40,11 +40,16 @@ void CircleCollider2DGroup::AddCollider(const std::shared_ptr<CircleCollider2D>&
 
 
 void CircleCollider2DGroup::UpdateActiveCollision(CircleCollider2D* colliderA, Collider2D* colliderB,
-	const bool& areColliding)
+	const bool& areColliding, bool& outWereAlreadyColliding)
 {
 	std::vector<Collision2D>::iterator outActiveCollision;
-	if (GetActiveCollision(colliderA, outActiveCollision))
+	outWereAlreadyColliding = GetActiveCollision(colliderA, colliderB, outActiveCollision);
+	if (outWereAlreadyColliding)
 	{
+		if (areColliding)
+		{
+			areColliding;
+		}
 		outActiveCollision->UpdateStatus(areColliding);
 		if (outActiveCollision->GetStatus() == Collision2D::Status::Exit)
 		{
@@ -69,14 +74,15 @@ void CircleCollider2DGroup::AddActiveCollision(CircleCollider2D* colliderWithRig
 }
 
 
-bool CircleCollider2DGroup::GetActiveCollision(CircleCollider2D* colliderWithRigidbody,
+bool CircleCollider2DGroup::GetActiveCollision(CircleCollider2D* colliderWithRigidbody, Collider2D* otherCollider,
 	std::vector<Collision2D>::iterator& outCollisionIt)
 {
 	std::vector<Collision2D>& collisions = m_activeCollisionsByRigidbodyCollider[colliderWithRigidbody];
 
 	for (auto it = collisions.begin(); it != collisions.end(); ++it)
 	{
-		if (it->GetColliderA() == colliderWithRigidbody)
+		if (it->GetColliderA() == colliderWithRigidbody &&
+			it->GetColliderB() == otherCollider)
 		{
 			outCollisionIt = it;
 			return true;
