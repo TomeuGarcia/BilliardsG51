@@ -32,7 +32,4 @@
 *.app
 
 
-*
-/!dependencies!.lib
-/!dependencies!.dll
-*/
+!dependencies
