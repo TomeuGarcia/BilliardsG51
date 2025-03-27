@@ -206,6 +206,8 @@ void Physics2DManager::CheckCircleWithCircle(CircleCollider2D* circleColliderA, 
 	const bool bothAreColliders = !circleColliderA->GetIsTrigger() && !circleColliderB->GetIsTrigger();	
 	if (areColliding && bothAreColliders)
 	{
+		printf("Collision: %s - %s\n", circleColliderA->GetGameObject()->GetName().c_str(), circleColliderB->GetGameObject()->GetName().c_str());
+
 		const bool otherAlsoHasRigidbody = circleColliderB->HasRigidbody();
 		intersectDistance = otherAlsoHasRigidbody ? intersectDistance / 2 : intersectDistance;
 

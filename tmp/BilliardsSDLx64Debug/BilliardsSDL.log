@@ -2,11 +2,6 @@
   0 File(s) copied
   0 File(s) copied
   0 File(s) copied
-  BilliardsApplication.cpp
-  BilliardsGameEngine.cpp
-  AABoxCollider2DGroup.cpp
-  CircleCollider2DGroup.cpp
-  Physics2DManager.cpp
   BilliardsGameScene.cpp
 E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(44,71): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
 E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(51,72): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
@@ -18,21 +13,6 @@ E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\Bil
       E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(104,10):
       consider using '%zi' in the format string
   
-  EmptyScene.cpp
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,44): warning C4244:         with
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,44): warning C4244:         [
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,44): warning C4244:             T=float
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,44): warning C4244:         ]
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,38): warning C4244:         with
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,38): warning C4244:         [
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,38): warning C4244:             T=float
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,38): warning C4244:         ]
-  Scene.cpp
-  SceneManager.cpp
-  main.cpp
-  Generating Code...
   BilliardsSDL.vcxproj -> E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\binaries\x64Debug\BilliardsSDL.exe
   0 File(s) copied
   0 File(s) copied

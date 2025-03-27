@@ -7,7 +7,7 @@ namespace CollisionHelper
 	{
 		const Vector2<float> ab = circleB.p_position - circleA.p_position;
 		const float distanceBetweenCircles = ab.Length();		
-		outNormalForAB = ab / distanceBetweenCircles;
+		outNormalForAB = -ab / distanceBetweenCircles;
 
 		const float radiusSum = circleA.GetRadius() + circleB.GetRadius();
 		outIntersectDistance = radiusSum - distanceBetweenCircles;
@@ -91,19 +91,22 @@ namespace CollisionHelper
 
 
 		const float bounceE{ 1 + rigidbody->GetPhysicMaterial()->GetBounciness() };
+		const float additionSign = Vector2<float>::Dot(contactNormal, rigidbody->GetVelocity()) > 0 ? 1 : -1;
+		//printf("%s ---> sign: %f\n", rigidbody->GetGameObject()->GetName().c_str(), additionSign);
+
 
 		// Velocity reflection
 		// Vt+dt = V't+dt - (1+BounceCoef)*(n·V't+dt)*n
-		Vector2<float> velocity = rigidbody->GetVelocity() -
-			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetVelocity())));
+		Vector2<float> velocity = rigidbody->GetVelocity() +
+			(contactNormal * (additionSign* bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetVelocity())));
 
 		rigidbody->SetVelocity(velocity);
 
 				
 		// Acceleration reflection
 		// At+dt = A't+dt - (1+BounceCoef)*(n·A't+dt)*n
-		Vector2<float> acceleration = rigidbody->GetAcceleration() -
-			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetAcceleration())));
+		Vector2<float> acceleration = rigidbody->GetAcceleration() +
+			(contactNormal * (additionSign* bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetAcceleration())));
 
 		rigidbody->SetAcceleration(acceleration);				
 	}

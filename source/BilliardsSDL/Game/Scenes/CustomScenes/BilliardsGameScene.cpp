@@ -22,8 +22,8 @@ void BilliardsGameScene::CreateGameObjects()
 	std::array<BilliardBall*, 2> balls{}; // <---------- should be 16
 
 
-	balls[0] = CreateBilliardBall(Vector2<float>(2.5f, 0.0f), GameAssetResources::GetInstance()->GetWhiteBallImageData(), 0);
-	balls[1] = CreateBilliardBall(Vector2<float>(0.1f, 0.0f), GameAssetResources::GetInstance()->GetBlackBallImageData(), 8);
+	balls[0] = CreateBilliardBall(Vector2<float>(2.5f, 1.0f), GameAssetResources::GetInstance()->GetWhiteBallImageData(), 0);
+	balls[1] = CreateBilliardBall(Vector2<float>(-2.5f, 0.0f), GameAssetResources::GetInstance()->GetBlackBallImageData(), 8);
 	return;
 
 
