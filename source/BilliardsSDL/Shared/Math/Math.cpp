@@ -28,6 +28,39 @@ namespace Math
 		return Clamp(value, 0.0f, 1.0f);
 	}
 
+	float Rad2Deg(const float& radians)
+	{
+		return radians * (180.0f / PI);
+	}
+
+	float Deg2Rad(const float& degrees)
+	{
+		return degrees * (PI / 180.0f);
+	}
+
+	float Sin(const float& radians)
+	{
+		return std::sinf(radians);
+	}
+
+	float Cos(const float& radians)
+	{
+		return std::cosf(radians);
+	}
+
+	Vector2<float> Rotate(const Vector2<float>& vector, const float& degrees)
+	{
+		const float radians = Math::Deg2Rad(degrees);
+		const float sine = Math::Cos(radians);
+		const float cosine = Math::Cos(radians);
+
+		Vector2<float> rotated;
+		rotated.x = (vector.x * cosine) - (vector.y * sine);
+		rotated.y = (vector.x * sine) + (vector.y * cosine);
+
+		return rotated;
+	}
+
 
 
 	bool IsPointInsideRect(const Rect<float>& rect, const Vector2<float>& point)

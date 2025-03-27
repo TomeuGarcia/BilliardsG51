@@ -43,6 +43,21 @@ void GameRenderManager::DrawDebugLine(const Color& color, const Vector2<int>& st
 	m_renderSystem->StopDrawingToDebug();
 }
 
+void GameRenderManager::DrawDebugLines(const Color& color, const std::vector<Vector2<int>>& points) const
+{
+	m_renderSystem->StartDrawingToDebug();
+	SetDrawColor(color);
+	
+	std::vector<SDL_Point> sdlPoints(points.size());
+	for (size_t i = 0; i < points.size(); ++i)
+	{
+		sdlPoints[i] = { points[i].x, points[i].y };
+	}
+
+	SDL_RenderDrawLines(m_renderSystem->GetRenderer(), &*sdlPoints.begin(), sdlPoints.size());
+	m_renderSystem->StopDrawingToDebug();
+}
+
 void GameRenderManager::DrawDebugRect(const Color& color, const Rect<int>& rect) const
 {
 	m_renderSystem->StartDrawingToDebug();

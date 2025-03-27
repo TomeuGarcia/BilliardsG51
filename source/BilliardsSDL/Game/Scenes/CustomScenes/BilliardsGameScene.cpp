@@ -19,7 +19,14 @@ void BilliardsGameScene::CreateGameObjects()
 	const Vector2<float> randomBounds{ 2.0f, 1.0f };
 
 	const Vector2<float> ballSize{ 0.25f, 0.25f };
-	std::array<BilliardBall*, 16> balls{}; // <---------- should be 16
+	std::array<BilliardBall*, 2> balls{}; // <---------- should be 16
+
+
+	balls[0] = CreateBilliardBall(Vector2<float>(2.5f, -1.0f), GameAssetResources::GetInstance()->GetWhiteBallImageData());
+	balls[1] = CreateBilliardBall(Vector2<float>(-2.5f, -1.0f), GameAssetResources::GetInstance()->GetBlackBallImageData());
+	return;
+
+
 
 	BilliardBall* whiteBall = CreateBilliardBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds), 
 												 GameAssetResources::GetInstance()->GetWhiteBallImageData());

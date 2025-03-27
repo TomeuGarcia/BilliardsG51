@@ -9,6 +9,8 @@
 
 namespace Math
 {
+#define PI 3.14159265f
+
 	float Sqrt(const float& value);
 
 	float Min(const float& a, const float& b);
@@ -16,6 +18,14 @@ namespace Math
 	float Clamp(const float& value, const float& min, const float& max);	
 	float Clamp01(const float& value);
 
+	float Rad2Deg(const float& radians);
+	float Deg2Rad(const float& degrees);
+
+	float Sin(const float& degrees);
+	float Cos(const float& degrees);
+
+
+	Vector2<float> Rotate(const Vector2<float>& vector, const float& degrees);
 
 
 	bool IsPointInsideRect(const Rect<float>& rect, const Vector2<float>& vector);
