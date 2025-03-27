@@ -12,9 +12,8 @@ public:
 				const float& mass, const float& gravityScale);
 	~Rigidbody2D();
 
-	Vector2<float> GetAccelerationSum() const;
-	Vector2<float> GetOnlyAcceleration() const;
-	void SetOnlyAcceleration(const Vector2<float>& acceleration);
+	Vector2<float> GetAcceleration() const;
+	void SetAcceleration(const Vector2<float>& acceleration);
 
 	PhysicMaterial* GetPhysicMaterial() const;
 	GameObject* GetGameObject() const;
@@ -39,7 +38,6 @@ public:
 
 private:
 	Vector2<float> m_acceleration;
-	Vector2<float> m_deceleration;
 	std::shared_ptr<PhysicMaterial> m_physicMaterial;
 	GameObject* m_gameObject;
 };

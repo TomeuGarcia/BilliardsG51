@@ -102,10 +102,10 @@ namespace CollisionHelper
 				
 		// Acceleration reflection
 		// At+dt = A't+dt - (1+BounceCoef)*(n·A't+dt)*n
-		Vector2<float> acceleration = rigidbody->GetOnlyAcceleration() -
-			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetOnlyAcceleration())));
+		Vector2<float> acceleration = rigidbody->GetAcceleration() -
+			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetAcceleration())));
 
-		rigidbody->SetOnlyAcceleration(acceleration);				
+		rigidbody->SetAcceleration(acceleration);				
 	}
 
 
