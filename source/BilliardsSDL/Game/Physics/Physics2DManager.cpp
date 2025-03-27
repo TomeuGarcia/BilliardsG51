@@ -206,17 +206,9 @@ void Physics2DManager::CheckCircleWithCircle(CircleCollider2D* circleColliderA, 
 	const bool bothAreColliders = !circleColliderA->GetIsTrigger() && !circleColliderB->GetIsTrigger();	
 	if (areColliding && bothAreColliders)
 	{
-		printf("Collision: %s - %s\n", circleColliderA->GetGameObject()->GetName().c_str(), circleColliderB->GetGameObject()->GetName().c_str());
-
-		const bool otherAlsoHasRigidbody = circleColliderB->HasRigidbody();
-		intersectDistance = otherAlsoHasRigidbody ? intersectDistance / 2 : intersectDistance;
-
-		CollisionHelper::ApplyContactCollision(circleColliderA->GetRigidbody(), abNormal, intersectDistance);
-
-		if (otherAlsoHasRigidbody)
-		{
-			CollisionHelper::ApplyContactCollision(circleColliderB->GetRigidbody(), -abNormal, intersectDistance);
-		}
+		ResolveCollision(circleColliderA->GetRigidbody(), 
+						 circleColliderB->GetRigidbody(), circleColliderB->HasRigidbody(),
+						 abNormal, intersectDistance);
 	}	
 }
 
@@ -242,15 +234,9 @@ void Physics2DManager::CheckCircleWithAABox(CircleCollider2D* circleColliderA, A
 	const bool bothAreColliders = !circleColliderA->GetIsTrigger() && !aaBoxColliderB->GetIsTrigger();
 	if (areColliding && bothAreColliders)
 	{
-		const bool otherAlsoHasRigidbody = aaBoxColliderB->HasRigidbody();
-		intersectDistance = otherAlsoHasRigidbody ? intersectDistance / 2 : intersectDistance;
-
-		CollisionHelper::ApplyContactCollision(circleColliderA->GetRigidbody(), abNormal, intersectDistance);
-
-		if (otherAlsoHasRigidbody)
-		{
-			CollisionHelper::ApplyContactCollision(aaBoxColliderB->GetRigidbody(), -abNormal, intersectDistance);
-		}
+		ResolveCollision(circleColliderA->GetRigidbody(),
+						 aaBoxColliderB->GetRigidbody(), aaBoxColliderB->HasRigidbody(),
+						 abNormal, intersectDistance);
 	}
 }
 
@@ -277,15 +263,9 @@ void Physics2DManager::CheckAABoxWithCircle(AABoxCollider2D* aaBoxColliderA, Cir
 	const bool bothAreColliders = !aaBoxColliderA->GetIsTrigger() && !circleColliderB->GetIsTrigger();
 	if (areColliding && bothAreColliders)
 	{
-		const bool otherAlsoHasRigidbody = circleColliderB->HasRigidbody();
-		intersectDistance = otherAlsoHasRigidbody ? intersectDistance / 2 : intersectDistance;
-
-		CollisionHelper::ApplyContactCollision(aaBoxColliderA->GetRigidbody(), -abNormal, intersectDistance);
-
-		if (otherAlsoHasRigidbody)
-		{
-			CollisionHelper::ApplyContactCollision(circleColliderB->GetRigidbody(), abNormal, intersectDistance);
-		}
+		ResolveCollision(aaBoxColliderA->GetRigidbody(),
+						 circleColliderB->GetRigidbody(), circleColliderB->HasRigidbody(),
+						 -abNormal, intersectDistance);
 	}
 }
 
@@ -319,6 +299,39 @@ void Physics2DManager::CheckAABoxWithAABox(AABoxCollider2D* aaBoxColliderA, AABo
 		if (otherAlsoHasRigidbody)
 		{
 			CollisionHelper::ApplyContactCollision(aaBoxColliderB->GetRigidbody(), -aNormal, intersectDistance);
+		}
+	}
+}
+
+
+
+void Physics2DManager::ResolveCollision(Rigidbody2D* rigidbodyA, Rigidbody2D* rigidbodyB, const bool& bAlsoHasRigidbody,
+	const Vector2<float> abNormal, float& intersectDistance)
+{
+	intersectDistance = bAlsoHasRigidbody ? intersectDistance / 2 : intersectDistance;
+
+	const float forceConstant = 0.25f;
+	Vector2<float> motionForceA = rigidbodyA->GetVelocity() * forceConstant;
+	Vector2<float> motionForceB = bAlsoHasRigidbody ? rigidbodyB->GetVelocity() * forceConstant : Vector2<float>::Zero();
+
+	if (rigidbodyA->IsAtRest())
+	{
+		rigidbodyA->ApplyForce(motionForceB);
+	}
+	else
+	{
+		CollisionHelper::ApplyContactCollision(rigidbodyA, abNormal, intersectDistance);
+	}
+
+	if (bAlsoHasRigidbody)
+	{
+		if (rigidbodyB->IsAtRest())
+		{
+			rigidbodyB->ApplyForce(motionForceA);
+		}
+		else
+		{
+			CollisionHelper::ApplyContactCollision(rigidbodyB, -abNormal, intersectDistance);
 		}
 	}
 }

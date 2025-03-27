@@ -94,3 +94,9 @@ Vector2<float> Rigidbody2D::ComputeForceAcceleration(const Vector2<float>& force
 {
 	return force / p_mass;
 }
+
+
+Vector2<float> Rigidbody2D::GetCurrentMotionForce()
+{
+	return m_acceleration * p_mass;
+}
