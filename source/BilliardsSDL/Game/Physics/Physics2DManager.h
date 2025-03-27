@@ -40,6 +40,9 @@ private:
 	void CheckAABoxWithCircle(AABoxCollider2D* aaBoxColliderA, CircleCollider2D* circleColliderB);
 	void CheckAABoxWithAABox(AABoxCollider2D* aaBoxColliderA, AABoxCollider2D* aaBoxColliderB);
 
+	void ResolveCollision(Rigidbody2D* rigidbodyA, Rigidbody2D* rigidbodyB, const bool& bAlsoHasRigidbody,
+		const Vector2<float> abNormal, float& intersectDistance);
+
 
 public:
 	// Probing functions

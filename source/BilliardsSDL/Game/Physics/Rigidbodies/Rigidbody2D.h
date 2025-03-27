@@ -30,6 +30,8 @@ public:
 	void ApplyForce(const Vector2<float>& force);
 	Vector2<float> ComputeGravityForceAcceleration(const Vector2<float>& gravityForce);
 
+	Vector2<float> GetCurrentMotionForce();
+
 private:
 	Vector2<float> ComputeForceAcceleration(const Vector2<float>& force);
 

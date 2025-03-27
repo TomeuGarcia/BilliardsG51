@@ -19,13 +19,14 @@ void BilliardsGameScene::CreateGameObjects()
 	const Vector2<float> randomBounds{ 2.0f, 1.0f };
 
 	const Vector2<float> ballSize{ 0.25f, 0.25f };
-	std::array<BilliardBall*, 2> balls{}; // <---------- should be 16
+	std::array<BilliardBall*, 16> balls{}; // <---------- should be 16
 
 
+	/*
 	balls[0] = CreateBilliardBall(Vector2<float>(2.5f, 1.0f), GameAssetResources::GetInstance()->GetWhiteBallImageData(), 0);
-	balls[1] = CreateBilliardBall(Vector2<float>(-2.5f, 0.0f), GameAssetResources::GetInstance()->GetBlackBallImageData(), 8);
+	balls[1] = CreateBilliardBall(Vector2<float>(0.0f, 0.0f), GameAssetResources::GetInstance()->GetBlackBallImageData(), 8);
 	return;
-
+	*/
 
 
 	BilliardBall* whiteBall = CreateBilliardBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds), 
@@ -123,7 +124,7 @@ BilliardBall* BilliardsGameScene::CreateBilliardBall(const Vector2<float>& posit
 	GameObject* ballGameObject = CreateGameObject(position, "Ball_" + std::to_string(number));
 	CreateImageComponent(ballGameObject, imageData, ballSize);
 
-	std::shared_ptr<PhysicMaterial> physicMaterial = std::make_shared<PhysicMaterial>(0.8f, 2.25f);
+	std::shared_ptr<PhysicMaterial> physicMaterial = std::make_shared<PhysicMaterial>(0.5f, 2.25f);
 	std::shared_ptr<Rigidbody2D> rigidbody = CreateRigidbodyComponent(ballGameObject, physicMaterial, 1.0f, 0.0f);
 	std::shared_ptr<CircleCollider2D> collider = CreateCircleColliderComponent(ballGameObject, rigidbody.get(), false, ballRadius);
 
