@@ -6,8 +6,7 @@ Rigidbody2D::Rigidbody2D(GameObject* gameObject,
 	: m_gameObject(gameObject), m_physicMaterial(physicMaterial), p_mass(mass), p_gravityScale(gravityScale),
 	p_position(gameObject->GetTransform()->p_worldPosition),
 	p_velocity(Vector2<float>::Zero()),
-	m_acceleration(Vector2<float>::Zero()),
-	m_deceleration(Vector2<float>::Zero())
+	m_acceleration(Vector2<float>::Zero())
 {
 }
 
@@ -17,18 +16,13 @@ Rigidbody2D::~Rigidbody2D()
 
 
 
-Vector2<float> Rigidbody2D::GetAccelerationSum() const
-{
-	//printf("sum: %f %f\n", m_acceleration, m_deceleration);
-	return m_acceleration + m_deceleration;
-}
 
-Vector2<float> Rigidbody2D::GetOnlyAcceleration() const
+Vector2<float> Rigidbody2D::GetAcceleration() const
 {
 	return m_acceleration;
 }
 
-void Rigidbody2D::SetOnlyAcceleration(const Vector2<float>& acceleration)
+void Rigidbody2D::SetAcceleration(const Vector2<float>& acceleration)
 {
 	m_acceleration = acceleration;
 }
@@ -65,7 +59,7 @@ void Rigidbody2D::ApplyFriction(const float& deltaTime)
 
 void Rigidbody2D::ClearVelocity()
 {
-	m_acceleration = m_deceleration = p_velocity = Vector2<float>::Zero();
+	m_acceleration = p_velocity = Vector2<float>::Zero();
 }
 
 
