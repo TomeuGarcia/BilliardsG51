@@ -94,10 +94,10 @@ namespace CollisionHelper
 
 		// Velocity reflection
 		// Vt+dt = V't+dt - (1+BounceCoef)*(n·V't+dt)*n
-		Vector2<float> velocity = rigidbody->p_velocity -
-			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->p_velocity)));
+		Vector2<float> velocity = rigidbody->GetVelocity() -
+			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetVelocity())));
 
-		rigidbody->p_velocity = velocity;
+		rigidbody->SetVelocity(velocity);
 
 				
 		// Acceleration reflection
@@ -106,6 +106,14 @@ namespace CollisionHelper
 			(contactNormal * (bounceE * Vector2<float>::Dot(contactNormal, rigidbody->GetAcceleration())));
 
 		rigidbody->SetAcceleration(acceleration);				
+	}
+
+
+
+	void ApplyCollisionForceOnRestingBody(const Rigidbody2D* movingRigidbody, Rigidbody2D* restingRigidbody)
+	{
+		const Vector2<float> collisionForce = movingRigidbody->GetAcceleration() * movingRigidbody->p_mass;
+		restingRigidbody->ApplyForce(collisionForce);
 	}
 
 

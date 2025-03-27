@@ -5,7 +5,7 @@ Rigidbody2D::Rigidbody2D(GameObject* gameObject,
 						const float& mass, const float& gravityScale)
 	: m_gameObject(gameObject), m_physicMaterial(physicMaterial), p_mass(mass), p_gravityScale(gravityScale),
 	p_position(gameObject->GetTransform()->p_worldPosition),
-	p_velocity(Vector2<float>::Zero()),
+	m_velocity(Vector2<float>::Zero()), m_speed(0),
 	m_acceleration(Vector2<float>::Zero())
 {
 }
@@ -14,10 +14,21 @@ Rigidbody2D::~Rigidbody2D()
 {
 }
 
+const Vector2<float>& Rigidbody2D::GetVelocity() const
+{
+	return m_velocity;
+}
+
+void Rigidbody2D::SetVelocity(const Vector2<float>& velocity)
+{
+	m_velocity = velocity;
+	m_speed = m_velocity.Length();
+}
 
 
 
-Vector2<float> Rigidbody2D::GetAcceleration() const
+
+const Vector2<float>& Rigidbody2D::GetAcceleration() const
 {
 	return m_acceleration;
 }
@@ -47,19 +58,23 @@ void Rigidbody2D::UpdatePosition()
 
 void Rigidbody2D::ApplyFriction(const float& deltaTime)
 {
-	const float speed = p_velocity.Length();
-	if (speed < 0.1f)
+	if (IsAtRest())
 	{
-		ClearVelocity();
+		ClearMovement();
 		return;
 	}
 
-	m_acceleration -= p_velocity * (deltaTime * m_physicMaterial->GetFriction());
+	m_acceleration -= m_velocity * (deltaTime * m_physicMaterial->GetFriction());
 }
 
-void Rigidbody2D::ClearVelocity()
+bool Rigidbody2D::IsAtRest() const
 {
-	m_acceleration = p_velocity = Vector2<float>::Zero();
+	return m_speed < 0.1f;
+}
+
+void Rigidbody2D::ClearMovement()
+{
+	m_acceleration = m_velocity = Vector2<float>::Zero();
 }
 
 

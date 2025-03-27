@@ -12,7 +12,10 @@ public:
 				const float& mass, const float& gravityScale);
 	~Rigidbody2D();
 
-	Vector2<float> GetAcceleration() const;
+	const Vector2<float>& GetVelocity() const;
+	void SetVelocity(const Vector2<float>& velocity);
+
+	const Vector2<float>& GetAcceleration() const;
 	void SetAcceleration(const Vector2<float>& acceleration);
 
 	PhysicMaterial* GetPhysicMaterial() const;
@@ -21,7 +24,8 @@ public:
 	void UpdatePosition();
 	void ApplyFriction(const float& deltaTime);
 
-	void ClearVelocity();
+	bool IsAtRest() const;
+	void ClearMovement();
 
 	void ApplyForce(const Vector2<float>& force);
 	Vector2<float> ComputeGravityForceAcceleration(const Vector2<float>& gravityForce);
@@ -32,12 +36,14 @@ private:
 
 public:
 	Vector2<float> p_position;
-	Vector2<float> p_velocity;
 	float p_mass;
 	float p_gravityScale;
 
-private:
+private:	
+	Vector2<float> m_velocity;
 	Vector2<float> m_acceleration;
+	float m_speed;
+
 	std::shared_ptr<PhysicMaterial> m_physicMaterial;
 	GameObject* m_gameObject;
 };
