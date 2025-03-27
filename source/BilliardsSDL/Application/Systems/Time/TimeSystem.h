@@ -5,7 +5,7 @@
 class TimeSystem : public ITimeState
 {
 public: 
-	TimeSystem();
+	TimeSystem(const float& deltaTimeClampMax);
 	~TimeSystem();
 
 	void Init();
@@ -25,4 +25,6 @@ private:
 	
 	float m_time;
 	float m_deltaTime;
+
+	float m_deltaTimeClampMax;
 };

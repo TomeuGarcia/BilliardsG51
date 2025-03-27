@@ -3,9 +3,31 @@
   0 File(s) copied
   0 File(s) copied
   BilliardsApplication.cpp
+  RenderSystem.cpp
+  TimeSystem.cpp
   BilliardsGameEngine.cpp
+  BilliardBall.cpp
+  AABoxColliderDrawer.cpp
+  CircleColliderDrawer.cpp
+  TestBehaviour.cpp
+  GameObject.cpp
+  Transform.cpp
+  AABoxCollider2DGroup.cpp
+  CircleCollider2DGroup.cpp
+  AABoxCollider2D.cpp
+  CircleCollider2D.cpp
+  Collider2D.cpp
+  Collision2D.cpp
   CollisionHelper.cpp
   Physics2DManager.cpp
+  Rigidbody2D.cpp
+  EulerSolver.cpp
+  Generating Code...
+  Compiling...
+  GameRenderManager.cpp
+  Image.cpp
+  Renderer.cpp
+  Text.cpp
   BilliardsGameScene.cpp
 E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(82,10): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
       E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(82,10):
@@ -28,6 +50,45 @@ E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\Bil
 E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\EmptyScene.cpp(19,38): warning C4244:         ]
   Scene.cpp
   SceneManager.cpp
+  GameInput.cpp
+  GameSpacesComputer.cpp
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244:         with
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244:         [
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244:             T=float
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244:         ]
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244:         and
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244:         [
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244:             T=int
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(38,62): warning C4244:         ]
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244:         with
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244:         [
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244:             T=float
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244:         ]
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244:         and
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244:         [
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244:             T=int
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(39,63): warning C4244:         ]
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244:         with
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244:         [
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244:             T=float
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244:         ]
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244:         and
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244:         [
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244:             T=int
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(58,33): warning C4244:         ]
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244:         with
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244:         [
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244:             T=float
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244:         ]
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244:         and
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244:         [
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244:             T=int
+E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Systems\GameSpacesComputer.cpp(59,33): warning C4244:         ]
+  GameTime.cpp
   main.cpp
   Generating Code...
   BilliardsSDL.vcxproj -> E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\binaries\x64Debug\BilliardsSDL.exe
