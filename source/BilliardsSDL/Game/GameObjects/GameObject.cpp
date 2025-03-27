@@ -1,8 +1,8 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(const Vector2<float>& position)
-	: m_transform(position), m_behaviours()
+GameObject::GameObject(const Vector2<float>& position, const std::string& name)
+	: m_transform(position), m_name(name), m_behaviours()
 {
 	m_behaviours.reserve(1);
 }
@@ -41,6 +41,11 @@ void GameObject::AttachBehaviour(const std::shared_ptr<Behaviour>& behaviour)
 Transform* const GameObject::GetTransform()
 {
 	return &m_transform;
+}
+
+const std::string& GameObject::GetName()
+{
+	return m_name;
 }
 
 const std::vector<std::shared_ptr<Behaviour>>& GameObject::GetBehaviours()
