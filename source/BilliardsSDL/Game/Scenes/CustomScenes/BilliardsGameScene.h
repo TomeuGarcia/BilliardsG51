@@ -5,6 +5,7 @@
 #include "../../GameObjects/Behaviours/Debug/AABoxColliderDrawer.h"
 #include "../../GameObjects/Behaviours/Debug/CircleColliderDrawer.h"
 #include "../../Systems/GameInput.h"
+#include "../SceneManager.h"
 
 
 class BilliardsGameScene : public Scene

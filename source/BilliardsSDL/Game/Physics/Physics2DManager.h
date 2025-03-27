@@ -52,6 +52,8 @@ private:
 	CircleCollider2DGroup m_circleCollidersGroup;
 	AABoxCollider2DGroup m_aaBoxCollidersGroup;
 
+	int m_frameCount=0;
+
 private:
 	static Physics2DManager* s_instance;
 };

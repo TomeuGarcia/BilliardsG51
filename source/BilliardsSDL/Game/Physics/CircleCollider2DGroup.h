@@ -16,13 +16,14 @@ public:
 
 	void AddCollider(const std::shared_ptr<CircleCollider2D>& collider, const bool& hasRigidbody);
 
-	void UpdateActiveCollision(CircleCollider2D* colliderA, Collider2D* colliderB, const bool& areColliding);
+	void UpdateActiveCollision(CircleCollider2D* colliderA, Collider2D* colliderB, const bool& areColliding, 
+		bool& outWereAlreadyColliding);
 
 
 private:
 	void AddActiveCollision(CircleCollider2D* colliderWithRigidbody, Collider2D* otherCollider,
 		std::vector<Collision2D>::iterator& outCollisionIt);
-	bool GetActiveCollision(CircleCollider2D* colliderWithRigidbody,
+	bool GetActiveCollision(CircleCollider2D* colliderWithRigidbody, Collider2D* otherCollider,
 		std::vector<Collision2D>::iterator& outCollisionIt);
 	void RemoveActiveCollision(CircleCollider2D* colliderWithRigidbody,
 		const std::vector<Collision2D>::iterator& collisionIt);

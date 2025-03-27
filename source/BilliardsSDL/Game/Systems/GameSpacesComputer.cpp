@@ -56,7 +56,7 @@ Vector2<int> GameSpacesComputer::WorldToWindowVector(const Vector2<float>& world
 {
 	Vector2<int> windowVector{};
 	windowVector.x = worldVector.x * m_pixelsPerWorldUnit;
-	windowVector.y = worldVector.y * m_pixelsPerWorldUnit;
+	windowVector.y = -worldVector.y * m_pixelsPerWorldUnit;
 
 	return windowVector;
 }

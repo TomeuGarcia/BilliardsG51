@@ -1,7 +1,8 @@
 #include "InputSystem.h"
 
 InputSystem::InputSystem()
-	: m_windowInputs(), m_sdlKeysMap(3), m_keyStatesByCode(3), m_mouseScreenPosition{0,0}
+	: m_windowInputs(), m_sdlKeysMap(3), m_keyStatesByCode(3), m_mouseScreenPosition{0,0},
+	m_window(nullptr)
 {
 }
 
@@ -9,11 +10,14 @@ InputSystem::~InputSystem()
 {
 }
 
-void InputSystem::Init()
+void InputSystem::Init(SDL_Window* window)
 {
+	m_window = window;
+
 	AddKeyEntry(SDL_BUTTON_LEFT, KeyCode::MouseLeft);
 	AddKeyEntry(SDL_BUTTON_RIGHT, KeyCode::MouseRight);
 	AddKeyEntry(SDLK_ESCAPE, KeyCode::Esc);
+	AddKeyEntry(SDLK_r, KeyCode::R);
 }
 
 void InputSystem::AddKeyEntry(const SDL_Keycode sdlKeyCode, const KeyCode keyCode)

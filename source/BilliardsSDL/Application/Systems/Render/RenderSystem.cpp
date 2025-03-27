@@ -36,6 +36,11 @@ void RenderSystem::Cleanup()
 	SDL_DestroyWindow(m_window);
 }
 
+SDL_Window* RenderSystem::GetWindow()
+{
+	return m_window;
+}
+
 
 void RenderSystem::ClearRenderer()
 {

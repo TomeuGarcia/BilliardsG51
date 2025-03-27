@@ -35,7 +35,7 @@ const SDL_Rect Renderer::ComputeDestination()
     const Vector2<int> position = GameSpacesComputer::GetInstance()->WorldToWindowPosition(
         m_gameObject->GetTransform()->p_worldPosition);
     Vector2<int> scaledSize = GameSpacesComputer::GetInstance()->WorldToWindowVector(
-        { r_worldSize.x * p_scale.x, r_worldSize.y * p_scale.y });
+        { r_worldSize.x * p_scale.x, -r_worldSize.y * p_scale.y });
 
     const Vector2<int> halfScaledSize = scaledSize / 2;
 
