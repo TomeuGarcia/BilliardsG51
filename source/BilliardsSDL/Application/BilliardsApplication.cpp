@@ -2,7 +2,10 @@
 
 BilliardsApplication::BilliardsApplication()
 	: m_running(true), m_specifications(), 
-	m_inputSystem(), m_timeSystem(), m_renderSystem(), m_rngSystem(),
+	m_inputSystem(), 
+	m_timeSystem(m_specifications.p_maxDeltaTime), 
+	m_renderSystem(), 
+	m_rngSystem(),
 	m_gameEngine()
 {
 }
