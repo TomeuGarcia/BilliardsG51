@@ -14,3 +14,11 @@ Other Inputs
 
 
 
+
+Shortcomings
+------------
+- Only 1 scene (but can be reloaded)
+- No audio
+- No cheat inputs to advance the game state
+- No ranking
+- No name asking when game victory
