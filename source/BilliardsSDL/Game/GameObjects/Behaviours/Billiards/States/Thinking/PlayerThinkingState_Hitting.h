@@ -4,8 +4,9 @@
 
 class PlayerThinkingState_Hitting : public PlayerThinkingState
 {
-
 public:
+	PlayerThinkingState_Hitting(BilliardsPlayer* player);
+
 	virtual bool Update() override;
 	virtual void Exit() override;
 

@@ -41,3 +41,19 @@ void BilliardBall::SetPosition(const Vector2<float>& position)
 {
 	m_rigidbody->MoveToPosition(position);
 }
+
+Transform* BilliardBall::GetTransform() const
+{
+	return m_rigidbody->GetGameObject()->GetTransform();
+}
+
+void BilliardBall::SetIgnoringPhysics()
+{
+	m_rigidbody->SetIsEnabled(false);
+}
+
+void BilliardBall::SetUsingPhysics()
+{
+	m_rigidbody->SetIsEnabled(true);
+	m_rigidbody->RefreshPosition();
+}

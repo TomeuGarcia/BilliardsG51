@@ -12,6 +12,10 @@ public:
 				const float& mass, const float& gravityScale);
 	~Rigidbody2D();
 
+	void SetIsEnabled(const bool& isEnabled);
+	bool GetIsEnabled() const;
+
+
 	const Vector2<float>& GetVelocity() const;
 	void SetVelocity(const Vector2<float>& velocity);
 
@@ -23,6 +27,7 @@ public:
 
 	void MoveToPosition(const Vector2<float>& position);
 	void UpdatePosition();
+	void RefreshPosition();
 	void ApplyFriction(const float& deltaTime);
 
 	bool IsAtRest() const;
@@ -46,6 +51,7 @@ private:
 	Vector2<float> m_velocity;
 	Vector2<float> m_acceleration;
 	float m_speed;
+	bool m_isEnabled;
 
 	std::shared_ptr<PhysicMaterial> m_physicMaterial;
 	GameObject* m_gameObject;

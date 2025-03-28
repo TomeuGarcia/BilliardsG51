@@ -22,6 +22,11 @@ public:
 
 public:
 	void SetPosition(const Vector2<float>& position);
+	Transform* GetTransform() const;
+
+
+	void SetIgnoringPhysics();
+	void SetUsingPhysics();
 
 
 private:

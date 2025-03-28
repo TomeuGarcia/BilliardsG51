@@ -5,12 +5,13 @@ BilliardsGameEngine::BilliardsGameEngine()
 	: p_quitApplication(false), m_gameTime(nullptr), m_gameInput(nullptr), 
 	m_gameRenderManager(nullptr), m_physicsManager(nullptr),
 	m_sceneManager(nullptr), m_gameAssetResources(nullptr),	m_gameSpacesComputer(nullptr),  
-	m_gameRandom(nullptr)
+	m_gameRandom(nullptr), m_gameTweener(nullptr)
 {
 }
 
 BilliardsGameEngine::~BilliardsGameEngine()
 {
+	delete m_gameTweener;
 	delete m_gameRandom;
 	delete m_gameSpacesComputer;
 	delete m_gameAssetResources;
@@ -35,6 +36,7 @@ void BilliardsGameEngine::Init(const GameSpecifications& specifications,
 												  specifications.p_pathToResourceAudios);
 	m_gameSpacesComputer = new GameSpacesComputer(renderSystem, specifications.p_worldWidthInWindow);
 	m_gameRandom = new GameRandom(rngSystem);
+	m_gameTweener = new GameTweener();
 
 	m_gameSpacesComputer->Update();
 	m_sceneManager->Init(specifications.p_startingScene);
@@ -51,6 +53,8 @@ void BilliardsGameEngine::Update()
 	m_gameSpacesComputer->Update();
 	m_sceneManager->UpdateLoading();
 	m_sceneManager->GetActiveScene()->Update();
+
+	m_gameTweener->Update(m_gameTime->GetDeltaTime());
 	m_physicsManager->Update(m_gameTime->GetDeltaTime());
 }
 

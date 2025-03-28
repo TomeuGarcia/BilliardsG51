@@ -13,6 +13,12 @@ BilliardStick::~BilliardStick()
 {
 }
 
+void BilliardStick::Start()
+{
+	m_restingPosition = m_transform->p_worldPosition;
+}
+
+
 
 void BilliardStick::SetTipPositionAndLookDirection(const Vector2<float>& tipPosition, const Vector2<float>& lookDirection)
 {
@@ -21,6 +27,14 @@ void BilliardStick::SetTipPositionAndLookDirection(const Vector2<float>& tipPosi
 
 	float rotation = Math::Angle(m_defaultImageDirection, lookDirection) - 90.0f;
 	m_image->p_rotationInDegrees = rotation;
+}
+
+
+
+void BilliardStick::SetResting()
+{
+	m_transform->p_worldPosition = m_restingPosition;
+	m_image->p_rotationInDegrees = 0.0f;
 }
 
 

@@ -2,7 +2,11 @@
 
 BilliardsGameplayManager::BilliardsGameplayManager()
 	: m_stick(nullptr), m_pinned(false),
-	m_playerthinkingFsm()
+	m_gameplayStatesMap(),
+	m_currentState(nullptr),
+	m_gameplayStatesBlackboard(),
+	m_playerRed(),
+	m_playerBlue()
 {
 }
 
@@ -11,23 +15,41 @@ BilliardsGameplayManager::~BilliardsGameplayManager()
 }
 
 
-void BilliardsGameplayManager::Init(BilliardStick * stick)
+void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter, 
+	BilliardStick* redStick, BilliardStick* blueStick)
 {
-	m_stick = stick;
+	m_playerRed.Init(redStick);
+	m_playerBlue.Init(blueStick);
+	m_gameplayStatesBlackboard.Init(balls, boardCenter, &m_playerRed, &m_playerBlue);
 
-	m_playerthinkingFsm.Init();
-	m_playerthinkingFsm.Enter();
+	m_gameplayStatesMap[BilliardsGameplayState::Type::Init] = 
+			  std::make_shared<BilliardsGameplayState_Init>(&m_gameplayStatesBlackboard);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::PlacingBalls] = 
+			  std::make_shared<BilliardsGameplayState_PlacingBalls>(&m_gameplayStatesBlackboard);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Red] = 
+			  std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerRed);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Blue] = 
+			  std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerBlue);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::GameFinish] = 
+			  std::make_shared<BilliardsGameplayState_GameFinish>(&m_gameplayStatesBlackboard);
 
+	m_currentState = (m_gameplayStatesMap[BilliardsGameplayState::Type::Init]).get();
+	m_currentState->Enter();
+
+
+	 
+	m_stick = redStick;
 }
 
 
 
 void BilliardsGameplayManager::Update()
 {
-	if (m_playerthinkingFsm.Update())
+	if (m_currentState->Update())
 	{
-		m_playerthinkingFsm.Exit();
-		m_playerthinkingFsm.Enter(); // for now
+		m_currentState->Exit();
+		m_currentState = (m_gameplayStatesMap[m_currentState->GetNextState()]).get();
+		m_currentState->Enter();
 	}
 
 

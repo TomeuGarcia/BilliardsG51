@@ -1,6 +1,11 @@
 #include "PlayerThinkingState_PinnedToHit.h"
 
 
+PlayerThinkingState_PinnedToHit::PlayerThinkingState_PinnedToHit(BilliardsPlayer* player)
+	: PlayerThinkingState(player)
+{
+}
+
 void PlayerThinkingState_PinnedToHit::DoEnter()
 {}
 

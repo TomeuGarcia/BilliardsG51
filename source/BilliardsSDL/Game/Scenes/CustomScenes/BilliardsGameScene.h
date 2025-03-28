@@ -22,15 +22,15 @@ protected:
 private:
 	BilliardStick* CreateBilliardStick(const Vector2<float>& position, const ImageResourceData& imageData, const std::string& name);
 
+
+	std::vector<BilliardBall*> CreateBilliardBalls();
 	BilliardBall* CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData, const int& number);
 	
+
 	void CreateBoardWalls(const Vector2<float>& boardCenter);
 	GameObject* CreateInvisibleWall(const Vector2<float>& position, const Vector2<float>& size);
 
+
 	void CreateBoardHoles(const Vector2<float>& boardCenter);
 	GameObject* CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName);
-
-
-	const std::array<Vector2<float>, 16> SortBallsAndComputeArrangePositions(std::array<BilliardBall*, 16>& balls,
-					const Vector2<float> boardCenterPosition, const int& whiteBallIndex, const int& blackBallIndex);
 };
