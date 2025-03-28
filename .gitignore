@@ -5,6 +5,7 @@
 
 
 *.exe
+tmp/
 
 
 # User-specific files
@@ -26,6 +27,8 @@ mono_crash.*
 [Rr]elease/
 [Rr]eleases/
 x64/
+x64Debug/
+x64Release/
 x86/
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
