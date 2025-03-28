@@ -1,12 +1,30 @@
-﻿  0 File(s) copied
-  0 File(s) copied
-  0 File(s) copied
-  0 File(s) copied
+﻿  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_image-2.0.5\lib\x64\libjpeg-9.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_image-2.0.5\lib\x64\libpng16-16.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_image-2.0.5\lib\x64\libtiff-5.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_image-2.0.5\lib\x64\libwebp-7.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_image-2.0.5\lib\x64\SDL2_image.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_image-2.0.5\lib\x64\zlib1.dll
+  6 File(s) copied
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\libFLAC-8.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\libmodplug-1.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\libmpg123-0.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\libogg-0.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\libopus-0.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\libopusfile-0.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\libvorbis-0.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\libvorbisfile-3.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_mixer-2.0.4\lib\x64\SDL2_mixer.dll
+  9 File(s) copied
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll
+  2 File(s) copied
+  E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\dependencies\SDL2-2.0.16\lib\x64\SDL2.dll
+  1 File(s) copied
   BilliardsApplication.cpp
   BilliardsGameEngine.cpp
   BilliardBall.cpp
-  BilliardsGameplayManager.cpp
   BilliardStick.cpp
+  BilliardsGameplayManager.cpp
   BilliardsBoardHole.cpp
   BilliardsPlayer.cpp
   BilliardsGameplayState.cpp
@@ -28,10 +46,10 @@
   TestBehaviour.cpp
   GameObject.cpp
   AABoxCollider2DGroup.cpp
+  CircleCollider2DGroup.cpp
   AABoxCollider2D.cpp
   CircleCollider2D.cpp
   Collider2D.cpp
-  CircleCollider2DGroup.cpp
   Collision2D.cpp
   CollisionHelper.cpp
 E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Physics\Helpers\CollisionHelper.cpp(94,91): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -64,6 +82,7 @@ E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\Bil
   SceneManager.cpp
   main.cpp
   Generating Code...
+  LINK : E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\binaries\x64Debug\BilliardsSDL.exe not found or not built by the last incremental link; performing full link
   BilliardsSDL.vcxproj -> E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\binaries\x64Debug\BilliardsSDL.exe
   0 File(s) copied
   0 File(s) copied
