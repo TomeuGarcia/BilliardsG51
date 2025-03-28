@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include "../BilliardsGameplayState.h"
 
+#include "PlayerThinkingState_Starting.h"
 #include "PlayerThinkingState_MovingAround.h"
 #include "PlayerThinkingState_PinnedToHit.h"
 #include "PlayerThinkingState_Hitting.h"
@@ -23,6 +24,6 @@ protected:
 
 
 private:
-	std::unordered_map < PlayerThinkingState::Type, std::shared_ptr<PlayerThinkingState>> m_statesMap;
+	std::unordered_map<PlayerThinkingState::Type, std::shared_ptr<PlayerThinkingState>> m_statesMap;
 	PlayerThinkingState* m_currentState;
 };

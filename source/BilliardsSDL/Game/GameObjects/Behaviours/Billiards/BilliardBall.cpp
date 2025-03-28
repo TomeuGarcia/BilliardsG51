@@ -54,6 +54,11 @@ void BilliardBall::SetIgnoringPhysics()
 
 void BilliardBall::SetUsingPhysics()
 {
-	m_rigidbody->SetIsEnabled(true);
-	m_rigidbody->RefreshPosition();
+	m_rigidbody->SetIsEnabled(true);		
 }
+
+void BilliardBall::ApplyForce(const Vector2<float>& force)
+{
+	m_rigidbody->ApplyForce(force);
+}
+

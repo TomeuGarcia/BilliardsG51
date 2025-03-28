@@ -13,6 +13,7 @@ public:
 
 	void Start();
 	void Update();
+	void OnDestroy();
 
 	void AttachBehaviour(const std::shared_ptr<Behaviour>& behaviour);
 

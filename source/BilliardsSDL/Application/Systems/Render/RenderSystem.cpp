@@ -88,3 +88,8 @@ void RenderSystem::SetBackgroundColor(const Color& color)
 {
 	m_backgroundColor = color;
 }
+
+Color RenderSystem::GetBackgroundColor() const
+{
+	return m_backgroundColor;
+}

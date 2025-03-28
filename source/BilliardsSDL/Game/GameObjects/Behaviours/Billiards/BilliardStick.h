@@ -2,6 +2,7 @@
 #include "../Behaviour.h"
 #include "../../../Render/Renderers/Image/Image.h"
 #include "../../../../Shared/Math/Math.h"
+#include "../../../Systems/GameTweener.h"
 
 
 class BilliardStick : public Behaviour
@@ -16,6 +17,7 @@ public:
 
 
 	void SetTipPositionAndLookDirection(const Vector2<float>& tipPosition, const Vector2<float>& lookDirection);
+	void TweenTipToPosition(const Vector2<float>& tipGoalPosition, float& outDuration);
 	void SetResting();
 
 private:

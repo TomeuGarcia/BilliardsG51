@@ -19,6 +19,10 @@ Rigidbody2D::~Rigidbody2D()
 void Rigidbody2D::SetIsEnabled(const bool& isEnabled)
 {
 	m_isEnabled = isEnabled;
+	if (isEnabled)
+	{
+		RefreshPosition();
+	}
 }
 
 bool Rigidbody2D::GetIsEnabled() const
@@ -76,10 +80,6 @@ void Rigidbody2D::UpdatePosition()
 	m_gameObject->GetTransform()->p_worldPosition = p_position;
 }
 
-void Rigidbody2D::RefreshPosition()
-{
-	p_position = m_gameObject->GetTransform()->p_worldPosition;
-}
 
 
 void Rigidbody2D::ApplyFriction(const float& deltaTime)
@@ -126,3 +126,11 @@ Vector2<float> Rigidbody2D::GetCurrentMotionForce()
 {
 	return m_acceleration * p_mass;
 }
+
+
+
+void Rigidbody2D::RefreshPosition()
+{
+	p_position = m_gameObject->GetTransform()->p_worldPosition;
+}
+

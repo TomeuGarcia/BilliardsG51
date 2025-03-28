@@ -19,6 +19,11 @@ void Scene::Init()
 
 void Scene::Cleanup()
 {
+	for (auto it = m_gameObjects.begin(); it != m_gameObjects.end(); ++it)
+	{
+		it->OnDestroy();
+	}
+
 	m_gameObjects.clear();
 	GameRenderManager::GetInstance()->ClearRenderQueue();
 	Physics2DManager::GetInstance()->ClearReferences();

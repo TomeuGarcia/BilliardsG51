@@ -315,6 +315,9 @@
     <ClCompile Include="Shared\Timer\Timer.cpp">
       <Filter>Source Files\Shared\Timer</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
@@ -526,6 +529,12 @@
     </ClInclude>
     <ClInclude Include="Shared\Timer\Timer.h">
       <Filter>Source Files\Shared\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\IBilliardsGameplayStateEventsManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

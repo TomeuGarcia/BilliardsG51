@@ -27,54 +27,10 @@ void BilliardsGameScene::CreateGameObjects()
 
 void BilliardsGameScene::DoStart()
 {
-	GameRenderManager::GetInstance()->SetBackgroundColor(Colors::SoftBlue);
 }
 
 void BilliardsGameScene::DoUpdate()
 {
-	Vector2<int> mouseWindowPosition = GameInput::GetInstance()->GetMouseWindowPosition();
-	Vector2<float> mouseWorldPosition = GameInput::GetInstance()->GetMouseWorldPosition();
-
-
-	const float radius = 0.5f;
-	if (GameInput::GetInstance()->GetKey(KeyCode::MouseRight))
-	{
-		GameRenderManager::GetInstance()->DrawDebugRect(Colors::White, 
-			Rect<int>(mouseWindowPosition, GameSpacesComputer::GetInstance()->WorldToWindowVector({ radius*2, radius*2 })));
-	}
-	if (GameInput::GetInstance()->GetKeyUp(KeyCode::MouseRight))
-	{
-		std::list<Collider2D*> overlaps = Physics2DManager::GetInstance()->CircleOverlap(
-			mouseWorldPosition, radius);
-
-		printf("Overlaps: %i \n", overlaps.size());
-
-
-		std::list<BilliardBall*> ballOverlaps{};
-		for (auto it = overlaps.begin(); it != overlaps.end(); ++it)
-		{
-			const std::vector<std::shared_ptr<Behaviour>>& behaviours = (*it)->GetGameObject()->GetBehaviours();
-
-			for (int i = 0; i < behaviours.size(); ++i)
-			{
-				BilliardBall* ball = dynamic_cast<BilliardBall*>(behaviours[i].get());
-				if (ball != nullptr)
-				{
-					ballOverlaps.push_back(ball);
-				}
-			}
-		}
-
-		
-		printf("Balls: %i \n", ballOverlaps.size());
-	}
-
-
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::R))
-	{
-		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
-		system("cls");
-	}
 }
 
 

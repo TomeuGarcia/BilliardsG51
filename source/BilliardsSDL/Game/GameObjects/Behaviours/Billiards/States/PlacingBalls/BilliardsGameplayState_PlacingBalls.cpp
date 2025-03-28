@@ -13,8 +13,6 @@ BilliardsGameplayState_PlacingBalls::~BilliardsGameplayState_PlacingBalls()
 
 void BilliardsGameplayState_PlacingBalls::DoEnter()
 {
-	// TODO reset ball state
-
 	SetBallsIgnoringPhysics();
 	StartPlacingBalls();
 }
@@ -35,7 +33,6 @@ bool BilliardsGameplayState_PlacingBalls::Update()
 void BilliardsGameplayState_PlacingBalls::Exit()
 {
 	SetBallsCheckingPhysics();
-	printf("FINISHED\n");
 }
 
 

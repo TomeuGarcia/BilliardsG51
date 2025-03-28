@@ -6,6 +6,7 @@
 #include "BilliardStick.h"
 
 #include "../../../Systems/GameInput.h"
+#include "../../../Physics/Physics2DManager.h"
 
 #include "States/Init/BilliardsGameplayState_Init.h"
 #include "States/PlacingBalls/BilliardsGameplayState_PlacingBalls.h"
@@ -16,7 +17,7 @@
 
 
 
-class BilliardsGameplayManager : public Behaviour
+class BilliardsGameplayManager : public Behaviour, public IBilliardsGameplayStateEventsManager
 {
 public:
 	BilliardsGameplayManager();
@@ -26,20 +27,20 @@ public:
 		BilliardStick* redStick, BilliardStick* blueStick);
 
 	virtual void Update() override;
+	virtual void OnDestroy() override;
+
+
+public:
+	bool TryHitBalls(const Vector2<float>& position, const Vector2<float>& direction,
+		const float& forceMagnitude) override;
 
 
 private:
-	BilliardStick* m_stick;
-
-	Vector2<float> m_pinPosition;
-	bool m_pinned;
-
-
-
 	std::unordered_map<BilliardsGameplayState::Type, std::shared_ptr<BilliardsGameplayState>> m_gameplayStatesMap;
 	BilliardsGameplayState* m_currentState;
 	BilliardsGameplayStateBlackboard m_gameplayStatesBlackboard;
 
 	BilliardsPlayer m_playerRed;
 	BilliardsPlayer m_playerBlue;
+
 };
