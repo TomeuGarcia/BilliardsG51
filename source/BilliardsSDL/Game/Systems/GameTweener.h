@@ -2,6 +2,7 @@
 #include <vector>
 #include "../GameObjects/Transform.h"
 #include "../../Shared/Math/Math.h"
+#include "../Render/Renderers/Renderer.h"
 
 
 class GameTweener
@@ -27,6 +28,30 @@ private:
 	};
 
 
+	struct RendererColorTween
+	{
+	public:
+		RendererColorTween(Renderer* renderer, const Color& origin, const Color& goal,
+			const float& duration, const float& delay);
+
+		void Update(const float& deltaTime);
+		Color GetCurrentValue() const;
+		bool HasFinished();
+
+	public:
+		Renderer* p_renderer;
+	private:
+		Color m_origin;
+		Color m_goal;
+		float m_duration;
+		float m_currentTime;
+	};
+
+
+
+
+
+
 public:
 	GameTweener();
 	~GameTweener();
@@ -39,13 +64,16 @@ public:
 
 public:
 	void TweenPosition(Transform* transform, const Vector2<float>& goalPosition, const float& duration, const float& delay);
+	void TweenColor(Renderer* renderer, const Color& goalColor, const float& duration, const float& delay);
 
 private:
 	void UpdatePositionTweens(const float& deltaTime);
+	void UpdateColorTweens(const float& deltaTime);
 
 
 private:
 	std::vector<TransformTween> m_positionTweens;
+	std::vector<RendererColorTween> m_colorTweens;
 
 private:
 	static GameTweener* s_instance;

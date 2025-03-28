@@ -2,8 +2,8 @@
 
 
 BilliardBall::BilliardBall(const std::shared_ptr<CircleCollider2D>& collider, const std::shared_ptr<Rigidbody2D>& rigidbody, 
-	const ColorType& color)
-	: m_collider(collider), m_rigidbody(rigidbody), m_colorType(color)
+	const std::shared_ptr<Renderer> renderer, const ColorType& color)
+	: m_collider(collider), m_rigidbody(rigidbody), m_renderer(renderer), m_colorType(color)
 {
 }
 
@@ -59,6 +59,11 @@ const Circle& BilliardBall::GetCollisionCircle()
 	return m_collider->GetShape();
 }
 
+Renderer* BilliardBall::GetRenderer() const
+{
+	return m_renderer.get();
+}
+
 
 void BilliardBall::SetIgnoringPhysics()
 {
@@ -86,3 +91,19 @@ float BilliardBall::GetCurrentSpeed()
 	return m_rigidbody->GetSpeed();
 }
 
+
+
+
+void BilliardBall::PlayEnterEnterHoleAnimation(const Vector2<float>& holeCenter)
+{
+	const float moveToHoleDuration = Vector2<float>::Distance(holeCenter, GetTransform()->p_worldPosition) / (GetCurrentSpeed() * 0.5f);
+
+	GameTweener::GetInstance()->TweenPosition(GetTransform(), holeCenter, moveToHoleDuration, 0.0f);
+	GameTweener::GetInstance()->TweenColor(GetRenderer(), Colors::Transparent, moveToHoleDuration, moveToHoleDuration / 2.0f);
+}
+
+void BilliardBall::PlayExitEnterHoleAnimation(const Vector2<float>& goalPosition, const float& moveDuration)
+{
+	GameTweener::GetInstance()->TweenColor(GetRenderer(), Colors::White, moveDuration, 0.0f);
+	GameTweener::GetInstance()->TweenPosition(GetTransform(), goalPosition, moveDuration, moveDuration / 2.0f);
+}

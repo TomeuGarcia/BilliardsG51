@@ -180,12 +180,8 @@ void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vecto
 
 void BilliardsGameplayManager::OnAnyBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter)
 {
-	float ballSpeed = ball->GetCurrentSpeed();
+	ball->PlayEnterEnterHoleAnimation(holeCenter);
 	ball->SetIgnoringPhysics();	
-
-	const float moveToHoleDuration = Vector2<float>::Distance(holeCenter, ball->GetTransform()->p_worldPosition) / ballSpeed;
-
-	GameTweener::GetInstance()->TweenPosition(ball->GetTransform(), holeCenter, moveToHoleDuration, 0.0f);
 }
 
 

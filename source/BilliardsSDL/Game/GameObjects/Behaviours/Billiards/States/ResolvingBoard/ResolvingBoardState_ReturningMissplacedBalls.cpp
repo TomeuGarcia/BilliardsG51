@@ -76,6 +76,5 @@ void ResolvingBoardState_ReturningMissplacedBalls::RepositionCurrentBall()
 	BilliardBall* currentBall = m_missplacedBalls->at(m_missplacedBallsI);
 	const Vector2<float> goalPosition =	GetBlackboard()->GetSpecialEventsManager()->FindRandomValidPositionForBall(currentBall);
 
-	GameTweener::GetInstance()->TweenPosition(currentBall->GetTransform(), goalPosition, 
-		m_repositionMissplacedBallTimer.GetDuration()*0.9f, 0.0f);
+	currentBall->PlayExitEnterHoleAnimation(goalPosition, m_repositionMissplacedBallTimer.GetDuration() * 0.9f);
 }

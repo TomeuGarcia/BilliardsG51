@@ -24,6 +24,30 @@ bool GameTweener::TransformTween::HasFinished()
 
 
 
+GameTweener::RendererColorTween::RendererColorTween(Renderer* renderer, const Color& origin, const Color& goal, 
+	const float& duration, const float& delay)
+	: p_renderer(renderer), m_origin(origin), m_goal(goal), m_duration(duration), m_currentTime(0.0f - delay)
+{}
+
+void GameTweener::RendererColorTween::Update(const float& deltaTime)
+{
+	m_currentTime += deltaTime;
+}
+
+Color GameTweener::RendererColorTween::GetCurrentValue() const
+{
+	const float t = Math::Clamp01(m_currentTime / m_duration);
+	return Color::Lerp(m_origin, m_goal, t);
+}
+
+bool GameTweener::RendererColorTween::HasFinished()
+{
+	return m_currentTime >= m_duration;
+}
+
+
+
+
 
 GameTweener* GameTweener::s_instance = nullptr;
 
@@ -50,18 +74,25 @@ GameTweener* GameTweener::GetInstance()
 void GameTweener::Update(const float& deltaTime)
 {
 	UpdatePositionTweens(deltaTime);
+	UpdateColorTweens(deltaTime);
 }
 
 void GameTweener::Clear()
 {
 	m_positionTweens.clear();
+	m_colorTweens.clear();
 }
 
 
 
-void GameTweener::TweenPosition(Transform* transform, const Vector2<float>& goalPosition, const float& duration, const float& delay = 0.0f)
+void GameTweener::TweenPosition(Transform* transform, const Vector2<float>& goalPosition, const float& duration, const float& delay)
 {
 	m_positionTweens.emplace_back(transform, transform->p_worldPosition, goalPosition, duration, delay);
+}
+
+void GameTweener::TweenColor(Renderer* renderer, const Color& goalColor, const float& duration, const float& delay)
+{
+	m_colorTweens.emplace_back(renderer, renderer->GetColorTint(), goalColor, duration, delay);
 }
 
 
@@ -83,3 +114,23 @@ void GameTweener::UpdatePositionTweens(const float& deltaTime)
 		}
 	}
 }
+
+void GameTweener::UpdateColorTweens(const float& deltaTime)
+{
+	for (auto it = m_colorTweens.begin(); it != m_colorTweens.end(); )
+	{
+		RendererColorTween& tween = *it;
+		tween.Update(deltaTime);
+		tween.p_renderer->SetColorTint(tween.GetCurrentValue());
+
+		if (tween.HasFinished())
+		{
+			it = m_colorTweens.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+}
+

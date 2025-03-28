@@ -90,13 +90,13 @@ BilliardBall* BilliardsGameScene::CreateBilliardBall(const Vector2<float>& posit
 	const Vector2<float> ballSize{ ballDiameter, ballDiameter };
 
 	GameObject* ballGameObject = CreateGameObject(position, "Ball_" + std::to_string(number));
-	CreateImageComponent(ballGameObject, imageData, ballSize);
+	std::shared_ptr<Image> image = CreateImageComponent(ballGameObject, imageData, ballSize);
 
 	std::shared_ptr<PhysicMaterial> physicMaterial = std::make_shared<PhysicMaterial>(0.5f, 2.25f);
 	std::shared_ptr<Rigidbody2D> rigidbody = CreateRigidbodyComponent(ballGameObject, physicMaterial, 1.0f, 0.0f);
 	std::shared_ptr<CircleCollider2D> collider = CreateCircleColliderComponent(ballGameObject, rigidbody.get(), false, ballRadius);
 
-	std::shared_ptr<BilliardBall> billiardBall = std::make_shared<BilliardBall>(collider, rigidbody, colorType);
+	std::shared_ptr<BilliardBall> billiardBall = std::make_shared<BilliardBall>(collider, rigidbody, image, colorType);
 	ballGameObject->AttachBehaviour(billiardBall);
 
 	std::shared_ptr<CircleColliderDrawer> colliderDrawer = std::make_shared<CircleColliderDrawer>(collider);
