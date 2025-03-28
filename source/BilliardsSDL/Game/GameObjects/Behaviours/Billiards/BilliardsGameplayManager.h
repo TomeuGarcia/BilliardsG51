@@ -42,6 +42,15 @@ public:
 public:
 	void OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter) override;
 
+private:
+	void OnAnyBallEnteredHole(BilliardBall* ball);
+	void OnWhiteBallEnteredHole();
+	void OnBlackBallEnteredHole();
+	void OnRedBallEnteredHole(BilliardBall* redBall);
+	void OnBlueBallEnteredHole(BilliardBall* blueBall);
+
+
+	const Vector2<float> FindRandomValidPositionForBall(BilliardBall* ball) const;
 
 
 private:

@@ -146,7 +146,72 @@ bool BilliardsGameplayManager::AllBallsStoppedMoving() const
 
 void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter)
 {
-	printf("Notified entered\n");
+	OnAnyBallEnteredHole(ball);
+
+	switch (ball->GetColorType())
+	{
+	case BilliardBall::ColorType::White:
+		OnWhiteBallEnteredHole();
+		break;
+	case BilliardBall::ColorType::Black:
+		OnBlackBallEnteredHole();
+		break;
+	case BilliardBall::ColorType::Red:
+		OnRedBallEnteredHole(ball);
+		break;
+	case BilliardBall::ColorType::Blue:
+		OnBlueBallEnteredHole(ball);
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void BilliardsGameplayManager::OnAnyBallEnteredHole(BilliardBall* ball)
+{
+
+}
+
+void BilliardsGameplayManager::OnWhiteBallEnteredHole()
+{
+
+}
+
+void BilliardsGameplayManager::OnBlackBallEnteredHole()
+{}
+
+void BilliardsGameplayManager::OnRedBallEnteredHole(BilliardBall* redBall)
+{}
+
+void BilliardsGameplayManager::OnBlueBallEnteredHole(BilliardBall* blueBall)
+{}
+
+
+
+const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(BilliardBall* ball) const
+{
+	const Vector2<float> randomBounds{ 2.5f, 1.5f };
+	const Circle& ballCollisionShape = ball->GetCollisionCircle();
+
+	bool foundValidPosition = false;
+	Vector2<float> randomPosition;
+
+	do
+	{
+		randomPosition =
+			m_gameplayStatesBlackboard.GetBoardCenter() +
+			GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds);
+
+		foundValidPosition = Physics2DManager::GetInstance()->CircleOverlap(randomPosition, ballCollisionShape.GetRadius()).size() < 1;
+
+
+	} while (!foundValidPosition);
+
+
+
+	return randomPosition;
 }
 
 
