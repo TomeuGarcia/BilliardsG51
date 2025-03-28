@@ -7,6 +7,7 @@
 #include "Systems/GameAssetResources.h"
 #include "Systems/GameSpacesComputer.h"
 #include "Systems/GameRandom.h"
+#include "Systems/GameTweener.h"
 #include "Physics/Physics2DManager.h"
 #include "Render/GameRenderManager.h"
 #include "Scenes/SceneManager.h"
@@ -36,4 +37,5 @@ private:
 	GameAssetResources* m_gameAssetResources;
 	GameSpacesComputer* m_gameSpacesComputer;
 	GameRandom* m_gameRandom;
+	GameTweener* m_gameTweener;
 };

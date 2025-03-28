@@ -6,13 +6,27 @@ Rigidbody2D::Rigidbody2D(GameObject* gameObject,
 	: m_gameObject(gameObject), m_physicMaterial(physicMaterial), p_mass(mass), p_gravityScale(gravityScale),
 	p_position(gameObject->GetTransform()->p_worldPosition),
 	m_velocity(Vector2<float>::Zero()), m_speed(0),
-	m_acceleration(Vector2<float>::Zero())
+	m_acceleration(Vector2<float>::Zero()),
+	m_isEnabled(true)
 {
 }
 
 Rigidbody2D::~Rigidbody2D()
 {
 }
+
+
+void Rigidbody2D::SetIsEnabled(const bool& isEnabled)
+{
+	m_isEnabled = isEnabled;
+}
+
+bool Rigidbody2D::GetIsEnabled() const
+{
+	return m_isEnabled;
+}
+
+
 
 const Vector2<float>& Rigidbody2D::GetVelocity() const
 {
@@ -61,6 +75,12 @@ void Rigidbody2D::UpdatePosition()
 {
 	m_gameObject->GetTransform()->p_worldPosition = p_position;
 }
+
+void Rigidbody2D::RefreshPosition()
+{
+	p_position = m_gameObject->GetTransform()->p_worldPosition;
+}
+
 
 void Rigidbody2D::ApplyFriction(const float& deltaTime)
 {

@@ -12,9 +12,11 @@ public:
 		const float& stickDistanceToHandle, const float& stickDistanceToTip);
 	virtual ~BilliardStick();
 
+	virtual void Start() override;
+
 
 	void SetTipPositionAndLookDirection(const Vector2<float>& tipPosition, const Vector2<float>& lookDirection);
-
+	void SetResting();
 
 private:
 	Transform* m_transform;
@@ -22,4 +24,6 @@ private:
 	Vector2<float> m_defaultImageDirection;
 	float m_stickDistanceToHandle;
 	float m_stickDistanceToTip;
+
+	Vector2<float> m_restingPosition;
 };

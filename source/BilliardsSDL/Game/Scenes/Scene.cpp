@@ -22,6 +22,7 @@ void Scene::Cleanup()
 	m_gameObjects.clear();
 	GameRenderManager::GetInstance()->ClearRenderQueue();
 	Physics2DManager::GetInstance()->ClearReferences();
+	GameTweener::GetInstance()->Clear();
 }
 
 

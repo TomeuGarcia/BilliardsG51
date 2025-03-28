@@ -5,6 +5,7 @@
 #include "../Systems/GameTime.h"
 #include "../Systems/GameAssetResources.h"
 #include "../Systems/GameRandom.h"
+#include "../Systems/GameTweener.h"
 #include "../Render/GameRenderManager.h"
 #include "../Render/Renderers/Image/Image.h"
 #include "../Render/Renderers/Text/Text.h"

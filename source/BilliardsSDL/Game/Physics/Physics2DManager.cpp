@@ -6,7 +6,7 @@
 Physics2DManager* Physics2DManager::s_instance = nullptr;
 
 Physics2DManager::Physics2DManager()
-	: m_solver(Vector2<float>(0.0f, -9.8f)),
+	: m_solver(Vector2<float>(0.0f, -9.8f)), m_forcePropagationConstant(0.25f),
 	m_circleCollidersGroup(),
 	m_aaBoxCollidersGroup()
 {
@@ -53,7 +53,6 @@ void Physics2DManager::Update(const float& deltaTime)
 	UpdateRigidbodies(deltaTime);
 	UpdateRigidbodylessColliders();
 	UpdateCollisions();
-	++m_frameCount;
 }
 
 
@@ -63,8 +62,13 @@ void Physics2DManager::UpdateRigidbodies(const float& deltaTime)
 		m_circleCollidersGroup.p_rigidbodyColliders;
 
 	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
-	{
+	{		
 		Rigidbody2D& rigidbody = *(*it)->GetRigidbody();
+		if (!rigidbody.GetIsEnabled())
+		{
+			continue;
+		}
+
 		m_solver.Step(deltaTime, rigidbody);
 		rigidbody.UpdatePosition();
 		rigidbody.ApplyFriction(deltaTime);
@@ -78,6 +82,11 @@ void Physics2DManager::UpdateRigidbodies(const float& deltaTime)
 	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
 	{
 		Rigidbody2D& rigidbody = *(*it)->GetRigidbody();
+		if (!rigidbody.GetIsEnabled())
+		{
+			continue;
+		}
+
 		m_solver.Step(deltaTime, rigidbody);
 		rigidbody.UpdatePosition();
 		rigidbody.ApplyFriction(deltaTime);
@@ -132,15 +141,28 @@ void Physics2DManager::UpdateCollisions()
 	
 	for (auto itRbC = rigidbodyCircleColliders.begin(); itRbC != rigidbodyCircleColliders.end(); ++itRbC)
 	{
+		if (!itRbC->get()->GetRigidbody()->GetIsEnabled())
+		{
+			continue;
+		}
+
 		//Rb circle check with Rb circle
 		for (auto itRbC_2 = itRbC + 1; itRbC_2 != rigidbodyCircleColliders.end(); ++itRbC_2)
 		{
+			if (!itRbC_2->get()->GetRigidbody()->GetIsEnabled())
+			{
+				continue;
+			}
 			CheckCircleWithCircle(itRbC->get(), itRbC_2->get());
 		}
 
 		//Rb circle check with Rb aaBox
 		for (auto itRbB = rigidbodyAABoxColliders.begin(); itRbB != rigidbodyAABoxColliders.end(); ++itRbB)
 		{
+			if (!itRbB->get()->GetRigidbody()->GetIsEnabled())
+			{
+				continue;
+			}
 			CheckCircleWithAABox(itRbC->get(), itRbB->get());
 		}
 
@@ -161,6 +183,11 @@ void Physics2DManager::UpdateCollisions()
 
 	for (auto itRbB = rigidbodyAABoxColliders.begin(); itRbB != rigidbodyAABoxColliders.end(); ++itRbB)
 	{
+		if (!itRbB->get()->GetRigidbody()->GetIsEnabled())
+		{
+			continue;
+		}
+
 		//Rb aaBox check with Rb aaBox
 		for (auto itRbB_2 = itRbB + 1; itRbB_2 != rigidbodyAABoxColliders.end(); ++itRbB_2)
 		{
@@ -309,10 +336,9 @@ void Physics2DManager::ResolveCollision(Rigidbody2D* rigidbodyA, Rigidbody2D* ri
 	const Vector2<float> abNormal, float& intersectDistance)
 {
 	intersectDistance = bAlsoHasRigidbody ? intersectDistance / 2 : intersectDistance;
-
-	const float forceConstant = 0.25f;
-	Vector2<float> motionForceA = rigidbodyA->GetVelocity() * forceConstant;
-	Vector2<float> motionForceB = bAlsoHasRigidbody ? rigidbodyB->GetVelocity() * forceConstant : Vector2<float>::Zero();
+	
+	Vector2<float> motionForceA = rigidbodyA->GetVelocity() * m_forcePropagationConstant;
+	Vector2<float> motionForceB = bAlsoHasRigidbody ? rigidbodyB->GetVelocity() * m_forcePropagationConstant : Vector2<float>::Zero();
 
 	if (rigidbodyA->IsAtRest())
 	{

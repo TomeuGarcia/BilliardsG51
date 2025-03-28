@@ -55,7 +55,7 @@ private:
 	CircleCollider2DGroup m_circleCollidersGroup;
 	AABoxCollider2DGroup m_aaBoxCollidersGroup;
 
-	int m_frameCount=0;
+	float m_forcePropagationConstant;
 
 private:
 	static Physics2DManager* s_instance;

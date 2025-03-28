@@ -115,6 +115,24 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking">
       <UniqueIdentifier>{54c60a8c-66b3-4eb0-afe3-79c9bcaac8f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\Player">
+      <UniqueIdentifier>{9861b7e6-6c3e-470b-ba1c-67df80e94771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\States\Init">
+      <UniqueIdentifier>{2f77a054-aed7-4048-965d-ebe9472950af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\States\PlacingBalls">
+      <UniqueIdentifier>{80b3c5fa-85b8-4a9c-b574-8db672f37dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard">
+      <UniqueIdentifier>{3ba5e656-c69f-499a-abe2-25daf2da2373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish">
+      <UniqueIdentifier>{a1f044d8-530a-4b13-b8fa-0fe0f5ec451d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Timer">
+      <UniqueIdentifier>{e4b6250f-c389-4be1-9e20-f39c9736804c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -264,8 +282,38 @@
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Hitting.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingFSM.cpp">
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\BilliardsGameplayState_PlayerThinking.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsScore.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsPlayer.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameTweener.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayState.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayStateBlackboard.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Init\BilliardsGameplayState_Init.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\PlacingBalls\BilliardsGameplayState_PlacingBalls.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\PlacingBalls</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\BilliardsGameplayState_ResolvingBoard.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\BilliardsGameplayState_GameFinish.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared\Timer\Timer.cpp">
+      <Filter>Source Files\Shared\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -437,7 +485,7 @@
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
     </ClInclude>
-    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingFSM.h">
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\BilliardsGameplayState_PlayerThinking.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState.h">
@@ -448,6 +496,36 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Hitting.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsPlayer.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsScore.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameTweener.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayState.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Init\BilliardsGameplayState_Init.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayStateBlackboard.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\PlacingBalls\BilliardsGameplayState_PlacingBalls.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\PlacingBalls</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\BilliardsGameplayState_ResolvingBoard.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\BilliardsGameplayState_GameFinish.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Timer\Timer.h">
+      <Filter>Source Files\Shared\Timer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

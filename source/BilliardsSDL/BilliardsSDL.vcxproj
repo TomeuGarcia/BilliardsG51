@@ -214,7 +214,15 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardBall.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.cpp" />
-    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingFSM.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsPlayer.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsScore.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayState.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayStateBlackboard.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\BilliardsGameplayState_GameFinish.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Init\BilliardsGameplayState_Init.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\PlacingBalls\BilliardsGameplayState_PlacingBalls.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\BilliardsGameplayState_ResolvingBoard.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\BilliardsGameplayState_PlayerThinking.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Hitting.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.cpp" />
@@ -250,8 +258,10 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Systems\GameRandom.cpp" />
     <ClCompile Include="Game\Systems\GameSpacesComputer.cpp" />
     <ClCompile Include="Game\Systems\GameTime.cpp" />
+    <ClCompile Include="Game\Systems\GameTweener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shared\Math\Math.cpp" />
+    <ClCompile Include="Shared\Timer\Timer.cpp" />
     <ClCompile Include="Shared\Types\Color\Color.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -271,7 +281,15 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardBall.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.h" />
-    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingFSM.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsPlayer.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsScore.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayState.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayStateBlackboard.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\BilliardsGameplayState_GameFinish.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Init\BilliardsGameplayState_Init.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\PlacingBalls\BilliardsGameplayState_PlacingBalls.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\BilliardsGameplayState_ResolvingBoard.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\BilliardsGameplayState_PlayerThinking.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Hitting.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.h" />
@@ -309,7 +327,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Systems\GameRandom.h" />
     <ClInclude Include="Game\Systems\GameSpacesComputer.h" />
     <ClInclude Include="Game\Systems\GameTime.h" />
+    <ClInclude Include="Game\Systems\GameTweener.h" />
     <ClInclude Include="Shared\Math\Math.h" />
+    <ClInclude Include="Shared\Timer\Timer.h" />
     <ClInclude Include="Shared\Types\Circle\Circle.h" />
     <ClInclude Include="Shared\Types\Color\Color.h" />
     <ClInclude Include="Shared\Types\Line\Line.h" />

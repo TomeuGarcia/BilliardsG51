@@ -4,8 +4,9 @@
 
 class PlayerThinkingState_MovingAround : public PlayerThinkingState
 {
-
 public:
+	PlayerThinkingState_MovingAround(BilliardsPlayer* player);
+
 	virtual bool Update() override;
 	virtual void Exit() override;
 
