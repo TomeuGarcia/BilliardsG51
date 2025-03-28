@@ -1,5 +1,6 @@
 #pragma once
 #include "../../../../../Shared/Types/Vector2/Vector2.h"
+#include "../BilliardBall.h"
 
 
 class IBilliardsGameplayStateEventsManager
@@ -9,4 +10,13 @@ public:
 		const float& forceMagnitude) = 0;
 
 	virtual bool AllBallsStoppedMoving() const = 0;
+
+
+	virtual const Vector2<float> FindRandomValidPositionForBall(BilliardBall* ball) const = 0;
+
+
+	virtual const std::vector<BilliardBall*>& GetWellplacedBalls() = 0;
+	virtual const std::vector<BilliardBall*>& GetMissplacedBalls() = 0;
+	virtual void ClearWellplacedBalls() = 0;
+	virtual void ClearMissplacedBalls() = 0;
 };

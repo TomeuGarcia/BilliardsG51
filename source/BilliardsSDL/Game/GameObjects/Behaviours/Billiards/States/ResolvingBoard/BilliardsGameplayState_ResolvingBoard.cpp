@@ -1,8 +1,12 @@
 #include "BilliardsGameplayState_ResolvingBoard.h"
 
 BilliardsGameplayState_ResolvingBoard::BilliardsGameplayState_ResolvingBoard(BilliardsGameplayStateBlackboard* blackboard)
-    : BilliardsGameplayState(blackboard)
+    : BilliardsGameplayState(blackboard), m_statesMap(), m_currentState(nullptr),
+    m_keepPlayerNextStateType(Type::None), m_changePlayerNextStateType(Type::None)
 {
+
+    m_statesMap[ResolvingBoardState::Type::WaitingBallsStop] = std::make_shared<ResolvingBoardState_WaitingBallsStop>(blackboard);
+    m_statesMap[ResolvingBoardState::Type::ReturningMissplacedBalls] = std::make_shared<ResolvingBoardState_ReturningMissplacedBalls>(blackboard);
 }
 
 BilliardsGameplayState_ResolvingBoard::~BilliardsGameplayState_ResolvingBoard()
@@ -13,27 +17,48 @@ BilliardsGameplayState_ResolvingBoard::~BilliardsGameplayState_ResolvingBoard()
 
 void BilliardsGameplayState_ResolvingBoard::DoEnter()
 {
-    m_previousPlayer = GetBlackboard()->GetCurrentPlayer();
+    if (GetBlackboard()->GetCurrentPlayer() == GetBlackboard()->GetPlayerRed())
+    {
+        m_keepPlayerNextStateType = Type::Thinking_Red;
+        m_changePlayerNextStateType = Type::Thinking_Blue;
+    }
+    else
+    {
+        m_keepPlayerNextStateType = Type::Thinking_Blue;
+        m_changePlayerNextStateType = Type::Thinking_Red;
+    }
+    
+    m_currentState = (m_statesMap[ResolvingBoardState::Type::WaitingBallsStop]).get();
 }
 
 bool BilliardsGameplayState_ResolvingBoard::Update()
 {
-    if (!GetBlackboard()->GetSpecialEventsManager()->AllBallsStoppedMoving())
+    if (m_currentState->Update())
     {
-        return false;
-    }
+        m_currentState->Exit();
+        const ResolvingBoardState::Type nextState = m_currentState->GetNextState();
 
+        if (nextState == ResolvingBoardState::Type::KeepPlayer)
+        {
+            SetNextState(m_keepPlayerNextStateType);
+            m_currentState = nullptr;
+            return true;
+        }
+        else if (nextState == ResolvingBoardState::Type::ChangePlayer)
+        {
+            SetNextState(m_changePlayerNextStateType);
+            m_currentState = nullptr;
+            return true;
+        }
+        else if (nextState == ResolvingBoardState::Type::PlayerVictory)
+        {
+            SetNextState(Type::GameFinish);
+            m_currentState = nullptr;
+            return true;
+        }
 
-    m_changingPlayer = true;
-    if (GetBlackboard()->GetCurrentPlayer() == GetBlackboard()->GetPlayerRed())
-    {
-        SetNextState(Type::Thinking_Blue);
-        return true;
-    }
-    else
-    {
-        SetNextState(Type::Thinking_Red);
-        return true;
+        m_currentState = m_statesMap[nextState].get();
+        m_currentState->Enter();
     }
 
     return false;
@@ -41,9 +66,9 @@ bool BilliardsGameplayState_ResolvingBoard::Update()
 
 void BilliardsGameplayState_ResolvingBoard::Exit()
 {
-    if (m_changingPlayer)
+    if (m_currentState != nullptr)
     {
-        m_previousPlayer->GetStick()->TweenToResting();
+        m_currentState->Exit();
     }
 }
 

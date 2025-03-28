@@ -56,6 +56,11 @@ void Rigidbody2D::SetAcceleration(const Vector2<float>& acceleration)
 	m_acceleration = acceleration;
 }
 
+const float Rigidbody2D::GetSpeed() const
+{
+	return m_speed;
+}
+
 
 PhysicMaterial* Rigidbody2D::GetPhysicMaterial() const
 {
@@ -101,6 +106,7 @@ bool Rigidbody2D::IsAtRest() const
 void Rigidbody2D::ClearMovement()
 {
 	m_acceleration = m_velocity = Vector2<float>::Zero();
+	m_speed = 0.0f;
 }
 
 

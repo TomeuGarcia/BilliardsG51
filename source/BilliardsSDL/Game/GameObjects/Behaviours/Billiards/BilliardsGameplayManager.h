@@ -17,6 +17,9 @@
 
 #include "Holes/IBilliardBoardHoleInteractionsManager.h"
 
+#include "../../../Scenes/SceneManager.h"
+
+
 
 
 class BilliardsGameplayManager : public Behaviour, 
@@ -35,22 +38,30 @@ public:
 
 
 public:
-	bool TryHitWhiteBall(const Vector2<float>& position, const Vector2<float>& direction,
+	virtual bool TryHitWhiteBall(const Vector2<float>& position, const Vector2<float>& direction,
 		const float& forceMagnitude) override;
 	virtual bool AllBallsStoppedMoving() const override;
+
+	virtual const Vector2<float> FindRandomValidPositionForBall(BilliardBall* ball) const override;
+
+	virtual const std::vector<BilliardBall*>& GetWellplacedBalls() override;
+	virtual const std::vector<BilliardBall*>& GetMissplacedBalls() override;
+	virtual void ClearWellplacedBalls() override;
+	virtual void ClearMissplacedBalls() override;
+
+
 
 public:
 	void OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter) override;
 
 private:
-	void OnAnyBallEnteredHole(BilliardBall* ball);
+	void OnAnyBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter);
 	void OnWhiteBallEnteredHole();
 	void OnBlackBallEnteredHole();
 	void OnRedBallEnteredHole(BilliardBall* redBall);
 	void OnBlueBallEnteredHole(BilliardBall* blueBall);
 
-
-	const Vector2<float> FindRandomValidPositionForBall(BilliardBall* ball) const;
+	void IncrementPlayerScoreWithThisTurnState();
 
 
 private:
@@ -65,6 +76,8 @@ private:
 	BilliardBall* m_whiteBall;
 	BilliardBall* m_blackBall;
 
-	std::set<BilliardBall*> m_remainingRedBalls;
-	std::set<BilliardBall*> m_remainingBlueBalls;
+	std::vector<BilliardBall*> m_wellplacedBallsThisTurn;
+	std::vector<BilliardBall*> m_missplacedBallsThisTurn;
+
+	bool m_blackBallWellPlaced;
 };

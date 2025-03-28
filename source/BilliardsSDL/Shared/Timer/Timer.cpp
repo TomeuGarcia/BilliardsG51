@@ -14,6 +14,11 @@ void Timer::SetDuration(const float& duration)
 	m_duration = duration;
 }
 
+float Timer::GetDuration() const
+{
+	return m_duration;
+}
+
 void Timer::ClearTime()
 {
 	m_currentTime = 0.0f;

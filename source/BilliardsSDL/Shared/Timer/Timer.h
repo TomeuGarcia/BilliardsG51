@@ -9,6 +9,7 @@ public:
 	~Timer();
 
 	void SetDuration(const float& duration);
+	float GetDuration() const;
 	void ClearTime();
 
 

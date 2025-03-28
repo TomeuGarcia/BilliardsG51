@@ -63,6 +63,7 @@ const Circle& BilliardBall::GetCollisionCircle()
 void BilliardBall::SetIgnoringPhysics()
 {
 	m_rigidbody->SetIsEnabled(false);
+	m_rigidbody->ClearMovement();
 }
 
 void BilliardBall::SetUsingPhysics()
@@ -78,5 +79,10 @@ void BilliardBall::ApplyForce(const Vector2<float>& force)
 bool BilliardBall::IsMoving() const
 {
 	return !m_rigidbody->IsAtRest();
+}
+
+float BilliardBall::GetCurrentSpeed()
+{
+	return m_rigidbody->GetSpeed();
 }
 

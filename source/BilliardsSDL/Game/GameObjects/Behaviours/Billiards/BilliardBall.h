@@ -45,6 +45,9 @@ public:
 
 	bool IsMoving() const;
 
+	float GetCurrentSpeed();
+
+
 private:
 	std::shared_ptr<CircleCollider2D> m_collider;
 	std::shared_ptr<Rigidbody2D> m_rigidbody;

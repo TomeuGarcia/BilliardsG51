@@ -4,7 +4,8 @@ BilliardsGameplayStateBlackboard::BilliardsGameplayStateBlackboard()
 	: m_playerRed(nullptr), m_playerBlue(nullptr), m_currentPlayer(nullptr), m_boardCenter(), m_balls(),
 	m_specialEventsManager(nullptr),
 	m_pinPullMaxDistance(2.0f),
-	m_stickForceOverDistanceMultiplier(10.0f)
+	m_stickForceOverDistanceMultiplier(10.0f),
+	p_victoryAchieved(false)
 {}
 
 BilliardsGameplayStateBlackboard::~BilliardsGameplayStateBlackboard()
@@ -49,7 +50,7 @@ const std::vector<BilliardBall*>& BilliardsGameplayStateBlackboard::GetBalls() c
 	return m_balls;
 }
 
-IBilliardsGameplayStateEventsManager* BilliardsGameplayStateBlackboard::GetSpecialEventsManager() const
+IBilliardsGameplayStateEventsManager* BilliardsGameplayStateBlackboard::GetSpecialEventsManager()
 {
 	return m_specialEventsManager;
 }

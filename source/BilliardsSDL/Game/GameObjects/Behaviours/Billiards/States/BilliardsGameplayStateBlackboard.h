@@ -24,7 +24,7 @@ public:
 
 	const std::vector<BilliardBall*>& GetBalls() const;
 
-	IBilliardsGameplayStateEventsManager* GetSpecialEventsManager() const;
+	IBilliardsGameplayStateEventsManager* GetSpecialEventsManager();
 
 	Vector2<float> GetBoardCenter() const;
 	float GetStickForceOverDistanceMultiplier() const;
@@ -36,6 +36,8 @@ public:
 	Vector2<float> p_pinPosition;
 	Vector2<float> p_directionToPinPosition;
 	float p_pinPullDistanceForHit;
+
+	bool p_victoryAchieved;
 
 
 private:

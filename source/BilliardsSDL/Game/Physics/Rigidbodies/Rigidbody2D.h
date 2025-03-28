@@ -22,6 +22,8 @@ public:
 	const Vector2<float>& GetAcceleration() const;
 	void SetAcceleration(const Vector2<float>& acceleration);
 
+	const float GetSpeed() const;
+
 	PhysicMaterial* GetPhysicMaterial() const;
 	GameObject* GetGameObject() const;
 

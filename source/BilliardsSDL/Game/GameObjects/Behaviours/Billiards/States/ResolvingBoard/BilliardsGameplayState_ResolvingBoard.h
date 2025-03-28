@@ -1,5 +1,10 @@
 #pragma once
+#include <unordered_map>
+
 #include "../BilliardsGameplayState.h"
+
+#include "ResolvingBoardState_ReturningMissplacedBalls.h"
+#include "ResolvingBoardState_WaitingBallsStop.h"
 
 
 
@@ -18,7 +23,9 @@ protected:
 
 
 private:
-	BilliardsPlayer* m_previousPlayer;
-	bool m_changingPlayer;
+	std::unordered_map<ResolvingBoardState::Type, std::shared_ptr<ResolvingBoardState>> m_statesMap;
+	ResolvingBoardState* m_currentState;
 
+	Type m_keepPlayerNextStateType; 
+	Type m_changePlayerNextStateType;
 };

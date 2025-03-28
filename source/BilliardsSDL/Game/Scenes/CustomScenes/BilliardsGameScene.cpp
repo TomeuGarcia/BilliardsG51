@@ -31,10 +31,6 @@ void BilliardsGameScene::DoStart()
 
 void BilliardsGameScene::DoUpdate()
 {
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::R))
-	{
-		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
-	}
 }
 
 
@@ -152,7 +148,7 @@ GameObject* BilliardsGameScene::CreateInvisibleWall(const Vector2<float>& positi
 void BilliardsGameScene::CreateBoardHoles(const Vector2<float>& boardCenter,
 	IBilliardBoardHoleInteractionsManager* holeInteractionManager)
 {
-	const float holeRadius = 0.3f;
+	const float holeRadius = 0.35f;
 
 	const Vector2<float> topRightOffset{ 4.7f, 2.4f };
 	CreateBoardHole(boardCenter + topRightOffset, holeRadius, "Hole_TopRight", holeInteractionManager);
