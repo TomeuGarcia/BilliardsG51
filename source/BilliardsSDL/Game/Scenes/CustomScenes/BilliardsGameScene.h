@@ -24,13 +24,15 @@ private:
 
 
 	std::vector<BilliardBall*> CreateBilliardBalls();
-	BilliardBall* CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData, const int& number);
+	BilliardBall* CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData, 
+		const BilliardBall::ColorType& colorType, const int& number);
 	
 
 	void CreateBoardWalls(const Vector2<float>& boardCenter);
 	GameObject* CreateInvisibleWall(const Vector2<float>& position, const Vector2<float>& size);
 
 
-	void CreateBoardHoles(const Vector2<float>& boardCenter);
-	GameObject* CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName);
+	void CreateBoardHoles(const Vector2<float>& boardCenter, const IBilliardBoardHoleInteractionsManager* holeInteractionManager);
+	GameObject* CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName,
+		const IBilliardBoardHoleInteractionsManager* holeInteractionManager);
 };

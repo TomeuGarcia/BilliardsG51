@@ -12,7 +12,7 @@ void BilliardsGameScene::CreateGameObjects()
 	CreateImageComponent(board, GameAssetResources::GetInstance()->GetBoardImageData(), Vector2<float>(10.0f, 5.6f));
 
 	CreateBoardWalls(boardPosition);
-	CreateBoardHoles(boardPosition);	
+	CreateBoardHoles(boardPosition, manager.get());	
 
 	std::vector<BilliardBall*> balls = CreateBilliardBalls();
 
@@ -62,31 +62,32 @@ std::vector<BilliardBall*> BilliardsGameScene::CreateBilliardBalls()
 
 
 	BilliardBall* whiteBall = CreateBilliardBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-		GameAssetResources::GetInstance()->GetWhiteBallImageData(), 0);
+		GameAssetResources::GetInstance()->GetWhiteBallImageData(), BilliardBall::ColorType::White, 0);
 	balls[0] = whiteBall;
 
 	for (size_t i = 1; i < 1 + 7; ++i)
 	{
 		BilliardBall* ball = CreateBilliardBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-			GameAssetResources::GetInstance()->GetRedBallImageData(), i);
+			GameAssetResources::GetInstance()->GetRedBallImageData(), BilliardBall::ColorType::Red, i);
 		balls[i] = ball;
 	}
 
 	BilliardBall* blackBall = CreateBilliardBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-		GameAssetResources::GetInstance()->GetBlackBallImageData(), 8);
+		GameAssetResources::GetInstance()->GetBlackBallImageData(), BilliardBall::ColorType::Black, 8);
 	balls[8] = blackBall;
 
 	for (size_t i = 2 + 7; i < balls.size(); ++i)
 	{
 		BilliardBall* ball = CreateBilliardBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-			GameAssetResources::GetInstance()->GetBlueBallImageData(), i);
+			GameAssetResources::GetInstance()->GetBlueBallImageData(), BilliardBall::ColorType::Blue, i);
 		balls[i] = ball;
 	}
 
 	return balls;
 }
 
-BilliardBall* BilliardsGameScene::CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData, const int& number)
+BilliardBall* BilliardsGameScene::CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData, 
+	const BilliardBall::ColorType& colorType, const int& number)
 {
 	const float ballDiameter{ 0.25f };
 	const float ballRadius{ ballDiameter / 2.0f };
@@ -99,7 +100,7 @@ BilliardBall* BilliardsGameScene::CreateBilliardBall(const Vector2<float>& posit
 	std::shared_ptr<Rigidbody2D> rigidbody = CreateRigidbodyComponent(ballGameObject, physicMaterial, 1.0f, 0.0f);
 	std::shared_ptr<CircleCollider2D> collider = CreateCircleColliderComponent(ballGameObject, rigidbody.get(), false, ballRadius);
 
-	std::shared_ptr<BilliardBall> billiardBall = std::make_shared<BilliardBall>(rigidbody);
+	std::shared_ptr<BilliardBall> billiardBall = std::make_shared<BilliardBall>(collider, rigidbody, colorType);
 	ballGameObject->AttachBehaviour(billiardBall);
 
 	std::shared_ptr<CircleColliderDrawer> colliderDrawer = std::make_shared<CircleColliderDrawer>(collider);
@@ -148,31 +149,33 @@ GameObject* BilliardsGameScene::CreateInvisibleWall(const Vector2<float>& positi
 
 
 
-void BilliardsGameScene::CreateBoardHoles(const Vector2<float>& boardCenter)
+void BilliardsGameScene::CreateBoardHoles(const Vector2<float>& boardCenter,
+	const IBilliardBoardHoleInteractionsManager* holeInteractionManager)
 {
 	const float holeRadius = 0.3f;
 
 	const Vector2<float> topRightOffset{ 4.7f, 2.4f };
-	CreateBoardHole(boardCenter + topRightOffset, holeRadius, "Hole_TopRight");
+	CreateBoardHole(boardCenter + topRightOffset, holeRadius, "Hole_TopRight", holeInteractionManager);
 
 	const Vector2<float> topCenterOffset{ 0.0f, 2.53f };
-	CreateBoardHole(boardCenter + topCenterOffset, holeRadius, "Hole_TopCenter");
+	CreateBoardHole(boardCenter + topCenterOffset, holeRadius, "Hole_TopCenter", holeInteractionManager);
 
 	const Vector2<float> topLeftOffset{ -4.62f, 2.4f };
-	CreateBoardHole(boardCenter + topLeftOffset, holeRadius, "Hole_TopLeft");
+	CreateBoardHole(boardCenter + topLeftOffset, holeRadius, "Hole_TopLeft", holeInteractionManager);
 
 
 	const Vector2<float> bottomRightOffset{ 4.7f, -2.48f };
-	CreateBoardHole(boardCenter + bottomRightOffset, holeRadius, "Hole_BottomRight");
+	CreateBoardHole(boardCenter + bottomRightOffset, holeRadius, "Hole_BottomRight", holeInteractionManager);
 
 	const Vector2<float> bottomCenterOffset{ 0.0f, -2.53f };
-	CreateBoardHole(boardCenter + bottomCenterOffset, holeRadius, "Hole_BottomCenter");
+	CreateBoardHole(boardCenter + bottomCenterOffset, holeRadius, "Hole_BottomCenter", holeInteractionManager);
 
 	const Vector2<float> bottomLeftOffset{ -4.62f, -2.48f };
-	CreateBoardHole(boardCenter + bottomLeftOffset, holeRadius, "Hole_BottomLeft");
+	CreateBoardHole(boardCenter + bottomLeftOffset, holeRadius, "Hole_BottomLeft", holeInteractionManager);
 }
 
-GameObject* BilliardsGameScene::CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName)
+GameObject* BilliardsGameScene::CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName,
+	const IBilliardBoardHoleInteractionsManager* holeInteractionManager)
 {
 	GameObject* holeGameObject = CreateGameObject(position, holeName);
 	std::shared_ptr<CircleCollider2D> collider = CreateCircleColliderComponent(holeGameObject, nullptr, true, radius);

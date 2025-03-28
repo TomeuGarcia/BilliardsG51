@@ -1,5 +1,6 @@
 #pragma once
 
+class GameObject;
 
 class Behaviour
 {
@@ -12,6 +13,6 @@ public:
 	virtual void Update() {}
 	virtual void OnDestroy() {}
 
-	//virtual void OnCollisionEnter();
-	//virtual void OnTriggerEnter();
+	virtual void OnCollisionEnter(GameObject* other) {}
+	virtual void OnTriggerEnter(GameObject* other) {}
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <set>
 
 #include "../Behaviour.h"
 #include "BilliardBall.h"
@@ -14,10 +15,13 @@
 #include "States/ResolvingBoard/BilliardsGameplayState_ResolvingBoard.h"
 #include "States/GameFinish/BilliardsGameplayState_GameFinish.h"
 
+#include "Holes/IBilliardBoardHoleInteractionsManager.h"
 
 
 
-class BilliardsGameplayManager : public Behaviour, public IBilliardsGameplayStateEventsManager
+class BilliardsGameplayManager : public Behaviour, 
+	public IBilliardsGameplayStateEventsManager,
+	public IBilliardBoardHoleInteractionsManager
 {
 public:
 	BilliardsGameplayManager();
@@ -31,8 +35,13 @@ public:
 
 
 public:
-	bool TryHitBalls(const Vector2<float>& position, const Vector2<float>& direction,
+	bool TryHitWhiteBall(const Vector2<float>& position, const Vector2<float>& direction,
 		const float& forceMagnitude) override;
+	virtual bool AllBallsStoppedMoving() const override;
+
+public:
+	void OnBallEnteredHole(BilliardsBoardHole* hole, BilliardBall* ball) override;
+
 
 
 private:
@@ -43,4 +52,10 @@ private:
 	BilliardsPlayer m_playerRed;
 	BilliardsPlayer m_playerBlue;
 
+
+	BilliardBall* m_whiteBall;
+	BilliardBall* m_blackBall;
+
+	std::set<BilliardBall*> m_remainingRedBalls;
+	std::set<BilliardBall*> m_remainingBlueBalls;
 };
