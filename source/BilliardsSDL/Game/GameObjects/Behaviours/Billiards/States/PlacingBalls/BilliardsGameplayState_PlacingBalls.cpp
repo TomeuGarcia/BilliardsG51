@@ -76,9 +76,9 @@ std::vector<Vector2<float>> BilliardsGameplayState_PlacingBalls::ComputeArranged
 	const Vector2<float>& boardCenter, const std::vector<BilliardBall*>& balls, 
 	const int& whiteBallIndex, const int& blackBallIndex)
 {
-	const float ballDiameter{ 0.25f };
+	const float ballDiameter{ 0.3f };
 	const float ballSideDisplacement{ ballDiameter * 0.85f };
-	const float ballUpDisplacement{ 0.25f };
+	const float ballUpDisplacement{ 0.3f };
 	const float startingDisplacement = 2.25f;
 
 

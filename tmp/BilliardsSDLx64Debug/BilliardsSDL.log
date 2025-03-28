@@ -2,11 +2,7 @@
   0 File(s) copied
   0 File(s) copied
   0 File(s) copied
-  BilliardsGameScene.cpp
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(71,62): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
-E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\source\BilliardsSDL\Game\Scenes\CustomScenes\BilliardsGameScene.cpp(82,63): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
-  Color.cpp
-  Generating Code...
+  BilliardStick.cpp
   BilliardsSDL.vcxproj -> E:\Users\Tomeu Garcia Pintó\Documents\Fork\BilliardsG51\BilliardsG51\binaries\x64Debug\BilliardsSDL.exe
   0 File(s) copied
   0 File(s) copied

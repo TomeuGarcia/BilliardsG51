@@ -29,13 +29,16 @@ void BilliardStick::SetTipPositionAndLookDirection(const Vector2<float>& tipPosi
 	m_image->p_rotationInDegrees = rotation;
 }
 
+
+
 void BilliardStick::TweenTipToPosition(const Vector2<float>& tipGoalPosition, float& outDuration)
 {	
 	const Vector2<float>& lookDirection = (tipGoalPosition - m_transform->p_worldPosition).Normalized();
 
 	const Vector2<float> goalPosition = tipGoalPosition - (lookDirection * m_stickDistanceToTip);
 
-	outDuration = Vector2<float>::Distance(tipGoalPosition, m_transform->p_worldPosition) / 6.0f;
+	const float speed = 30.0f;
+	outDuration = Vector2<float>::Distance(tipGoalPosition, m_transform->p_worldPosition) / speed;
 
 	GameTweener::GetInstance()->TweenPosition(m_transform, goalPosition, outDuration, 0.0f);
 }

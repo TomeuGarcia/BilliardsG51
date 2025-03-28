@@ -27,6 +27,7 @@ public:
 	IBilliardsGameplayStateEventsManager* GetSpecialEventsManager() const;
 
 	Vector2<float> GetBoardCenter() const;
+	float GetStickForceOverDistanceMultiplier() const;
 	float GetPinPullMaxDistance() const;
 
 
@@ -47,6 +48,8 @@ private:
 	IBilliardsGameplayStateEventsManager* m_specialEventsManager;
 
 	Vector2<float> m_boardCenter;
+
+	float m_stickForceOverDistanceMultiplier;
 
 	float m_pinPullMaxDistance;
 };

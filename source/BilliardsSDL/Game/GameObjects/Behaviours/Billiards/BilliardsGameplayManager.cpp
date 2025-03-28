@@ -70,7 +70,7 @@ bool BilliardsGameplayManager::TryHitBalls(const Vector2<float>& position, const
 {
 	const Vector2<float> force = direction * forceMagnitude;
 
-	std::list<Collider2D*> colliders = Physics2DManager::GetInstance()->CircleOverlap(position, 0.1f);
+	std::list<Collider2D*> colliders = Physics2DManager::GetInstance()->CircleOverlap(position, 0.2f);
 
 	std::vector<BilliardBall*> balls;
 	balls.reserve(8);
