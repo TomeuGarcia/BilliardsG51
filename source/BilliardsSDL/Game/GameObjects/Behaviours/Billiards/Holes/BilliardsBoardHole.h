@@ -3,13 +3,11 @@
 #include "IBilliardBoardHoleInteractionsManager.h"
 
 
-class BilliardsBoardHole : Behaviour
+class BilliardsBoardHole : public Behaviour
 {
 public:
 	BilliardsBoardHole(Transform* transform, IBilliardBoardHoleInteractionsManager* interactionManager);
 	virtual ~BilliardsBoardHole();
-
-	Vector2<float> GetCenterPosition() const;
 
 
 	virtual void OnTriggerEnter(GameObject* other) override;

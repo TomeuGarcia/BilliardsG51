@@ -26,6 +26,10 @@ public:
 
 
 private:
+	void NotifyEnter();
+
+
+private:
 	Collider2D* m_colliderA;
 	Collider2D* m_colliderB;
 	Status m_status;

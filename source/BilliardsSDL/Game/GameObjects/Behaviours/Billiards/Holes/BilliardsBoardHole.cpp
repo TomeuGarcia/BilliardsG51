@@ -7,10 +7,6 @@ BilliardsBoardHole::BilliardsBoardHole(Transform* transform, IBilliardBoardHoleI
 BilliardsBoardHole::~BilliardsBoardHole()
 {}
 
-Vector2<float> BilliardsBoardHole::GetCenterPosition() const
-{
-	return m_transform->p_worldPosition;
-}
 
 void BilliardsBoardHole::OnTriggerEnter(GameObject* other)
 {
@@ -20,7 +16,7 @@ void BilliardsBoardHole::OnTriggerEnter(GameObject* other)
 		BilliardBall* ball = dynamic_cast<BilliardBall*>(it->get());
 		if (ball != nullptr)
 		{
-			m_interactionManager->OnBallEnteredHole(this, ball);
+			m_interactionManager->OnBallEnteredHole(ball, m_transform->p_worldPosition);
 			return;
 		}
 	}

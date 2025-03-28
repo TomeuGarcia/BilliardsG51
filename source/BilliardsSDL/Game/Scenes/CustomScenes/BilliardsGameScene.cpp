@@ -113,7 +113,7 @@ BilliardBall* BilliardsGameScene::CreateBilliardBall(const Vector2<float>& posit
 
 void BilliardsGameScene::CreateBoardWalls(const Vector2<float>& boardCenter)
 {
-	const Vector2<float> horizontalsSize{ 4.1f, 0.45f };
+	const Vector2<float> horizontalsSize{ 4.0f, 0.45f };
 
 	const Vector2<float> topRightOffset{ 2.3f, 2.53f };
 	const Vector2<float> topLeftOffset{ -2.25f, 2.53f };
@@ -126,7 +126,7 @@ void BilliardsGameScene::CreateBoardWalls(const Vector2<float>& boardCenter)
 	CreateInvisibleWall(boardCenter + bottomLeftOffset, horizontalsSize);
 
 
-	const Vector2<float> verticalSize{ 0.45f, 4.25f };
+	const Vector2<float> verticalSize{ 0.45f, 4.15f };
 
 	const Vector2<float> rightOffset{ 4.8f, -0.04f };
 	const Vector2<float> leftOffset{ -4.75f, -0.04f };
@@ -150,7 +150,7 @@ GameObject* BilliardsGameScene::CreateInvisibleWall(const Vector2<float>& positi
 
 
 void BilliardsGameScene::CreateBoardHoles(const Vector2<float>& boardCenter,
-	const IBilliardBoardHoleInteractionsManager* holeInteractionManager)
+	IBilliardBoardHoleInteractionsManager* holeInteractionManager)
 {
 	const float holeRadius = 0.3f;
 
@@ -175,13 +175,16 @@ void BilliardsGameScene::CreateBoardHoles(const Vector2<float>& boardCenter,
 }
 
 GameObject* BilliardsGameScene::CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName,
-	const IBilliardBoardHoleInteractionsManager* holeInteractionManager)
+	IBilliardBoardHoleInteractionsManager* holeInteractionManager)
 {
 	GameObject* holeGameObject = CreateGameObject(position, holeName);
 	std::shared_ptr<CircleCollider2D> collider = CreateCircleColliderComponent(holeGameObject, nullptr, true, radius);
 
 	std::shared_ptr<CircleColliderDrawer> colliderDrawer = std::make_shared<CircleColliderDrawer>(collider);
 	holeGameObject->AttachBehaviour(colliderDrawer);
+
+	std::shared_ptr<BilliardsBoardHole> hole = std::make_shared<BilliardsBoardHole>(holeGameObject->GetTransform(), holeInteractionManager);
+	holeGameObject->AttachBehaviour(hole);
 
 	return holeGameObject;
 }

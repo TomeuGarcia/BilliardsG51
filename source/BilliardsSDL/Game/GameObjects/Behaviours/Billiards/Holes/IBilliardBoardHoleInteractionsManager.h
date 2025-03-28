@@ -1,11 +1,11 @@
 #pragma once
+#include "../BilliardBall.h"
 
-class BilliardBall;
-class BilliardsBoardHole;
+
 
 class IBilliardBoardHoleInteractionsManager
 {
 public:
-	virtual void OnBallEnteredHole(BilliardsBoardHole* hole, BilliardBall* ball) = 0;
+	virtual void OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter) = 0;
 
 };

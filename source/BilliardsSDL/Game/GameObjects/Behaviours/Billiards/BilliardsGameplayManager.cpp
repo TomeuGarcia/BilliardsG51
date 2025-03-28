@@ -144,7 +144,7 @@ bool BilliardsGameplayManager::AllBallsStoppedMoving() const
 
 
 
-void BilliardsGameplayManager::OnBallEnteredHole(BilliardsBoardHole* hole, BilliardBall* ball)
+void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter)
 {
 	printf("Notified entered\n");
 }

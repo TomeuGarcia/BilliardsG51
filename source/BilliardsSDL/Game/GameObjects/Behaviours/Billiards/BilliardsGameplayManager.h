@@ -40,7 +40,7 @@ public:
 	virtual bool AllBallsStoppedMoving() const override;
 
 public:
-	void OnBallEnteredHole(BilliardsBoardHole* hole, BilliardBall* ball) override;
+	void OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter) override;
 
 
 

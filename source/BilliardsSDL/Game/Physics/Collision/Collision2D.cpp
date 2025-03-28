@@ -15,7 +15,8 @@ void Collision2D::UpdateStatus(const bool& keepColliding)
 	{
 		if (m_status == Status::None)
 		{
-			m_status = Status::Enter;		
+			m_status = Status::Enter;	
+			NotifyEnter();
 		}
 		else if (m_status == Status::Enter)
 		{
@@ -41,4 +42,38 @@ Collider2D* Collision2D::GetColliderB() const
 const Collision2D::Status Collision2D::GetStatus() const
 {
 	return m_status;
+}
+
+
+
+void Collision2D::NotifyEnter()
+{
+	const bool bothAreColliders = !m_colliderA->GetIsTrigger() && !m_colliderB->GetIsTrigger();
+	const std::vector<std::shared_ptr<Behaviour>>& behavioursA = m_colliderA->GetGameObject()->GetBehaviours();
+	const std::vector<std::shared_ptr<Behaviour>>& behavioursB = m_colliderB->GetGameObject()->GetBehaviours();
+	GameObject* otherForA = m_colliderB->GetGameObject();
+	GameObject* otherForB = m_colliderA->GetGameObject();
+
+	if (bothAreColliders)
+	{
+		for (auto it = behavioursA.begin(); it != behavioursA.end(); ++it)
+		{
+			(*it)->OnCollisionEnter(otherForA);
+		}
+		for (auto it = behavioursB.begin(); it != behavioursB.end(); ++it)
+		{
+			(*it)->OnCollisionEnter(otherForB);
+		}
+	}
+	else
+	{
+		for (auto it = behavioursA.begin(); it != behavioursA.end(); ++it)
+		{
+			(*it)->OnTriggerEnter(otherForA);
+		}
+		for (auto it = behavioursB.begin(); it != behavioursB.end(); ++it)
+		{
+			(*it)->OnTriggerEnter(otherForB);
+		}
+	}
 }

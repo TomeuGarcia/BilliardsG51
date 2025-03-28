@@ -9,6 +9,7 @@
 #include "../../GameObjects/Behaviours/Billiards/BilliardBall.h"
 #include "../../GameObjects/Behaviours/Billiards/BilliardStick.h"
 #include "../../GameObjects/Behaviours/Billiards/BilliardsGameplayManager.h"
+#include "../../GameObjects/Behaviours/Billiards/Holes/BilliardsBoardHole.h"
 
 
 
@@ -32,7 +33,7 @@ private:
 	GameObject* CreateInvisibleWall(const Vector2<float>& position, const Vector2<float>& size);
 
 
-	void CreateBoardHoles(const Vector2<float>& boardCenter, const IBilliardBoardHoleInteractionsManager* holeInteractionManager);
+	void CreateBoardHoles(const Vector2<float>& boardCenter, IBilliardBoardHoleInteractionsManager* holeInteractionManager);
 	GameObject* CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName,
-		const IBilliardBoardHoleInteractionsManager* holeInteractionManager);
+		IBilliardBoardHoleInteractionsManager* holeInteractionManager);
 };
