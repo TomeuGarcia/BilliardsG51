@@ -37,8 +37,8 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 		remainingBlueBalls.emplace(balls[i]);
 	}
 
-	m_playerRed.Init(redStick, Colors::SoftRed, remainingRedBalls);
-	m_playerBlue.Init(blueStick, Colors::SoftBlue, remainingBlueBalls);
+	m_playerRed.Init(redStick, Colors::SoftRed, remainingRedBalls, "Red");
+	m_playerBlue.Init(blueStick, Colors::SoftBlue, remainingBlueBalls, "Blue");
 	m_gameplayStatesBlackboard.Init(balls, boardCenter, &m_playerRed, &m_playerBlue, this);
 
 

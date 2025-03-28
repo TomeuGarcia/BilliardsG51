@@ -11,8 +11,10 @@ public:
 	BilliardsPlayer();
 	~BilliardsPlayer();
 
-	void Init(BilliardStick* stick, const Color& backgroundColor, const std::set<BilliardBall*>& remainingColoredBalls);
+	void Init(BilliardStick* stick, const Color& backgroundColor, const std::set<BilliardBall*>& remainingColoredBalls,
+		const std::string& name);
 
+	const std::string& GetName() const;
 	BilliardStick* GetStick() const;
 	BilliardsScore& GetScore();
 	Color GetBackgroundColor() const;
@@ -22,6 +24,8 @@ public:
 
 
 private:
+	std::string m_name;
+
 	BilliardStick* m_stick;
 	BilliardsScore m_score;
 	Color m_backgroundColor;

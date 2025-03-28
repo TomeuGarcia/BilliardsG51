@@ -25,13 +25,23 @@ void BilliardsGameScene::CreateGameObjects()
 	manager->Init(balls, boardPosition, redStick, blueStick);	
 }
 
+
+
 void BilliardsGameScene::DoStart()
 {
+	AABoxColliderDrawer::s_enabled = false;
+	CircleColliderDrawer::s_enabled = false;
 }
 
 void BilliardsGameScene::DoUpdate()
 {
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::C))
+	{
+		AABoxColliderDrawer::s_enabled = !AABoxColliderDrawer::s_enabled;
+		CircleColliderDrawer::s_enabled = !CircleColliderDrawer::s_enabled;
+	}
 }
+
 
 
 

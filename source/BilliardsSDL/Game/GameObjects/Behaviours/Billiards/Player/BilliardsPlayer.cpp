@@ -2,7 +2,8 @@
 
 BilliardsPlayer::BilliardsPlayer()
 	: m_stick(nullptr),
-	m_score(10, 15, 30)
+	m_score(10, 15, 30),
+	m_name()
 {
 }
 
@@ -10,11 +11,18 @@ BilliardsPlayer::~BilliardsPlayer()
 {
 }
 
-void BilliardsPlayer::Init(BilliardStick* stick, const Color& backgroundColor, const std::set<BilliardBall*>& remainingColoredBalls)
+void BilliardsPlayer::Init(BilliardStick* stick, const Color& backgroundColor, const std::set<BilliardBall*>& remainingColoredBalls,
+	const std::string& name)
 {
+	m_name = name;
 	m_stick = stick;
 	m_backgroundColor = backgroundColor;
 	m_remainingColoredBalls = remainingColoredBalls;
+}
+
+const std::string& BilliardsPlayer::GetName() const
+{
+	return m_name;
 }
 
 BilliardStick* BilliardsPlayer::GetStick() const
