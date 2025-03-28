@@ -1,10 +1,12 @@
 #include "BilliardBall.h"
 
 
-BilliardBall::BilliardBall(const std::shared_ptr<Rigidbody2D>& rigidbody)
-	: m_rigidbody(rigidbody)
+BilliardBall::BilliardBall(const std::shared_ptr<CircleCollider2D>& collider, const std::shared_ptr<Rigidbody2D>& rigidbody, 
+	const ColorType& color)
+	: m_collider(collider), m_rigidbody(rigidbody), m_colorType(color)
 {
 }
+
 
 BilliardBall::~BilliardBall()
 {
@@ -47,6 +49,17 @@ Transform* BilliardBall::GetTransform() const
 	return m_rigidbody->GetGameObject()->GetTransform();
 }
 
+const BilliardBall::ColorType BilliardBall::GetColorType()
+{
+	return m_colorType;
+}
+
+const Circle& BilliardBall::GetCollisionCircle()
+{
+	return m_collider->GetShape();
+}
+
+
 void BilliardBall::SetIgnoringPhysics()
 {
 	m_rigidbody->SetIsEnabled(false);
@@ -60,5 +73,10 @@ void BilliardBall::SetUsingPhysics()
 void BilliardBall::ApplyForce(const Vector2<float>& force)
 {
 	m_rigidbody->ApplyForce(force);
+}
+
+bool BilliardBall::IsMoving() const
+{
+	return !m_rigidbody->IsAtRest();
 }
 

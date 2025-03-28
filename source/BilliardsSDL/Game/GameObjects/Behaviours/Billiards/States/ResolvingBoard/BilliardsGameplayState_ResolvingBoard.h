@@ -16,4 +16,9 @@ public:
 protected:
 	void DoEnter() override;
 
+
+private:
+	BilliardsPlayer* m_previousPlayer;
+	bool m_changingPlayer;
+
 };

@@ -7,13 +7,23 @@
 #include "../../../Systems/GameRandom.h"
 #include "../../../Systems/GameSpacesComputer.h"
 #include "../../../Render/GameRenderManager.h"
+#include "../../../Physics/Colliders/CircleCollider2D.h"
 
 
 
 class BilliardBall : public Behaviour
 {
 public:
-	BilliardBall(const std::shared_ptr<Rigidbody2D>& rigidbody);
+	enum class ColorType
+	{
+		White,
+		Black,
+		Red,
+		Blue,
+	};
+
+public:
+	BilliardBall(const std::shared_ptr<CircleCollider2D>& collider, const std::shared_ptr<Rigidbody2D>& rigidbody, const ColorType& color);
 	~BilliardBall();
 
 public:
@@ -23,6 +33,9 @@ public:
 public:
 	void SetPosition(const Vector2<float>& position);
 	Transform* GetTransform() const;
+	const ColorType GetColorType();
+
+	const Circle& GetCollisionCircle();
 
 
 	void SetIgnoringPhysics();
@@ -30,8 +43,11 @@ public:
 
 	void ApplyForce(const Vector2<float>& force);
 
+	bool IsMoving() const;
 
 private:
+	std::shared_ptr<CircleCollider2D> m_collider;
 	std::shared_ptr<Rigidbody2D> m_rigidbody;
 	Vector2<float> m_startPosition;
+	ColorType m_colorType;
 };

@@ -15,7 +15,7 @@ private:
 
 		void Update(const float& deltaTime);
 		Vector2<float> GetCurrentValue() const;
-		bool Finished();
+		bool HasFinished();
 
 	public:
 		Transform* p_transform;

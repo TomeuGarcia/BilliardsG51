@@ -18,7 +18,7 @@ public:
 
 	void SetTipPositionAndLookDirection(const Vector2<float>& tipPosition, const Vector2<float>& lookDirection);
 	void TweenTipToPosition(const Vector2<float>& tipGoalPosition, float& outDuration);
-	void SetResting();
+	void TweenToResting();
 
 private:
 	Transform* m_transform;
@@ -28,4 +28,6 @@ private:
 	float m_stickDistanceToTip;
 
 	Vector2<float> m_restingPosition;
+
+	float m_moveSpeed;
 };

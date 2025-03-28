@@ -11,6 +11,7 @@ void PlayerThinkingState_Hitting::DoEnter()
 	float tweenDuration;
 	GetPlayer()->GetStick()->TweenTipToPosition(GetBlackboard()->p_pinPosition, tweenDuration);
 	m_tweenWaitTimer.SetDuration(tweenDuration);
+	m_tweenWaitTimer.ClearTime();
 }
 
 bool PlayerThinkingState_Hitting::Update()
@@ -34,7 +35,6 @@ bool PlayerThinkingState_Hitting::Update()
 
 void PlayerThinkingState_Hitting::Exit()
 {
-	GetPlayer()->GetStick()->SetResting();
 }
 
 
@@ -43,7 +43,7 @@ bool PlayerThinkingState_Hitting::TryHitBalls()
 {
 	const Vector2<float> hitPosition = GetBlackboard()->p_pinPosition;
 	const Vector2<float> hitDirection = GetBlackboard()->p_directionToPinPosition;
-	const float forceMagnitude = GetBlackboard()->p_pinPullDistanceForHit * 2.0f;
+	const float forceMagnitude = GetBlackboard()->p_pinPullDistanceForHit * GetBlackboard()->GetStickForceOverDistanceMultiplier();
 
-	return GetBlackboard()->GetSpecialEventsManager()->TryHitBalls(hitPosition, hitDirection, forceMagnitude);
+	return GetBlackboard()->GetSpecialEventsManager()->TryHitWhiteBall(hitPosition, hitDirection, forceMagnitude);
 }

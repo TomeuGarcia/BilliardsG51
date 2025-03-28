@@ -5,7 +5,9 @@ BilliardsGameplayManager::BilliardsGameplayManager()
 	m_currentState(nullptr),
 	m_gameplayStatesBlackboard(),
 	m_playerRed(),
-	m_playerBlue()
+	m_playerBlue(),
+	m_remainingRedBalls(),
+	m_remainingBlueBalls()
 {
 }
 
@@ -41,6 +43,21 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 			  std::make_shared<BilliardsGameplayState_GameFinish>(&m_gameplayStatesBlackboard);
 
 
+	m_whiteBall = balls[0];
+	m_blackBall = balls[8];
+
+	for (size_t i = 1; i < 1 + 7; ++i)
+	{
+		m_remainingRedBalls.emplace(balls[i]);
+	}
+	for (size_t i = 9; i < balls.size(); ++i)
+	{
+		m_remainingBlueBalls.emplace(balls[i]);
+	}
+	
+
+
+
 	m_currentState = (m_gameplayStatesMap[BilliardsGameplayState::Type::Init]).get();
 	m_currentState->Enter();
 }
@@ -65,12 +82,25 @@ void BilliardsGameplayManager::OnDestroy()
 
 
 
-bool BilliardsGameplayManager::TryHitBalls(const Vector2<float>& position, const Vector2<float>& direction,
+bool BilliardsGameplayManager::TryHitWhiteBall(const Vector2<float>& position, const Vector2<float>& direction,
 	const float& forceMagnitude)
 {
-	const Vector2<float> force = direction * forceMagnitude;
+	const Circle probingCircle{ position, 0.2f };
 
-	std::list<Collider2D*> colliders = Physics2DManager::GetInstance()->CircleOverlap(position, 0.1f);
+	bool intersecting = Math::AreCirclesIntersecting(probingCircle, m_whiteBall->GetCollisionCircle());
+	if (!intersecting)
+	{
+		return false;
+	}
+
+
+	const Vector2<float> force = direction * forceMagnitude;
+	m_whiteBall->ApplyForce(force);
+	return true;
+
+
+	/*
+	std::list<Collider2D*> colliders = Physics2DManager::GetInstance()->CircleOverlap(position, 0.2f);
 
 	std::vector<BilliardBall*> balls;
 	balls.reserve(8);
@@ -92,6 +122,96 @@ bool BilliardsGameplayManager::TryHitBalls(const Vector2<float>& position, const
 	}		
 
 	return balls.size() > 0;
+	*/
+}
+
+
+
+bool BilliardsGameplayManager::AllBallsStoppedMoving() const
+{
+	const std::vector<BilliardBall*>& balls = m_gameplayStatesBlackboard.GetBalls();
+
+	for (auto it = balls.begin(); it != balls.end(); ++it)
+	{
+		if ((*it)->IsMoving())
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+
+
+void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter)
+{
+	OnAnyBallEnteredHole(ball);
+
+	switch (ball->GetColorType())
+	{
+	case BilliardBall::ColorType::White:
+		OnWhiteBallEnteredHole();
+		break;
+	case BilliardBall::ColorType::Black:
+		OnBlackBallEnteredHole();
+		break;
+	case BilliardBall::ColorType::Red:
+		OnRedBallEnteredHole(ball);
+		break;
+	case BilliardBall::ColorType::Blue:
+		OnBlueBallEnteredHole(ball);
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void BilliardsGameplayManager::OnAnyBallEnteredHole(BilliardBall* ball)
+{
+
+}
+
+void BilliardsGameplayManager::OnWhiteBallEnteredHole()
+{
+
+}
+
+void BilliardsGameplayManager::OnBlackBallEnteredHole()
+{}
+
+void BilliardsGameplayManager::OnRedBallEnteredHole(BilliardBall* redBall)
+{}
+
+void BilliardsGameplayManager::OnBlueBallEnteredHole(BilliardBall* blueBall)
+{}
+
+
+
+const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(BilliardBall* ball) const
+{
+	const Vector2<float> randomBounds{ 2.5f, 1.5f };
+	const Circle& ballCollisionShape = ball->GetCollisionCircle();
+
+	bool foundValidPosition = false;
+	Vector2<float> randomPosition;
+
+	do
+	{
+		randomPosition =
+			m_gameplayStatesBlackboard.GetBoardCenter() +
+			GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds);
+
+		foundValidPosition = Physics2DManager::GetInstance()->CircleOverlap(randomPosition, ballCollisionShape.GetRadius()).size() < 1;
+
+
+	} while (!foundValidPosition);
+
+
+
+	return randomPosition;
 }
 
 

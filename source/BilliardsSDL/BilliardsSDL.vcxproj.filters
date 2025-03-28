@@ -133,6 +133,9 @@
     <Filter Include="Source Files\Shared\Timer">
       <UniqueIdentifier>{e4b6250f-c389-4be1-9e20-f39c9736804c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\Holes">
+      <UniqueIdentifier>{f7f1e9c3-93bd-4641-9bc7-891b34991cc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -317,6 +320,9 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\Thinking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Holes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -535,6 +541,12 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\IBilliardsGameplayStateEventsManager.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\IBilliardBoardHoleInteractionsManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Holes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Holes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

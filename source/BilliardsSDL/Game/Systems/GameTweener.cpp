@@ -17,9 +17,9 @@ Vector2<float> GameTweener::TransformTween::GetCurrentValue() const
 	return Vector2<float>::Lerp(m_origin, m_goal, t);
 }
 
-bool GameTweener::TransformTween::Finished()
+bool GameTweener::TransformTween::HasFinished()
 {
-	return m_currentTime == m_duration;
+	return m_currentTime >= m_duration;
 }
 
 
@@ -66,16 +66,20 @@ void GameTweener::TweenPosition(Transform* transform, const Vector2<float>& goal
 
 
 void GameTweener::UpdatePositionTweens(const float& deltaTime)
-{
-	for (auto rit = m_positionTweens.rbegin(); rit != m_positionTweens.rend(); ++rit)
+{	
+	for (auto it = m_positionTweens.begin(); it != m_positionTweens.end(); )
 	{
-		TransformTween& tween = *rit;
+		TransformTween& tween = *it;
 		tween.Update(deltaTime);
 		tween.p_transform->p_worldPosition = tween.GetCurrentValue();
 
-		if (tween.Finished())
+		if (tween.HasFinished())
 		{
-			m_positionTweens.erase((rit + 1).base());
+			it = m_positionTweens.erase(it);
+		}
+		else
+		{
+			++it;
 		}
 	}
 }
