@@ -1,8 +1,8 @@
 #pragma once
 #include <array>
 #include "../Scene.h"
-#include "../../GameObjects/Behaviours/Debug/AABoxColliderDrawer.h"
-#include "../../GameObjects/Behaviours/Debug/CircleColliderDrawer.h"
+#include "../../GameObjects/Behaviours/Testers/AABoxColliderDrawer.h"
+#include "../../GameObjects/Behaviours/Testers/CircleColliderDrawer.h"
 #include "../../Systems/GameInput.h"
 
 #include "../../GameObjects/Behaviours/Billiards/BilliardBall.h"

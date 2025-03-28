@@ -232,9 +232,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.cpp" />
-    <ClCompile Include="Game\GameObjects\Behaviours\Debug\AABoxColliderDrawer.cpp" />
-    <ClCompile Include="Game\GameObjects\Behaviours\Debug\CircleColliderDrawer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.cpp" />
     <ClCompile Include="Game\GameObjects\GameObject.cpp" />
     <ClCompile Include="Game\GameObjects\Transform.cpp" />
     <ClCompile Include="Game\Physics\AABoxCollider2DGroup.cpp" />
@@ -306,9 +306,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.h" />
-    <ClInclude Include="Game\GameObjects\Behaviours\Debug\AABoxColliderDrawer.h" />
-    <ClInclude Include="Game\GameObjects\Behaviours\Debug\CircleColliderDrawer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.h" />
     <ClInclude Include="Game\GameObjects\Transform.h" />
     <ClInclude Include="Game\GameObjects\GameObject.h" />
     <ClInclude Include="Game\GameSpecifications.h" />
