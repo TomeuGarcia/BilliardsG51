@@ -391,6 +391,11 @@ std::list<Collider2D*> Physics2DManager::CircleOverlap(const Vector2<float>& pos
 
 	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
 	{
+		if (!(*it)->GetRigidbody()->GetIsEnabled())
+		{
+			continue;
+		}
+
 		if (CollisionHelper::ComputeCirclesCollisionWithOutputData(overlapCircle, (*it)->GetShape(), normal, distance))
 		{
 			overlappedColliders.push_back(it->get());
@@ -407,6 +412,11 @@ std::list<Collider2D*> Physics2DManager::CircleOverlap(const Vector2<float>& pos
 
 	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
 	{
+		if (!(*it)->GetRigidbody()->GetIsEnabled())
+		{
+			continue;
+		}
+
 		if (CollisionHelper::ComputeCircleAARectCollisionWithOutputData(overlapCircle, (*it)->GetShape(), normal, distance))
 		{
 			overlappedColliders.push_back(it->get());

@@ -10,6 +10,7 @@ public:
 public:
 	virtual void Start() {}
 	virtual void Update() {}
+	virtual void OnDestroy() {}
 
 	//virtual void OnCollisionEnter();
 	//virtual void OnTriggerEnter();

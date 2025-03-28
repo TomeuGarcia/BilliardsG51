@@ -27,6 +27,7 @@ public:
 	SDL_Renderer* GetRenderer() const;
 	const Vector2<int> GetWindowSize() const;
 	void SetBackgroundColor(const Color& color);
+	Color GetBackgroundColor() const;
 
 
 

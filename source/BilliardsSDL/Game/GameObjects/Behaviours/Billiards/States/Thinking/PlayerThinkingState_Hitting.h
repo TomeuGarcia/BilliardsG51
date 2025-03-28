@@ -5,7 +5,7 @@
 class PlayerThinkingState_Hitting : public PlayerThinkingState
 {
 public:
-	PlayerThinkingState_Hitting(BilliardsPlayer* player);
+	PlayerThinkingState_Hitting(BilliardsGameplayStateBlackboard* blackboard, BilliardsPlayer* player);
 
 	virtual bool Update() override;
 	virtual void Exit() override;
@@ -13,4 +13,10 @@ public:
 protected:
 	virtual void DoEnter() override;
 
+
+private:
+	bool TryHitBalls();
+
+private:
+	Timer m_tweenWaitTimer;
 };

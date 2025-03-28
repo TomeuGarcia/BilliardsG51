@@ -27,7 +27,6 @@ public:
 
 	void MoveToPosition(const Vector2<float>& position);
 	void UpdatePosition();
-	void RefreshPosition();
 	void ApplyFriction(const float& deltaTime);
 
 	bool IsAtRest() const;
@@ -40,6 +39,7 @@ public:
 
 private:
 	Vector2<float> ComputeForceAcceleration(const Vector2<float>& force);
+	void RefreshPosition();
 
 
 public:

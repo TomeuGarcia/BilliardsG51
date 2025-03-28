@@ -29,6 +29,14 @@ void GameObject::Update()
 	}
 }
 
+void GameObject::OnDestroy()
+{
+	for (auto it = m_behaviours.begin(); it != m_behaviours.end(); ++it)
+	{
+		(*it)->OnDestroy();
+	}
+}
+
 
 
 void GameObject::AttachBehaviour(const std::shared_ptr<Behaviour>& behaviour)

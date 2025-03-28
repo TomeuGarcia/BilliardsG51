@@ -1,8 +1,8 @@
 #include "PlayerThinkingState.h"
 
 
-PlayerThinkingState::PlayerThinkingState(BilliardsPlayer* player)
-	: m_player(player)
+PlayerThinkingState::PlayerThinkingState(BilliardsGameplayStateBlackboard* blackboard, BilliardsPlayer* player)
+	: m_blackboard(blackboard), m_player(player), m_nextState(Type::None)
 {
 }
 
@@ -23,6 +23,11 @@ void PlayerThinkingState::SetNextState(const Type& nextState)
 }
 
 
+
+BilliardsGameplayStateBlackboard* PlayerThinkingState::GetBlackboard() const
+{
+	return m_blackboard;
+}
 
 BilliardsPlayer* PlayerThinkingState::GetPlayer() const
 {

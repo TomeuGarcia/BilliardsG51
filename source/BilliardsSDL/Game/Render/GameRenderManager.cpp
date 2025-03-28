@@ -33,6 +33,11 @@ void GameRenderManager::SetBackgroundColor(const Color& color) const
 	m_renderSystem->SetBackgroundColor(color);
 }
 
+Color GameRenderManager::GetBackgroundColor() const
+{
+	return m_renderSystem->GetBackgroundColor();
+}
+
 
 
 void GameRenderManager::DrawDebugLine(const Color& color, const Vector2<int>& start, const Vector2<int>& end) const

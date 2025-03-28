@@ -10,9 +10,10 @@ BilliardsPlayer::~BilliardsPlayer()
 {
 }
 
-void BilliardsPlayer::Init(BilliardStick* stick)
+void BilliardsPlayer::Init(BilliardStick* stick, const Color& backgroundColor)
 {
 	m_stick = stick;
+	m_backgroundColor = backgroundColor;
 }
 
 BilliardStick* BilliardsPlayer::GetStick() const
@@ -23,4 +24,9 @@ BilliardStick* BilliardsPlayer::GetStick() const
 BilliardsScore& BilliardsPlayer::GetScore()
 {
 	return m_score;
+}
+
+Color BilliardsPlayer::GetBackgroundColor() const
+{
+	return m_backgroundColor;
 }

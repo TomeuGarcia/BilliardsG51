@@ -28,6 +28,8 @@ public:
 	void SetIgnoringPhysics();
 	void SetUsingPhysics();
 
+	void ApplyForce(const Vector2<float>& force);
+
 
 private:
 	std::shared_ptr<Rigidbody2D> m_rigidbody;
