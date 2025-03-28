@@ -31,6 +31,10 @@ void BilliardsGameScene::DoStart()
 
 void BilliardsGameScene::DoUpdate()
 {
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::R))
+	{
+		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
+	}
 }
 
 

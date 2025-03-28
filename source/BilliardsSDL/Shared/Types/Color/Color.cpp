@@ -7,5 +7,5 @@ SDL_Color Color::ToSDLColor() const
 
 Color Color::Lerp(const Color& a, const Color& b, const float& t)
 {
-    return a + (a - b) * t;
+    return a + ((b - a) * t);
 }

@@ -17,19 +17,19 @@ public:
 	Color operator-(const Color& other) const
     {
 		return Color{
-			r + other.r,
-			g + other.g,
-			b + other.b,
-			a + other.a };
+			r - other.r,
+			g - other.g,
+			b - other.b,
+			a - other.a };
     }
 	
 	Color operator*(const float& scalar) const
     {
 		return Color{
-			(uint32_t)(r * scalar),
-			(uint32_t)(g * scalar),
-			(uint32_t)(b * scalar),
-			(uint32_t)(a * scalar) };
+			(int)(r * scalar),
+			(int)(g * scalar),
+			(int)(b * scalar),
+			(int)(a * scalar) };
     }
 
 	SDL_Color ToSDLColor() const;
@@ -39,7 +39,7 @@ public:
 
 
 public:
-	uint32_t r, g, b, a;	
+	int r, g, b, a;	
 };
 
 
