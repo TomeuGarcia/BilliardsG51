@@ -1,5 +1,6 @@
 HOW TO PLAY
 ===========
+- YOU CAN ONLY HIT THE WHITE BALL
 - Hold MouseLeft to pin the stick
 - Drag the Mouse while holding MouseLeft to aim
 - Release MouseLeft to hit with the stick
