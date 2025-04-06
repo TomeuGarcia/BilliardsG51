@@ -100,9 +100,6 @@
     <Filter Include="Source Files\Game\Physics\Collision">
       <UniqueIdentifier>{39bfc6a9-4c08-40aa-9526-8e82e61903a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Game\GameObjects\Behaviours\Debug">
-      <UniqueIdentifier>{8a7b00eb-b7c2-4107-917f-0fcd65f6d6bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game\Physics\Solvers">
       <UniqueIdentifier>{1d993e6c-b838-4110-8796-cbcd01db9982}</UniqueIdentifier>
     </Filter>
@@ -135,6 +132,9 @@
     </Filter>
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\Holes">
       <UniqueIdentifier>{f7f1e9c3-93bd-4641-9bc7-891b34991cc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Testers">
+      <UniqueIdentifier>{8a7b00eb-b7c2-4107-917f-0fcd65f6d6bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -249,9 +249,6 @@
     <ClCompile Include="Game\Physics\Colliders\AABoxCollider2D.cpp">
       <Filter>Source Files\Game\Physics\Colliders</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameObjects\Behaviours\Debug\AABoxColliderDrawer.cpp">
-      <Filter>Source Files\Game\GameObjects\Behaviours\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Physics\Solvers\EulerSolver.cpp">
       <Filter>Source Files\Game\Physics\Solvers</Filter>
     </ClCompile>
@@ -263,9 +260,6 @@
     </ClCompile>
     <ClCompile Include="Game\Physics\Helpers\CollisionHelper.cpp">
       <Filter>Source Files\Game\Physics\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\GameObjects\Behaviours\Debug\CircleColliderDrawer.cpp">
-      <Filter>Source Files\Game\GameObjects\Behaviours\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
@@ -323,6 +317,21 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Holes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_WaitingBallsStop.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_ReturningMissplacedBalls.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Testers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Testers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -467,9 +476,6 @@
     <ClInclude Include="Game\Physics\Colliders\AABoxCollider2D.h">
       <Filter>Source Files\Game\Physics\Colliders</Filter>
     </ClInclude>
-    <ClInclude Include="Game\GameObjects\Behaviours\Debug\AABoxColliderDrawer.h">
-      <Filter>Source Files\Game\GameObjects\Behaviours\Debug</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Physics\Solvers\EulerSolver.h">
       <Filter>Source Files\Game\Physics\Solvers</Filter>
     </ClInclude>
@@ -481,9 +487,6 @@
     </ClInclude>
     <ClInclude Include="Game\Physics\Helpers\CollisionHelper.h">
       <Filter>Source Files\Game\Physics\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameObjects\Behaviours\Debug\CircleColliderDrawer.h">
-      <Filter>Source Files\Game\GameObjects\Behaviours\Debug</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
@@ -547,6 +550,21 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Holes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_ReturningMissplacedBalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_WaitingBallsStop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
