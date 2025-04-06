@@ -551,20 +551,20 @@
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Holes</Filter>
     </ClInclude>
-    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_ReturningMissplacedBalls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_WaitingBallsStop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Game\GameObjects\Behaviours\Testers</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Game\GameObjects\Behaviours\Testers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_ReturningMissplacedBalls.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_WaitingBallsStop.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
