@@ -51,7 +51,7 @@ Transform* const GameObject::GetTransform()
 	return &m_transform;
 }
 
-const std::string& GameObject::GetName()
+std::string_view GameObject::GetName()
 {
 	return m_name;
 }

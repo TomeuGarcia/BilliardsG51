@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <string_view>
 #include "Transform.h"
 #include "Behaviours/Behaviour.h"
 
@@ -19,7 +20,7 @@ public:
 
 public:
 	Transform* const GetTransform();	
-	const std::string& GetName();
+	std::string_view GetName();
 	const std::vector<std::shared_ptr<Behaviour>>& GetBehaviours();
 	
 private:
