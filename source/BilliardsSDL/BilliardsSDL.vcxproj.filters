@@ -136,6 +136,15 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Testers">
       <UniqueIdentifier>{8a7b00eb-b7c2-4107-917f-0fcd65f6d6bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Prefabs">
+      <UniqueIdentifier>{92c3dbf3-87bb-45cf-91e4-daec1a56c528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Scenes\Utilities">
+      <UniqueIdentifier>{3111597d-1695-4991-8ef8-ce851862c7ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\MainMenu">
+      <UniqueIdentifier>{b3af8cf7-acb5-4228-834f-797d57e1569d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -332,6 +341,18 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Testers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CustomScenes\MainMenuScene.cpp">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\Utilities\SceneCreateUtilities.cpp">
+      <Filter>Source Files\Game\Scenes\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Prefabs\CustomPrefabUtilities.cpp">
+      <Filter>Source Files\Game\GameObjects\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -565,6 +586,18 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_WaitingBallsStop.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CustomScenes\MainMenuScene.h">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Prefabs\CustomPrefabUtilities.h">
+      <Filter>Source Files\Game\GameObjects\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\Utilities\SceneCreateUtilities.h">
+      <Filter>Source Files\Game\Scenes\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

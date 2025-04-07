@@ -61,6 +61,16 @@ const float Rigidbody2D::GetSpeed() const
 	return m_speed;
 }
 
+const Vector2<float> Rigidbody2D::GetMomentum() const
+{
+	if (IsAtRest())
+	{
+		return Vector2<float>::Zero();
+	}
+
+	return m_velocity * p_mass;
+}
+
 
 PhysicMaterial* Rigidbody2D::GetPhysicMaterial() const
 {

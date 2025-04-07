@@ -33,6 +33,11 @@ float GameRandom::GetRandomFloat(const float minIncluded, const float maxInclude
 	return m_rngSystem->GetRandomFloat(minIncluded, maxIncluded);
 }
 
+bool GameRandom::GetRandomBool(const float trueChance01)
+{
+	return GetRandomFloat01() < trueChance01;
+}
+
 Vector2<float> GameRandom::GetRandomUnitCircle()
 {
 	Vector2<float> randomVector{ GetRandomFloat(-1.0f, 1.0f) , GetRandomFloat(-1.0f, 1.0f) };

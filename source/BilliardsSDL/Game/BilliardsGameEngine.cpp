@@ -31,7 +31,8 @@ void BilliardsGameEngine::Init(const GameSpecifications& specifications,
 	m_gameRenderManager = new GameRenderManager(renderSystem);
 	m_physicsManager = new Physics2DManager();
 	m_sceneManager = new SceneManager();
-	m_gameAssetResources = new GameAssetResources(specifications.p_pathToResourceImages,
+	m_gameAssetResources = new GameAssetResources(specifications.p_worldWidthInWindow / renderSystem->GetWindowSize().x,
+												  specifications.p_pathToResourceImages,
 												  specifications.p_pathToResourceFonts,
 												  specifications.p_pathToResourceAudios);
 	m_gameSpacesComputer = new GameSpacesComputer(renderSystem, specifications.p_worldWidthInWindow);

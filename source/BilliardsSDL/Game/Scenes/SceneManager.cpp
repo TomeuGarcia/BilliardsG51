@@ -72,7 +72,7 @@ Scene* SceneManager::MakeNewSceneByName(const SceneName sceneName)
 	switch (sceneName)
 	{
 		case SceneName::MainMenu:
-			return new EmptyScene(Colors::Red);
+			return new MainMenuScene();
 			break;
 		case SceneName::Ranking:
 			return new EmptyScene(Colors::Green);

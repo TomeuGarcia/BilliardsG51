@@ -29,7 +29,7 @@ public:
 			(int)(r * scalar),
 			(int)(g * scalar),
 			(int)(b * scalar),
-			(int)(a * scalar) };
+			(int)(a) };
     }
 
 	SDL_Color ToSDLColor() const;

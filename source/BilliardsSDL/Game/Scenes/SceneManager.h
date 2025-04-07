@@ -3,6 +3,7 @@
 #include "SceneName.h"
 #include "CustomScenes/EmptyScene.h"
 #include "CustomScenes/BilliardsGameScene.h"
+#include "CustomScenes/MainMenuScene.h"
 
 
 class SceneManager

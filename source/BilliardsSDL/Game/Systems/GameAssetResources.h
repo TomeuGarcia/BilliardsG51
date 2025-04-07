@@ -6,9 +6,10 @@
 class GameAssetResources
 {
 public:
-	GameAssetResources(const std::string& pathToResourceImages, 
-					   const std::string& pathToResourceFonts, 
-					   const std::string& pathToResourceAudios);
+	GameAssetResources(const float& pixelsToUnits,
+		const std::string& pathToResourceImages, 
+		const std::string& pathToResourceFonts, 
+		const std::string& pathToResourceAudios);
 	~GameAssetResources();
 
 public:

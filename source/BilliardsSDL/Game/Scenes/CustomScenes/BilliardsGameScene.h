@@ -18,21 +18,4 @@ protected:
 	virtual void CreateGameObjects() override;
 	virtual void DoStart() override;
 	virtual void DoUpdate() override;
-
-private:
-	BilliardStick* CreateBilliardStick(const Vector2<float>& position, const ImageResourceData& imageData, const std::string& name);
-
-
-	std::vector<BilliardBall*> CreateBilliardBalls();
-	BilliardBall* CreateBilliardBall(const Vector2<float>& position, const ImageResourceData& imageData, 
-		const BilliardBall::ColorType& colorType, const int& number);
-	
-
-	void CreateBoardWalls(const Vector2<float>& boardCenter);
-	GameObject* CreateInvisibleWall(const Vector2<float>& position, const Vector2<float>& size);
-
-
-	void CreateBoardHoles(const Vector2<float>& boardCenter, IBilliardBoardHoleInteractionsManager* holeInteractionManager);
-	GameObject* CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName,
-		IBilliardBoardHoleInteractionsManager* holeInteractionManager);
 };

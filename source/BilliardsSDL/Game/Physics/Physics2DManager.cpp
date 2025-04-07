@@ -6,7 +6,7 @@
 Physics2DManager* Physics2DManager::s_instance = nullptr;
 
 Physics2DManager::Physics2DManager()
-	: m_solver(Vector2<float>(0.0f, -9.8f)), m_forcePropagationConstant(0.25f),
+	: m_solver(Vector2<float>(0.0f, -9.8f)),
 	m_circleCollidersGroup(),
 	m_aaBoxCollidersGroup()
 {
@@ -337,8 +337,8 @@ void Physics2DManager::ResolveCollision(Rigidbody2D* rigidbodyA, Rigidbody2D* ri
 {
 	intersectDistance = bAlsoHasRigidbody ? intersectDistance / 2 : intersectDistance;
 	
-	Vector2<float> motionForceA = rigidbodyA->GetVelocity() * m_forcePropagationConstant;
-	Vector2<float> motionForceB = bAlsoHasRigidbody ? rigidbodyB->GetVelocity() * m_forcePropagationConstant : Vector2<float>::Zero();
+	Vector2<float> motionForceA = rigidbodyA->GetMomentum();
+	Vector2<float> motionForceB = bAlsoHasRigidbody ? rigidbodyB->GetMomentum() : Vector2<float>::Zero();
 
 	if (rigidbodyA->IsAtRest())
 	{

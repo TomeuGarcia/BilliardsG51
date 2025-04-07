@@ -7,6 +7,7 @@ enum class KeyCode
 	MouseRight,
 
 	Esc,
+	Space,
 	C,
 	R
 };
