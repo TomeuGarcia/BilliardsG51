@@ -272,6 +272,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Systems\GameSpacesComputer.cpp" />
     <ClCompile Include="Game\Systems\GameTime.cpp" />
     <ClCompile Include="Game\Systems\GameTweener.cpp" />
+    <ClCompile Include="Game\UI\Selectables\Button\UIButton.cpp" />
+    <ClCompile Include="Game\UI\Selectables\UISelectable.cpp" />
+    <ClCompile Include="Game\UI\UICaster.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shared\Math\Math.cpp" />
     <ClCompile Include="Shared\Timer\Timer.cpp" />
@@ -352,6 +355,10 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Systems\GameSpacesComputer.h" />
     <ClInclude Include="Game\Systems\GameTime.h" />
     <ClInclude Include="Game\Systems\GameTweener.h" />
+    <ClInclude Include="Game\UI\Selectables\Button\UIButton.h" />
+    <ClInclude Include="Game\UI\Selectables\ColorBlock.h" />
+    <ClInclude Include="Game\UI\Selectables\UISelectable.h" />
+    <ClInclude Include="Game\UI\UICaster.h" />
     <ClInclude Include="Shared\Math\Math.h" />
     <ClInclude Include="Shared\Timer\Timer.h" />
     <ClInclude Include="Shared\Types\Circle\Circle.h" />

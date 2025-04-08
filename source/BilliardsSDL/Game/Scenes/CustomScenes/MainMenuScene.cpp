@@ -37,7 +37,11 @@ void MainMenuScene::CreateGameObjects()
 	*/
 
 	GameObject* quitGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(-5.0f, 1.25f), "Quit");
-	GetCreateUtilities().CreateTextComponent(quitGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Quit", 36);
+	std::shared_ptr<Text> quitText = GetCreateUtilities().CreateTextComponent(quitGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Quit", 36);
+	std::shared_ptr<UIButton> quitButton = std::make_shared<UIButton>(quitText, ColorBlock{ Colors::White, Colors::Cyan, Colors::Red });
+	UICaster::GetInstance()->AddSelectable(quitButton);
+
+
 
 	GameObject* playGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 1.25f), "Play");
 	GetCreateUtilities().CreateTextComponent(playGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Play", 36);

@@ -13,6 +13,9 @@
 #include "../../Render/Renderers/Image/Image.h"
 #include "../../Render/Renderers/Text/Text.h"
 
+#include "../../UI/UICaster.h"
+#include "../../UI/Selectables/Button/UIButton.h"
+
 #include "../../../Shared/Types/Color/Color.h"
 
 #include "../../Physics/Physics2DManager.h"

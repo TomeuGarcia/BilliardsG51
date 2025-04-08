@@ -19,7 +19,6 @@ private:
 
 public:
 	void Update();
-	bool WindowStopFocus();
 
 
 private:

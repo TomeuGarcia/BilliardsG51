@@ -29,6 +29,7 @@ void Scene::Cleanup()
 	m_gameObjects.clear();
 	GameRenderManager::GetInstance()->ClearRenderQueue();
 	Physics2DManager::GetInstance()->ClearReferences();
+	UICaster::GetInstance()->ClearSelectables();
 	GameTweener::GetInstance()->Clear();
 }
 
@@ -52,12 +53,6 @@ void Scene::Update()
 
 	DoUpdate();
 }
-
-void Scene::Render()
-{
-	GameRenderManager::GetInstance()->DrawRendererQueue();
-}
-
 
 
 SceneCreateUtilities& Scene::GetCreateUtilities()

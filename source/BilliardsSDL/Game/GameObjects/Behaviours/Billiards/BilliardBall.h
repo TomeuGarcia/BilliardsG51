@@ -3,12 +3,13 @@
 #include "../Behaviour.h"
 #include "../../../Render/Renderers/Image/Image.h"
 #include "../../../Render/Renderers/Text/Text.h"
-#include "../../../Physics/Rigidbodies/Rigidbody2D.h"
-#include "../../../Systems/GameRandom.h"
-#include "../../../Systems/GameSpacesComputer.h"
 #include "../../../Render/GameRenderManager.h"
+
+#include "../../../Physics/Rigidbodies/Rigidbody2D.h"
 #include "../../../Physics/Colliders/CircleCollider2D.h"
 
+#include "../../../Systems/GameRandom.h"
+#include "../../../Systems/GameSpacesComputer.h"
 #include "../../../Systems/GameTweener.h"
 
 

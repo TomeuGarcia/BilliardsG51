@@ -76,6 +76,13 @@ namespace Math
 			&& point.y < (rect.GetBottomLeftY() + rect.GetHeight())
 			&& point.y > rect.GetBottomLeftY();
 	}
+	bool IsPointInsideRect(const Rect<int>& rect, const Vector2<int>& point)
+	{
+		return point.x < (rect.GetBottomLeftX() + rect.GetWidth())
+			&& point.x > rect.GetBottomLeftX()
+			&& point.y < (rect.GetBottomLeftY() + rect.GetHeight())
+			&& point.y > rect.GetBottomLeftY();
+	}
 
 	bool AreAARectsIntersecting(const Rect<float>& rectA, const Rect<float>& rectB)
 	{

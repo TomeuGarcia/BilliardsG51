@@ -121,6 +121,14 @@ void GameRenderManager::ClearRenderQueue()
 	m_renderersQueue.clear();
 }
 
+void GameRenderManager::UpdateRendererQueue()
+{
+	for (auto it = m_renderersQueue.begin(); it != m_renderersQueue.end(); ++it)
+	{
+		(*it)->Update();
+	}
+}
+
 void GameRenderManager::DrawRendererQueue()
 {
 	SDL_SetRenderDrawBlendMode(m_renderSystem->GetRenderer(), SDL_BLENDMODE_BLEND); // Always draw transparents (for now)

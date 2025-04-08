@@ -145,6 +145,15 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\MainMenu">
       <UniqueIdentifier>{b3af8cf7-acb5-4228-834f-797d57e1569d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\UI">
+      <UniqueIdentifier>{8a6ac001-567f-420a-8e4d-eb1aef86fc7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\UI\Selectables">
+      <UniqueIdentifier>{5ba03d8f-3425-4af8-9270-32678a0a5b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\UI\Selectables\Button">
+      <UniqueIdentifier>{23ab360c-b949-4f6b-9df9-953224f0f255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -353,6 +362,15 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\UICaster.cpp">
+      <Filter>Source Files\Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\Selectables\UISelectable.cpp">
+      <Filter>Source Files\Game\UI\Selectables</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\Selectables\Button\UIButton.cpp">
+      <Filter>Source Files\Game\UI\Selectables\Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -598,6 +616,18 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\UICaster.h">
+      <Filter>Source Files\Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\Selectables\UISelectable.h">
+      <Filter>Source Files\Game\UI\Selectables</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\Selectables\Button\UIButton.h">
+      <Filter>Source Files\Game\UI\Selectables\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\Selectables\ColorBlock.h">
+      <Filter>Source Files\Game\UI\Selectables</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

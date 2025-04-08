@@ -31,7 +31,8 @@ namespace Math
 	Vector2<float> Rotate(const Vector2<float>& vector, const float& degrees);
 
 
-	bool IsPointInsideRect(const Rect<float>& rect, const Vector2<float>& vector);
+	bool IsPointInsideRect(const Rect<float>& rect, const Vector2<float>& point);
+	bool IsPointInsideRect(const Rect<int>& rect, const Vector2<int>& point);
 	bool AreAARectsIntersecting(const Rect<float>& rectA, const Rect<float>& rectB);
 
 	

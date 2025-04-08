@@ -12,9 +12,14 @@ Renderer::~Renderer()
     SDL_DestroyTexture(r_texture);
 }
 
+void Renderer::Update()
+{
+    UpdateDestination();
+}
+
 void Renderer::Render(SDL_Renderer* outputRenderer)
-{    
-    SDL_Rect destinationRect{ ComputeDestination() };
+{        
+    SDL_Rect destinationRect{ m_destinationRect.ToSDLRect() };
     SDL_RenderCopyEx(outputRenderer, r_texture, GetSourceRect(), &destinationRect, p_rotationInDegrees, NULL, p_flip);
 }
 
@@ -30,20 +35,18 @@ Color Renderer::GetColorTint() const
     return m_colorTint;
 }
 
-const SDL_Rect Renderer::ComputeDestination()
+Rect<int> Renderer::GetDestinationRect() const
+{
+    return m_destinationRect;
+}
+
+const SDL_Rect Renderer::UpdateDestination()
 {
     const Vector2<int> position = GameSpacesComputer::GetInstance()->WorldToWindowPosition(
         m_gameObject->GetTransform()->p_worldPosition);
     Vector2<int> scaledSize = GameSpacesComputer::GetInstance()->WorldToWindowVector(
         { r_worldSize.x * p_scale.x, -r_worldSize.y * p_scale.y });
 
-    const Vector2<int> halfScaledSize = scaledSize / 2;
-
-    SDL_Rect destinationRect{};
-    destinationRect.x = position.x - halfScaledSize.x;
-    destinationRect.y = position.y - halfScaledSize.y;
-    destinationRect.w = scaledSize.x;
-    destinationRect.h = scaledSize.y;
-
-    return destinationRect;
+    m_destinationRect = { position, scaledSize };
+    return m_destinationRect.ToSDLRect();
 }

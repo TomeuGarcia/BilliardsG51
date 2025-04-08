@@ -11,6 +11,7 @@
 #include "Physics/Physics2DManager.h"
 #include "Render/GameRenderManager.h"
 #include "Scenes/SceneManager.h"
+#include "UI/UICaster.h"
 
 
 class BilliardsGameEngine
@@ -34,6 +35,7 @@ private:
 	GameRenderManager* m_gameRenderManager;
 	Physics2DManager* m_physicsManager;
 	SceneManager* m_sceneManager;
+	UICaster* m_uiCaster;
 	GameAssetResources* m_gameAssetResources;
 	GameSpacesComputer* m_gameSpacesComputer;
 	GameRandom* m_gameRandom;

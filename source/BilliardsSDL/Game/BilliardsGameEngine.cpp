@@ -4,7 +4,8 @@
 BilliardsGameEngine::BilliardsGameEngine()
 	: p_quitApplication(false), m_gameTime(nullptr), m_gameInput(nullptr), 
 	m_gameRenderManager(nullptr), m_physicsManager(nullptr),
-	m_sceneManager(nullptr), m_gameAssetResources(nullptr),	m_gameSpacesComputer(nullptr),  
+	m_sceneManager(nullptr), m_uiCaster(nullptr),
+	m_gameAssetResources(nullptr),	m_gameSpacesComputer(nullptr),  
 	m_gameRandom(nullptr), m_gameTweener(nullptr)
 {
 }
@@ -18,6 +19,7 @@ BilliardsGameEngine::~BilliardsGameEngine()
 	delete m_sceneManager;
 	delete m_physicsManager;
 	delete m_gameRenderManager;
+	delete m_uiCaster;
 	delete m_gameInput;
 	delete m_gameTime;
 }
@@ -28,6 +30,7 @@ void BilliardsGameEngine::Init(const GameSpecifications& specifications,
 	
 	m_gameTime = new GameTime(timeState);
 	m_gameInput = new GameInput(inputState);
+	m_uiCaster = new UICaster(m_gameInput);
 	m_gameRenderManager = new GameRenderManager(renderSystem);
 	m_physicsManager = new Physics2DManager();
 	m_sceneManager = new SceneManager();
@@ -51,15 +54,19 @@ void BilliardsGameEngine::Cleanup()
 
 void BilliardsGameEngine::Update()
 {
+	const float deltaTime = m_gameTime->GetDeltaTime();
+
 	m_gameSpacesComputer->Update();
 	m_sceneManager->UpdateLoading();
 	m_sceneManager->GetActiveScene()->Update();
+	m_gameRenderManager->UpdateRendererQueue();
+	m_uiCaster->Update(deltaTime);
 
-	m_gameTweener->Update(m_gameTime->GetDeltaTime());
-	m_physicsManager->Update(m_gameTime->GetDeltaTime());
+	m_gameTweener->Update(deltaTime);
+	m_physicsManager->Update(deltaTime);
 }
 
 void BilliardsGameEngine::Render()
 {
-	m_sceneManager->GetActiveScene()->Render();
+	m_gameRenderManager->DrawRendererQueue();
 }

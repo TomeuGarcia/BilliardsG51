@@ -39,6 +39,7 @@ public:
 public:
 	void AddToRenderQueue(const std::shared_ptr<Renderer> renderer);
 	void ClearRenderQueue();
+	void UpdateRendererQueue();
 	void DrawRendererQueue();
 
 
