@@ -2,8 +2,10 @@
 
 void BilliardsGameScene::CreateGameObjects()
 {
+	BilliardsScore::Configuration scoreConfiguration{ 10, 30, 50 };
+
 	GameObject* managerGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>::Zero(), "Manager");
-	std::shared_ptr<BilliardsGameplayManager> manager = std::make_shared<BilliardsGameplayManager>();
+	std::shared_ptr<BilliardsGameplayManager> manager = std::make_shared<BilliardsGameplayManager>(scoreConfiguration);
 	managerGameObject->AttachBehaviour(manager);
 
 
@@ -19,7 +21,25 @@ void BilliardsGameScene::CreateGameObjects()
 		GameAssetResources::GetInstance()->GetBlueStickImageData(), "Blue stick");
 
 
+	FadingRenderer* fadingText_whiteBallEnterHole = GetPrefabUtilities().CreateFadingText("Oops!", Colors::White, false);
+	FadingRenderer* fadingText_blackBallEnterHole = GetPrefabUtilities().CreateFadingText("Oops!", Colors::DarkPurple, false);
+	FadingRenderer* fadingText_wrongBallEnterHole = GetPrefabUtilities().CreateFadingText("Wrong!", Colors::White, false);
+	FadingRenderer* fadingText_ballEnterHoleScore = 
+		GetPrefabUtilities().CreateFadingText("+" + std::to_string(scoreConfiguration.p_addValue), Colors::White, true);
+	FadingRenderer* fadingText_ballEnterHoleScoreConsecutive = 
+		GetPrefabUtilities().CreateFadingText("+" + std::to_string(scoreConfiguration.p_consecutiveAddValue), Colors::White, true);
+	FadingRenderer* fadingText_ballEnterHoleScoreLast = 
+		GetPrefabUtilities().CreateFadingText("+" + std::to_string(scoreConfiguration.p_addLastValue), Colors::White, true);
+
+
 	manager->Init(balls, boardPosition, redStick, blueStick);	
+	manager->GetFeedbackDisplay().Init(
+		fadingText_whiteBallEnterHole,
+		fadingText_blackBallEnterHole,
+		fadingText_wrongBallEnterHole,
+		fadingText_ballEnterHoleScore,
+		fadingText_ballEnterHoleScoreConsecutive,
+		fadingText_ballEnterHoleScoreLast);
 }
 
 

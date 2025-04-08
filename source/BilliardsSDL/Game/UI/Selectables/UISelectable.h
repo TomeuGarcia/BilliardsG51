@@ -21,6 +21,8 @@ public:
 	void SetSelectedState();
 
 	virtual Rect<int> GetWindowBounds() const = 0;
+	virtual bool IsActive() const = 0;
+
 	virtual void Update(const float& deltaTime) = 0;
 
 

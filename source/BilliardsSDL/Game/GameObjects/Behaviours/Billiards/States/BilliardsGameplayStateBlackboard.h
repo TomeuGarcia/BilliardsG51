@@ -21,6 +21,7 @@ public:
 	BilliardsPlayer* GetPlayerBlue();
 	void SetCurrentPlayer(BilliardsPlayer* currentPlayer);
 	BilliardsPlayer* GetCurrentPlayer() const;
+	BilliardsPlayer* GetOtherPlayer() const;
 
 	const std::vector<BilliardBall*>& GetBalls() const;
 

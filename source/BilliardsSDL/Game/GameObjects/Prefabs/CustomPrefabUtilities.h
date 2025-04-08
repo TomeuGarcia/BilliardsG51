@@ -5,6 +5,8 @@
 #include "../../GameObjects/Behaviours/Billiards/BilliardStick.h"
 #include "../../GameObjects/Behaviours/Billiards/Holes/BilliardsBoardHole.h"
 
+#include "../../GameObjects/Behaviours/RendererExtras/FadingRenderer.h"
+
 
 class CustomPrefabUtilities
 {
@@ -31,6 +33,12 @@ public:
 	void CreateBoardHoles(const Vector2<float>& boardCenter, IBilliardBoardHoleInteractionsManager* holeInteractionManager);
 	GameObject* CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName,
 		IBilliardBoardHoleInteractionsManager* holeInteractionManager);
+
+
+public:
+	FadingRenderer* CreateFadingText(const std::string& textString, const Color& color, const bool& big);
+
+
 
 private:
 	SceneCreateUtilities* m_sceneCreateUtilities;

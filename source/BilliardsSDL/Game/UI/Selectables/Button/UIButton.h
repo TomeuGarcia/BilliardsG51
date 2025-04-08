@@ -12,17 +12,18 @@ class UIButton : public UISelectable
 public:
 	UIButton(const std::shared_ptr<Renderer>& renderer, const ColorBlock& colorBlock);
 
-	Rect<int> GetWindowBounds() const override;
+	virtual Rect<int> GetWindowBounds() const override;
+	virtual bool IsActive() const override;
 
-	void Update(const float& deltaTime) override;
+	virtual void Update(const float& deltaTime) override;
 
-	void OnUnhovered() override;
-	void OnHovered() override;
-	void OnSelected() override;
+	virtual void OnUnhovered() override;
+	virtual void OnHovered() override;
+	virtual void OnSelected() override;
 
 
 private:
-	void UpdateGoalColor(const Color& goalColor);
+	void UpdateGoalColor(const Color& goalColor, const Color& currentColor);
 
 
 public:

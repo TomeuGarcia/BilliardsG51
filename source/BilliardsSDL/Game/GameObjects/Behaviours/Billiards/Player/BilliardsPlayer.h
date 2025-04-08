@@ -8,7 +8,7 @@
 class BilliardsPlayer
 {
 public:
-	BilliardsPlayer();
+	BilliardsPlayer(const BilliardsScore::Configuration& scoreConfiguration);
 	~BilliardsPlayer();
 
 	void Init(BilliardStick* stick, const Color& backgroundColor, const std::set<BilliardBall*>& remainingColoredBalls,

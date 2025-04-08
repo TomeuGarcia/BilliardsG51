@@ -1,9 +1,10 @@
 #include "BilliardsPlayer.h"
 
-BilliardsPlayer::BilliardsPlayer()
+BilliardsPlayer::BilliardsPlayer(const BilliardsScore::Configuration& scoreConfiguration)
 	: m_stick(nullptr),
-	m_score(10, 15, 30),
-	m_name()
+	m_score(scoreConfiguration),
+	m_name(),
+	m_backgroundColor(Colors::White)
 {
 }
 

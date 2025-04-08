@@ -165,3 +165,21 @@ GameObject* CustomPrefabUtilities::CreateBoardHole(const Vector2<float>& positio
 
 	return holeGameObject;
 }
+
+
+
+
+FadingRenderer* CustomPrefabUtilities::CreateFadingText(const std::string& textString, const Color& color, const bool& big)
+{
+	GameObject* fadingTextGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), std::string("FadingText_") + textString);
+
+	const int fonSize = big ? 32 : 23;
+	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(fadingTextGameObject, 
+		GameAssetResources::GetInstance()->GetDebugTextFontData(), textString, fonSize);
+
+	std::shared_ptr<FadingRenderer> fadingRenderer = std::make_shared<FadingRenderer>(text.get(), 1.0f, Vector2<float>::Up() * 0.5f, 1.2f);
+	fadingRenderer->SetStartingColor(color);
+	fadingTextGameObject->AttachBehaviour(fadingRenderer);
+	
+	return fadingRenderer.get();
+}

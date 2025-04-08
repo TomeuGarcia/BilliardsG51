@@ -16,6 +16,7 @@
 #include "States/GameFinish/BilliardsGameplayState_GameFinish.h"
 
 #include "Holes/IBilliardBoardHoleInteractionsManager.h"
+#include "BilliardsGameplayFeedbackDisplay.h"
 
 #include "../../../Scenes/SceneManager.h"
 
@@ -27,11 +28,13 @@ class BilliardsGameplayManager : public Behaviour,
 	public IBilliardBoardHoleInteractionsManager
 {
 public:
-	BilliardsGameplayManager();
+	BilliardsGameplayManager(const BilliardsScore::Configuration& scoreConfiguration);
 	~BilliardsGameplayManager();
 
 	void Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter,
 		BilliardStick* redStick, BilliardStick* blueStick);
+
+	BilliardsGameplayFeedbackDisplay& GetFeedbackDisplay();
 
 	virtual void Update() override;
 	virtual void OnDestroy() override;
@@ -56,18 +59,22 @@ public:
 
 private:
 	void OnAnyBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter);
-	void OnWhiteBallEnteredHole();
-	void OnBlackBallEnteredHole();
-	void OnRedBallEnteredHole(BilliardBall* redBall);
-	void OnBlueBallEnteredHole(BilliardBall* blueBall);
+	void OnWhiteBallEnteredHole(const Vector2<float>& holeCenter);
+	void OnBlackBallEnteredHole(const Vector2<float>& holeCenter);
+	void OnRedBallEnteredHole(BilliardBall* redBall, const Vector2<float>& holeCenter);
+	void OnBlueBallEnteredHole(BilliardBall* blueBall, const Vector2<float>& holeCenter);
 
-	void IncrementPlayerScoreWithThisTurnState();
+	void IncrementPlayerScoreWithThisTurnState(const Vector2<float>& holeCenter);
 
 
 private:
 	std::unordered_map<BilliardsGameplayState::Type, std::shared_ptr<BilliardsGameplayState>> m_gameplayStatesMap;
 	BilliardsGameplayState* m_currentState;
 	BilliardsGameplayStateBlackboard m_gameplayStatesBlackboard;
+
+
+	BilliardsGameplayFeedbackDisplay m_feedbackDisplay;
+
 
 	BilliardsPlayer m_playerRed;
 	BilliardsPlayer m_playerBlue;

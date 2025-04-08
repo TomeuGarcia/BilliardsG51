@@ -3,8 +3,8 @@
 BilliardsGameplayStateBlackboard::BilliardsGameplayStateBlackboard()
 	: m_playerRed(nullptr), m_playerBlue(nullptr), m_currentPlayer(nullptr), m_boardCenter(), m_balls(),
 	m_specialEventsManager(nullptr),
-	m_pinPullMaxDistance(2.0f),
-	m_stickForceOverDistanceMultiplier(10.0f),
+	m_pinPullMaxDistance(1.5f),
+	m_stickForceOverDistanceMultiplier(13.3f),
 	p_victoryAchieved(false)
 {}
 
@@ -42,6 +42,11 @@ void BilliardsGameplayStateBlackboard::SetCurrentPlayer(BilliardsPlayer* current
 BilliardsPlayer* BilliardsGameplayStateBlackboard::GetCurrentPlayer() const
 {
 	return m_currentPlayer;
+}
+
+BilliardsPlayer* BilliardsGameplayStateBlackboard::GetOtherPlayer() const
+{
+	return m_currentPlayer == m_playerRed ? m_playerBlue : m_playerRed;
 }
 
 

@@ -18,7 +18,9 @@ public:
 	Color GetColorTint() const;
 
 	Rect<int> GetDestinationRect() const;
+	bool IsActive() const;
 
+	Transform* GetTransform() const;
 
 protected:
 	virtual SDL_Rect* GetSourceRect() = 0;

@@ -57,6 +57,11 @@ void UICaster::UpdateHovering()
 	for (; i < m_selectables.size(); ++i)
 	{
 		UISelectable* selectable = m_selectables[i].get();
+		if (!selectable->IsActive())
+		{
+			continue;
+		}
+
 		const bool isBeingHovered = IsSelectableBeingHovered(selectable);
 		selectable->SetHoveredState(isBeingHovered);
 
@@ -69,7 +74,13 @@ void UICaster::UpdateHovering()
 
 	for (; i < m_selectables.size(); ++i)
 	{
-		m_selectables[i]->SetHoveredState(false);
+		UISelectable* selectable = m_selectables[i].get();
+		if (!selectable->IsActive())
+		{
+			continue;
+		}
+
+		selectable->SetHoveredState(false);
 	}
 }
 
@@ -78,6 +89,11 @@ void UICaster::UpdateSelecting()
 	for (size_t i = 0; i < m_selectables.size(); ++i)
 	{
 		UISelectable* selectable = m_selectables[i].get();
+		if (!selectable->IsActive())
+		{
+			continue;
+		}
+
 		if (IsSelectableBeingHovered(selectable))
 		{
 			selectable->SetSelectedState();
@@ -98,6 +114,10 @@ void UICaster::UpdateSelectables(const float& deltaTime)
 {
 	for (auto it = m_selectables.begin(); it < m_selectables.end(); ++it)
 	{
-		(*it)->Update(deltaTime);
+		UISelectable* selectable = it->get();
+		if (selectable->IsActive())
+		{
+			selectable->Update(deltaTime);
+		}		
 	}
 }

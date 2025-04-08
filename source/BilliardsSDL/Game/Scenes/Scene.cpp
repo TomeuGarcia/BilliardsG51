@@ -48,7 +48,10 @@ void Scene::Update()
 {
 	for (auto it = m_gameObjects.begin(); it != m_gameObjects.end(); ++it)
 	{
-		it->Update();
+		if (it->IsActive())
+		{
+			it->Update();
+		}		
 	}
 
 	DoUpdate();

@@ -40,6 +40,16 @@ Rect<int> Renderer::GetDestinationRect() const
     return m_destinationRect;
 }
 
+bool Renderer::IsActive() const
+{
+    return m_gameObject->IsActive();
+}
+
+Transform* Renderer::GetTransform() const
+{
+    return m_gameObject->GetTransform();
+}
+
 const SDL_Rect Renderer::UpdateDestination()
 {
     const Vector2<int> position = GameSpacesComputer::GetInstance()->WorldToWindowPosition(

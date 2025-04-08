@@ -4,7 +4,16 @@
 class BilliardsScore
 {
 public:
-	BilliardsScore(const int& addValue, const int& consecutiveAddValue, const int& addLastValue);
+	struct Configuration
+	{
+	public:
+		int p_addValue;
+		int p_consecutiveAddValue;
+		int p_addLastValue;
+	};
+
+public:
+	BilliardsScore(const Configuration& configuration);
 	~BilliardsScore();
 
 	int GetCurrentValue() const;
@@ -17,7 +26,5 @@ public:
 private:
 	int m_currentValue;
 
-	int m_addValue;
-	int m_consecutiveAddValue;
-	int m_addLastValue;
+	Configuration m_configuration;
 };

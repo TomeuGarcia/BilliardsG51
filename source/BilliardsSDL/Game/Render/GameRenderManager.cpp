@@ -135,7 +135,11 @@ void GameRenderManager::DrawRendererQueue()
 
 	for (auto it = m_renderersQueue.begin(); it != m_renderersQueue.end(); ++it)
 	{
-		(*it)->Render(m_renderSystem->GetRenderer());
+		Renderer* renderer = it->get();
+		if (renderer->IsActive())
+		{
+			renderer->Render(m_renderSystem->GetRenderer());
+		}
 	}
 }
 

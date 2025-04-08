@@ -154,6 +154,9 @@
     <Filter Include="Source Files\Game\UI\Selectables\Button">
       <UniqueIdentifier>{23ab360c-b949-4f6b-9df9-953224f0f255}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\RendererExtras">
+      <UniqueIdentifier>{1af4cf4f-d8ff-4b27-9ada-8982409dafdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -374,6 +377,12 @@
     </ClCompile>
     <ClCompile Include="Game\Systems\GameAppInteractions.cpp">
       <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -634,6 +643,12 @@
     </ClInclude>
     <ClInclude Include="Game\Systems\GameAppInteractions.h">
       <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

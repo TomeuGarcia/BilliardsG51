@@ -35,7 +35,8 @@ public:
 	SDL_Color ToSDLColor() const;
 
 public:
-	static Color Lerp(const Color& a, const Color& b, const float& t);
+	static Color Lerp(const Color& startingColor, const Color& goalColor, const float& t);
+	static Color LerpAlpha(const Color& startingColor, const float& goalAlpha, const float& t);
 
 
 public:

@@ -1,7 +1,7 @@
 #include "BilliardsScore.h"
 
-BilliardsScore::BilliardsScore(const int& addValue, const int& consecutiveAddValue, const int& addLastValue)
-	: m_currentValue(0), m_addValue(addValue), m_consecutiveAddValue(consecutiveAddValue), m_addLastValue(addLastValue)
+BilliardsScore::BilliardsScore(const Configuration& configuration)
+	: m_currentValue(0), m_configuration(configuration)
 {}
 
 BilliardsScore::~BilliardsScore()
@@ -14,15 +14,15 @@ int BilliardsScore::GetCurrentValue() const
 
 void BilliardsScore::Add()
 {
-	m_currentValue += m_addValue;
+	m_currentValue += m_configuration.p_addValue;
 }
 
 void BilliardsScore::AddConsecutive()
 {
-	m_currentValue += m_consecutiveAddValue;
+	m_currentValue += m_configuration.p_consecutiveAddValue;
 }
 
 void BilliardsScore::AddLast()
 {
-	m_currentValue += m_addLastValue;
+	m_currentValue += m_configuration.p_addLastValue;
 }

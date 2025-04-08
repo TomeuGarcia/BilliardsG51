@@ -15,32 +15,12 @@ BilliardBall::~BilliardBall()
 void BilliardBall::Start()
 {
 	m_startPosition = m_rigidbody->GetGameObject()->GetTransform()->p_worldPosition;
-
 	p_originalScale = m_renderer->p_scale;
-
-	/*
-	const Vector2<float> force =
-		GameRandom::GetInstance()->GetRandomUnitCircle() *
-		GameRandom::GetInstance()->GetRandomFloat(7.0f, 9.0f);
-		
-
-	//const Vector2<float> force = m_startPosition * -2;
-	
-	m_rigidbody.get()->ApplyForce(force);
-	*/
 }
 
 void BilliardBall::Update()
 {
 	UpdateRendererWithSpeed();
-
-	/*
-	const Vector2<int> current = GameSpacesComputer::GetInstance()->WorldToWindowPosition(
-		m_rigidbody->GetGameObject()->GetTransform()->p_worldPosition);
-	const Vector2<int> velocity = current + GameSpacesComputer::GetInstance()->WorldToWindowVector(m_rigidbody->GetVelocity());
-
-	GameRenderManager::GetInstance()->DrawDebugLine(Colors::Cyan, current, velocity);
-	*/
 }
 
 void BilliardBall::SetPosition(const Vector2<float>& position)
@@ -100,7 +80,7 @@ float BilliardBall::GetCurrentSpeed()
 
 void BilliardBall::PlayEnterEnterHoleAnimation(const Vector2<float>& holeCenter)
 {
-	const float moveToHoleDuration = Vector2<float>::Distance(holeCenter, GetTransform()->p_worldPosition) / (GetCurrentSpeed() * 0.05f);
+	const float moveToHoleDuration = Math::Clamp(Vector2<float>::Distance(holeCenter, GetTransform()->p_worldPosition) / (GetCurrentSpeed() * 0.2f), 0.1f, 0.5f);
 
 	GameTweener::GetInstance()->TweenPosition(GetTransform(), holeCenter, moveToHoleDuration, 0.0f);
 	GameTweener::GetInstance()->TweenColor(GetRenderer(), Colors::Transparent, moveToHoleDuration, moveToHoleDuration / 2.0f);

@@ -42,6 +42,7 @@ bool ResolvingBoardState_ReturningMissplacedBalls::Update()
 		if (GetBlackboard()->p_victoryAchieved)
 		{
 			SetNextState(Type::PlayerVictory);
+			m_playerkeepsPlaying = false;
 		}
 		else
 		{
@@ -66,7 +67,7 @@ void ResolvingBoardState_ReturningMissplacedBalls::Exit()
 	}
 
 	GetBlackboard()->GetSpecialEventsManager()->ClearMissplacedBalls();
-	GetBlackboard()->GetSpecialEventsManager()->ClearWellplacedBalls();
+	GetBlackboard()->GetSpecialEventsManager()->ClearWellplacedBalls();	
 }
 
 

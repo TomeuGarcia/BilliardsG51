@@ -216,6 +216,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Application\Systems\Time\TimeSystem.cpp" />
     <ClCompile Include="Game\BilliardsGameEngine.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardBall.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.cpp" />
@@ -237,6 +238,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.cpp" />
@@ -296,6 +298,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\BilliardsGameEngine.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Behaviour.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardBall.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.h" />
@@ -319,6 +322,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.h" />

@@ -18,6 +18,9 @@ public:
 
 	void AttachBehaviour(const std::shared_ptr<Behaviour>& behaviour);
 
+	void SetActive(const bool& active);
+	bool IsActive() const;
+
 public:
 	Transform* const GetTransform();	
 	std::string_view GetName();
@@ -27,4 +30,5 @@ private:
 	std::string m_name;
 	Transform m_transform;	
 	std::vector<std::shared_ptr<Behaviour>> m_behaviours;
+	bool m_active;
 };

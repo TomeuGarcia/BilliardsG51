@@ -14,6 +14,11 @@ Rect<int> UIButton::GetWindowBounds() const
 	return m_renderer->GetDestinationRect();
 }
 
+bool UIButton::IsActive() const
+{
+	return m_renderer->IsActive();
+}
+
 
 void UIButton::Update(const float& deltaTime)
 {
@@ -24,22 +29,22 @@ void UIButton::Update(const float& deltaTime)
 
 void UIButton::OnUnhovered()
 {
-	UpdateGoalColor(m_colorBlock.p_normalColor);
+	UpdateGoalColor(m_colorBlock.p_normalColor, m_previousColor);
 }
 
 void UIButton::OnHovered()
 {
-	UpdateGoalColor(m_colorBlock.p_hoveredColor);
+	UpdateGoalColor(m_colorBlock.p_hoveredColor, m_previousColor);
 	p_onHoveredCallback();
 }
 
 void UIButton::OnSelected()
 {
-	UpdateGoalColor(m_colorBlock.p_selectedColor);
+	UpdateGoalColor(m_previousColor, m_colorBlock.p_selectedColor);
 	p_onSelectedCallback();
 }
 
-void UIButton::UpdateGoalColor(const Color& goalColor)
+void UIButton::UpdateGoalColor(const Color& goalColor, const Color& currentColor)
 {
 	m_goalColorTimer.ClearTime();
 	m_previousColor = m_goalColor;
