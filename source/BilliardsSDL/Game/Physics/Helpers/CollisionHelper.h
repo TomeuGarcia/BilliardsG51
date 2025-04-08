@@ -20,6 +20,6 @@ namespace CollisionHelper
 	void ApplyContactCollision(Rigidbody2D* rigidbody, const Vector2<float>& contactNormal, const float& intersectDistance);
 
 
-	void ApplyCollisionForceOnRestingBody(const Rigidbody2D* movingRigidbody, Rigidbody2D* restingRigidbody);
+	void ApplyCollisionForceOnRestingBody(Rigidbody2D* restingRigidbody, const Vector2<float>& otherMotionForce, const Vector2<float>& contactNormal);
 
 }

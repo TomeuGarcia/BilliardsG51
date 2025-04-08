@@ -16,6 +16,8 @@ void BilliardBall::Start()
 {
 	m_startPosition = m_rigidbody->GetGameObject()->GetTransform()->p_worldPosition;
 
+	p_originalScale = m_renderer->p_scale;
+
 	/*
 	const Vector2<float> force =
 		GameRandom::GetInstance()->GetRandomUnitCircle() *
@@ -30,6 +32,8 @@ void BilliardBall::Start()
 
 void BilliardBall::Update()
 {
+	UpdateRendererWithSpeed();
+
 	/*
 	const Vector2<int> current = GameSpacesComputer::GetInstance()->WorldToWindowPosition(
 		m_rigidbody->GetGameObject()->GetTransform()->p_worldPosition);
@@ -96,7 +100,7 @@ float BilliardBall::GetCurrentSpeed()
 
 void BilliardBall::PlayEnterEnterHoleAnimation(const Vector2<float>& holeCenter)
 {
-	const float moveToHoleDuration = Vector2<float>::Distance(holeCenter, GetTransform()->p_worldPosition) / (GetCurrentSpeed() * 0.5f);
+	const float moveToHoleDuration = Vector2<float>::Distance(holeCenter, GetTransform()->p_worldPosition) / (GetCurrentSpeed() * 0.05f);
 
 	GameTweener::GetInstance()->TweenPosition(GetTransform(), holeCenter, moveToHoleDuration, 0.0f);
 	GameTweener::GetInstance()->TweenColor(GetRenderer(), Colors::Transparent, moveToHoleDuration, moveToHoleDuration / 2.0f);
@@ -104,6 +108,28 @@ void BilliardBall::PlayEnterEnterHoleAnimation(const Vector2<float>& holeCenter)
 
 void BilliardBall::PlayExitEnterHoleAnimation(const Vector2<float>& goalPosition, const float& moveDuration)
 {
+	GameTweener::GetInstance()->CompleteColor(GetRenderer());	
+
 	GameTweener::GetInstance()->TweenColor(GetRenderer(), Colors::White, moveDuration, 0.0f);
 	GameTweener::GetInstance()->TweenPosition(GetTransform(), goalPosition, moveDuration, moveDuration / 2.0f);
+}
+
+
+
+void BilliardBall::UpdateRendererWithSpeed()
+{
+	if (m_rigidbody->IsAtRest())
+	{
+		m_renderer->p_scale = p_originalScale;
+		return;
+	}
+
+	const float speedFactor = m_rigidbody->GetSpeed() / 80.0f;
+	const float xScale = 1.0f - Math::Min(0.15f, speedFactor);
+	const float yScale = 1.0f + Math::Min(0.05f, speedFactor);
+	m_renderer->p_scale.x = p_originalScale.x * xScale;
+	m_renderer->p_scale.y = p_originalScale.y * yScale;
+
+	const float rotation = Math::Angle(Vector2<float>::Right(), m_rigidbody->GetVelocity().Normalized());
+	m_renderer->p_rotationInDegrees = rotation;
 }

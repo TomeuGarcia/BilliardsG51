@@ -15,6 +15,7 @@ private:
 			const float& duration, const float& delay);
 
 		void Update(const float& deltaTime);
+		void UpdateComplete();
 		Vector2<float> GetCurrentValue() const;
 		bool HasFinished();
 
@@ -35,6 +36,7 @@ private:
 			const float& duration, const float& delay);
 
 		void Update(const float& deltaTime);
+		void UpdateComplete();
 		Color GetCurrentValue() const;
 		bool HasFinished();
 
@@ -65,6 +67,11 @@ public:
 public:
 	void TweenPosition(Transform* transform, const Vector2<float>& goalPosition, const float& duration, const float& delay);
 	void TweenColor(Renderer* renderer, const Color& goalColor, const float& duration, const float& delay);
+
+public:
+	void CompletePosition(Transform* transform);
+	void CompleteColor(Renderer* renderer);
+
 
 private:
 	void UpdatePositionTweens(const float& deltaTime);

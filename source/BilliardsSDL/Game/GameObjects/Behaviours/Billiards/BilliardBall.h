@@ -52,9 +52,15 @@ public:
 
 
 private:
+	void UpdateRendererWithSpeed();
+
+
+private:
 	std::shared_ptr<CircleCollider2D> m_collider;
 	std::shared_ptr<Rigidbody2D> m_rigidbody;
 	std::shared_ptr<Renderer> m_renderer;
 	Vector2<float> m_startPosition;
 	ColorType m_colorType;
+
+	Vector2<float> p_originalScale;
 };

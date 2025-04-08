@@ -342,7 +342,7 @@ void Physics2DManager::ResolveCollision(Rigidbody2D* rigidbodyA, Rigidbody2D* ri
 
 	if (rigidbodyA->IsAtRest())
 	{
-		rigidbodyA->ApplyForce(motionForceB);
+		CollisionHelper::ApplyCollisionForceOnRestingBody(rigidbodyA, motionForceB, abNormal);
 	}
 	else
 	{
@@ -353,7 +353,7 @@ void Physics2DManager::ResolveCollision(Rigidbody2D* rigidbodyA, Rigidbody2D* ri
 	{
 		if (rigidbodyB->IsAtRest())
 		{
-			rigidbodyB->ApplyForce(motionForceA);
+			CollisionHelper::ApplyCollisionForceOnRestingBody(rigidbodyB, motionForceA, -abNormal);
 		}
 		else
 		{

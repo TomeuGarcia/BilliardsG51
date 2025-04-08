@@ -56,7 +56,7 @@ namespace Colors
 	constexpr const Color SoftRed	{ 230,	40,		60,		255 };
 	constexpr const Color SoftGreen	{ 40,	230,	120,	255 };
 	constexpr const Color SoftBlue	{ 60,	80,		210,	255 };
-	constexpr const Color DarkPurple{ 60,	60,		90,		255 };
+	constexpr const Color DarkPurple{ 90,	30,		90,		255 };
 
 	constexpr const Color Transparent	{ 0,	0,		0,		0 };
 };

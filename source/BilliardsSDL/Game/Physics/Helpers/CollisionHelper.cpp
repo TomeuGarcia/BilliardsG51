@@ -112,13 +112,9 @@ namespace CollisionHelper
 	}
 
 
-
-	void ApplyCollisionForceOnRestingBody(const Rigidbody2D* movingRigidbody, Rigidbody2D* restingRigidbody)
+	void ApplyCollisionForceOnRestingBody(Rigidbody2D* restingRigidbody, const Vector2<float>& otherMotionForce, const Vector2<float>& contactNormal)
 	{
-		const Vector2<float> collisionForce = movingRigidbody->GetAcceleration() * movingRigidbody->p_mass;
-		restingRigidbody->ApplyForce(collisionForce);
+		restingRigidbody->ApplyForce(contactNormal * Vector2<float>::Dot(otherMotionForce, contactNormal));
 	}
-
-
 
 }

@@ -11,6 +11,11 @@ void GameTweener::TransformTween::Update(const float& deltaTime)
 	m_currentTime += deltaTime;
 }
 
+void GameTweener::TransformTween::UpdateComplete()
+{
+	m_currentTime = m_duration;
+}
+
 Vector2<float> GameTweener::TransformTween::GetCurrentValue() const
 {
 	const float t = Math::Clamp01(m_currentTime / m_duration);
@@ -34,6 +39,11 @@ void GameTweener::RendererColorTween::Update(const float& deltaTime)
 	m_currentTime += deltaTime;
 }
 
+void GameTweener::RendererColorTween::UpdateComplete()
+{
+	m_currentTime = m_duration;
+}
+
 Color GameTweener::RendererColorTween::GetCurrentValue() const
 {
 	const float t = Math::Clamp01(m_currentTime / m_duration);
@@ -52,9 +62,11 @@ bool GameTweener::RendererColorTween::HasFinished()
 GameTweener* GameTweener::s_instance = nullptr;
 
 GameTweener::GameTweener()
-	: m_positionTweens()
+	: m_positionTweens(), 
+	m_colorTweens()
 {
 	m_positionTweens.reserve(30);
+	m_colorTweens.reserve(30);
 
 	s_instance = this;
 }
@@ -94,6 +106,37 @@ void GameTweener::TweenColor(Renderer* renderer, const Color& goalColor, const f
 {
 	m_colorTweens.emplace_back(renderer, renderer->GetColorTint(), goalColor, duration, delay);
 }
+
+
+
+void GameTweener::CompletePosition(Transform* transform)
+{
+	for (auto it = m_positionTweens.begin(); it != m_positionTweens.end(); ++it)
+	{
+		if (it->p_transform == transform)
+		{
+			it->UpdateComplete();
+			it->p_transform->p_worldPosition = it->GetCurrentValue();
+			m_positionTweens.erase(it);
+			return;
+		}
+	}
+}
+
+void GameTweener::CompleteColor(Renderer* renderer)
+{
+	for (auto it = m_colorTweens.begin(); it != m_colorTweens.end(); ++it)
+	{
+		if (it->p_renderer == renderer)
+		{
+			it->UpdateComplete();
+			it->p_renderer->SetColorTint(it->GetCurrentValue());
+			m_colorTweens.erase(it);
+			return;
+		}
+	}
+}
+
 
 
 void GameTweener::UpdatePositionTweens(const float& deltaTime)

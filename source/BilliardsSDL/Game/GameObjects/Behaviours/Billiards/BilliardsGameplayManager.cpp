@@ -79,7 +79,7 @@ void BilliardsGameplayManager::Update()
 
 	if (GameInput::GetInstance()->GetKeyDown(KeyCode::R))
 	{
-		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
+		SceneManager::GetInstance()->LoadScene(SceneName::MainMenu);
 	}
 }
 
