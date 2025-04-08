@@ -7,6 +7,17 @@ CustomPrefabUtilities::CustomPrefabUtilities(SceneCreateUtilities* sceneCreateUt
 {
 }
 
+UIButton* CustomPrefabUtilities::CreateDefaultButton(const Vector2<float>& position, 
+	const TextResourceData& textData, const std::string& textString, const int pointSize)
+{
+	GameObject* buttonGameObject = m_sceneCreateUtilities->CreateGameObject(position, std::string("Button_") + textString);
+	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(buttonGameObject, textData, textString, pointSize);
+	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::White, Colors::Cyan, Colors::SoftGreen });
+
+	return button.get();
+}
+
+
 BilliardBall* CustomPrefabUtilities::CreateBilliardsBall(const Vector2<float>& position, const ImageResourceData& imageData, 
 	const BilliardBall::ColorType& colorType, const int& number)
 {
@@ -106,7 +117,7 @@ void CustomPrefabUtilities::CreateBoardWalls(const Vector2<float>& boardCenter)
 	m_sceneCreateUtilities->CreateInvisibleWall(boardCenter + bottomLeftOffset, horizontalsSize);
 
 
-	const Vector2<float> verticalSize{ 0.45f, 4.25f };
+	const Vector2<float> verticalSize{ 0.45f, 4.1f };
 
 	const Vector2<float> rightOffset{ 4.95f, -0.03f };
 	const Vector2<float> leftOffset{ -4.87f, -0.03f };

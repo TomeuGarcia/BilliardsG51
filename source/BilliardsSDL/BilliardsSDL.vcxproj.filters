@@ -372,6 +372,9 @@
     <ClCompile Include="Game\UI\Selectables\Button\UIButton.cpp">
       <Filter>Source Files\Game\UI\Selectables\Button</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Systems\GameAppInteractions.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
@@ -628,6 +631,9 @@
     </ClInclude>
     <ClInclude Include="Game\UI\Selectables\ColorBlock.h">
       <Filter>Source Files\Game\UI\Selectables</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameAppInteractions.h">
+      <Filter>Source Files\Game\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

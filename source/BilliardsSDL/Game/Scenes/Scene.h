@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "../GameObjects/Prefabs/CustomPrefabUtilities.h"
+#include "../Systems/GameAppInteractions.h"
 
 
 class Scene

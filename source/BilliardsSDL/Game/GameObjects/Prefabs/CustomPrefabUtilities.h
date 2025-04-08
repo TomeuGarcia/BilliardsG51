@@ -11,6 +11,12 @@ class CustomPrefabUtilities
 public:
 	CustomPrefabUtilities(SceneCreateUtilities* sceneCreateUtilities);
 
+
+public:
+	UIButton* CreateDefaultButton(const Vector2<float>& position,
+		const TextResourceData& textData, const std::string& textString, const int pointSize);
+
+
 public:
 	BilliardBall* CreateBilliardsBall(const Vector2<float>& position, const ImageResourceData& imageData,
 		const BilliardBall::ColorType& colorType, const int& number);

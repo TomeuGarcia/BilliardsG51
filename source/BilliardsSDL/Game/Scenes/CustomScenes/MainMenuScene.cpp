@@ -36,23 +36,26 @@ void MainMenuScene::CreateGameObjects()
 	holeGameObject->AttachBehaviour(boardHole);
 	*/
 
-	GameObject* quitGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(-5.0f, 1.25f), "Quit");
-	std::shared_ptr<Text> quitText = GetCreateUtilities().CreateTextComponent(quitGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Quit", 36);
-	std::shared_ptr<UIButton> quitButton = std::make_shared<UIButton>(quitText, ColorBlock{ Colors::White, Colors::Cyan, Colors::Red });
-	UICaster::GetInstance()->AddSelectable(quitButton);
+	UIButton* quitButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(-5.0f, 1.25f),
+		GameAssetResources::GetInstance()->GetDebugTextFontData(), "Quit", 36);
+	quitButton->p_onSelectedCallback = []() { GameAppInteractions::GetInstance()->Quit(); };
+	
 
+	UIButton* playButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(0.0f, 1.25f),
+		GameAssetResources::GetInstance()->GetDebugTextFontData(), "Play", 36);
+	playButton->p_onSelectedCallback = []() { SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame); };
+	
 
-
-	GameObject* playGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 1.25f), "Play");
-	GetCreateUtilities().CreateTextComponent(playGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Play", 36);
-
-	GameObject* rankingGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(5.0f, 1.25f), "Ranking");
-	GetCreateUtilities().CreateTextComponent(rankingGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Ranking", 36);
+	UIButton* rankingButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(5.0f, 1.25f),
+		GameAssetResources::GetInstance()->GetDebugTextFontData(), "Ranking", 36);
+	rankingButton->p_onSelectedCallback = []() { SceneManager::GetInstance()->LoadScene(SceneName::Ranking); };
 
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
 	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Billiards G51", 48);
 }
+
+
 
 void MainMenuScene::DoStart()
 {
@@ -61,8 +64,5 @@ void MainMenuScene::DoStart()
 
 void MainMenuScene::DoUpdate()
 {
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::Space))
-	{
-		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
-	}
+
 }

@@ -75,3 +75,12 @@ GameObject* SceneCreateUtilities::CreateInvisibleWall(const Vector2<float>& posi
 }
 
 
+
+std::shared_ptr<UIButton> SceneCreateUtilities::CreateButton(const std::shared_ptr<Renderer>& renderer, const ColorBlock& colorBlock)
+{
+	std::shared_ptr<UIButton> button = std::make_shared<UIButton>(renderer, colorBlock);
+	UICaster::GetInstance()->AddSelectable(button);
+	return button;
+}
+
+

@@ -1,4 +1,6 @@
 #pragma once
+#include <functional>
+
 #include "../UISelectable.h"
 #include "../ColorBlock.h"
 #include "../../../Render/Renderers/Renderer.h"
@@ -22,6 +24,10 @@ public:
 private:
 	void UpdateGoalColor(const Color& goalColor);
 
+
+public:
+	std::function<void()> p_onSelectedCallback;
+	std::function<void()> p_onHoveredCallback;
 
 private:
 	std::shared_ptr<Renderer> m_renderer;

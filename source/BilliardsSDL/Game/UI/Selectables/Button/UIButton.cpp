@@ -2,7 +2,9 @@
 
 UIButton::UIButton(const std::shared_ptr<Renderer>& renderer, const ColorBlock& colorBlock)
 	: m_renderer(renderer), m_colorBlock(colorBlock),
-	m_goalColorTimer(0.15f), m_previousColor(colorBlock.p_normalColor), m_goalColor(colorBlock.p_normalColor)
+	m_goalColorTimer(0.15f), m_previousColor(colorBlock.p_normalColor), m_goalColor(colorBlock.p_normalColor),
+	p_onSelectedCallback([](){}),
+	p_onHoveredCallback([](){})
 {
 }
 
@@ -23,19 +25,18 @@ void UIButton::Update(const float& deltaTime)
 void UIButton::OnUnhovered()
 {
 	UpdateGoalColor(m_colorBlock.p_normalColor);
-	printf("Unhovered\n");
 }
 
 void UIButton::OnHovered()
 {
 	UpdateGoalColor(m_colorBlock.p_hoveredColor);
-	printf("Hovered\n");
+	p_onHoveredCallback();
 }
 
 void UIButton::OnSelected()
 {
 	UpdateGoalColor(m_colorBlock.p_selectedColor);
-	printf("Selected\n");
+	p_onSelectedCallback();
 }
 
 void UIButton::UpdateGoalColor(const Color& goalColor)

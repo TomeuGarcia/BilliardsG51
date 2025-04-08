@@ -2,6 +2,7 @@
 #include <utility>
 #include <iostream>
 
+#include "Systems/GameAppInteractions.h"
 #include "Systems/GameTime.h"
 #include "Systems/GameInput.h"
 #include "Systems/GameAssetResources.h"
@@ -26,10 +27,11 @@ public:
 	void Update();
 	void Render();
 
+	bool WantsToQuit() const;
 
-public:
-	bool p_quitApplication;
+
 private:
+	GameAppInteractions* m_gameAppInteractions;
 	GameTime* m_gameTime;
 	GameInput* m_gameInput;
 	GameRenderManager* m_gameRenderManager;

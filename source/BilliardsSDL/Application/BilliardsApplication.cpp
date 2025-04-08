@@ -90,6 +90,7 @@ void BilliardsApplication::GameLoop()
 
 void BilliardsApplication::UpdateRunningFlag()
 {
-	m_running = !m_inputSystem.GetWindowInputs().p_closeWindow || 
-		m_gameEngine.p_quitApplication;
+	m_running = 
+		!(m_inputSystem.GetWindowInputs().p_closeWindow || 
+		  m_gameEngine.WantsToQuit());
 }

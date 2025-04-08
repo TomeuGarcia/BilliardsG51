@@ -33,10 +33,12 @@ public:
 
 	GameObject* CreateGameObject(const Vector2<float>& position, const std::string& name);
 
+
 	std::shared_ptr<Image> CreateImageComponent(GameObject* owner, 
 		const ImageResourceData& resourceData);
 	std::shared_ptr<Text> CreateTextComponent(GameObject* owner, 
 		const TextResourceData& resourceData, const std::string& textString, const int pointSize);
+
 
 	std::shared_ptr<Rigidbody2D> CreateRigidbodyComponent(GameObject* owner,
 		const std::shared_ptr<PhysicMaterial>& physicMaterial, const float& mass, const float& gravityScale);
@@ -45,8 +47,10 @@ public:
 	std::shared_ptr<AABoxCollider2D> CreateAABoxColliderComponent(GameObject* owner, 
 		Rigidbody2D* optionalRigidbody, const bool& isTrigger, const Vector2<float>& size);
 
-
 	GameObject* CreateInvisibleWall(const Vector2<float>& position, const Vector2<float>& size);
+
+
+	std::shared_ptr<UIButton> CreateButton(const std::shared_ptr<Renderer>& renderer, const ColorBlock& colorBlock);
 
 
 private:

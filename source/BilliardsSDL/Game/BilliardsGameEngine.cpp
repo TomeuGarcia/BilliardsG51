@@ -2,7 +2,7 @@
 
 
 BilliardsGameEngine::BilliardsGameEngine()
-	: p_quitApplication(false), m_gameTime(nullptr), m_gameInput(nullptr), 
+	: m_gameAppInteractions(), m_gameTime(nullptr), m_gameInput(nullptr),
 	m_gameRenderManager(nullptr), m_physicsManager(nullptr),
 	m_sceneManager(nullptr), m_uiCaster(nullptr),
 	m_gameAssetResources(nullptr),	m_gameSpacesComputer(nullptr),  
@@ -22,12 +22,13 @@ BilliardsGameEngine::~BilliardsGameEngine()
 	delete m_uiCaster;
 	delete m_gameInput;
 	delete m_gameTime;
+	delete m_gameAppInteractions;
 }
 
 void BilliardsGameEngine::Init(const GameSpecifications& specifications, 
 		IInputState* inputState, RenderSystem* renderSystem, ITimeState* timeState, RNGSystem* rngSystem)
 {
-	
+	m_gameAppInteractions = new GameAppInteractions();
 	m_gameTime = new GameTime(timeState);
 	m_gameInput = new GameInput(inputState);
 	m_uiCaster = new UICaster(m_gameInput);
@@ -69,4 +70,10 @@ void BilliardsGameEngine::Update()
 void BilliardsGameEngine::Render()
 {
 	m_gameRenderManager->DrawRendererQueue();
+}
+
+
+bool BilliardsGameEngine::WantsToQuit() const
+{
+	return m_gameAppInteractions->WantsToQuit();
 }
