@@ -82,20 +82,11 @@ BilliardsGameplayFeedbackDisplay& BilliardsGameplayManager::GetFeedbackDisplay()
 
 void BilliardsGameplayManager::Update()
 {
-	//// DEBUG
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::C))
-	{
-		m_gameplayStatesBlackboard.GetCurrentPlayer()->GetScore().Add();
-		OnScoreChanged();
-	}
-
 	if (GameInput::GetInstance()->GetKeyDown(KeyCode::Esc))
 	{
-		m_currentState->Exit();
-		m_currentState = (m_gameplayStatesMap[BilliardsGameplayState::Type::GameFinish]).get();
-		m_currentState->Enter();
+		SceneManager::GetInstance()->LoadScene(SceneName::MainMenu);
+		return;
 	}
-	////
 
 	if (m_currentState->Update())
 	{

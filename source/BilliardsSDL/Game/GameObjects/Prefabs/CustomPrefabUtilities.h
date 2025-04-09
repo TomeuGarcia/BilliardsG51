@@ -20,6 +20,8 @@ public:
 public:
 	UIButton* CreateDefaultButton(const Vector2<float>& position,
 		const TextResourceData& textData, const std::string& textString, const int pointSize);
+	UIButton* CreateDangerButton(const Vector2<float>& position,
+		const TextResourceData& textData, const std::string& textString, const int pointSize);
 
 
 public:

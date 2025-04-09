@@ -60,6 +60,9 @@ void MainMenuScene::CreateGameObjects()
 void MainMenuScene::DoStart()
 {
 	GameRenderManager::GetInstance()->SetBackgroundColor(Colors::DarkPurple);
+
+	AABoxColliderDrawer::s_enabled = false;
+	CircleColliderDrawer::s_enabled = false;
 }
 
 void MainMenuScene::DoUpdate()

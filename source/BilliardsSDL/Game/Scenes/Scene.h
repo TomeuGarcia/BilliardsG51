@@ -25,7 +25,7 @@ protected:
 	virtual void CreateGameObjects() = 0;
 	virtual void DoStart() = 0;
 	virtual void DoUpdate() = 0;
-
+	virtual void OnDestroy();
 
 private:
 	std::vector<GameObject> m_gameObjects;

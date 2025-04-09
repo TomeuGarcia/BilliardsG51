@@ -25,7 +25,7 @@ void RankingEntryDisplay::Start()
 	m_nameText->SetColorTint(nameColor.WithAlpha(0));
 
 
-	const float appearDelay = m_index * 0.2f;
+	const float appearDelay = (m_index + 1) * 0.2f;
 	const float appearDuration = 0.2f;
 
 	GameTweener::GetInstance()->TweenColor(m_scoreText,		textColor, appearDuration, appearDelay);

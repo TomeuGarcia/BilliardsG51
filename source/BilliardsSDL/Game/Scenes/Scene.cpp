@@ -25,6 +25,7 @@ void Scene::Cleanup()
 	{
 		it->OnDestroy();
 	}
+	OnDestroy();
 
 	m_gameObjects.clear();
 	GameRenderManager::GetInstance()->ClearRenderQueue();
@@ -55,6 +56,10 @@ void Scene::Update()
 	}
 
 	DoUpdate();
+}
+
+void Scene::OnDestroy()
+{
 }
 
 

@@ -62,3 +62,9 @@ void BilliardsGameScene::DoUpdate()
 	}
 }
 
+void BilliardsGameScene::OnDestroy()
+{
+	AABoxColliderDrawer::s_enabled = false;
+	CircleColliderDrawer::s_enabled = false;
+}
+

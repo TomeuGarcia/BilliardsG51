@@ -20,4 +20,5 @@ protected:
 	virtual void CreateGameObjects() override;
 	virtual void DoStart() override;
 	virtual void DoUpdate() override;
+	virtual void OnDestroy() override;
 };
