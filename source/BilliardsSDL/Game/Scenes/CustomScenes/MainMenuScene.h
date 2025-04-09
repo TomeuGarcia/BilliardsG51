@@ -6,8 +6,6 @@
 #include "../../GameObjects/Behaviours/MainMenu/MainMenuManager.h"
 
 
-
-
 class MainMenuScene : public Scene
 {
 protected:

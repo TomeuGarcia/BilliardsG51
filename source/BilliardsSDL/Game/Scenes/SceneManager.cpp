@@ -75,7 +75,7 @@ Scene* SceneManager::MakeNewSceneByName(const SceneName sceneName)
 			return new MainMenuScene();
 			break;
 		case SceneName::Ranking:
-			return new EmptyScene(Colors::Green);
+			return new RankingScene();
 			break;
 		case SceneName::BilliardGame:
 			return new BilliardsGameScene();

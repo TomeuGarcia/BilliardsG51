@@ -13,14 +13,21 @@ BilliardsGameplayState_GameFinish::~BilliardsGameplayState_GameFinish()
 
 void BilliardsGameplayState_GameFinish::DoEnter()
 {
+    BilliardsPlayer* winnerPlayer = GetBlackboard()->GetCurrentPlayer();
+
     std::printf("\nWinner is %s, with: %i points!\n",
-        GetBlackboard()->GetCurrentPlayer()->GetName().c_str(),
-        GetBlackboard()->GetCurrentPlayer()->GetScore().GetCurrentValue());
+        winnerPlayer->GetName().c_str(),
+        winnerPlayer->GetScore().GetCurrentValue());
+
+    GetBlackboard()->GetSpecialEventsManager()->AskWinnerNameAndAddToRanking(winnerPlayer);
 }
+
+
 
 bool BilliardsGameplayState_GameFinish::Update()
 {
-    return false;
+    SetNextState(Type::GameQuit);
+    return true;
 }
 
 void BilliardsGameplayState_GameFinish::Exit()

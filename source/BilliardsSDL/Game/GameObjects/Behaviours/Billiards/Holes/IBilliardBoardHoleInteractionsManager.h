@@ -6,6 +6,6 @@
 class IBilliardBoardHoleInteractionsManager
 {
 public:
-	virtual void OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter) = 0;
+	virtual void OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter) = 0;
 
 };

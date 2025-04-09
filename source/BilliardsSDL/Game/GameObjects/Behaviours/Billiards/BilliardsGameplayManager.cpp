@@ -82,22 +82,41 @@ BilliardsGameplayFeedbackDisplay& BilliardsGameplayManager::GetFeedbackDisplay()
 
 void BilliardsGameplayManager::Update()
 {
+	//// DEBUG
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::C))
+	{
+		m_gameplayStatesBlackboard.GetCurrentPlayer()->GetScore().Add();
+		OnScoreChanged();
+	}
+
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::Esc))
+	{
+		m_currentState->Exit();
+		m_currentState = (m_gameplayStatesMap[BilliardsGameplayState::Type::GameFinish]).get();
+		m_currentState->Enter();
+	}
+	////
+
 	if (m_currentState->Update())
 	{
 		m_currentState->Exit();
-		m_currentState = (m_gameplayStatesMap[m_currentState->GetNextState()]).get();
-		m_currentState->Enter();
-	}
+		
+		const BilliardsGameplayState::Type nextState = m_currentState->GetNextState();
+		if (nextState == BilliardsGameplayState::Type::GameQuit)
+		{
+			SceneManager::GetInstance()->LoadScene(SceneName::MainMenu);
+			return;
+		}
 
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::R))
-	{
-		SceneManager::GetInstance()->LoadScene(SceneName::MainMenu);
+		m_currentState = (m_gameplayStatesMap[nextState]).get();
+		m_currentState->Enter();
 	}
 }
 
 void BilliardsGameplayManager::OnDestroy()
 {
 	m_currentState->Exit();
+	m_scoresDisplay->Cleanup();
 }
 
 
@@ -139,7 +158,7 @@ bool BilliardsGameplayManager::AllBallsStoppedMoving() const
 
 
 
-void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter)
+void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter)
 {
 	OnAnyBallEnteredHole(ball, holeCenter);
 
@@ -246,7 +265,6 @@ void BilliardsGameplayManager::OnScoreChanged()
 
 
 
-
 const std::vector<BilliardBall*>& BilliardsGameplayManager::GetWellplacedBalls()
 {
 	return m_wellplacedBallsThisTurn;
@@ -291,4 +309,21 @@ const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(Bi
 
 
 	return randomPosition;
+}
+
+
+
+void BilliardsGameplayManager::AskWinnerNameAndAddToRanking(BilliardsPlayer* winnerPlayer)
+{
+	std::printf("\nEnter winner's name: ");
+
+	std::string playerRealName;
+	std::cin >> playerRealName;
+
+	RankingEntry rankingEntry{ playerRealName , winnerPlayer->GetScore().GetCurrentValue() };
+
+	RankingManager rankingManager{};
+	rankingManager.Load();
+	rankingManager.TryAddRankingEntry(rankingEntry);
+	rankingManager.Save();
 }

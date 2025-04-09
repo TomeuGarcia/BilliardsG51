@@ -6,7 +6,8 @@
 struct GameSpecifications
 {
 public:
-	GameSpecifications(const std::string& pathToResourceAssets) :
+	GameSpecifications(const std::string& pathToResourceFiles, const std::string& pathToResourceAssets) :
+		p_pathToResourceFiles(pathToResourceFiles),
 		p_pathToResourceImages(pathToResourceAssets + "Images/"),
 		p_pathToResourceFonts(pathToResourceAssets + "Fonts/"),
 		p_pathToResourceAudios(pathToResourceAssets + "Audios/"),
@@ -16,6 +17,7 @@ public:
 	}
 
 public:
+	std::string p_pathToResourceFiles;
 	std::string p_pathToResourceImages;
 	std::string p_pathToResourceFonts;
 	std::string p_pathToResourceAudios;

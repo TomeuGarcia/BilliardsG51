@@ -13,6 +13,7 @@ public:
 	ConsolePlayerScoresDisplay();
 
 	virtual void Init(const std::vector<BilliardsPlayer*>& players) override;
+	virtual void Cleanup() override;
 	virtual void UpdateDisplayedScore() override;
 
 private:

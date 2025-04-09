@@ -32,7 +32,10 @@ public:
 			(int)(a) };
     }
 
+	Color WithAlpha(const int& newAlpha255) const;
+
 	SDL_Color ToSDLColor() const;
+
 
 public:
 	static Color Lerp(const Color& startingColor, const Color& goalColor, const float& t);
@@ -58,7 +61,9 @@ namespace Colors
 	constexpr inline Color SoftGreen	{ 40,	230,	120,	255 };
 	constexpr inline Color SoftBlue		{ 60,	100,	210,	255 };
 	constexpr inline Color DarkPurple	{ 90,	30,		90,		255 };
+	constexpr inline Color Gold			{ 255,	215,	0,		255 };
 
-	constexpr inline Color Transparent	{ 0,	0,		0,		0 };
+	constexpr inline Color Transparent		{ 0,	0,		0,		0 };
+	constexpr inline Color TransparentWhite	{ 255,	255,	255,	0 };
 };
 

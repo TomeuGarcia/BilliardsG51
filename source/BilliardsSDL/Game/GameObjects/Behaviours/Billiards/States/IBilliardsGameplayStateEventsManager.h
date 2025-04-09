@@ -1,6 +1,7 @@
 #pragma once
 #include "../../../../../Shared/Types/Vector2/Vector2.h"
 #include "../BilliardBall.h"
+#include "../Player/BilliardsPlayer.h"
 
 
 class IBilliardsGameplayStateEventsManager
@@ -19,4 +20,7 @@ public:
 	virtual const std::vector<BilliardBall*>& GetMissplacedBalls() = 0;
 	virtual void ClearWellplacedBalls() = 0;
 	virtual void ClearMissplacedBalls() = 0;
+
+
+	virtual void AskWinnerNameAndAddToRanking(BilliardsPlayer* winnerPlayer) = 0;
 };

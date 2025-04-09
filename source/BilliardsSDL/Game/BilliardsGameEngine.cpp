@@ -5,7 +5,8 @@ BilliardsGameEngine::BilliardsGameEngine()
 	: m_gameAppInteractions(), m_gameTime(nullptr), m_gameInput(nullptr),
 	m_gameRenderManager(nullptr), m_physicsManager(nullptr),
 	m_sceneManager(nullptr), m_uiCaster(nullptr),
-	m_gameAssetResources(nullptr),	m_gameSpacesComputer(nullptr),  
+	m_gameAssetResources(nullptr),	m_gameFileResources(nullptr),
+	m_gameSpacesComputer(nullptr),  
 	m_gameRandom(nullptr), m_gameTweener(nullptr)
 {
 }
@@ -15,6 +16,7 @@ BilliardsGameEngine::~BilliardsGameEngine()
 	delete m_gameTweener;
 	delete m_gameRandom;
 	delete m_gameSpacesComputer;
+	delete m_gameFileResources;
 	delete m_gameAssetResources;
 	delete m_sceneManager;
 	delete m_physicsManager;
@@ -39,6 +41,8 @@ void BilliardsGameEngine::Init(const GameSpecifications& specifications,
 												  specifications.p_pathToResourceImages,
 												  specifications.p_pathToResourceFonts,
 												  specifications.p_pathToResourceAudios);
+	m_gameFileResources = new GameFileResources(specifications.p_pathToResourceFiles);
+
 	m_gameSpacesComputer = new GameSpacesComputer(renderSystem, specifications.p_worldWidthInWindow);
 	m_gameRandom = new GameRandom(rngSystem);
 	m_gameTweener = new GameTweener();

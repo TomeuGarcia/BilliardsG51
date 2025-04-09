@@ -7,7 +7,7 @@ public:
 	ApplicationSpecifications()	: 
 		p_windowSize(960, 540), 
 		p_maxDeltaTime(1.0f / 30),
-		p_gameSpecifications("../../resources/Assets/")
+		p_gameSpecifications("../../resources/Files/", "../../resources/Assets/")
 	{
 	}
 

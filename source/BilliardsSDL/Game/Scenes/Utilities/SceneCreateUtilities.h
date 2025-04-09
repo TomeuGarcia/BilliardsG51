@@ -6,6 +6,7 @@
 
 #include "../../Systems/GameTime.h"
 #include "../../Systems/GameAssetResources.h"
+#include "../../Systems/GameFileResources.h"
 #include "../../Systems/GameRandom.h"
 #include "../../Systems/GameTweener.h"
 

@@ -1,11 +1,14 @@
 #pragma once
 #include "../../Scenes/Utilities/SceneCreateUtilities.h"
 
-#include "../../GameObjects/Behaviours/Billiards/BilliardBall.h"
-#include "../../GameObjects/Behaviours/Billiards/BilliardStick.h"
-#include "../../GameObjects/Behaviours/Billiards/Holes/BilliardsBoardHole.h"
+#include "../Behaviours/Billiards/BilliardBall.h"
+#include "../Behaviours/Billiards/BilliardStick.h"
+#include "../Behaviours/Billiards/Holes/BilliardsBoardHole.h"
 
-#include "../../GameObjects/Behaviours/RendererExtras/FadingRenderer.h"
+#include "../Behaviours/RendererExtras/FadingRenderer.h"
+
+#include "../Behaviours/Ranking/RankingEntry.h"
+#include "../Behaviours/Ranking/RankingEntryDisplay.h"
 
 
 class CustomPrefabUtilities
@@ -37,6 +40,10 @@ public:
 
 public:
 	FadingRenderer* CreateFadingText(const std::string& textString, const Color& color, const bool& big);
+
+
+public:
+	void CreateRankingEntryDisplay(const Vector2<float>& position, const RankingEntry& rankingEntry, const int& index);
 
 
 

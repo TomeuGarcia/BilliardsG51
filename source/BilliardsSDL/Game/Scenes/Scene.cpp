@@ -6,7 +6,7 @@ Scene::Scene()
 	m_createUtilities(&m_gameObjects),
 	m_customPrefabs(&m_createUtilities)
 {
-	m_gameObjects.reserve(40); // For some reason this sets the maximum amount of possible gameObjects...
+	m_gameObjects.reserve(50); // For some reason this sets the maximum amount of possible gameObjects...
 }
 
 Scene::~Scene()

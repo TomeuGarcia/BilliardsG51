@@ -160,6 +160,15 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\ScoreDisplay">
       <UniqueIdentifier>{1d7c34d7-1613-4728-9de7-b2efab78dd9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Application\Systems\Files">
+      <UniqueIdentifier>{40fdef07-2d3c-426b-ab00-3c5148a1c6d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application\Systems\Files\Binary">
+      <UniqueIdentifier>{ea235a93-b338-4a30-88f6-9811079b9c0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Ranking">
+      <UniqueIdentifier>{6a0ef233-86ee-4341-ab56-5e78357462a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -389,6 +398,33 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\ScoreDisplay\ConsolePlayerScoresDisplay.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\ScoreDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Files\Binary\BinaryFile.cpp">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Files\Binary\BinaryUtilities.cpp">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameFileResources.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Files\FilePathData.cpp">
+      <Filter>Source Files\Application\Systems\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CustomScenes\RankingScene.cpp">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntry.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingFileData.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -661,6 +697,36 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\ScoreDisplay\ConsolePlayerScoresDisplay.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\ScoreDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Files\Binary\IBinarySerializable.h">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Files\Binary\BinaryFile.h">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Files\Binary\BinaryUtilities.h">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameFileResources.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Files\FilePathData.h">
+      <Filter>Source Files\Application\Systems\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CustomScenes\RankingScene.h">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingFileData.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntry.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

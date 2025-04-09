@@ -19,6 +19,8 @@
 #include "BilliardsGameplayFeedbackDisplay.h"
 #include "ScoreDisplay/IPlayerScoresDisplay.h"
 
+#include "../Ranking/RankingManager.h"
+
 #include "../../../Scenes/SceneManager.h"
 
 
@@ -55,9 +57,11 @@ public:
 	virtual void ClearMissplacedBalls() override;
 
 
+	virtual void AskWinnerNameAndAddToRanking(BilliardsPlayer* winnerPlayer) override;
+
 
 public:
-	void OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter) override;
+	void OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter) override;
 
 private:
 	void OnAnyBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter);
@@ -92,4 +96,5 @@ private:
 	std::vector<BilliardBall*> m_missplacedBallsThisTurn;
 
 	bool m_blackBallWellPlaced;
+
 };

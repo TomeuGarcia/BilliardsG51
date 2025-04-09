@@ -4,6 +4,6 @@ MainMenuManager::MainMenuManager()
 {
 }
 
-void MainMenuManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter)
+void MainMenuManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter)
 {
 }

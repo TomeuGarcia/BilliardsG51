@@ -208,6 +208,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application\BilliardsApplication.cpp" />
+    <ClCompile Include="Application\Systems\Files\Binary\BinaryFile.cpp" />
+    <ClCompile Include="Application\Systems\Files\Binary\BinaryUtilities.cpp" />
+    <ClCompile Include="Application\Systems\Files\FilePathData.cpp" />
     <ClCompile Include="Application\Systems\Input\InputSystem.cpp" />
     <ClCompile Include="Application\Systems\Input\KeyState.cpp" />
     <ClCompile Include="Application\Systems\Input\WindowInputs.cpp" />
@@ -239,6 +242,10 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntry.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingFileData.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingManager.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.cpp" />
@@ -266,11 +273,13 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Scenes\CustomScenes\BilliardsGameScene.cpp" />
     <ClCompile Include="Game\Scenes\CustomScenes\EmptyScene.cpp" />
     <ClCompile Include="Game\Scenes\CustomScenes\MainMenuScene.cpp" />
+    <ClCompile Include="Game\Scenes\CustomScenes\RankingScene.cpp" />
     <ClCompile Include="Game\Scenes\Scene.cpp" />
     <ClCompile Include="Game\Scenes\SceneManager.cpp" />
     <ClCompile Include="Game\Scenes\Utilities\SceneCreateUtilities.cpp" />
     <ClCompile Include="Game\Systems\GameAppInteractions.cpp" />
     <ClCompile Include="Game\Systems\GameAssetResources.cpp" />
+    <ClCompile Include="Game\Systems\GameFileResources.cpp" />
     <ClCompile Include="Game\Systems\GameInput.cpp" />
     <ClCompile Include="Game\Systems\GameRandom.cpp" />
     <ClCompile Include="Game\Systems\GameSpacesComputer.cpp" />
@@ -287,6 +296,10 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
   <ItemGroup>
     <ClInclude Include="Application\ApplicationSpecifications.h" />
     <ClInclude Include="Application\BilliardsApplication.h" />
+    <ClInclude Include="Application\Systems\Files\Binary\BinaryFile.h" />
+    <ClInclude Include="Application\Systems\Files\Binary\BinaryUtilities.h" />
+    <ClInclude Include="Application\Systems\Files\Binary\IBinarySerializable.h" />
+    <ClInclude Include="Application\Systems\Files\FilePathData.h" />
     <ClInclude Include="Application\Systems\Input\IInputState.h" />
     <ClInclude Include="Application\Systems\Input\InputSystem.h" />
     <ClInclude Include="Application\Systems\Input\KeyCode.h" />
@@ -325,6 +338,10 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntry.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingFileData.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.h" />
@@ -353,12 +370,14 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Scenes\CustomScenes\BilliardsGameScene.h" />
     <ClInclude Include="Game\Scenes\CustomScenes\EmptyScene.h" />
     <ClInclude Include="Game\Scenes\CustomScenes\MainMenuScene.h" />
+    <ClInclude Include="Game\Scenes\CustomScenes\RankingScene.h" />
     <ClInclude Include="Game\Scenes\Scene.h" />
     <ClInclude Include="Game\Scenes\SceneManager.h" />
     <ClInclude Include="Game\Scenes\SceneName.h" />
     <ClInclude Include="Game\Scenes\Utilities\SceneCreateUtilities.h" />
     <ClInclude Include="Game\Systems\GameAppInteractions.h" />
     <ClInclude Include="Game\Systems\GameAssetResources.h" />
+    <ClInclude Include="Game\Systems\GameFileResources.h" />
     <ClInclude Include="Game\Systems\GameInput.h" />
     <ClInclude Include="Game\Systems\GameRandom.h" />
     <ClInclude Include="Game\Systems\GameSpacesComputer.h" />

@@ -15,6 +15,11 @@ void ConsolePlayerScoresDisplay::Init(const std::vector<BilliardsPlayer*>& playe
 	}
 }
 
+void ConsolePlayerScoresDisplay::Cleanup()
+{
+	ClearConsole();
+}
+
 void ConsolePlayerScoresDisplay::UpdateDisplayedScore()
 {
 	ClearConsole();

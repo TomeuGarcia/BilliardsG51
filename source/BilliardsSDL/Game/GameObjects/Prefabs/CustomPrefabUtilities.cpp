@@ -183,3 +183,35 @@ FadingRenderer* CustomPrefabUtilities::CreateFadingText(const std::string& textS
 	
 	return fadingRenderer.get();
 }
+
+
+
+
+void CustomPrefabUtilities::CreateRankingEntryDisplay(const Vector2<float>& position, const RankingEntry& rankingEntry, const int& index)
+{
+	const TextResourceData& textData = GameAssetResources::GetInstance()->GetDebugTextFontData();
+	const int fontSize = 25;
+
+	const Color color = index == 0 ? Colors::Gold : Colors::White;
+
+	std::string placingTextString = std::to_string(index + 1) + '.';
+	GameObject* placingGameObject = m_sceneCreateUtilities->CreateGameObject(position, "RE_Placing");
+	std::shared_ptr<Text> placingText = m_sceneCreateUtilities->CreateTextComponent(placingGameObject, textData, placingTextString, fontSize);
+	placingText->SetColorTint(color);
+
+	std::string scoreTextString = std::to_string(rankingEntry.GetPlayerHighscore());
+	GameObject* scoreGameObject = m_sceneCreateUtilities->CreateGameObject(position, "RE_Score");
+	std::shared_ptr<Text> scoreText = m_sceneCreateUtilities->CreateTextComponent(scoreGameObject, textData, scoreTextString, fontSize);
+	scoreText->SetColorTint(color);
+
+	std::string nameTextString = rankingEntry.GetPlayerName().data();
+	GameObject* nameGameObject = m_sceneCreateUtilities->CreateGameObject(position, "RE_Name");
+	std::shared_ptr<Text> nameText = m_sceneCreateUtilities->CreateTextComponent(nameGameObject, textData, nameTextString, fontSize);
+	nameText->SetColorTint(color);
+
+
+	GameObject* gameObject = m_sceneCreateUtilities->CreateGameObject(position, "RankingEntry_" + std::to_string(index));
+	std::shared_ptr<RankingEntryDisplay> rankingEntryDisplay = std::make_shared<RankingEntryDisplay>(gameObject, index,
+		placingText.get(), scoreText.get(), nameText.get());
+	gameObject->AttachBehaviour(rankingEntryDisplay);
+}

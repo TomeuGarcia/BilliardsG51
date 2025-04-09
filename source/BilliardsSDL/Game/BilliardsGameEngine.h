@@ -6,6 +6,7 @@
 #include "Systems/GameTime.h"
 #include "Systems/GameInput.h"
 #include "Systems/GameAssetResources.h"
+#include "Systems/GameFileResources.h"
 #include "Systems/GameSpacesComputer.h"
 #include "Systems/GameRandom.h"
 #include "Systems/GameTweener.h"
@@ -39,6 +40,7 @@ private:
 	SceneManager* m_sceneManager;
 	UICaster* m_uiCaster;
 	GameAssetResources* m_gameAssetResources;
+	GameFileResources* m_gameFileResources;
 	GameSpacesComputer* m_gameSpacesComputer;
 	GameRandom* m_gameRandom;
 	GameTweener* m_gameTweener;

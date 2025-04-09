@@ -1,3 +1,4 @@
+#pragma once
 #include "../Billiards/Holes/IBilliardBoardHoleInteractionsManager.h"
 
 
@@ -8,5 +9,5 @@ class MainMenuManager :
 public:
 	MainMenuManager();
 
-	void OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter) override;
+	void OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter) override;
 };

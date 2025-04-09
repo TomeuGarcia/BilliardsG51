@@ -1,5 +1,10 @@
 #include "Color.h"
 
+Color Color::WithAlpha(const int& newAlpha255) const
+{
+    return Color{ r, g, b, newAlpha255 };
+}
+
 SDL_Color Color::ToSDLColor() const
 {
     return SDL_Color{ (Uint8)r, (Uint8)g, (Uint8)b, (Uint8)a };
