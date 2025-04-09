@@ -21,7 +21,8 @@ BilliardsGameplayManager::~BilliardsGameplayManager()
 
 
 void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter, 
-	BilliardStick* redStick, BilliardStick* blueStick)
+	BilliardStick* redStick, BilliardStick* blueStick,
+	const std::shared_ptr<IPlayerScoresDisplay> scoresDisplay)
 {
 	m_whiteBall = balls[0];
 	m_blackBall = balls[8];
@@ -38,10 +39,15 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 		remainingBlueBalls.emplace(balls[i]);
 	}
 
-	m_playerRed.Init(redStick, Colors::SoftRed, remainingRedBalls, "Red");
-	m_playerBlue.Init(blueStick, Colors::SoftBlue, remainingBlueBalls, "Blue");
-	m_gameplayStatesBlackboard.Init(balls, boardCenter, &m_playerRed, &m_playerBlue, this);
+	m_playerRed.Init(redStick, Colors::SoftRed, remainingRedBalls, "Player Red");
+	m_playerBlue.Init(blueStick, Colors::SoftBlue, remainingBlueBalls, "Player Blue");
+	
+	m_scoresDisplay = scoresDisplay;
+	m_scoresDisplay->Init({ &m_playerRed, &m_playerBlue });
+	m_scoresDisplay->UpdateDisplayedScore();
 
+	
+	m_gameplayStatesBlackboard.Init(balls, boardCenter, &m_playerRed, &m_playerBlue, this);
 
 	m_gameplayStatesMap[BilliardsGameplayState::Type::Init] = 
 			  std::make_shared<BilliardsGameplayState_Init>(&m_gameplayStatesBlackboard);
@@ -185,37 +191,36 @@ void BilliardsGameplayManager::OnBlackBallEnteredHole(const Vector2<float>& hole
 		m_wellplacedBallsThisTurn.emplace_back(m_blackBall);
 		m_gameplayStatesBlackboard.p_victoryAchieved = true;
 		m_feedbackDisplay.PlayBallEnterHoleScoreLast(holeCenter);
+		OnScoreChanged();
 	}
 }
 
 void BilliardsGameplayManager::OnRedBallEnteredHole(BilliardBall* redBall, const Vector2<float>& holeCenter)
 {
-	if (m_gameplayStatesBlackboard.GetCurrentPlayer() == &m_playerRed)
-	{
-		m_wellplacedBallsThisTurn.push_back(redBall);
-		IncrementPlayerScoreWithThisTurnState(holeCenter);
-	}
-	else
-	{
-		m_feedbackDisplay.PlayWrongBallEnterHole(holeCenter, m_gameplayStatesBlackboard.GetOtherPlayer()->GetBackgroundColor());
-	}
-
-	m_playerRed.RemoveRemainingColoredBall(redBall);
+	OnPlayerBallEnteredHole(redBall, holeCenter, &m_playerRed);
 }
 
 void BilliardsGameplayManager::OnBlueBallEnteredHole(BilliardBall* blueBall, const Vector2<float>& holeCenter)
 {
-	if (m_gameplayStatesBlackboard.GetCurrentPlayer() == &m_playerBlue)
+	OnPlayerBallEnteredHole(blueBall, holeCenter, &m_playerBlue);
+}
+
+void BilliardsGameplayManager::OnPlayerBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter, BilliardsPlayer* ballOwnerPlayer)
+{
+	if (m_gameplayStatesBlackboard.GetCurrentPlayer() == ballOwnerPlayer)
 	{
-		m_wellplacedBallsThisTurn.push_back(blueBall);
+		m_wellplacedBallsThisTurn.push_back(ball);
 		IncrementPlayerScoreWithThisTurnState(holeCenter);
 	}
 	else
 	{
-		m_feedbackDisplay.PlayWrongBallEnterHole(holeCenter, m_gameplayStatesBlackboard.GetOtherPlayer()->GetBackgroundColor());
+		BilliardsPlayer* otherPlayer = m_gameplayStatesBlackboard.GetOtherPlayer();
+		m_feedbackDisplay.PlayWrongBallEnterHole(holeCenter, otherPlayer->GetBackgroundColor());
+		otherPlayer->GetScore().AddByOtherPlayer();
 	}
 
-	m_playerBlue.RemoveRemainingColoredBall(blueBall);
+	ballOwnerPlayer->RemoveRemainingColoredBall(ball);
+	OnScoreChanged();
 }
 
 void BilliardsGameplayManager::IncrementPlayerScoreWithThisTurnState(const Vector2<float>& holeCenter)
@@ -232,6 +237,11 @@ void BilliardsGameplayManager::IncrementPlayerScoreWithThisTurnState(const Vecto
 		currentPlayer->GetScore().AddConsecutive();
 		m_feedbackDisplay.PlayBallEnterHoleScoreConsecutive(holeCenter);
 	}
+}
+
+void BilliardsGameplayManager::OnScoreChanged()
+{
+	m_scoresDisplay->UpdateDisplayedScore();
 }
 
 
@@ -261,7 +271,7 @@ void BilliardsGameplayManager::ClearMissplacedBalls()
 
 const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(BilliardBall* ball) const 
 {
-	const Vector2<float> randomBounds{ 2.5f, 1.5f };
+	const Vector2<float> randomBounds{ 1.0f, 0.75f };
 	const Circle& ballCollisionShape = ball->GetCollisionCircle();
 
 	bool foundValidPosition = false;

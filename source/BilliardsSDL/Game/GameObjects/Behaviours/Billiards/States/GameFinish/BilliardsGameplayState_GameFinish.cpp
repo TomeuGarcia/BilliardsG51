@@ -13,7 +13,7 @@ BilliardsGameplayState_GameFinish::~BilliardsGameplayState_GameFinish()
 
 void BilliardsGameplayState_GameFinish::DoEnter()
 {
-    printf("Winner is %s, with: %i points!\n",
+    std::printf("\nWinner is %s, with: %i points!\n",
         GetBlackboard()->GetCurrentPlayer()->GetName().c_str(),
         GetBlackboard()->GetCurrentPlayer()->GetScore().GetCurrentValue());
 }

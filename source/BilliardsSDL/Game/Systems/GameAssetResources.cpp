@@ -15,8 +15,8 @@ GameAssetResources::GameAssetResources(const float& pixelsToUnits,
 	m_blueBallImageData(pathToResourceImages + "BilliardsSprites.png",	Vector2<int>(32, 0), Vector2<int>(32, 32), false, pixelsToUnits),
 	m_redBallImageData(pathToResourceImages + "BilliardsSprites.png",	Vector2<int>(64, 0), Vector2<int>(32, 32), false, pixelsToUnits),
 	m_blackBallImageData(pathToResourceImages + "BilliardsSprites.png", Vector2<int>(96, 0), Vector2<int>(32, 32), false, pixelsToUnits),
-	m_blueStickImageData(pathToResourceImages + "BilliardsSprites.png",	Vector2<int>(132, 0), Vector2<int>(340, 12), false, pixelsToUnits),
-	m_redStickImageData(pathToResourceImages + "BilliardsSprites.png",	Vector2<int>(132, 17), Vector2<int>(340, 12), false, pixelsToUnits),
+	m_blueStickImageData(pathToResourceImages + "BilliardsSprites.png",	Vector2<int>(132, 0), Vector2<int>(340, 13), false, pixelsToUnits),
+	m_redStickImageData(pathToResourceImages + "BilliardsSprites.png",	Vector2<int>(132, 17), Vector2<int>(340, 13), false, pixelsToUnits),
 	m_boardImageData(pathToResourceImages + "BilliardsSprites.png",		Vector2<int>(0, 32), Vector2<int>(1250, 702), false, pixelsToUnits),
 
 	m_debugTextFontData(pathToResourceFonts + "hinted-GWENT-ExtraBold.ttf")

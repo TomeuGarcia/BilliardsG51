@@ -45,6 +45,11 @@ bool Renderer::IsActive() const
     return m_gameObject->IsActive();
 }
 
+GameObject* Renderer::GetGameObject() const
+{
+    return m_gameObject;
+}
+
 Transform* Renderer::GetTransform() const
 {
     return m_gameObject->GetTransform();

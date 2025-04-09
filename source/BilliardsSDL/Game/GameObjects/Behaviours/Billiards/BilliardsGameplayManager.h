@@ -17,6 +17,7 @@
 
 #include "Holes/IBilliardBoardHoleInteractionsManager.h"
 #include "BilliardsGameplayFeedbackDisplay.h"
+#include "ScoreDisplay/IPlayerScoresDisplay.h"
 
 #include "../../../Scenes/SceneManager.h"
 
@@ -32,7 +33,8 @@ public:
 	~BilliardsGameplayManager();
 
 	void Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter,
-		BilliardStick* redStick, BilliardStick* blueStick);
+		BilliardStick* redStick, BilliardStick* blueStick,
+		const std::shared_ptr<IPlayerScoresDisplay> scoresDisplay);
 
 	BilliardsGameplayFeedbackDisplay& GetFeedbackDisplay();
 
@@ -63,8 +65,11 @@ private:
 	void OnBlackBallEnteredHole(const Vector2<float>& holeCenter);
 	void OnRedBallEnteredHole(BilliardBall* redBall, const Vector2<float>& holeCenter);
 	void OnBlueBallEnteredHole(BilliardBall* blueBall, const Vector2<float>& holeCenter);
+	void OnPlayerBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter, BilliardsPlayer* ballOwnerPlayer);
 
 	void IncrementPlayerScoreWithThisTurnState(const Vector2<float>& holeCenter);
+
+	void OnScoreChanged();
 
 
 private:
@@ -74,7 +79,7 @@ private:
 
 
 	BilliardsGameplayFeedbackDisplay m_feedbackDisplay;
-
+	std::shared_ptr<IPlayerScoresDisplay> m_scoresDisplay;
 
 	BilliardsPlayer m_playerRed;
 	BilliardsPlayer m_playerBlue;

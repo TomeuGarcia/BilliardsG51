@@ -10,6 +10,8 @@
 #include "../../GameObjects/Behaviours/Billiards/BilliardsGameplayManager.h"
 #include "../../GameObjects/Behaviours/Billiards/Holes/BilliardsBoardHole.h"
 
+#include "../../GameObjects/Behaviours/Billiards/ScoreDisplay/ConsolePlayerScoresDisplay.h"
+
 
 
 class BilliardsGameScene : public Scene

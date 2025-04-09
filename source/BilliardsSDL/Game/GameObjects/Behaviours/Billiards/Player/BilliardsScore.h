@@ -10,6 +10,7 @@ public:
 		int p_addValue;
 		int p_consecutiveAddValue;
 		int p_addLastValue;
+		int p_addByOtherPlayerValue;
 	};
 
 public:
@@ -21,6 +22,10 @@ public:
 	void Add();
 	void AddConsecutive();
 	void AddLast();
+	void AddByOtherPlayer();
+
+private:
+	void IncrementScoreValue(const int& valueIncrement);
 
 
 private:

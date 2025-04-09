@@ -22,6 +22,7 @@ void FadingRenderer::StartShowing(const Vector2<float>& position)
 void FadingRenderer::SetStartingColor(const Color& color)
 {
 	m_startingColor = color;
+	m_renderer->SetColorTint(color);
 }
 
 
@@ -42,6 +43,7 @@ void FadingRenderer::Update()
 
 	m_fadeTimer.Update(GameTime::GetInstance()->GetDeltaTime());
 	float t = m_fadeTimer.GetRatio01();
+	t *= t;
 
 	m_renderer->SetColorTint(Color::LerpAlpha(m_startingColor, 0.0f, t));
 	m_renderer->p_scale = Vector2<float>::Lerp(m_startingScale, m_goalScale, t);

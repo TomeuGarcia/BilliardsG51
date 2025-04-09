@@ -12,7 +12,7 @@ UIButton* CustomPrefabUtilities::CreateDefaultButton(const Vector2<float>& posit
 {
 	GameObject* buttonGameObject = m_sceneCreateUtilities->CreateGameObject(position, std::string("Button_") + textString);
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(buttonGameObject, textData, textString, pointSize);
-	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::White, Colors::Cyan, Colors::SoftGreen });
+	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::White, Colors::SoftGreen, Colors::SoftGreen });
 
 	return button.get();
 }

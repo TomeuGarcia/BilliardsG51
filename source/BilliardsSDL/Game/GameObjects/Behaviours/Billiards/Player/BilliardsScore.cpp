@@ -14,15 +14,25 @@ int BilliardsScore::GetCurrentValue() const
 
 void BilliardsScore::Add()
 {
-	m_currentValue += m_configuration.p_addValue;
+	IncrementScoreValue(m_configuration.p_addValue);
 }
 
 void BilliardsScore::AddConsecutive()
 {
-	m_currentValue += m_configuration.p_consecutiveAddValue;
+	IncrementScoreValue(m_configuration.p_consecutiveAddValue);
 }
 
 void BilliardsScore::AddLast()
 {
-	m_currentValue += m_configuration.p_addLastValue;
+	IncrementScoreValue(m_configuration.p_addLastValue);
+}
+
+void BilliardsScore::AddByOtherPlayer()
+{
+	IncrementScoreValue(m_configuration.p_addByOtherPlayerValue);
+}
+
+void BilliardsScore::IncrementScoreValue(const int& valueIncrement)
+{
+	m_currentValue += valueIncrement;
 }

@@ -2,7 +2,7 @@
 
 void BilliardsGameScene::CreateGameObjects()
 {
-	BilliardsScore::Configuration scoreConfiguration{ 10, 30, 50 };
+	BilliardsScore::Configuration scoreConfiguration{ 10, 30, 50, 5 };
 
 	GameObject* managerGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>::Zero(), "Manager");
 	std::shared_ptr<BilliardsGameplayManager> manager = std::make_shared<BilliardsGameplayManager>(scoreConfiguration);
@@ -21,6 +21,9 @@ void BilliardsGameScene::CreateGameObjects()
 		GameAssetResources::GetInstance()->GetBlueStickImageData(), "Blue stick");
 
 
+
+
+
 	FadingRenderer* fadingText_whiteBallEnterHole = GetPrefabUtilities().CreateFadingText("Oops!", Colors::White, false);
 	FadingRenderer* fadingText_blackBallEnterHole = GetPrefabUtilities().CreateFadingText("Oops!", Colors::DarkPurple, false);
 	FadingRenderer* fadingText_wrongBallEnterHole = GetPrefabUtilities().CreateFadingText("Wrong!", Colors::White, false);
@@ -32,7 +35,7 @@ void BilliardsGameScene::CreateGameObjects()
 		GetPrefabUtilities().CreateFadingText("+" + std::to_string(scoreConfiguration.p_addLastValue), Colors::White, true);
 
 
-	manager->Init(balls, boardPosition, redStick, blueStick);	
+	manager->Init(balls, boardPosition, redStick, blueStick, std::make_shared<ConsolePlayerScoresDisplay>());	
 	manager->GetFeedbackDisplay().Init(
 		fadingText_whiteBallEnterHole,
 		fadingText_blackBallEnterHole,

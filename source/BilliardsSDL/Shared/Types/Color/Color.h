@@ -46,19 +46,19 @@ public:
 
 namespace Colors
 {
-	constexpr const Color White	{ 255,	255,	255,	255 };
-	constexpr const Color Black	{ 0,	0,		0,		255 };
-	constexpr const Color Red	{ 255,	0,		0,		255 };
-	constexpr const Color Green	{ 0,	255,	0,		255 };
-	constexpr const Color Blue	{ 0,	0,		255,	255 };
-	constexpr const Color Cyan	{ 0,	255,	255,	255 };
-	constexpr const Color Yellow{ 255,	255,	0,		255 };
+	constexpr inline Color White	{ 255,	255,	255,	255 };
+	constexpr inline Color Black	{ 0,	0,		0,		255 };
+	constexpr inline Color Red		{ 255,	0,		0,		255 };
+	constexpr inline Color Green	{ 0,	255,	0,		255 };
+	constexpr inline Color Blue		{ 0,	0,		255,	255 };
+	constexpr inline Color Cyan		{ 0,	255,	255,	255 };
+	constexpr inline Color Yellow	{ 255,	255,	0,		255 };
 
-	constexpr const Color SoftRed	{ 230,	40,		60,		255 };
-	constexpr const Color SoftGreen	{ 40,	230,	120,	255 };
-	constexpr const Color SoftBlue	{ 60,	80,		210,	255 };
-	constexpr const Color DarkPurple{ 90,	30,		90,		255 };
+	constexpr inline Color SoftRed		{ 220,	30,		70,		255 };
+	constexpr inline Color SoftGreen	{ 40,	230,	120,	255 };
+	constexpr inline Color SoftBlue		{ 60,	100,	210,	255 };
+	constexpr inline Color DarkPurple	{ 90,	30,		90,		255 };
 
-	constexpr const Color Transparent	{ 0,	0,		0,		0 };
+	constexpr inline Color Transparent	{ 0,	0,		0,		0 };
 };
 

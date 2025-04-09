@@ -2,7 +2,7 @@
 
 UIButton::UIButton(const std::shared_ptr<Renderer>& renderer, const ColorBlock& colorBlock)
 	: m_renderer(renderer), m_colorBlock(colorBlock),
-	m_goalColorTimer(0.15f), m_previousColor(colorBlock.p_normalColor), m_goalColor(colorBlock.p_normalColor),
+	m_goalColorTimer(0.1f), m_previousColor(colorBlock.p_normalColor), m_goalColor(colorBlock.p_normalColor),
 	p_onSelectedCallback([](){}),
 	p_onHoveredCallback([](){})
 {

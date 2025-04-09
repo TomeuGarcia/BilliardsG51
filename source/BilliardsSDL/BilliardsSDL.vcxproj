@@ -222,6 +222,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsPlayer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsScore.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\ScoreDisplay\ConsolePlayerScoresDisplay.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayState.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayStateBlackboard.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\BilliardsGameplayState_GameFinish.cpp" />
@@ -305,6 +306,8 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\IBilliardBoardHoleInteractionsManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsPlayer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsScore.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\ScoreDisplay\ConsolePlayerScoresDisplay.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\ScoreDisplay\IPlayerScoresDisplay.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayState.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayStateBlackboard.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\BilliardsGameplayState_GameFinish.h" />

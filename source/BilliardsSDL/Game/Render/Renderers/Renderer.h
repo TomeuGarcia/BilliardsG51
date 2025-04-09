@@ -20,6 +20,7 @@ public:
 	Rect<int> GetDestinationRect() const;
 	bool IsActive() const;
 
+	GameObject* GetGameObject() const;
 	Transform* GetTransform() const;
 
 protected:
