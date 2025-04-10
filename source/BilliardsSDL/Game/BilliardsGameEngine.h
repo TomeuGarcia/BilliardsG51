@@ -10,6 +10,7 @@
 #include "Systems/GameSpacesComputer.h"
 #include "Systems/GameRandom.h"
 #include "Systems/GameTweener.h"
+#include "Systems/GameDelayedCallScheduler.h"
 #include "Physics/Physics2DManager.h"
 #include "Render/GameRenderManager.h"
 #include "Audio/GameAudioManager.h"
@@ -47,4 +48,5 @@ private:
 	GameSpacesComputer* m_gameSpacesComputer;
 	GameRandom* m_gameRandom;
 	GameTweener* m_gameTweener;
+	GameDelayedCallScheduler* m_delayedCallScheduler;
 };

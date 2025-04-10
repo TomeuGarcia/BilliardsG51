@@ -291,6 +291,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Systems\GameAppInteractions.cpp" />
     <ClCompile Include="Game\Systems\GameAssetResources.cpp" />
     <ClCompile Include="Game\Systems\GameAssetResourceTypes.cpp" />
+    <ClCompile Include="Game\Systems\GameDelayedCallScheduler.cpp" />
     <ClCompile Include="Game\Systems\GameFileResources.cpp" />
     <ClCompile Include="Game\Systems\GameInput.cpp" />
     <ClCompile Include="Game\Systems\GameRandom.cpp" />
@@ -405,6 +406,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Systems\GameAppInteractions.h" />
     <ClInclude Include="Game\Systems\GameAssetResources.h" />
     <ClInclude Include="Game\Systems\GameAssetResourceTypes.h" />
+    <ClInclude Include="Game\Systems\GameDelayedCallScheduler.h" />
     <ClInclude Include="Game\Systems\GameFileResources.h" />
     <ClInclude Include="Game\Systems\GameInput.h" />
     <ClInclude Include="Game\Systems\GameRandom.h" />

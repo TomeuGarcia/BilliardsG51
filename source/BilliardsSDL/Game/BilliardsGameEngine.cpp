@@ -8,12 +8,13 @@ BilliardsGameEngine::BilliardsGameEngine()
 	m_sceneManager(nullptr), m_uiCaster(nullptr),
 	m_gameAssetResources(nullptr),	m_gameFileResources(nullptr),
 	m_gameSpacesComputer(nullptr),  
-	m_gameRandom(nullptr), m_gameTweener(nullptr)
+	m_gameRandom(nullptr), m_gameTweener(nullptr), m_delayedCallScheduler(nullptr)
 {
 }
 
 BilliardsGameEngine::~BilliardsGameEngine()
 {
+	delete m_delayedCallScheduler;
 	delete m_gameTweener;
 	delete m_gameRandom;
 	delete m_gameSpacesComputer;
@@ -50,6 +51,7 @@ void BilliardsGameEngine::Init(const GameSpecifications& specifications,
 	m_gameSpacesComputer = new GameSpacesComputer(renderSystem, specifications.p_worldWidthInWindow);
 	m_gameRandom = new GameRandom(rngSystem);
 	m_gameTweener = new GameTweener();
+	m_delayedCallScheduler = new GameDelayedCallScheduler();
 
 	m_gameSpacesComputer->Update();
 	m_sceneManager->Init(specifications.p_startingScene);
@@ -72,6 +74,7 @@ void BilliardsGameEngine::Update()
 	m_uiCaster->Update(deltaTime);
 
 	m_gameTweener->Update(deltaTime);
+	m_delayedCallScheduler->Update(deltaTime);
 	m_physicsManager->Update(deltaTime);
 }
 

@@ -2,7 +2,8 @@
 
 RankingEntryDisplay::RankingEntryDisplay(GameObject* gameObject, const int& i, Text* placingText, Text* scoreText, Text* nameText)
 	: m_gameObject(gameObject), m_index(i),
-	m_placingText(placingText), m_scoreText(scoreText), m_nameText(nameText)
+	m_placingText(placingText), m_scoreText(scoreText), m_nameText(nameText),
+	m_appearSound()
 {
 }
 
@@ -31,4 +32,19 @@ void RankingEntryDisplay::Start()
 	GameTweener::GetInstance()->TweenColor(m_scoreText,		textColor, appearDuration, appearDelay);
 	GameTweener::GetInstance()->TweenColor(m_placingText,	placingColor, appearDuration, appearDelay + 0.05f);
 	GameTweener::GetInstance()->TweenColor(m_nameText,		nameColor, appearDuration, appearDelay + 0.10f);
+
+
+	m_appearSound = GameAudioManager::GetInstance()->CreateSFXSound(GameAssetResources::GetInstance()->GetAudio().textAppearSoundData);
+	GameDelayedCallScheduler::GetInstance()->AddCall(appearDelay, this);
+}
+
+void RankingEntryDisplay::OnDestroy()
+{
+	GameDelayedCallScheduler::GetInstance()->RemoveCall(this);
+}
+
+
+void RankingEntryDisplay::PerformDelayedCall()
+{
+	m_appearSound->Play();
 }
