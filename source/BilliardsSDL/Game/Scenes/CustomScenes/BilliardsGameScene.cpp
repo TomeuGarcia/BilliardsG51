@@ -12,8 +12,9 @@ void BilliardsGameScene::CreateGameObjects()
 	const Vector2<float> boardPosition = Vector2<float>::Zero();
 	GetPrefabUtilities().CreateBilliardsBoard(boardPosition, manager.get());
 
+	BallCollisionFeedbackManager* ballCollisionFeedbackManager = GetPrefabUtilities().CreateBallCollisionFeedbackManager();
 
-	std::vector<BilliardBall*> balls = GetPrefabUtilities().CreateBilliardsGameBalls();
+	std::vector<BilliardBall*> balls = GetPrefabUtilities().CreateBilliardsGameBalls(ballCollisionFeedbackManager);
 
 	BilliardStick* redStick = GetPrefabUtilities().CreateBilliardsStick(boardPosition + Vector2<float>(3, 3),
 		GameAssetResources::GetInstance()->GetRedStickImageData(), "Red stick");

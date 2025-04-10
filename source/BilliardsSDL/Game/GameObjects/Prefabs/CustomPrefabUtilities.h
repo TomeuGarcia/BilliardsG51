@@ -1,6 +1,8 @@
 #pragma once
 #include "../../Scenes/Utilities/SceneCreateUtilities.h"
 
+#include "../Behaviours/Billiards/BallFeedback/BallCollisionFeedbackManager.h"
+#include "../Behaviours/Billiards/BallFeedback/BallCollisionDetector.h"
 #include "../Behaviours/Billiards/BilliardBall.h"
 #include "../Behaviours/Billiards/BilliardStick.h"
 #include "../Behaviours/Billiards/Holes/BilliardsBoardHole.h"
@@ -25,9 +27,11 @@ public:
 
 
 public:
+	BallCollisionFeedbackManager* CreateBallCollisionFeedbackManager();
+
 	BilliardBall* CreateBilliardsBall(const Vector2<float>& position, const ImageResourceData& imageData,
-		const BilliardBall::ColorType& colorType, const int& number);
-	std::vector<BilliardBall*> CreateBilliardsGameBalls();
+		const BilliardBall::ColorType& colorType, const int& number, BallCollisionFeedbackManager* feedbackManager);
+	std::vector<BilliardBall*> CreateBilliardsGameBalls(BallCollisionFeedbackManager* feedbackManager);
 
 	
 	BilliardStick* CreateBilliardsStick(const Vector2<float>& position, const ImageResourceData& imageData, const std::string& name);

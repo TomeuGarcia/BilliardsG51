@@ -5,6 +5,7 @@ BilliardsApplication::BilliardsApplication()
 	m_inputSystem(), 
 	m_timeSystem(m_specifications.p_maxDeltaTime), 
 	m_renderSystem(), 
+	m_audioSystem(),
 	m_rngSystem(),
 	m_gameEngine()
 {
@@ -41,6 +42,7 @@ void BilliardsApplication::InitSDL()
 void BilliardsApplication::InitSystems()
 {
 	m_renderSystem.Init(m_specifications.p_windowSize);	
+	m_audioSystem.Init();
 	m_inputSystem.Init(m_renderSystem.GetWindow());
 	m_timeSystem.Init();
 	m_rngSystem.Init();
@@ -48,8 +50,9 @@ void BilliardsApplication::InitSystems()
 
 void BilliardsApplication::InitGameEngine()
 {
-	m_gameEngine.Init(m_specifications.p_gameSpecifications, &m_inputSystem, &m_renderSystem,
-				&m_timeSystem, &m_rngSystem);
+	m_gameEngine.Init(m_specifications.p_gameSpecifications, 
+		&m_inputSystem, &m_renderSystem, &m_audioSystem,
+		&m_timeSystem, &m_rngSystem);
 }
 
 
@@ -61,6 +64,7 @@ void BilliardsApplication::CleanupGameEngine()
 
 void BilliardsApplication::CleanupSystems()
 {
+	m_audioSystem.Cleanup();
 	m_renderSystem.Cleanup();
 }
 

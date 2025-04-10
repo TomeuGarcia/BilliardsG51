@@ -28,10 +28,27 @@ UIButton* CustomPrefabUtilities::CreateDangerButton(const Vector2<float>& positi
 }
 
 
+
+
+BallCollisionFeedbackManager* CustomPrefabUtilities::CreateBallCollisionFeedbackManager()
+{
+	GameObject* gameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), "BallCollisionFeedbackManager");
+	std::shared_ptr<BallCollisionFeedbackManager> feedbackManager = std::make_shared<BallCollisionFeedbackManager>(
+		GameAssetResources::GetInstance()->GetBilliardBallHitOtherBallSoundData(),
+		GameAssetResources::GetInstance()->GetBilliardBallHitBoardSoundData()
+	);
+	gameObject->AttachBehaviour(feedbackManager);
+
+	return feedbackManager.get();
+}
+
+
 BilliardBall* CustomPrefabUtilities::CreateBilliardsBall(const Vector2<float>& position, const ImageResourceData& imageData, 
-	const BilliardBall::ColorType& colorType, const int& number)
+	const BilliardBall::ColorType& colorType, const int& number, BallCollisionFeedbackManager* feedbackManager)
 {
 	GameObject* ballGameObject = m_sceneCreateUtilities->CreateGameObject(position, "Ball_" + std::to_string(number));
+	ballGameObject->AddTag(GameObjectTag::Ball);
+
 	std::shared_ptr<Image> image = m_sceneCreateUtilities->CreateImageComponent(ballGameObject, imageData);
 	image->p_scale = Vector2<float>::One() * 0.55f;
 
@@ -47,10 +64,13 @@ BilliardBall* CustomPrefabUtilities::CreateBilliardsBall(const Vector2<float>& p
 	std::shared_ptr<CircleColliderDrawer> colliderDrawer = std::make_shared<CircleColliderDrawer>(collider);
 	ballGameObject->AttachBehaviour(colliderDrawer);
 
+	std::shared_ptr<BallCollisionDetector> ballCollisionDetector = std::make_shared<BallCollisionDetector>(ballGameObject, billiardBall.get(), feedbackManager);
+	ballGameObject->AttachBehaviour(ballCollisionDetector);
+
 	return billiardBall.get();
 }
 
-std::vector<BilliardBall*> CustomPrefabUtilities::CreateBilliardsGameBalls()
+std::vector<BilliardBall*> CustomPrefabUtilities::CreateBilliardsGameBalls(BallCollisionFeedbackManager* feedbackManager)
 {
 	std::vector<BilliardBall*> balls(16);
 
@@ -59,24 +79,24 @@ std::vector<BilliardBall*> CustomPrefabUtilities::CreateBilliardsGameBalls()
 
 
 	BilliardBall* whiteBall = CreateBilliardsBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-		GameAssetResources::GetInstance()->GetWhiteBallImageData(), BilliardBall::ColorType::White, 0);
+		GameAssetResources::GetInstance()->GetWhiteBallImageData(), BilliardBall::ColorType::White, 0, feedbackManager);
 	balls[0] = whiteBall;
 
 	for (size_t i = 1; i < 1 + 7; ++i)
 	{
 		BilliardBall* ball = CreateBilliardsBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-			GameAssetResources::GetInstance()->GetRedBallImageData(), BilliardBall::ColorType::Red, i);
+			GameAssetResources::GetInstance()->GetRedBallImageData(), BilliardBall::ColorType::Red, i, feedbackManager);
 		balls[i] = ball;
 	}
 
 	BilliardBall* blackBall = CreateBilliardsBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-		GameAssetResources::GetInstance()->GetBlackBallImageData(), BilliardBall::ColorType::Black, 8);
+		GameAssetResources::GetInstance()->GetBlackBallImageData(), BilliardBall::ColorType::Black, 8, feedbackManager);
 	balls[8] = blackBall;
 
 	for (size_t i = 2 + 7; i < balls.size(); ++i)
 	{
 		BilliardBall* ball = CreateBilliardsBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-			GameAssetResources::GetInstance()->GetBlueBallImageData(), BilliardBall::ColorType::Blue, i);
+			GameAssetResources::GetInstance()->GetBlueBallImageData(), BilliardBall::ColorType::Blue, i, feedbackManager);
 		balls[i] = ball;
 	}
 

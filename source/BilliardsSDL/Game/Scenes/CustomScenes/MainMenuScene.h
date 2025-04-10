@@ -5,6 +5,8 @@
 
 #include "../../GameObjects/Behaviours/MainMenu/MainMenuManager.h"
 
+#include "../../Audio/GameAudioManager.h"
+
 
 class MainMenuScene : public Scene
 {
@@ -12,4 +14,6 @@ protected:
 	virtual void CreateGameObjects() override;
 	virtual void DoStart() override;
 	virtual void DoUpdate() override;
+
+	std::shared_ptr<SFXSound> sound;
 };

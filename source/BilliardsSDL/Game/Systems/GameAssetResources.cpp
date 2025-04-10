@@ -19,7 +19,13 @@ GameAssetResources::GameAssetResources(const float& pixelsToUnits,
 	m_redStickImageData(pathToResourceImages + "BilliardsSprites.png",	Vector2<int>(132, 17), Vector2<int>(340, 13), false, pixelsToUnits),
 	m_boardImageData(pathToResourceImages + "BilliardsSprites.png",		Vector2<int>(0, 32), Vector2<int>(1250, 702), false, pixelsToUnits),
 
-	m_debugTextFontData(pathToResourceFonts + "hinted-GWENT-ExtraBold.ttf")
+	
+	m_debugTextFontData(pathToResourceFonts + "hinted-GWENT-ExtraBold.ttf"),
+
+
+	m_billiardBallHitOtherBallSoundData(pathToResourceAudios + "BilliardBallHitOtherBall.wav"),
+	m_billiardBallHitBoardSoundData(pathToResourceAudios + "BilliardBallHitWood.wav"),
+	m_buttonPressedSoundData(pathToResourceAudios + "sfxBallCollides.wav")
 {
 	s_instance = this;
 }
@@ -83,7 +89,26 @@ const ImageResourceData& GameAssetResources::GetBoardImageData()
 	return m_boardImageData;
 }
 
+
+
 const TextResourceData& GameAssetResources::GetDebugTextFontData()
 {
 	return m_debugTextFontData;
+}
+
+
+
+const SoundResourceData& GameAssetResources::GetBilliardBallHitOtherBallSoundData()
+{
+	return m_billiardBallHitOtherBallSoundData;
+}
+
+const SoundResourceData& GameAssetResources::GetBilliardBallHitBoardSoundData()
+{
+	return m_billiardBallHitBoardSoundData;
+}
+
+const SoundResourceData& GameAssetResources::GetButtonPressedSoundData()
+{
+	return m_buttonPressedSoundData;
 }

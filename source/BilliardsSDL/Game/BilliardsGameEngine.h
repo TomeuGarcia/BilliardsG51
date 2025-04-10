@@ -12,6 +12,7 @@
 #include "Systems/GameTweener.h"
 #include "Physics/Physics2DManager.h"
 #include "Render/GameRenderManager.h"
+#include "Audio/GameAudioManager.h"
 #include "Scenes/SceneManager.h"
 #include "UI/UICaster.h"
 
@@ -22,7 +23,8 @@ public:
 	BilliardsGameEngine();
 	~BilliardsGameEngine();
 	void Init(const GameSpecifications& specifications,
-			  IInputState* inputState, RenderSystem* renderSystem, ITimeState* timeState, RNGSystem* rngSystem);
+			IInputState* inputState, RenderSystem* renderSystem, AudioSystem* audioSystem, 
+			ITimeState* timeState, RNGSystem* rngSystem);
 	void Cleanup();
 
 	void Update();
@@ -36,6 +38,7 @@ private:
 	GameTime* m_gameTime;
 	GameInput* m_gameInput;
 	GameRenderManager* m_gameRenderManager;
+	GameAudioManager* m_gameAudioManager;
 	Physics2DManager* m_physicsManager;
 	SceneManager* m_sceneManager;
 	UICaster* m_uiCaster;

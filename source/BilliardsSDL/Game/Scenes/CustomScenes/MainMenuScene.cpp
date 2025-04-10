@@ -43,7 +43,9 @@ void MainMenuScene::CreateGameObjects()
 
 	UIButton* playButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(0.0f, 1.25f),
 		GameAssetResources::GetInstance()->GetDebugTextFontData(), "Play", 36);
-	playButton->p_onSelectedCallback = []() { SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame); };
+	playButton->p_onSelectedCallback = []() { 
+		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
+		};
 	
 
 	UIButton* rankingButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(5.0f, 1.25f),
@@ -63,6 +65,9 @@ void MainMenuScene::DoStart()
 
 	AABoxColliderDrawer::s_enabled = false;
 	CircleColliderDrawer::s_enabled = false;
+
+	sound = GameAudioManager::GetInstance()->CreateSFXSound(GameAssetResources::GetInstance()->GetButtonPressedSoundData());
+	sound->Play();
 }
 
 void MainMenuScene::DoUpdate()

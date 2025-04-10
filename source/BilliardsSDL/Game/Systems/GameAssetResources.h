@@ -1,6 +1,7 @@
 #pragma once
 #include "../Render/Renderers/Image/ImageResourceData.h"
 #include "../Render/Renderers/Text/TextResourceData.h"
+#include "../Audio/SoundResourceData.h"
 
 
 class GameAssetResources
@@ -15,6 +16,7 @@ public:
 public:
 	static GameAssetResources* GetInstance();
 
+
 public:
 	const ImageResourceData& GetDebugImageData();
 	const ImageResourceData& GetDebugTransparentImageData();
@@ -27,7 +29,13 @@ public:
 	const ImageResourceData& GetBlueStickImageData();
 	const ImageResourceData& GetBoardImageData();
 
+public:
 	const TextResourceData& GetDebugTextFontData();
+
+public:
+	const SoundResourceData& GetBilliardBallHitOtherBallSoundData();
+	const SoundResourceData& GetBilliardBallHitBoardSoundData();
+	const SoundResourceData& GetButtonPressedSoundData();
 
 
 private:
@@ -42,7 +50,15 @@ private:
 	ImageResourceData m_blueStickImageData;
 	ImageResourceData m_boardImageData;
 
+private:
 	TextResourceData m_debugTextFontData;
+
+private:
+	SoundResourceData m_billiardBallHitOtherBallSoundData;
+	SoundResourceData m_billiardBallHitBoardSoundData;
+	SoundResourceData m_buttonPressedSoundData;
+
+
 
 private:
 	static GameAssetResources* s_instance;

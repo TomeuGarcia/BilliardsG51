@@ -3,7 +3,8 @@
 
 BilliardsGameEngine::BilliardsGameEngine()
 	: m_gameAppInteractions(), m_gameTime(nullptr), m_gameInput(nullptr),
-	m_gameRenderManager(nullptr), m_physicsManager(nullptr),
+	m_gameRenderManager(nullptr), m_gameAudioManager(nullptr),
+	m_physicsManager(nullptr),
 	m_sceneManager(nullptr), m_uiCaster(nullptr),
 	m_gameAssetResources(nullptr),	m_gameFileResources(nullptr),
 	m_gameSpacesComputer(nullptr),  
@@ -20,6 +21,7 @@ BilliardsGameEngine::~BilliardsGameEngine()
 	delete m_gameAssetResources;
 	delete m_sceneManager;
 	delete m_physicsManager;
+	delete m_gameAudioManager;
 	delete m_gameRenderManager;
 	delete m_uiCaster;
 	delete m_gameInput;
@@ -28,13 +30,15 @@ BilliardsGameEngine::~BilliardsGameEngine()
 }
 
 void BilliardsGameEngine::Init(const GameSpecifications& specifications, 
-		IInputState* inputState, RenderSystem* renderSystem, ITimeState* timeState, RNGSystem* rngSystem)
+		IInputState* inputState, RenderSystem* renderSystem, AudioSystem* audioSystem,
+		ITimeState* timeState, RNGSystem* rngSystem)
 {
 	m_gameAppInteractions = new GameAppInteractions();
 	m_gameTime = new GameTime(timeState);
 	m_gameInput = new GameInput(inputState);
 	m_uiCaster = new UICaster(m_gameInput);
 	m_gameRenderManager = new GameRenderManager(renderSystem);
+	m_gameAudioManager = new GameAudioManager(audioSystem);
 	m_physicsManager = new Physics2DManager();
 	m_sceneManager = new SceneManager();
 	m_gameAssetResources = new GameAssetResources(specifications.p_worldWidthInWindow / renderSystem->GetWindowSize().x,

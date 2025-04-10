@@ -1,9 +1,8 @@
 #pragma once
 #include <SDL.h>
-//#include <SDL_mixer.h>
-//#include <SDL_ttf.h>
 
 #include "Systems/Render/RenderSystem.h"
+#include "Systems/Audio/AudioSystem.h"
 #include "Systems/Time/TimeSystem.h"
 #include "Systems/Input/InputSystem.h"
 #include "Systems/Random/RNGSystem.h"
@@ -39,6 +38,7 @@ private:
 	InputSystem m_inputSystem;
 	TimeSystem m_timeSystem;
 	RenderSystem m_renderSystem;
+	AudioSystem m_audioSystem;
 	RNGSystem m_rngSystem;
 
 	BilliardsGameEngine m_gameEngine;

@@ -169,6 +169,15 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Ranking">
       <UniqueIdentifier>{6a0ef233-86ee-4341-ab56-5e78357462a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Application\Systems\Audio">
+      <UniqueIdentifier>{686a8023-9cb0-4f06-8414-88eea57e6638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Audio">
+      <UniqueIdentifier>{7a67d163-8d88-4b56-979b-391d2f48ea8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback">
+      <UniqueIdentifier>{38cb4d59-fe17-439f-8633-2c5dd193e5d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -425,6 +434,39 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Audio\AudioSystem.cpp">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Audio\Sound.cpp">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Audio\SingleSound.cpp">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\GameAudioManager.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\SFXSound.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\MusicSound.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\SoundResourceData.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\SFXSoundBuffer.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollision.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionDetector.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionFeedbackManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -727,6 +769,51 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Audio\AudioSystem.h">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Audio\Sound.h">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Audio\SingleSound.h">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\GameAudioManager.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\SFXSound.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\ISFXSoundManager.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\IMusicSoundManager.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\SoundResourceData.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\MusicSound.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\SFXSoundBuffer.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\IBallCollisionFeedbackManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollision.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionDetector.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionFeedbackManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\GameObjectTag.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,7 +6,6 @@ class Collision2D
 {
 public:
 	enum class Status { 
-		None,
 		Enter,
 		Stay,
 		Exit
