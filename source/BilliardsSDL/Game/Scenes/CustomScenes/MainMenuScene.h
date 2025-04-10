@@ -14,6 +14,4 @@ protected:
 	virtual void CreateGameObjects() override;
 	virtual void DoStart() override;
 	virtual void DoUpdate() override;
-
-	std::shared_ptr<SFXSound> sound;
 };

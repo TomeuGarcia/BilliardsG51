@@ -37,24 +37,24 @@ void MainMenuScene::CreateGameObjects()
 	*/
 
 	UIButton* quitButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(-5.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetDebugTextFontData(), "Quit", 36);
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Quit", 36);
 	quitButton->p_onSelectedCallback = []() { GameAppInteractions::GetInstance()->Quit(); };
 	
 
 	UIButton* playButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(0.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetDebugTextFontData(), "Play", 36);
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Play", 36);
 	playButton->p_onSelectedCallback = []() { 
 		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
 		};
 	
 
 	UIButton* rankingButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(5.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetDebugTextFontData(), "Ranking", 36);
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Ranking", 36);
 	rankingButton->p_onSelectedCallback = []() { SceneManager::GetInstance()->LoadScene(SceneName::Ranking); };
 
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
-	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetDebugTextFontData(), "Billiards G51", 48);
+	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Billiards G51", 48);
 }
 
 
@@ -65,9 +65,6 @@ void MainMenuScene::DoStart()
 
 	AABoxColliderDrawer::s_enabled = false;
 	CircleColliderDrawer::s_enabled = false;
-
-	sound = GameAudioManager::GetInstance()->CreateSFXSound(GameAssetResources::GetInstance()->GetButtonPressedSoundData());
-	sound->Play();
 }
 
 void MainMenuScene::DoUpdate()

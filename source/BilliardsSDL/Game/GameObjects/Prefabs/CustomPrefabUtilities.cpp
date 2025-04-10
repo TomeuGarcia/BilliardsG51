@@ -34,8 +34,8 @@ BallCollisionFeedbackManager* CustomPrefabUtilities::CreateBallCollisionFeedback
 {
 	GameObject* gameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), "BallCollisionFeedbackManager");
 	std::shared_ptr<BallCollisionFeedbackManager> feedbackManager = std::make_shared<BallCollisionFeedbackManager>(
-		GameAssetResources::GetInstance()->GetBilliardBallHitOtherBallSoundData(),
-		GameAssetResources::GetInstance()->GetBilliardBallHitBoardSoundData()
+		GameAssetResources::GetInstance()->GetAudio().billiardBallHitOtherBallSoundData,
+		GameAssetResources::GetInstance()->GetAudio().billiardBallHitBoardSoundData
 	);
 	gameObject->AttachBehaviour(feedbackManager);
 
@@ -79,24 +79,24 @@ std::vector<BilliardBall*> CustomPrefabUtilities::CreateBilliardsGameBalls(BallC
 
 
 	BilliardBall* whiteBall = CreateBilliardsBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-		GameAssetResources::GetInstance()->GetWhiteBallImageData(), BilliardBall::ColorType::White, 0, feedbackManager);
+		GameAssetResources::GetInstance()->GetImage().whiteBallImageData, BilliardBall::ColorType::White, 0, feedbackManager);
 	balls[0] = whiteBall;
 
 	for (size_t i = 1; i < 1 + 7; ++i)
 	{
 		BilliardBall* ball = CreateBilliardsBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-			GameAssetResources::GetInstance()->GetRedBallImageData(), BilliardBall::ColorType::Red, i, feedbackManager);
+			GameAssetResources::GetInstance()->GetImage().redBallImageData, BilliardBall::ColorType::Red, i, feedbackManager);
 		balls[i] = ball;
 	}
 
 	BilliardBall* blackBall = CreateBilliardsBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-		GameAssetResources::GetInstance()->GetBlackBallImageData(), BilliardBall::ColorType::Black, 8, feedbackManager);
+		GameAssetResources::GetInstance()->GetImage().blackBallImageData, BilliardBall::ColorType::Black, 8, feedbackManager);
 	balls[8] = blackBall;
 
 	for (size_t i = 2 + 7; i < balls.size(); ++i)
 	{
 		BilliardBall* ball = CreateBilliardsBall(GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds),
-			GameAssetResources::GetInstance()->GetBlueBallImageData(), BilliardBall::ColorType::Blue, i, feedbackManager);
+			GameAssetResources::GetInstance()->GetImage().blueBallImageData, BilliardBall::ColorType::Blue, i, feedbackManager);
 		balls[i] = ball;
 	}
 
@@ -123,7 +123,7 @@ BilliardStick* CustomPrefabUtilities::CreateBilliardsStick(const Vector2<float>&
 GameObject* CustomPrefabUtilities::CreateBilliardsBoard(const Vector2<float>& position, IBilliardBoardHoleInteractionsManager* holeInteractionManager)
 {
 	GameObject* board = m_sceneCreateUtilities->CreateGameObject(position, "Board");
-	std::shared_ptr<Image> boardImage = m_sceneCreateUtilities->CreateImageComponent(board, GameAssetResources::GetInstance()->GetBoardImageData());
+	std::shared_ptr<Image> boardImage = m_sceneCreateUtilities->CreateImageComponent(board, GameAssetResources::GetInstance()->GetImage().boardImageData);
 	boardImage->p_scale = Vector2<float>::One() * 0.55f;
 
 	CreateBoardWalls(position);
@@ -205,7 +205,7 @@ FadingRenderer* CustomPrefabUtilities::CreateFadingText(const std::string& textS
 
 	const int fonSize = big ? 32 : 23;
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(fadingTextGameObject, 
-		GameAssetResources::GetInstance()->GetDebugTextFontData(), textString, fonSize);
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, textString, fonSize);
 
 	std::shared_ptr<FadingRenderer> fadingRenderer = std::make_shared<FadingRenderer>(text.get(), 1.0f, Vector2<float>::Up() * 0.5f, 1.2f);
 	fadingRenderer->SetStartingColor(color);
@@ -219,7 +219,7 @@ FadingRenderer* CustomPrefabUtilities::CreateFadingText(const std::string& textS
 
 void CustomPrefabUtilities::CreateRankingEntryDisplay(const Vector2<float>& position, const RankingEntry& rankingEntry, const int& index)
 {
-	const TextResourceData& textData = GameAssetResources::GetInstance()->GetDebugTextFontData();
+	const TextResourceData& textData = GameAssetResources::GetInstance()->GetText().debugTextFontData;
 	const int fontSize = 25;
 
 	const Color color = index == 0 ? Colors::Gold : Colors::White;

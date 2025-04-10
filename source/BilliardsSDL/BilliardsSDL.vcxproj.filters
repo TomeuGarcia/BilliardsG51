@@ -468,6 +468,9 @@
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionFeedbackManager.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Systems\GameAssetResourceTypes.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
@@ -814,6 +817,9 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\GameObjectTag.h">
       <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameAssetResourceTypes.h">
+      <Filter>Source Files\Game\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
