@@ -31,7 +31,7 @@ void GameDelayedCallScheduler::Update(const float& deltaTime)
 		schedulledCall.p_timer.Update(deltaTime);
 		if (schedulledCall.p_timer.HasFinished())
 		{
-			schedulledCall.p_callable->PerformDelayedCall();
+			schedulledCall.p_callback();
 			m_schedulledCalls.erase(m_schedulledCalls.begin() + i);
 		}
 	}
@@ -39,19 +39,22 @@ void GameDelayedCallScheduler::Update(const float& deltaTime)
 
 
 
-void GameDelayedCallScheduler::AddCall(const float& delay, ICallable* callable)
+void GameDelayedCallScheduler::AddCall(ICallSource* callSource, const float& delay, const std::function<void()>& callback)
 {
-	m_schedulledCalls.emplace_back(SchedulledCall{ Timer{delay}, callable });
+	m_schedulledCalls.emplace_back(SchedulledCall{ Timer{delay}, callSource, callback });
 }
 
-void GameDelayedCallScheduler::RemoveCall(const ICallable* callable)
+void GameDelayedCallScheduler::RemoveAllCalls(const ICallSource* callSource)
 {
-	for (auto it = m_schedulledCalls.begin(); it != m_schedulledCalls.end(); ++it)
+	for (auto it = m_schedulledCalls.begin(); it != m_schedulledCalls.end();)
 	{
-		if (it->p_callable == callable)
+		if (it->p_callSource == callSource)
 		{
-			m_schedulledCalls.erase(it);
-			return;
+			it = m_schedulledCalls.erase(it);
+		}
+		else
+		{
+			++it;
 		}
 	}
 }

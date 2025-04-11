@@ -274,6 +274,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Physics\CircleCollider2DGroup.cpp" />
     <ClCompile Include="Game\Physics\Collision\Collision2D.cpp" />
     <ClCompile Include="Game\Physics\Helpers\CollisionHelper.cpp" />
+    <ClCompile Include="Game\Physics\Helpers\GamePhysicsUtilities.cpp" />
     <ClCompile Include="Game\Physics\Physics2DManager.cpp" />
     <ClCompile Include="Game\Physics\Rigidbodies\PhysicMaterial.cpp" />
     <ClCompile Include="Game\Physics\Rigidbodies\Rigidbody2D.cpp" />
@@ -391,6 +392,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Physics\CircleCollider2DGroup.h" />
     <ClInclude Include="Game\Physics\Collision\Collision2D.h" />
     <ClInclude Include="Game\Physics\Helpers\CollisionHelper.h" />
+    <ClInclude Include="Game\Physics\Helpers\GamePhysicsUtilities.h" />
     <ClInclude Include="Game\Physics\Physics2DManager.h" />
     <ClInclude Include="Game\Physics\Rigidbodies\PhysicMaterial.h" />
     <ClInclude Include="Game\Physics\Rigidbodies\Rigidbody2D.h" />

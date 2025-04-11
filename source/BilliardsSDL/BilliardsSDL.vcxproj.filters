@@ -483,6 +483,9 @@
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_AskingWinnerName.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Physics\Helpers\GamePhysicsUtilities.cpp">
+      <Filter>Source Files\Game\Physics\Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
@@ -844,6 +847,9 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_AskingWinnerName.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Helpers\GamePhysicsUtilities.h">
+      <Filter>Source Files\Game\Physics\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

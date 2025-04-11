@@ -53,4 +53,5 @@ public:
 
 	SoundResourceData billiardBallHitOtherBallSoundData;
 	SoundResourceData billiardBallHitBoardSoundData;
+	SoundResourceData billiardBallMovedSoundData;
 };

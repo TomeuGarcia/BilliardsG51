@@ -37,6 +37,7 @@ AudioResources::AudioResources(const std::string& pathToResourceAudios)
 	gameScorePointsSoundData(pathToResourceAudios + "ScorePoints.wav"),
 	gameVictorySoundData(pathToResourceAudios + "Victory.wav"),
 	billiardBallHitOtherBallSoundData(pathToResourceAudios + "BilliardBallHitOtherBall.wav"),
-	billiardBallHitBoardSoundData(pathToResourceAudios + "BilliardBallHitWood.wav")
+	billiardBallHitBoardSoundData(pathToResourceAudios + "BilliardBallHitWood.wav"),
+	billiardBallMovedSoundData(pathToResourceAudios + "BilliardBallMoved.wav")
 {
 }

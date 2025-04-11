@@ -7,18 +7,15 @@
 class GameDelayedCallScheduler
 {
 public:
-	class ICallable
-	{
-	public:
-		virtual void PerformDelayedCall() = 0;
-	};
+	class ICallSource {};
 
 private:
 	struct SchedulledCall
 	{
 	public:
 		Timer p_timer;
-		ICallable* p_callable;
+		ICallSource* p_callSource;
+		std::function<void()> p_callback;
 	};
 
 
@@ -33,8 +30,8 @@ public:
 	void Update(const float& deltaTime);
 
 public:
-	void AddCall(const float& delay, ICallable* callable);
-	void RemoveCall(const ICallable* callable);
+	void AddCall(ICallSource* callSource, const float& delay, const std::function<void()>& callback);
+	void RemoveAllCalls(const ICallSource* callSource);
 
 
 private:

@@ -40,7 +40,7 @@ void RankingScene::CreateGameObjects()
 
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
-	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Ranking", 48);
+	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "-  Ranking  -", 48);
 }
 
 void RankingScene::DoStart()

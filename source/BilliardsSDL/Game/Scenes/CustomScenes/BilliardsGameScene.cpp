@@ -65,8 +65,6 @@ void BilliardsGameScene::CreateGameObjects()
 	);
 
 	manager->Init(balls, boardPosition, redStick, blueStick, gameplayFeedbackisplay, consolePlayerScoresDisplay);
-
-	m_gameplayFeedbackisplay = gameplayFeedbackisplay;
 }
 
 
@@ -83,11 +81,6 @@ void BilliardsGameScene::DoUpdate()
 	{
 		AABoxColliderDrawer::s_enabled = !AABoxColliderDrawer::s_enabled;
 		CircleColliderDrawer::s_enabled = !CircleColliderDrawer::s_enabled;
-	}
-
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::Space))
-	{
-		m_gameplayFeedbackisplay->PlayVictory(Colors::DarkPurple);
 	}
 }
 

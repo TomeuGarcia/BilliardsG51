@@ -35,16 +35,16 @@ void RankingEntryDisplay::Start()
 
 
 	m_appearSound = GameAudioManager::GetInstance()->CreateSFXSound(GameAssetResources::GetInstance()->GetAudio().textAppearSoundData);
-	GameDelayedCallScheduler::GetInstance()->AddCall(appearDelay, this);
+	GameDelayedCallScheduler::GetInstance()->AddCall(this, appearDelay, std::bind(&RankingEntryDisplay::PlayAppearSound, this));
 }
 
 void RankingEntryDisplay::OnDestroy()
 {
-	GameDelayedCallScheduler::GetInstance()->RemoveCall(this);
+	GameDelayedCallScheduler::GetInstance()->RemoveAllCalls(this);
 }
 
 
-void RankingEntryDisplay::PerformDelayedCall()
+void RankingEntryDisplay::PlayAppearSound()
 {
 	m_appearSound->Play();
 }

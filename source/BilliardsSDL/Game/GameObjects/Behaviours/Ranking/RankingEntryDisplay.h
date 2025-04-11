@@ -13,7 +13,7 @@
 #include "../../../Systems/GameDelayedCallScheduler.h"
 
 
-class RankingEntryDisplay : public Behaviour, public GameDelayedCallScheduler::ICallable
+class RankingEntryDisplay : public Behaviour, public GameDelayedCallScheduler::ICallSource
 {
 public:
 	RankingEntryDisplay(GameObject* gameObject, const int& i,
@@ -22,7 +22,8 @@ public:
 	virtual void Start() override;
 	virtual void OnDestroy() override;
 
-	void PerformDelayedCall() override;
+private:
+	void PlayAppearSound();
 
 
 private:

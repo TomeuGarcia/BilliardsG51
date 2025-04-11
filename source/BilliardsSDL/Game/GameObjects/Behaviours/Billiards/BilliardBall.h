@@ -11,9 +11,12 @@
 #include "../../../Systems/GameRandom.h"
 #include "../../../Systems/GameSpacesComputer.h"
 #include "../../../Systems/GameTweener.h"
+#include "../../../Systems/GameDelayedCallScheduler.h"
+
+#include "../../../Audio/SFXSound.h"
 
 
-class BilliardBall : public Behaviour
+class BilliardBall : public Behaviour, public GameDelayedCallScheduler::ICallSource
 {
 public:
 	enum class ColorType
@@ -26,11 +29,13 @@ public:
 
 public:
 	BilliardBall(const std::shared_ptr<CircleCollider2D>& collider, const std::shared_ptr<Rigidbody2D>& rigidbody, 
-		const std::shared_ptr<Renderer> renderer, const ColorType& color);
+		const std::shared_ptr<Renderer> renderer, const ColorType& color, 
+		const std::shared_ptr<SFXSound>& movedSound);
 	~BilliardBall();
 
 public:
 	virtual void Start() override;
+	virtual void OnDestroy() override;
 	virtual void Update() override;
 
 public:
@@ -51,9 +56,14 @@ public:
 	void PlayEnterEnterHoleAnimation(const Vector2<float>& holeCenter);
 	void PlayExitEnterHoleAnimation(const Vector2<float>& goalPosition, const float& moveDuration);
 
+	void PlayMovedSound(const float& delay);
+
 
 private:
 	void UpdateRendererWithSpeed();
+
+private:
+	void DoPlayMovedSound();
 
 
 private:
@@ -63,5 +73,7 @@ private:
 	Vector2<float> m_startPosition;
 	ColorType m_colorType;
 
-	Vector2<float> p_originalScale;
+	Vector2<float> m_originalScale;
+
+	std::shared_ptr<SFXSound> m_movedSound;
 };

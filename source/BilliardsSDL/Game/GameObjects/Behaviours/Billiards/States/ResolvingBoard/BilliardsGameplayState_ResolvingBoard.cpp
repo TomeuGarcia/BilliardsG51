@@ -46,6 +46,7 @@ bool BilliardsGameplayState_ResolvingBoard::Update()
         }
         else if (nextState == ResolvingBoardState::Type::ChangePlayer)
         {
+            GetBlackboard()->GetCurrentPlayer()->GetStick()->TweenToResting();
             GetBlackboard()->GetSpecialEventsManager()->OnPlayerStartsPlaying();
             SetNextState(m_changePlayerNextStateType);
             m_currentState = nullptr;
@@ -53,6 +54,7 @@ bool BilliardsGameplayState_ResolvingBoard::Update()
         }
         else if (nextState == ResolvingBoardState::Type::PlayerVictory)
         {
+            GetBlackboard()->GetCurrentPlayer()->GetStick()->TweenToResting();
             SetNextState(Type::GameFinish);
             m_currentState = nullptr;
             return true;

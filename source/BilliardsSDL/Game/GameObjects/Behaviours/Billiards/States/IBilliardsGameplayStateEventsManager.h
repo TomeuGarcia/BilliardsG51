@@ -13,6 +13,7 @@ public:
 	virtual bool AllBallsStoppedMoving() const = 0;
 
 
+	virtual void PositionBallsRandomly() const = 0;
 	virtual const Vector2<float> FindRandomValidPositionForBall(BilliardBall* ball) const = 0;
 
 

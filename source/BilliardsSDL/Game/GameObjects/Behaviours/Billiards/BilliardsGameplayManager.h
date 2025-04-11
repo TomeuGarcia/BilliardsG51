@@ -8,6 +8,7 @@
 
 #include "../../../Systems/GameInput.h"
 #include "../../../Physics/Physics2DManager.h"
+#include "../../../Physics/Helpers/GamePhysicsUtilities.h"
 
 #include "States/Init/BilliardsGameplayState_Init.h"
 #include "States/PlacingBalls/BilliardsGameplayState_PlacingBalls.h"
@@ -39,8 +40,7 @@ public:
 		const std::shared_ptr<BilliardsGameplayFeedbackDisplay>& feedbackDisplay,
 		const std::shared_ptr<IPlayerScoresDisplay>& scoresDisplay);
 
-	BilliardsGameplayFeedbackDisplay& GetFeedbackDisplay();
-
+	virtual void Start() override;
 	virtual void Update() override;
 	virtual void OnDestroy() override;
 
@@ -50,6 +50,7 @@ public:
 		const float& forceMagnitude) override;
 	virtual bool AllBallsStoppedMoving() const override;
 
+	virtual void PositionBallsRandomly() const override;
 	virtual const Vector2<float> FindRandomValidPositionForBall(BilliardBall* ball) const override;
 
 	virtual const std::vector<BilliardBall*>& GetWellplacedBalls() override;

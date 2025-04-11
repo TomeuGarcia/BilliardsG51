@@ -70,15 +70,16 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 
 	m_gameplayStatesMap[BilliardsGameplayState::Type::GameFinish] =
 		std::make_shared<BilliardsGameplayState_GameFinish>(&m_gameplayStatesBlackboard);
-
-
-
-	m_currentState = (m_gameplayStatesMap[BilliardsGameplayState::Type::Init]).get();
-	m_currentState->Enter();
 }
 
 
 
+
+void BilliardsGameplayManager::Start()
+{
+	m_currentState = (m_gameplayStatesMap[BilliardsGameplayState::Type::Init]).get();
+	m_currentState->Enter();
+}
 
 void BilliardsGameplayManager::Update()
 {
@@ -290,28 +291,30 @@ void BilliardsGameplayManager::OnGameFinishStart()
 
 
 
-const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(BilliardBall* ball) const 
+
+void BilliardsGameplayManager::PositionBallsRandomly() const
 {
 	const Vector2<float> randomBounds{ 1.0f, 0.75f };
-	const Circle& ballCollisionShape = ball->GetCollisionCircle();
+	const std::vector<BilliardBall*>& balls = m_gameplayStatesBlackboard.GetBalls();
+	const float checkRadius = 0.5f;
 
-	bool foundValidPosition = false;
-	Vector2<float> randomPosition;
-
-	do
+	for (auto it = balls.begin(); it != balls.end(); ++it)
 	{
-		randomPosition =
-			m_gameplayStatesBlackboard.GetBoardCenter() +
-			GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds);
+		Vector2<float> position = 
+			GamePhysicsUtilities::FindRandomPositionWithoutObstacles(m_gameplayStatesBlackboard.GetBoardCenter(), randomBounds,
+				checkRadius, 5);
 
-		foundValidPosition = Physics2DManager::GetInstance()->CircleOverlap(randomPosition, ballCollisionShape.GetRadius()).size() < 1;
+		(*it)->SetPosition(position);
+	}
+}
 
+const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(BilliardBall* ball) const
+{
+	const Vector2<float> randomBounds{ 1.0f, 0.75f };
+	const float checkRadius = 0.5f;
 
-	} while (!foundValidPosition);
-
-
-
-	return randomPosition;
+	return GamePhysicsUtilities::FindRandomPositionWithoutObstacles(m_gameplayStatesBlackboard.GetBoardCenter(), randomBounds,
+		ball->GetCollisionCircle().GetRadius(), 5);
 }
 
 
