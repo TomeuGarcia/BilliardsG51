@@ -25,25 +25,48 @@ void BilliardsGameScene::CreateGameObjects()
 
 
 
-	FadingRenderer* fadingText_whiteBallEnterHole = GetPrefabUtilities().CreateFadingText("Oops!", Colors::White, false);
-	FadingRenderer* fadingText_blackBallEnterHole = GetPrefabUtilities().CreateFadingText("Oops!", Colors::DarkPurple, false);
-	FadingRenderer* fadingText_wrongBallEnterHole = GetPrefabUtilities().CreateFadingText("Wrong!", Colors::White, false);
+	FadingRenderer* fadingText_whiteBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Oops!", Colors::White, false);
+	FadingRenderer* fadingText_blackBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Oops!", Colors::DarkPurple, false);
+	FadingRenderer* fadingText_wrongBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Wrong!", Colors::White, false);
 	FadingRenderer* fadingText_ballEnterHoleScore = 
-		GetPrefabUtilities().CreateFadingText("+" + std::to_string(scoreConfiguration.p_addValue), Colors::White, true);
+		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_addValue), Colors::White, true);
 	FadingRenderer* fadingText_ballEnterHoleScoreConsecutive = 
-		GetPrefabUtilities().CreateFadingText("+" + std::to_string(scoreConfiguration.p_consecutiveAddValue), Colors::White, true);
+		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_consecutiveAddValue), Colors::White, true);
 	FadingRenderer* fadingText_ballEnterHoleScoreLast = 
-		GetPrefabUtilities().CreateFadingText("+" + std::to_string(scoreConfiguration.p_addLastValue), Colors::White, true);
+		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_addLastValue), Colors::White, true);
 
 
-	manager->Init(balls, boardPosition, redStick, blueStick, std::make_shared<ConsolePlayerScoresDisplay>());	
-	manager->GetFeedbackDisplay().Init(
-		fadingText_whiteBallEnterHole,
-		fadingText_blackBallEnterHole,
-		fadingText_wrongBallEnterHole,
-		fadingText_ballEnterHoleScore,
-		fadingText_ballEnterHoleScoreConsecutive,
-		fadingText_ballEnterHoleScoreLast);
+	FadingRenderer* fadingText_VictoryHeader = GetPrefabUtilities().CreateOpaqueFadingText("Victory", Colors::TransparentWhite, true);
+	FadingRenderer* fadingText_VictorySubHeader = GetPrefabUtilities().CreateOpaqueFadingText("Enter winner's name", Colors::TransparentWhite, false);
+
+
+
+	std::shared_ptr<ConsolePlayerScoresDisplay> consolePlayerScoresDisplay = std::make_shared<ConsolePlayerScoresDisplay>();
+	std::shared_ptr<BilliardsGameplayFeedbackDisplay> gameplayFeedbackisplay = std::make_shared<BilliardsGameplayFeedbackDisplay>(
+		BilliardsGameplayFeedbackDisplay::FadingTextsConfig{
+			fadingText_whiteBallEnterHole,
+			fadingText_blackBallEnterHole,
+			fadingText_wrongBallEnterHole,
+			fadingText_ballEnterHoleScore,
+			fadingText_ballEnterHoleScoreConsecutive,
+			fadingText_ballEnterHoleScoreLast,
+
+			fadingText_VictoryHeader,
+			fadingText_VictorySubHeader
+		},
+		BilliardsGameplayFeedbackDisplay::SoundsConfig{
+			GameAudioManager::GetInstance(),
+			GameAssetResources::GetInstance()->GetAudio().gamePenaltySoundData,
+			GameAssetResources::GetInstance()->GetAudio().gameLowPenaltySoundData,
+			GameAssetResources::GetInstance()->GetAudio().gameScorePointsSoundData,
+			GameAssetResources::GetInstance()->GetAudio().gamePlayerChangeSoundData,
+			GameAssetResources::GetInstance()->GetAudio().gameVictorySoundData,
+		}
+	);
+
+	manager->Init(balls, boardPosition, redStick, blueStick, gameplayFeedbackisplay, consolePlayerScoresDisplay);
+
+	m_gameplayFeedbackisplay = gameplayFeedbackisplay;
 }
 
 
@@ -60,6 +83,11 @@ void BilliardsGameScene::DoUpdate()
 	{
 		AABoxColliderDrawer::s_enabled = !AABoxColliderDrawer::s_enabled;
 		CircleColliderDrawer::s_enabled = !CircleColliderDrawer::s_enabled;
+	}
+
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::Space))
+	{
+		m_gameplayFeedbackisplay->PlayVictory(Colors::DarkPurple);
 	}
 }
 

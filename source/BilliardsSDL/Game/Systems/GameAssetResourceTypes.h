@@ -46,6 +46,7 @@ public:
 	SoundResourceData textAppearSoundData;
 
 	SoundResourceData gamePenaltySoundData;
+	SoundResourceData gameLowPenaltySoundData;
 	SoundResourceData gamePlayerChangeSoundData;
 	SoundResourceData gameScorePointsSoundData;
 	SoundResourceData gameVictorySoundData;

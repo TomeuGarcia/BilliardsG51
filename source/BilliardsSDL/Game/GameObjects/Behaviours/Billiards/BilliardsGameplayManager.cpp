@@ -9,7 +9,8 @@ BilliardsGameplayManager::BilliardsGameplayManager(const BilliardsScore::Configu
 	m_wellplacedBallsThisTurn(),
 	m_missplacedBallsThisTurn(),
 	m_blackBallWellPlaced(false),
-	m_blackBall(nullptr), m_whiteBall(nullptr)
+	m_blackBall(nullptr), m_whiteBall(nullptr),
+	m_feedbackDisplay(nullptr), m_scoresDisplay(nullptr)
 {
 	m_wellplacedBallsThisTurn.reserve(5);
 	m_missplacedBallsThisTurn.reserve(2);
@@ -19,10 +20,10 @@ BilliardsGameplayManager::~BilliardsGameplayManager()
 {
 }
 
-
 void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter, 
-	BilliardStick* redStick, BilliardStick* blueStick,
-	const std::shared_ptr<IPlayerScoresDisplay> scoresDisplay)
+	BilliardStick* redStick, BilliardStick* blueStick, 
+	const std::shared_ptr<BilliardsGameplayFeedbackDisplay>& feedbackDisplay, 
+	const std::shared_ptr<IPlayerScoresDisplay>& scoresDisplay)
 {
 	m_whiteBall = balls[0];
 	m_blackBall = balls[8];
@@ -41,31 +42,34 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 
 	m_playerRed.Init(redStick, Colors::SoftRed, remainingRedBalls, "Player Red");
 	m_playerBlue.Init(blueStick, Colors::SoftBlue, remainingBlueBalls, "Player Blue");
-	
+
+
+	m_feedbackDisplay = feedbackDisplay;
+
 	m_scoresDisplay = scoresDisplay;
 	m_scoresDisplay->Init({ &m_playerRed, &m_playerBlue });
 	m_scoresDisplay->UpdateDisplayedScore();
 
-	
+
 	m_gameplayStatesBlackboard.Init(balls, boardCenter, &m_playerRed, &m_playerBlue, this);
 
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Init] = 
-			  std::make_shared<BilliardsGameplayState_Init>(&m_gameplayStatesBlackboard);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::Init] =
+		std::make_shared<BilliardsGameplayState_Init>(&m_gameplayStatesBlackboard);
 
-	m_gameplayStatesMap[BilliardsGameplayState::Type::PlacingBalls] = 
-			  std::make_shared<BilliardsGameplayState_PlacingBalls>(&m_gameplayStatesBlackboard);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::PlacingBalls] =
+		std::make_shared<BilliardsGameplayState_PlacingBalls>(&m_gameplayStatesBlackboard);
 
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Red] = 
-			  std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerRed);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Red] =
+		std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerRed);
 
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Blue] = 
-			  std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerBlue);
-	
-	m_gameplayStatesMap[BilliardsGameplayState::Type::ResolvingBoard] = 
-			  std::make_shared<BilliardsGameplayState_ResolvingBoard>(&m_gameplayStatesBlackboard);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Blue] =
+		std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerBlue);
 
-	m_gameplayStatesMap[BilliardsGameplayState::Type::GameFinish] = 
-			  std::make_shared<BilliardsGameplayState_GameFinish>(&m_gameplayStatesBlackboard);
+	m_gameplayStatesMap[BilliardsGameplayState::Type::ResolvingBoard] =
+		std::make_shared<BilliardsGameplayState_ResolvingBoard>(&m_gameplayStatesBlackboard);
+
+	m_gameplayStatesMap[BilliardsGameplayState::Type::GameFinish] =
+		std::make_shared<BilliardsGameplayState_GameFinish>(&m_gameplayStatesBlackboard);
 
 
 
@@ -73,10 +77,6 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 	m_currentState->Enter();
 }
 
-BilliardsGameplayFeedbackDisplay& BilliardsGameplayManager::GetFeedbackDisplay()
-{
-	return m_feedbackDisplay;
-}
 
 
 
@@ -184,7 +184,7 @@ void BilliardsGameplayManager::OnAnyBallEnteredHole(BilliardBall* ball, const Ve
 void BilliardsGameplayManager::OnWhiteBallEnteredHole(const Vector2<float>& holeCenter)
 {
 	m_missplacedBallsThisTurn.emplace_back(m_whiteBall);
-	m_feedbackDisplay.PlayWhiteBallEnterHole(holeCenter);
+	m_feedbackDisplay->PlayWhiteBallEnterHole(holeCenter);
 }
 
 void BilliardsGameplayManager::OnBlackBallEnteredHole(const Vector2<float>& holeCenter)
@@ -193,14 +193,14 @@ void BilliardsGameplayManager::OnBlackBallEnteredHole(const Vector2<float>& hole
 	if (currentPlayer->StillHasRemainingColoredBalls())
 	{
 		m_missplacedBallsThisTurn.emplace_back(m_blackBall);
-		m_feedbackDisplay.PlayBlackBallEnterHole(holeCenter);
+		m_feedbackDisplay->PlayBlackBallEnterHole(holeCenter);
 	}
 	else
 	{
 		currentPlayer->GetScore().AddLast();
 		m_wellplacedBallsThisTurn.emplace_back(m_blackBall);
 		m_gameplayStatesBlackboard.p_victoryAchieved = true;
-		m_feedbackDisplay.PlayBallEnterHoleScoreLast(holeCenter);
+		m_feedbackDisplay->PlayBallEnterHoleScoreLast(holeCenter);
 		OnScoreChanged();
 	}
 }
@@ -225,7 +225,7 @@ void BilliardsGameplayManager::OnPlayerBallEnteredHole(BilliardBall* ball, const
 	else
 	{
 		BilliardsPlayer* otherPlayer = m_gameplayStatesBlackboard.GetOtherPlayer();
-		m_feedbackDisplay.PlayWrongBallEnterHole(holeCenter, otherPlayer->GetBackgroundColor());
+		m_feedbackDisplay->PlayWrongBallEnterHole(holeCenter, otherPlayer->GetBackgroundColor());
 		otherPlayer->GetScore().AddByOtherPlayer();
 	}
 
@@ -240,12 +240,12 @@ void BilliardsGameplayManager::IncrementPlayerScoreWithThisTurnState(const Vecto
 	if (m_wellplacedBallsThisTurn.size() <= 1)
 	{
 		currentPlayer->GetScore().Add();
-		m_feedbackDisplay.PlayBallEnterHoleScore(holeCenter);
+		m_feedbackDisplay->PlayBallEnterHoleScore(holeCenter);
 	}
 	else
 	{
 		currentPlayer->GetScore().AddConsecutive();
-		m_feedbackDisplay.PlayBallEnterHoleScoreConsecutive(holeCenter);
+		m_feedbackDisplay->PlayBallEnterHoleScoreConsecutive(holeCenter);
 	}
 }
 
@@ -274,6 +274,18 @@ void BilliardsGameplayManager::ClearWellplacedBalls()
 void BilliardsGameplayManager::ClearMissplacedBalls()
 {
 	m_missplacedBallsThisTurn.clear();
+}
+
+
+
+void BilliardsGameplayManager::OnPlayerStartsPlaying()
+{
+	m_feedbackDisplay->PlayPlayerChange();
+}
+
+void BilliardsGameplayManager::OnGameFinishStart()
+{
+	m_feedbackDisplay->PlayVictory(m_gameplayStatesBlackboard.GetWinnerPlayer()->GetBackgroundColor());
 }
 
 

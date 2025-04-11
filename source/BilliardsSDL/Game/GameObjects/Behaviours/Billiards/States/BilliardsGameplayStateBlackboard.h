@@ -23,6 +23,10 @@ public:
 	BilliardsPlayer* GetCurrentPlayer() const;
 	BilliardsPlayer* GetOtherPlayer() const;
 
+	void SetWinnerPlayer(BilliardsPlayer* winnerPlayer);
+	BilliardsPlayer* GetWinnerPlayer() const;
+
+
 	const std::vector<BilliardBall*>& GetBalls() const;
 
 	IBilliardsGameplayStateEventsManager* GetSpecialEventsManager();
@@ -45,6 +49,7 @@ private:
 	BilliardsPlayer* m_playerRed;
 	BilliardsPlayer* m_playerBlue;
 	BilliardsPlayer* m_currentPlayer;
+	BilliardsPlayer* m_winnerPlayer;
 
 	std::vector<BilliardBall*> m_balls;
 

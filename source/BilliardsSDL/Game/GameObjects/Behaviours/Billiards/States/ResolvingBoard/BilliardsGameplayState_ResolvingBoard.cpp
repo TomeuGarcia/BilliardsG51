@@ -46,6 +46,7 @@ bool BilliardsGameplayState_ResolvingBoard::Update()
         }
         else if (nextState == ResolvingBoardState::Type::ChangePlayer)
         {
+            GetBlackboard()->GetSpecialEventsManager()->OnPlayerStartsPlaying();
             SetNextState(m_changePlayerNextStateType);
             m_currentState = nullptr;
             return true;

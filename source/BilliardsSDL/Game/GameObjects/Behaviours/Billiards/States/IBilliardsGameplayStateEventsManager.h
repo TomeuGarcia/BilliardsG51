@@ -22,5 +22,9 @@ public:
 	virtual void ClearMissplacedBalls() = 0;
 
 
+	virtual void OnPlayerStartsPlaying() = 0;
+	virtual void OnGameFinishStart() = 0;
+
+
 	virtual void AskWinnerNameAndAddToRanking(BilliardsPlayer* winnerPlayer) = 0;
 };

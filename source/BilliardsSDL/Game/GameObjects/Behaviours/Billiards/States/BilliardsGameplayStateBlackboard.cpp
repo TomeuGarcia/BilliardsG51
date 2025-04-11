@@ -50,6 +50,18 @@ BilliardsPlayer* BilliardsGameplayStateBlackboard::GetOtherPlayer() const
 }
 
 
+void BilliardsGameplayStateBlackboard::SetWinnerPlayer(BilliardsPlayer* winnerPlayer)
+{
+	m_winnerPlayer = winnerPlayer;
+}
+
+BilliardsPlayer* BilliardsGameplayStateBlackboard::GetWinnerPlayer() const
+{
+	return m_winnerPlayer;
+}
+
+
+
 const std::vector<BilliardBall*>& BilliardsGameplayStateBlackboard::GetBalls() const
 {
 	return m_balls;

@@ -36,7 +36,8 @@ public:
 
 	void Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter,
 		BilliardStick* redStick, BilliardStick* blueStick,
-		const std::shared_ptr<IPlayerScoresDisplay> scoresDisplay);
+		const std::shared_ptr<BilliardsGameplayFeedbackDisplay>& feedbackDisplay,
+		const std::shared_ptr<IPlayerScoresDisplay>& scoresDisplay);
 
 	BilliardsGameplayFeedbackDisplay& GetFeedbackDisplay();
 
@@ -55,6 +56,9 @@ public:
 	virtual const std::vector<BilliardBall*>& GetMissplacedBalls() override;
 	virtual void ClearWellplacedBalls() override;
 	virtual void ClearMissplacedBalls() override;
+
+	virtual void OnPlayerStartsPlaying() override;
+	virtual void OnGameFinishStart() override;
 
 
 	virtual void AskWinnerNameAndAddToRanking(BilliardsPlayer* winnerPlayer) override;
@@ -82,7 +86,7 @@ private:
 	BilliardsGameplayStateBlackboard m_gameplayStatesBlackboard;
 
 
-	BilliardsGameplayFeedbackDisplay m_feedbackDisplay;
+	std::shared_ptr<BilliardsGameplayFeedbackDisplay> m_feedbackDisplay;
 	std::shared_ptr<IPlayerScoresDisplay> m_scoresDisplay;
 
 	BilliardsPlayer m_playerRed;
@@ -96,5 +100,4 @@ private:
 	std::vector<BilliardBall*> m_missplacedBallsThisTurn;
 
 	bool m_blackBallWellPlaced;
-
 };

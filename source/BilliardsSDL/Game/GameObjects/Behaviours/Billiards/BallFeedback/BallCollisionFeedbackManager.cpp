@@ -46,7 +46,7 @@ void BallCollisionFeedbackManager::ClearActiveCollisions()
 
 void BallCollisionFeedbackManager::PlayCollisionFeedback(const BallCollision& ballCollision)
 {
-	float volume = Math::Clamp01(ballCollision.GetBallSpeed() / 20.0f);
+	float volume = Math::Clamp(ballCollision.GetBallSpeed() / 20.0f, 0.1f, 1.0f);
 	volume *= volume;
 
 	if (ballCollision.IsBetweenBalls())

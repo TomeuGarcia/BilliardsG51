@@ -12,7 +12,7 @@ UIButton* CustomPrefabUtilities::CreateDefaultButton(const Vector2<float>& posit
 {
 	GameObject* buttonGameObject = m_sceneCreateUtilities->CreateGameObject(position, std::string("Button_") + textString);
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(buttonGameObject, textData, textString, pointSize);
-	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightPurple, Colors::SoftGreen, Colors::SoftGreen });
+	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightPurple, Colors::SoftYellow, Colors::SoftGreen });
 
 	return button.get();
 }
@@ -199,18 +199,36 @@ GameObject* CustomPrefabUtilities::CreateBoardHole(const Vector2<float>& positio
 
 
 
-FadingRenderer* CustomPrefabUtilities::CreateFadingText(const std::string& textString, const Color& color, const bool& big)
+FadingRenderer* CustomPrefabUtilities::CreateBanishingFadingText(const std::string& textString, const Color& color, const bool& big)
 {
-	GameObject* fadingTextGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), std::string("FadingText_") + textString);
+	GameObject* fadingTextGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), std::string("BnFadingText_") + textString);
 
 	const int fonSize = big ? 32 : 23;
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(fadingTextGameObject, 
 		GameAssetResources::GetInstance()->GetText().debugTextFontData, textString, fonSize);
 
-	std::shared_ptr<FadingRenderer> fadingRenderer = std::make_shared<FadingRenderer>(text.get(), 1.0f, Vector2<float>::Up() * 0.5f, 1.2f);
+	std::shared_ptr<FadingRenderer> fadingRenderer = std::make_shared<FadingRenderer>(text.get(), 1.0f, 
+		0.0f, Vector2<float>::Up() * 0.5f, 1.2f);
 	fadingRenderer->SetStartingColor(color);
 	fadingTextGameObject->AttachBehaviour(fadingRenderer);
 	
+	return fadingRenderer.get();
+}
+
+
+FadingRenderer* CustomPrefabUtilities::CreateOpaqueFadingText(const std::string& textString, const Color& color, const bool& big)
+{
+	GameObject* fadingTextGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), std::string("OpFadingText_") + textString);
+
+	const int fonSize = big ? 72 : 48;
+	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(fadingTextGameObject,
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, textString, fonSize);
+
+	std::shared_ptr<FadingRenderer> fadingRenderer = std::make_shared<FadingRenderer>(text.get(), 0.5f,
+		1.0f, Vector2<float>::Up() * 0.5f, 1.0f);
+	fadingRenderer->SetStartingColor(color);
+	fadingTextGameObject->AttachBehaviour(fadingRenderer);
+
 	return fadingRenderer.get();
 }
 

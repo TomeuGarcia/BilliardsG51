@@ -474,6 +474,15 @@
     <ClCompile Include="Game\Systems\GameDelayedCallScheduler.cpp">
       <Filter>Source Files\Game\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_VictoryAnimation.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_AskingWinnerName.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
@@ -826,6 +835,15 @@
     </ClInclude>
     <ClInclude Include="Game\Systems\GameDelayedCallScheduler.h">
       <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_VictoryAnimation.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_AskingWinnerName.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

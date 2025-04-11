@@ -23,6 +23,7 @@ bool BilliardsGameplayState_PlacingBalls::Update()
 
 	if (m_placingTimer.HasFinished())
 	{
+		GetBlackboard()->GetSpecialEventsManager()->OnPlayerStartsPlaying();
 		SetNextState(Type::Thinking_Red);
 		return true;
 	}

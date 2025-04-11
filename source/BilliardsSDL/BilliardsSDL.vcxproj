@@ -240,6 +240,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayState.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayStateBlackboard.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\BilliardsGameplayState_GameFinish.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_AskingWinnerName.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_VictoryAnimation.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Init\BilliardsGameplayState_Init.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\PlacingBalls\BilliardsGameplayState_PlacingBalls.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\BilliardsGameplayState_ResolvingBoard.cpp" />
@@ -351,6 +354,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayState.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayStateBlackboard.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\BilliardsGameplayState_GameFinish.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_AskingWinnerName.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_VictoryAnimation.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\IBilliardsGameplayStateEventsManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Init\BilliardsGameplayState_Init.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\PlacingBalls\BilliardsGameplayState_PlacingBalls.h" />

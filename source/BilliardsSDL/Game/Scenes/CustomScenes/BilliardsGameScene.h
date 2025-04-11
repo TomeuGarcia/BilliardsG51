@@ -21,4 +21,6 @@ protected:
 	virtual void DoStart() override;
 	virtual void DoUpdate() override;
 	virtual void OnDestroy() override;
+
+	std::shared_ptr<BilliardsGameplayFeedbackDisplay> m_gameplayFeedbackisplay;
 };

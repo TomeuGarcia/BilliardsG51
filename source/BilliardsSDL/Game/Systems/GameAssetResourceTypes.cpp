@@ -32,6 +32,7 @@ AudioResources::AudioResources(const std::string& pathToResourceAudios)
 	textAppearSoundData(pathToResourceAudios + "TextAppear.wav"),
 
 	gamePenaltySoundData(pathToResourceAudios + "Penalty.wav"),
+	gameLowPenaltySoundData(pathToResourceAudios + "LowPenalty.wav"),
 	gamePlayerChangeSoundData(pathToResourceAudios + "PlayerChange.wav"),
 	gameScorePointsSoundData(pathToResourceAudios + "ScorePoints.wav"),
 	gameVictorySoundData(pathToResourceAudios + "Victory.wav"),

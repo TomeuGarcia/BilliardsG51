@@ -45,7 +45,9 @@ public:
 
 
 public:
-	FadingRenderer* CreateFadingText(const std::string& textString, const Color& color, const bool& big);
+	FadingRenderer* CreateBanishingFadingText(const std::string& textString, const Color& color, const bool& big);
+
+	FadingRenderer* CreateOpaqueFadingText(const std::string& textString, const Color& color, const bool& big);
 
 
 public:
