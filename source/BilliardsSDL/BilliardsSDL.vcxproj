@@ -255,6 +255,8 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuButton.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntry.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.cpp" />
@@ -265,6 +267,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.cpp" />
     <ClCompile Include="Game\GameObjects\GameObject.cpp" />
+    <ClCompile Include="Game\GameObjects\GameObjectGroup.cpp" />
     <ClCompile Include="Game\GameObjects\Prefabs\CustomPrefabUtilities.cpp" />
     <ClCompile Include="Game\GameObjects\Transform.cpp" />
     <ClCompile Include="Game\Physics\AABoxCollider2DGroup.cpp" />
@@ -371,6 +374,8 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_MovingAround.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_PinnedToHit.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuButton.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntry.h" />
@@ -380,6 +385,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.h" />
+    <ClInclude Include="Game\GameObjects\GameObjectGroup.h" />
     <ClInclude Include="Game\GameObjects\GameObjectTag.h" />
     <ClInclude Include="Game\GameObjects\Prefabs\CustomPrefabUtilities.h" />
     <ClInclude Include="Game\GameObjects\Transform.h" />

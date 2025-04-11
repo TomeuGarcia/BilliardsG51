@@ -12,6 +12,7 @@ public:
 public:
 	ImageResourceData debugImageData;
 	ImageResourceData debugTransparentImageData;
+	ImageResourceData debugPixelImageData;
 
 	ImageResourceData whiteBallImageData;
 	ImageResourceData blackBallImageData;
@@ -43,6 +44,7 @@ public:
 public:
 	SoundResourceData buttonOkSoundData;
 	SoundResourceData buttonBackSoundData;
+	SoundResourceData buttonDangerSoundData;
 	SoundResourceData textAppearSoundData;
 
 	SoundResourceData gamePenaltySoundData;

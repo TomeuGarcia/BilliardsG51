@@ -7,24 +7,33 @@ CustomPrefabUtilities::CustomPrefabUtilities(SceneCreateUtilities* sceneCreateUt
 {
 }
 
-UIButton* CustomPrefabUtilities::CreateDefaultButton(const Vector2<float>& position, 
-	const TextResourceData& textData, const std::string& textString, const int pointSize)
+MenuButton* CustomPrefabUtilities::CreateDefaultMenuButton(const Vector2<float>& position,
+	const TextResourceData& textData, const std::string& textString, const int pointSize,
+	const SoundResourceData& soundData)
 {
 	GameObject* buttonGameObject = m_sceneCreateUtilities->CreateGameObject(position, std::string("Button_") + textString);
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(buttonGameObject, textData, textString, pointSize);
 	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightPurple, Colors::SoftYellow, Colors::SoftGreen });
 
-	return button.get();
+	std::shared_ptr<MenuButton> menuButton = std::make_shared<MenuButton>(button.get(), GameAudioManager::GetInstance()->CreateSFXSound(soundData));
+	buttonGameObject->AttachBehaviour(menuButton);
+
+	return menuButton.get();
 }
 
-UIButton* CustomPrefabUtilities::CreateDangerButton(const Vector2<float>& position, 
+MenuButton* CustomPrefabUtilities::CreateDangerMenuButton(const Vector2<float>& position,
 	const TextResourceData& textData, const std::string& textString, const int pointSize)
 {
 	GameObject* buttonGameObject = m_sceneCreateUtilities->CreateGameObject(position, std::string("DangerButton_") + textString);
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(buttonGameObject, textData, textString, pointSize);
 	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightPurple, Colors::Red, Colors::Red });
 
-	return button.get();
+	const SoundResourceData soundData = GameAssetResources::GetInstance()->GetAudio().buttonDangerSoundData;
+
+	std::shared_ptr<MenuButton> menuButton = std::make_shared<MenuButton>(button.get(), GameAudioManager::GetInstance()->CreateSFXSound(soundData));
+	buttonGameObject->AttachBehaviour(menuButton);
+
+	return menuButton.get();
 }
 
 
@@ -264,4 +273,49 @@ void CustomPrefabUtilities::CreateRankingEntryDisplay(const Vector2<float>& posi
 	std::shared_ptr<RankingEntryDisplay> rankingEntryDisplay = std::make_shared<RankingEntryDisplay>(gameObject, index,
 		placingText.get(), scoreText.get(), nameText.get());
 	gameObject->AttachBehaviour(rankingEntryDisplay);
+}
+
+
+
+
+GameObjectGroup CustomPrefabUtilities::CreateOptionsMenu(const std::string& title, MenuButton* outBackButton)
+{
+	GameObjectGroup gameObjects{10};
+	
+	GameObject* backgroundGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), "Background");
+	gameObjects.Add(backgroundGameObject);
+
+	std::shared_ptr<Image> backgroundImage = m_sceneCreateUtilities->CreateImageComponent(backgroundGameObject, 
+		GameAssetResources::GetInstance()->GetImage().debugPixelImageData);
+	backgroundImage->p_scale *= 2000.0f;
+	backgroundImage->SetColorTint(Color{ 0, 0, 0, 200 });
+
+
+	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 3.0f), "OptionsTitle");
+	gameObjects.Add(titleGameObject);
+	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, title, 48);
+
+
+	GameObject* masterVolumeGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 1.5f), "MasterVolume");
+	gameObjects.Add(masterVolumeGameObject);
+	m_sceneCreateUtilities->CreateTextComponent(masterVolumeGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Master Volume", 36);
+
+
+	GameObject* musicVolumeGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 0.5f), "Music");
+	gameObjects.Add(musicVolumeGameObject);
+	m_sceneCreateUtilities->CreateTextComponent(musicVolumeGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Music", 36);
+
+
+	GameObject* sfxVolumeGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, -0.5f), "SFX");
+	gameObjects.Add(sfxVolumeGameObject);
+	m_sceneCreateUtilities->CreateTextComponent(sfxVolumeGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "SFX", 36);
+
+
+
+	MenuButton* backButton = CreateDefaultMenuButton(Vector2<float>(0.0f, -2.5f), GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		"Back", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
+	gameObjects.Add(backButton->GetGameObject());
+
+
+	return gameObjects;
 }

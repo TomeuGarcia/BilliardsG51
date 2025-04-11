@@ -1,5 +1,9 @@
 #pragma once
+#include "../Behaviour.h"
+#include "../../GameObjectGroup.h"
 #include "../Billiards/Holes/IBilliardBoardHoleInteractionsManager.h"
+
+
 
 
 class MainMenuManager : 

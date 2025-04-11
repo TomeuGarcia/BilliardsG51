@@ -7,6 +7,8 @@
 
 #include "../../Audio/GameAudioManager.h"
 
+#include "../../GameObjects/Behaviours/CustomUI/MenuIncDecButton.h"
+
 
 class MainMenuScene : public Scene
 {

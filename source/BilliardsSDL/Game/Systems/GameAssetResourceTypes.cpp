@@ -6,6 +6,7 @@ ImageResources::ImageResources(const float& pixelsToUnits, const std::string& pa
 	:
 	debugImageData(pathToResourceImages + "Watcher_Unglitched_BossIcon.png", Vector2<int>(0, 0), Vector2<int>(3068, 3570), false, pixelsToUnits),
 	debugTransparentImageData(pathToResourceImages + "ElectroWeb.png", Vector2<int>(0, 0), Vector2<int>(390, 390), false, pixelsToUnits),
+	debugPixelImageData(pathToResourceImages + "Pixel.png", Vector2<int>(0, 0), Vector2<int>(1, 1), true, pixelsToUnits),
 
 	whiteBallImageData(pathToResourceImages + "BilliardsSprites.png", Vector2<int>(0, 0), Vector2<int>(32, 32), false, pixelsToUnits),
 	blueBallImageData(pathToResourceImages + "BilliardsSprites.png", Vector2<int>(32, 0), Vector2<int>(32, 32), false, pixelsToUnits),
@@ -29,6 +30,7 @@ AudioResources::AudioResources(const std::string& pathToResourceAudios)
 	:
 	buttonOkSoundData(pathToResourceAudios + "ButtonOk.wav"),
 	buttonBackSoundData(pathToResourceAudios + "ButtonBack.wav"),
+	buttonDangerSoundData(pathToResourceAudios + "ButtonDanger.wav"),
 	textAppearSoundData(pathToResourceAudios + "TextAppear.wav"),
 
 	gamePenaltySoundData(pathToResourceAudios + "Penalty.wav"),

@@ -29,6 +29,36 @@ bool GameTweener::TransformTween::HasFinished()
 
 
 
+GameTweener::RendererScaleTween::RendererScaleTween(Renderer* renderer, const Vector2<float>& origin, const Vector2<float>& goal, 
+	const float& duration, const float& delay)
+	: p_renderer(renderer), m_origin(origin), m_goal(goal), m_duration(duration), m_currentTime(0.0f - delay)
+{
+}
+
+void GameTweener::RendererScaleTween::Update(const float& deltaTime)
+{
+	m_currentTime += deltaTime;
+}
+
+void GameTweener::RendererScaleTween::UpdateComplete()
+{
+	m_currentTime = m_duration;
+}
+
+Vector2<float> GameTweener::RendererScaleTween::GetCurrentValue() const
+{
+	const float t = Math::Clamp01(m_currentTime / m_duration);
+	return Vector2<float>::Lerp(m_origin, m_goal, t);
+}
+
+bool GameTweener::RendererScaleTween::HasFinished()
+{
+	return m_currentTime >= m_duration;
+}
+
+
+
+
 GameTweener::RendererColorTween::RendererColorTween(Renderer* renderer, const Color& origin, const Color& goal, 
 	const float& duration, const float& delay)
 	: p_renderer(renderer), m_origin(origin), m_goal(goal), m_duration(duration), m_currentTime(0.0f - delay)
@@ -86,6 +116,7 @@ GameTweener* GameTweener::GetInstance()
 void GameTweener::Update(const float& deltaTime)
 {
 	UpdatePositionTweens(deltaTime);
+	UpdateScaleTweens(deltaTime);
 	UpdateColorTweens(deltaTime);
 }
 
@@ -100,6 +131,11 @@ void GameTweener::Clear()
 void GameTweener::TweenPosition(Transform* transform, const Vector2<float>& goalPosition, const float& duration, const float& delay)
 {
 	m_positionTweens.emplace_back(transform, transform->p_worldPosition, goalPosition, duration, delay);
+}
+
+void GameTweener::TweenScaleBy(Renderer* renderer, const Vector2<float>& scaleBy, const float& duration, const float& delay)
+{
+	m_scaleTweens.emplace_back(renderer, renderer->p_scale, renderer->p_scale * scaleBy, duration, delay);
 }
 
 void GameTweener::TweenColor(Renderer* renderer, const Color& goalColor, const float& duration, const float& delay)
@@ -118,6 +154,20 @@ void GameTweener::CompletePosition(Transform* transform)
 			it->UpdateComplete();
 			it->p_transform->p_worldPosition = it->GetCurrentValue();
 			m_positionTweens.erase(it);
+			return;
+		}
+	}
+}
+
+void GameTweener::CompleteScale(Renderer* renderer)
+{
+	for (auto it = m_scaleTweens.begin(); it != m_scaleTweens.end(); ++it)
+	{
+		if (it->p_renderer == renderer)
+		{
+			it->UpdateComplete();
+			it->p_renderer->p_scale = it->GetCurrentValue();
+			m_scaleTweens.erase(it);
 			return;
 		}
 	}
@@ -158,6 +208,25 @@ void GameTweener::UpdatePositionTweens(const float& deltaTime)
 	}
 }
 
+void GameTweener::UpdateScaleTweens(const float& deltaTime)
+{
+	for (auto it = m_scaleTweens.begin(); it != m_scaleTweens.end(); )
+	{
+		RendererScaleTween& tween = *it;
+		tween.Update(deltaTime);
+		tween.p_renderer->p_scale = tween.GetCurrentValue();
+
+		if (tween.HasFinished())
+		{
+			it = m_scaleTweens.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+}
+
 void GameTweener::UpdateColorTweens(const float& deltaTime)
 {
 	for (auto it = m_colorTweens.begin(); it != m_colorTweens.end(); )
@@ -176,4 +245,3 @@ void GameTweener::UpdateColorTweens(const float& deltaTime)
 		}
 	}
 }
-

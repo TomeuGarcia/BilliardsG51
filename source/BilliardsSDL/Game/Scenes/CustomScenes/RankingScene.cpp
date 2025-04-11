@@ -24,19 +24,19 @@ void RankingScene::CreateGameObjects()
 
 
 
-	UIButton* backToMenuButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(-6.0f, -3.25f),
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Back", 36);
-	backToMenuButton->p_onSelectedCallback = []() { SceneManager::GetInstance()->LoadScene(SceneName::MainMenu); };
+	MenuButton* backToMenuButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(-6.0f, -3.25f),
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Back", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
+	backToMenuButton->SetSelectedCallback([]() { SceneManager::GetInstance()->LoadScene(SceneName::MainMenu); });
 
 
-	UIButton* clearRankingButton = GetPrefabUtilities().CreateDangerButton(Vector2<float>(5.3f, -3.35f),
+	MenuButton* clearRankingButton = GetPrefabUtilities().CreateDangerMenuButton(Vector2<float>(5.3f, -3.35f),
 		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Clear Ranking", 25);
-	clearRankingButton->p_onSelectedCallback = []() {
+	clearRankingButton->SetSelectedCallback([]() {
 		RankingManager rankingManager{};
 		rankingManager.ClearEntries();
 		rankingManager.Save();
 		SceneManager::GetInstance()->LoadScene(SceneName::Ranking); 
-	};
+	});
 
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");

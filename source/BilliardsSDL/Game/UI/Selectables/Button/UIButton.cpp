@@ -8,6 +8,11 @@ UIButton::UIButton(const std::shared_ptr<Renderer>& renderer, const ColorBlock& 
 {
 }
 
+Renderer* UIButton::GetRenderer() const
+{
+	return m_renderer.get();
+}
+
 
 Rect<int> UIButton::GetWindowBounds() const
 {
@@ -40,7 +45,7 @@ void UIButton::OnHovered()
 
 void UIButton::OnSelected()
 {
-	UpdateGoalColor(m_previousColor, m_colorBlock.p_selectedColor);
+	UpdateGoalColor(m_colorBlock.p_selectedColor, m_previousColor);
 	p_onSelectedCallback();
 }
 

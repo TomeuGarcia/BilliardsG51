@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Scenes/Utilities/SceneCreateUtilities.h"
+#include "../GameObjectGroup.h"
 
 #include "../Behaviours/Billiards/BallFeedback/BallCollisionFeedbackManager.h"
 #include "../Behaviours/Billiards/BallFeedback/BallCollisionDetector.h"
@@ -12,6 +13,8 @@
 #include "../Behaviours/Ranking/RankingEntry.h"
 #include "../Behaviours/Ranking/RankingEntryDisplay.h"
 
+#include "../Behaviours/CustomUI/MenuButton.h"
+
 
 class CustomPrefabUtilities
 {
@@ -20,9 +23,10 @@ public:
 
 
 public:
-	UIButton* CreateDefaultButton(const Vector2<float>& position,
-		const TextResourceData& textData, const std::string& textString, const int pointSize);
-	UIButton* CreateDangerButton(const Vector2<float>& position,
+	MenuButton* CreateDefaultMenuButton(const Vector2<float>& position,
+		const TextResourceData& textData, const std::string& textString, const int pointSize,
+		const SoundResourceData& soundData);
+	MenuButton* CreateDangerMenuButton(const Vector2<float>& position,
 		const TextResourceData& textData, const std::string& textString, const int pointSize);
 
 
@@ -53,6 +57,9 @@ public:
 public:
 	void CreateRankingEntryDisplay(const Vector2<float>& position, const RankingEntry& rankingEntry, const int& index);
 
+
+public:
+	GameObjectGroup CreateOptionsMenu(const std::string& title, MenuButton* outBackButton);
 
 
 private:

@@ -12,6 +12,8 @@ class UIButton : public UISelectable
 public:
 	UIButton(const std::shared_ptr<Renderer>& renderer, const ColorBlock& colorBlock);
 
+	Renderer* GetRenderer() const;
+
 	virtual Rect<int> GetWindowBounds() const override;
 	virtual bool IsActive() const override;
 

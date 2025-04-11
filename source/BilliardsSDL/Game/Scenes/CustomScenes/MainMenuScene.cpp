@@ -36,25 +36,61 @@ void MainMenuScene::CreateGameObjects()
 	holeGameObject->AttachBehaviour(boardHole);
 	*/
 
-	UIButton* quitButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(-5.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Quit", 36);
-	quitButton->p_onSelectedCallback = []() { GameAppInteractions::GetInstance()->Quit(); };
+	MenuButton* quitButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(-5.0f, 1.25f),
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Quit", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
+	quitButton->SetSelectedCallback([]() { GameAppInteractions::GetInstance()->Quit(); });
 	
 
-	UIButton* playButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(0.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Play", 36);
-	playButton->p_onSelectedCallback = []() { 
-		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
-		};
+	MenuButton* playButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, 1.25f),
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Play", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
+	playButton->SetSelectedCallback([]() { SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);	});
 	
 
-	UIButton* rankingButton = GetPrefabUtilities().CreateDefaultButton(Vector2<float>(5.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Ranking", 36);
-	rankingButton->p_onSelectedCallback = []() { SceneManager::GetInstance()->LoadScene(SceneName::Ranking); };
+	MenuButton* rankingButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(5.0f, 1.25f),
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Ranking", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
+	rankingButton->SetSelectedCallback([]() { SceneManager::GetInstance()->LoadScene(SceneName::Ranking); });
 
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
 	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Billiards G51", 48);
+
+
+
+	MenuIncDecButton::Config incDecConfig{
+		0,
+		100,
+		10,		
+		28,
+		36,
+		36,
+		ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftGreen},
+		ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftRed},
+		&GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData,
+		&GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData,
+		&GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		Colors::White
+	};
+
+	GameObject* masterVolumeGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 0.0f), "MasterVolume");
+	std::shared_ptr<MenuIncDecButton> masterVolumeIncDec = std::make_shared<MenuIncDecButton>(&GetCreateUtilities(), 
+		incDecConfig, "Master Volume", 100, masterVolumeGameObject);
+	masterVolumeGameObject->AttachBehaviour(masterVolumeIncDec);
+
+	GameObject* musicVolumeGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, -1.0f), "Music");
+	std::shared_ptr<MenuIncDecButton> musicVolumeIncDec = std::make_shared<MenuIncDecButton>(&GetCreateUtilities(), 
+		incDecConfig, "Music Volume", 50, musicVolumeGameObject);
+	musicVolumeGameObject->AttachBehaviour(musicVolumeIncDec);
+
+	GameObject* sfxVolumeGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, -2.0f), "SFX");
+	std::shared_ptr<MenuIncDecButton> sfxVolumeIncDec = std::make_shared<MenuIncDecButton>(&GetCreateUtilities(), 
+		incDecConfig, "SFX Volume", 50, sfxVolumeGameObject);
+	sfxVolumeGameObject->AttachBehaviour(sfxVolumeIncDec);
+
+	/*
+	m_options = GetPrefabUtilities().CreateOptionsMenu("Options", m_optionsBack);
+
+	m_optionsBack->SetSelectedCallback([](){ m_options. })
+	*/
 }
 
 

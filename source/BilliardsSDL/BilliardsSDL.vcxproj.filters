@@ -178,6 +178,9 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback">
       <UniqueIdentifier>{38cb4d59-fe17-439f-8633-2c5dd193e5d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\CustomUI">
+      <UniqueIdentifier>{24dbb1ad-da40-401d-b2cf-bf5c9384c9e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -485,6 +488,15 @@
     </ClCompile>
     <ClCompile Include="Game\Physics\Helpers\GamePhysicsUtilities.cpp">
       <Filter>Source Files\Game\Physics\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuButton.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\GameObjectGroup.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -850,6 +862,15 @@
     </ClInclude>
     <ClInclude Include="Game\Physics\Helpers\GamePhysicsUtilities.h">
       <Filter>Source Files\Game\Physics\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuButton.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\GameObjectGroup.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
