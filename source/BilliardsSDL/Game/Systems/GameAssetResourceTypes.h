@@ -31,7 +31,8 @@ public:
 	TextResources(const std::string& pathToResourceFonts);
 
 public:
-	TextResourceData debugTextFontData;
+	TextResourceData defaultTextFontData;
+	TextResourceData titleTextFontData;
 };
 
 

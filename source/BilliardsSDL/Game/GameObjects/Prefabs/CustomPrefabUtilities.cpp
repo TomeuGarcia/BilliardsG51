@@ -52,7 +52,7 @@ MenuIncDecButton* CustomPrefabUtilities::CreateDefaultMenuIncDecButton(const Vec
 	ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftRed},
 	&GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData,
 	&GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData,
-	&GameAssetResources::GetInstance()->GetText().debugTextFontData,
+	&GameAssetResources::GetInstance()->GetText().defaultTextFontData,
 	Colors::White
 	};
 
@@ -246,7 +246,7 @@ FadingRenderer* CustomPrefabUtilities::CreateBanishingFadingText(const std::stri
 
 	const int fonSize = big ? 32 : 23;
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(fadingTextGameObject, 
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, textString, fonSize);
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData, textString, fonSize);
 
 	std::shared_ptr<FadingRenderer> fadingRenderer = std::make_shared<FadingRenderer>(text.get(), 1.0f, 
 		0.0f, Vector2<float>::Up() * 0.5f, 1.2f);
@@ -263,7 +263,7 @@ FadingRenderer* CustomPrefabUtilities::CreateOpaqueFadingText(const std::string&
 
 	const int fonSize = big ? 72 : 48;
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(fadingTextGameObject,
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, textString, fonSize);
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData, textString, fonSize);
 
 	std::shared_ptr<FadingRenderer> fadingRenderer = std::make_shared<FadingRenderer>(text.get(), 0.5f,
 		1.0f, Vector2<float>::Up() * 0.5f, 1.0f);
@@ -278,7 +278,7 @@ FadingRenderer* CustomPrefabUtilities::CreateOpaqueFadingText(const std::string&
 
 void CustomPrefabUtilities::CreateRankingEntryDisplay(const Vector2<float>& position, const RankingEntry& rankingEntry, const int& index)
 {
-	const TextResourceData& textData = GameAssetResources::GetInstance()->GetText().debugTextFontData;
+	const TextResourceData& textData = GameAssetResources::GetInstance()->GetText().defaultTextFontData;
 	const int fontSize = 25;
 
 	const Color color = index == 0 ? Colors::Gold : Colors::White;
@@ -329,12 +329,12 @@ OptionsMenu* CustomPrefabUtilities::CreateOptionsMenu()
 
 
 	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 3.0f), "OptionsTitle");
-	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Options", 48);
+	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Options", 48);
 	gameObjects.Add(titleGameObject);
 
 
 	MenuButton* backButton = CreateDefaultMenuButton(Vector2<float>(0.0f, -2.3f), false,
-		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData,
 		"Back", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 	gameObjects.Add(backButton->GetGameObject());
 
@@ -376,30 +376,30 @@ PauseMenu* CustomPrefabUtilities::CreatePauseMenu()
 
 
 	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 3.0f), "PauseTitle");
-	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Paused", 48);
+	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Paused", 48);
 	gameObjects.Add(titleGameObject);
 
 
 	MenuButton* backButton = CreateDefaultMenuButton(Vector2<float>(0.0f, 1.25f), false, 
-		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData,
 		"Resume", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 	gameObjects.Add(backButton->GetGameObject());
 
 
 	MenuButton* optionsButton = CreateDefaultMenuButton(Vector2<float>(0.0f, 0.5f), false, 
-		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData,
 		"Options", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
 	gameObjects.Add(optionsButton->GetGameObject());
 	
 
 	MenuButton* restartButton = CreateDefaultMenuButton(Vector2<float>(0.0f, -0.25f), false, 
-		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData,
 		"Restart Game", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 	gameObjects.Add(restartButton->GetGameObject());
 
 
 	MenuButton* quitButton = CreateDefaultMenuButton(Vector2<float>(0.0f, -1.0f), false, 
-		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData,
 		"Quit to Main Menu", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 	gameObjects.Add(quitButton->GetGameObject());
 

@@ -34,19 +34,19 @@ void MainMenuScene::CreateGameObjects()
 	
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
-	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Billiards G51", 64);
+	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().titleTextFontData, "Billiards G51", 78);
 
 	MenuButton* playButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, 0.5f), true,
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Play", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);	
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Play", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);	
 	
 	MenuButton* rankingButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, -0.25f), true,
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Ranking", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Ranking", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
 
 	MenuButton* optionsButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, -1.0f), false,
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Options", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Options", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
 
 	MenuButton* quitButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, -1.75f), true,
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Quit", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Quit", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 
 
 	

@@ -28,12 +28,12 @@ void RankingScene::CreateGameObjects()
 
 
 	MenuButton* backToMenuButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(-6.0f, -3.25f), true,
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Back", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Back", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 	backToMenuButton->SetSelectedCallback([]() { SceneManager::GetInstance()->LoadScene(SceneName::MainMenu); });
 
 
 	MenuButton* clearRankingButton = GetPrefabUtilities().CreateDangerMenuButton(Vector2<float>(5.3f, -3.35f), true,
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Clear Ranking", 25);
+		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Clear Ranking", 25);
 	clearRankingButton->SetSelectedCallback([]() {
 		RankingManager rankingManager{};
 		rankingManager.ClearEntries();
@@ -43,7 +43,7 @@ void RankingScene::CreateGameObjects()
 
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
-	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "-  Ranking  -", 48);
+	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "-  Ranking  -", 48);
 }
 
 void RankingScene::DoStart()

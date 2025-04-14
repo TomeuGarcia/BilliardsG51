@@ -21,7 +21,8 @@ ImageResources::ImageResources(const float& pixelsToUnits, const std::string& pa
 
 TextResources::TextResources(const std::string& pathToResourceFonts)
 	:
-	debugTextFontData(pathToResourceFonts + "hinted-GWENT-ExtraBold.ttf")
+	defaultTextFontData(pathToResourceFonts + "ColateraSoft.ttf"),
+	titleTextFontData(pathToResourceFonts + "Movie Font.ttf")
 {
 }
 

@@ -6,7 +6,7 @@ Scene::Scene()
 	m_createUtilities(&m_gameObjects),
 	m_customPrefabs(&m_createUtilities)
 {
-	m_gameObjects.reserve(80); // For some reason this sets the maximum amount of possible gameObjects...
+	m_gameObjects.reserve(80); // If this is resized, the old GameObject* references are lost...
 }
 
 Scene::~Scene()

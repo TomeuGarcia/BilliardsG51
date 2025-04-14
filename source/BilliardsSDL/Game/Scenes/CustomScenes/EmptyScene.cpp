@@ -22,7 +22,7 @@ void EmptyScene::CreateGameObjects()
 			GetCreateUtilities().CreateImageComponent(testGameObject, GameAssetResources::GetInstance()->GetImage().debugImageData);
 
 		std::shared_ptr<Text> text =
-			GetCreateUtilities().CreateTextComponent(testGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Nomadic Defender", 64);
+			GetCreateUtilities().CreateTextComponent(testGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Nomadic Defender", 64);
 
 		std::shared_ptr<TestBehaviour> testBehaviour = std::make_shared<TestBehaviour>(image, text);
 		testGameObject->AttachBehaviour(testBehaviour);
