@@ -7,7 +7,9 @@
 
 MenuIncDecButton::MenuIncDecButton(SceneCreateUtilities* sceneCreateUtilities, const Config& config,
     const std::string& name, const int& startingValue, GameObject* gameObject)
-    : m_incrementButton(nullptr), m_decrementButton(nullptr), m_nameText(nullptr), m_valueTexts(),
+    : 
+    m_gameObjects(5),
+    m_incrementButton(nullptr), m_decrementButton(nullptr), m_nameText(nullptr), m_valueTexts(),
     m_textColor(config.textColor),
     m_numberOfSteps(config.numberOfSteps + 1),
     m_currentValueIndex(0),
@@ -47,7 +49,22 @@ MenuIncDecButton::MenuIncDecButton(SceneCreateUtilities* sceneCreateUtilities, c
     UpdateValueText();
 
 
-    m_valueUpdateCallback = [](int value) { std::printf("> %i\n", value); };
+    m_gameObjects.Add(gameObject);
+    m_gameObjects.Add(nameGameObject);
+    m_gameObjects.Add(incGameObject);
+    m_gameObjects.Add(decGameObject);
+    m_gameObjects.Add(valueTextsGameObject);
+}
+
+void MenuIncDecButton::SetValueUpdateCallback(const std::function<void(int)>& valueUpdateCallback)
+{
+    m_valueUpdateCallback = valueUpdateCallback;
+}
+
+
+const GameObjectGroup& MenuIncDecButton::GetGameObjects()
+{
+    return m_gameObjects;
 }
 
 

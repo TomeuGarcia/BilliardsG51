@@ -1,8 +1,8 @@
 #include "MenuButton.h"
 
 
-MenuButton::MenuButton(UIButton* button, const std::shared_ptr<SFXSound>& selectedSound)
-	: m_button(button), m_selectedSound(selectedSound),	m_selectedCallback(),
+MenuButton::MenuButton(UIButton* button, const bool& canBeSelectedOnlyOnce, const std::shared_ptr<SFXSound>& selectedSound)
+	: m_button(button), m_canBeSelectedOnlyOnce(canBeSelectedOnlyOnce), m_selectedSound(selectedSound),	m_selectedCallback(),
 	m_delayToEnd(0.15f), m_buttonScaleBy(0.9f)
 {
 }
@@ -33,7 +33,10 @@ void MenuButton::SetSelectedCallback(const std::function<void()>& callback)
 
 void MenuButton::DoOnButtonSelectedStart()
 {
-	m_button->p_onSelectedCallback = []() {};
+	if (m_canBeSelectedOnlyOnce)
+	{
+		m_button->p_onSelectedCallback = []() {};
+	}
 
 	m_selectedSound->Play();	
 	GameDelayedCallScheduler::GetInstance()->AddCall(this, m_delayToEnd, std::bind(&MenuButton::DoOnButtonSelectedFinish, this));

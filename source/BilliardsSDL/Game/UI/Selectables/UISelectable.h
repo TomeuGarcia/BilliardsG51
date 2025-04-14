@@ -25,6 +25,7 @@ public:
 
 	virtual void Update(const float& deltaTime) = 0;
 
+	virtual void WhenNotActiveUpdate() = 0;
 
 protected:
 	virtual void OnUnhovered() = 0;

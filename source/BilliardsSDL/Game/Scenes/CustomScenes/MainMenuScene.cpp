@@ -22,12 +22,8 @@ void MainMenuScene::CreateGameObjects()
 	*/
 
 
-
-	GameObject* managerGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>::Zero(), "Manager");
-	std::shared_ptr<MainMenuManager> mainMenuManager = std::make_shared<MainMenuManager>();
-	managerGameObject->AttachBehaviour(mainMenuManager);
-
-	GetPrefabUtilities().CreateBilliardsBoard(Vector2<float>(0.0f, -2.0f), mainMenuManager.get());
+	std::shared_ptr<MainMenuBilliardsBoardManager> boardManager = std::make_shared<MainMenuBilliardsBoardManager>();
+	GetPrefabUtilities().CreateBilliardsBoard(Vector2<float>(0.0f, -0.6f), boardManager.get());
 
 
 	/*
@@ -35,62 +31,42 @@ void MainMenuScene::CreateGameObjects()
 	std::shared_ptr<BilliardsBoardHole> boardHole = std::make_shared<BilliardsBoardHole>(holeGameObject->GetTransform(), );
 	holeGameObject->AttachBehaviour(boardHole);
 	*/
-
-	MenuButton* quitButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(-5.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Quit", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
-	quitButton->SetSelectedCallback([]() { GameAppInteractions::GetInstance()->Quit(); });
 	
-
-	MenuButton* playButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Play", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
-	playButton->SetSelectedCallback([]() { SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);	});
-	
-
-	MenuButton* rankingButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(5.0f, 1.25f),
-		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Ranking", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
-	rankingButton->SetSelectedCallback([]() { SceneManager::GetInstance()->LoadScene(SceneName::Ranking); });
-
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
-	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Billiards G51", 48);
+	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Billiards G51", 64);
+
+	MenuButton* playButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, 0.5f), true,
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Play", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);	
+	
+	MenuButton* rankingButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, -0.25f), true,
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Ranking", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
+
+	MenuButton* optionsButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, -1.0f), false,
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Options", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
+
+	MenuButton* quitButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, -1.75f), true,
+		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Quit", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 
 
+	
+	OptionsMenu* optionsMenu = GetPrefabUtilities().CreateOptionsMenu();
 
-	MenuIncDecButton::Config incDecConfig{
-		0,
-		100,
-		10,		
-		28,
-		36,
-		36,
-		ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftGreen},
-		ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftRed},
-		&GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData,
-		&GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData,
-		&GameAssetResources::GetInstance()->GetText().debugTextFontData,
-		Colors::White
-	};
+	GameObjectGroup objectsToHideWhenOptionsShown{5};
+	objectsToHideWhenOptionsShown.Add(titleGameObject);
+	objectsToHideWhenOptionsShown.Add(playButton->GetGameObject());
+	objectsToHideWhenOptionsShown.Add(rankingButton->GetGameObject());
+	objectsToHideWhenOptionsShown.Add(optionsButton->GetGameObject());
+	objectsToHideWhenOptionsShown.Add(quitButton->GetGameObject());
 
-	GameObject* masterVolumeGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 0.0f), "MasterVolume");
-	std::shared_ptr<MenuIncDecButton> masterVolumeIncDec = std::make_shared<MenuIncDecButton>(&GetCreateUtilities(), 
-		incDecConfig, "Master Volume", 100, masterVolumeGameObject);
-	masterVolumeGameObject->AttachBehaviour(masterVolumeIncDec);
 
-	GameObject* musicVolumeGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, -1.0f), "Music");
-	std::shared_ptr<MenuIncDecButton> musicVolumeIncDec = std::make_shared<MenuIncDecButton>(&GetCreateUtilities(), 
-		incDecConfig, "Music Volume", 50, musicVolumeGameObject);
-	musicVolumeGameObject->AttachBehaviour(musicVolumeIncDec);
-
-	GameObject* sfxVolumeGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, -2.0f), "SFX");
-	std::shared_ptr<MenuIncDecButton> sfxVolumeIncDec = std::make_shared<MenuIncDecButton>(&GetCreateUtilities(), 
-		incDecConfig, "SFX Volume", 50, sfxVolumeGameObject);
-	sfxVolumeGameObject->AttachBehaviour(sfxVolumeIncDec);
-
-	/*
-	m_options = GetPrefabUtilities().CreateOptionsMenu("Options", m_optionsBack);
-
-	m_optionsBack->SetSelectedCallback([](){ m_options. })
-	*/
+	GameObject* managerGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>::Zero(), "Manager");
+	std::shared_ptr<MainMenuManager> mainMenuManager = std::make_shared<MainMenuManager>(
+		boardManager,
+		playButton, rankingButton, optionsButton, quitButton,
+		optionsMenu, objectsToHideWhenOptionsShown
+	);
+	managerGameObject->AttachBehaviour(mainMenuManager);
 }
 
 

@@ -9,6 +9,7 @@ public:
 	GameObjectGroup(const int& startingCapacity);
 
 	void Add(GameObject* gameObject);
+	void Add(const GameObjectGroup& other);
 
 	void SetActive(const bool& active);
 

@@ -40,6 +40,21 @@ std::shared_ptr<MusicSound> GameAudioManager::CreateMusicSound(const SoundResour
 
 
 
+float GameAudioManager::GetMasterVolume01() const
+{
+	return m_masterVolume01;
+}
+
+float GameAudioManager::GetMusicVolume01() const
+{
+	return m_musicVolume01;
+}
+
+float GameAudioManager::GetSFXVolume01() const
+{
+	return m_sfxVolume01;
+}
+
 
 void GameAudioManager::SetMasterVolume(const float& volume01)
 {

@@ -181,6 +181,9 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\CustomUI">
       <UniqueIdentifier>{24dbb1ad-da40-401d-b2cf-bf5c9384c9e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\GameOptions">
+      <UniqueIdentifier>{c6d2fc19-1700-405a-ba39-70f90a344c0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -497,6 +500,18 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\GameAudioFileData.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\GameOptionsManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\OptionsMenu.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuBilliardsBoardManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -871,6 +886,18 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\GameOptionsManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\GameAudioFileData.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\OptionsMenu.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuBilliardsBoardManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

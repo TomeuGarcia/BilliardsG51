@@ -31,6 +31,11 @@ void UIButton::Update(const float& deltaTime)
 	m_renderer->SetColorTint(Color::Lerp(m_previousColor, m_goalColor, m_goalColorTimer.GetRatio01()));
 }
 
+void UIButton::WhenNotActiveUpdate()
+{
+	UpdateGoalColor(m_colorBlock.p_normalColor, m_colorBlock.p_normalColor);
+}
+
 
 void UIButton::OnUnhovered()
 {

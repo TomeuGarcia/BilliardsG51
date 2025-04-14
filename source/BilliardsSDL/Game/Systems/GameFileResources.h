@@ -12,10 +12,12 @@ public:
 	static GameFileResources* GetInstance();
 
 public:
+	const FilePathData& GetOptionsFilePathData();
 	const FilePathData& GetRankingFilePathData();
 
 
 private:
+	FilePathData m_optionsFilePathData;
 	FilePathData m_rankingFilePathData;
 
 private:

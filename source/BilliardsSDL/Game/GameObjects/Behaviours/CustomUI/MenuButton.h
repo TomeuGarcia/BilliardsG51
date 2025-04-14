@@ -10,7 +10,7 @@
 class MenuButton : public Behaviour, public GameDelayedCallScheduler::ICallSource
 {
 public:
-	MenuButton(UIButton* button, const std::shared_ptr<SFXSound>& selectedSound);
+	MenuButton(UIButton* button, const bool& canBeSelectedOnlyOnce, const std::shared_ptr<SFXSound>& selectedSound);
 
 	virtual void Start() override;
 	virtual void OnDestroy() override;
@@ -27,6 +27,7 @@ private:
 
 private:
 	UIButton* m_button;
+	bool m_canBeSelectedOnlyOnce;
 	std::shared_ptr<SFXSound> m_selectedSound;
 
 	std::function<void()> m_selectedCallback;

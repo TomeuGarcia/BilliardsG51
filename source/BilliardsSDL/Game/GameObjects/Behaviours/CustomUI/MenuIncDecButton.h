@@ -3,10 +3,12 @@
 #include <vector>
 
 #include "../Behaviour.h"
+#include "../../GameObjectGroup.h"
 #include "../../../Render/Renderers/Text/Text.h"
 #include "../../../Audio/GameAudioManager.h"
 #include "../../../UI/Selectables/Button/UIButton.h"
 #include "../../../Systems/GameAssetResourceTypes.h"
+
 
 
 class SceneCreateUtilities;
@@ -40,6 +42,10 @@ public:
 	MenuIncDecButton(SceneCreateUtilities* sceneCreateUtilities, const Config& config, 
 		const std::string& name, const int& startingValue, GameObject* gameObject);
 
+	void SetValueUpdateCallback(const std::function<void(int)>& valueUpdateCallback);
+
+	const GameObjectGroup& GetGameObjects();
+
 
 private:
 	const int GetValueMaxIndex() const;
@@ -55,6 +61,8 @@ private:
 
 
 private:
+	GameObjectGroup m_gameObjects;
+
 	UIButton* m_incrementButton;
 	UIButton* m_decrementButton;
 

@@ -80,6 +80,7 @@ std::shared_ptr<UIButton> SceneCreateUtilities::CreateButton(const std::shared_p
 {
 	std::shared_ptr<UIButton> button = std::make_shared<UIButton>(renderer, colorBlock);
 	UICaster::GetInstance()->AddSelectable(button);
+
 	return button;
 }
 

@@ -14,6 +14,11 @@
 #include "../Behaviours/Ranking/RankingEntryDisplay.h"
 
 #include "../Behaviours/CustomUI/MenuButton.h"
+#include "../Behaviours/CustomUI/MenuIncDecButton.h"
+
+#include "../../GameObjects/Behaviours/GameOptions/OptionsMenu.h"
+
+
 
 
 class CustomPrefabUtilities
@@ -23,11 +28,14 @@ public:
 
 
 public:
-	MenuButton* CreateDefaultMenuButton(const Vector2<float>& position,
+	MenuButton* CreateDefaultMenuButton(const Vector2<float>& position, const bool& canBeSelectedOnlyOnce,
 		const TextResourceData& textData, const std::string& textString, const int pointSize,
 		const SoundResourceData& soundData);
-	MenuButton* CreateDangerMenuButton(const Vector2<float>& position,
+	MenuButton* CreateDangerMenuButton(const Vector2<float>& position, const bool& canBeSelectedOnlyOnce,
 		const TextResourceData& textData, const std::string& textString, const int pointSize);
+
+	MenuIncDecButton* CreateDefaultMenuIncDecButton(const Vector2<float>& position, const std::string& name,
+		const int& startingValue, const int& minValue, const int& maxValue);
 
 
 public:
@@ -59,7 +67,7 @@ public:
 
 
 public:
-	GameObjectGroup CreateOptionsMenu(const std::string& title, MenuButton* outBackButton);
+	OptionsMenu* CreateOptionsMenu();
 
 
 private:

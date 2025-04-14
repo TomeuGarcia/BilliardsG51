@@ -22,6 +22,10 @@ public:
 	std::shared_ptr<SFXSound> CreateSFXSound(const SoundResourceData& resourceData);
 	std::shared_ptr<MusicSound> CreateMusicSound(const SoundResourceData& resourceData);
 
+	float GetMasterVolume01() const;
+	float GetMusicVolume01() const;
+	float GetSFXVolume01() const;
+
 	void SetMasterVolume(const float& volume01);
 	void SetMusicVolume(const float& volume01);
 	void SetSFXVolume(const float& volume01);

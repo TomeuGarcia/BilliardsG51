@@ -7,7 +7,7 @@ CustomPrefabUtilities::CustomPrefabUtilities(SceneCreateUtilities* sceneCreateUt
 {
 }
 
-MenuButton* CustomPrefabUtilities::CreateDefaultMenuButton(const Vector2<float>& position,
+MenuButton* CustomPrefabUtilities::CreateDefaultMenuButton(const Vector2<float>& position, const bool& canBeSelectedOnlyOnce,
 	const TextResourceData& textData, const std::string& textString, const int pointSize,
 	const SoundResourceData& soundData)
 {
@@ -15,13 +15,14 @@ MenuButton* CustomPrefabUtilities::CreateDefaultMenuButton(const Vector2<float>&
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(buttonGameObject, textData, textString, pointSize);
 	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightPurple, Colors::SoftYellow, Colors::SoftGreen });
 
-	std::shared_ptr<MenuButton> menuButton = std::make_shared<MenuButton>(button.get(), GameAudioManager::GetInstance()->CreateSFXSound(soundData));
+	std::shared_ptr<MenuButton> menuButton = std::make_shared<MenuButton>(button.get(), canBeSelectedOnlyOnce,
+		GameAudioManager::GetInstance()->CreateSFXSound(soundData));
 	buttonGameObject->AttachBehaviour(menuButton);
 
 	return menuButton.get();
 }
 
-MenuButton* CustomPrefabUtilities::CreateDangerMenuButton(const Vector2<float>& position,
+MenuButton* CustomPrefabUtilities::CreateDangerMenuButton(const Vector2<float>& position, const bool& canBeSelectedOnlyOnce,
 	const TextResourceData& textData, const std::string& textString, const int pointSize)
 {
 	GameObject* buttonGameObject = m_sceneCreateUtilities->CreateGameObject(position, std::string("DangerButton_") + textString);
@@ -30,10 +31,39 @@ MenuButton* CustomPrefabUtilities::CreateDangerMenuButton(const Vector2<float>& 
 
 	const SoundResourceData soundData = GameAssetResources::GetInstance()->GetAudio().buttonDangerSoundData;
 
-	std::shared_ptr<MenuButton> menuButton = std::make_shared<MenuButton>(button.get(), GameAudioManager::GetInstance()->CreateSFXSound(soundData));
+	std::shared_ptr<MenuButton> menuButton = std::make_shared<MenuButton>(button.get(), canBeSelectedOnlyOnce,
+		GameAudioManager::GetInstance()->CreateSFXSound(soundData));
 	buttonGameObject->AttachBehaviour(menuButton);
 
 	return menuButton.get();
+}
+
+MenuIncDecButton* CustomPrefabUtilities::CreateDefaultMenuIncDecButton(const Vector2<float>& position, const std::string& name,
+	const int& startingValue, const int& minValue, const int& maxValue)
+{
+	MenuIncDecButton::Config incDecConfig{
+	minValue,
+	maxValue,
+	10,
+	28,
+	36,
+	48,
+	ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftGreen},
+	ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftRed},
+	&GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData,
+	&GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData,
+	&GameAssetResources::GetInstance()->GetText().debugTextFontData,
+	Colors::White
+	};
+
+
+	GameObject* gameObject = m_sceneCreateUtilities->CreateGameObject(position, name);
+
+	std::shared_ptr<MenuIncDecButton> menuIncDecButton = std::make_shared<MenuIncDecButton>(m_sceneCreateUtilities,
+		incDecConfig, name, startingValue, gameObject);
+	gameObject->AttachBehaviour(menuIncDecButton);
+
+	return menuIncDecButton.get();
 }
 
 
@@ -278,44 +308,52 @@ void CustomPrefabUtilities::CreateRankingEntryDisplay(const Vector2<float>& posi
 
 
 
-GameObjectGroup CustomPrefabUtilities::CreateOptionsMenu(const std::string& title, MenuButton* outBackButton)
+OptionsMenu* CustomPrefabUtilities::CreateOptionsMenu()
 {
-	GameObjectGroup gameObjects{10};
-	
-	GameObject* backgroundGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), "Background");
-	gameObjects.Add(backgroundGameObject);
+	GameObjectGroup gameObjects{ 3 + (5 * 3) };
 
-	std::shared_ptr<Image> backgroundImage = m_sceneCreateUtilities->CreateImageComponent(backgroundGameObject, 
+
+	GameObject* backgroundGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), "Background");
+	std::shared_ptr<Image> backgroundImage = m_sceneCreateUtilities->CreateImageComponent(backgroundGameObject,
 		GameAssetResources::GetInstance()->GetImage().debugPixelImageData);
 	backgroundImage->p_scale *= 2000.0f;
 	backgroundImage->SetColorTint(Color{ 0, 0, 0, 200 });
+	gameObjects.Add(backgroundGameObject);
 
 
 	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 3.0f), "OptionsTitle");
+	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Options", 48);
 	gameObjects.Add(titleGameObject);
-	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, title, 48);
 
 
-	GameObject* masterVolumeGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 1.5f), "MasterVolume");
-	gameObjects.Add(masterVolumeGameObject);
-	m_sceneCreateUtilities->CreateTextComponent(masterVolumeGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Master Volume", 36);
-
-
-	GameObject* musicVolumeGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 0.5f), "Music");
-	gameObjects.Add(musicVolumeGameObject);
-	m_sceneCreateUtilities->CreateTextComponent(musicVolumeGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Music", 36);
-
-
-	GameObject* sfxVolumeGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, -0.5f), "SFX");
-	gameObjects.Add(sfxVolumeGameObject);
-	m_sceneCreateUtilities->CreateTextComponent(sfxVolumeGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "SFX", 36);
-
-
-
-	MenuButton* backButton = CreateDefaultMenuButton(Vector2<float>(0.0f, -2.5f), GameAssetResources::GetInstance()->GetText().debugTextFontData,
+	MenuButton* backButton = CreateDefaultMenuButton(Vector2<float>(0.0f, -2.3f), false,
+		GameAssetResources::GetInstance()->GetText().debugTextFontData,
 		"Back", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 	gameObjects.Add(backButton->GetGameObject());
 
 
-	return gameObjects;
+	MenuIncDecButton* masterVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, 1.0f), "Master Volume",
+		GameAudioManager::GetInstance()->GetMasterVolume01() * 100, 0, 100);
+	gameObjects.Add(masterVolumeIncDecButton->GetGameObjects());
+
+
+	MenuIncDecButton* musicVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, 0.25f), "Music Volume",
+		GameAudioManager::GetInstance()->GetMusicVolume01() * 100, 0, 100);
+	gameObjects.Add(musicVolumeIncDecButton->GetGameObjects());
+
+
+	MenuIncDecButton* sfxVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, -0.5f), "SFX Volume",
+		GameAudioManager::GetInstance()->GetSFXVolume01() * 100, 0, 100);
+	gameObjects.Add(sfxVolumeIncDecButton->GetGameObjects());
+
+
+
+
+	GameObject* optionMenuGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 0.0f), "OptionsMenu");
+	std::shared_ptr<OptionsMenu> optionsMenu = std::make_shared<OptionsMenu>(gameObjects, backButton,
+		masterVolumeIncDecButton, musicVolumeIncDecButton, sfxVolumeIncDecButton);
+	optionMenuGameObject->AttachBehaviour(optionsMenu);
+
+
+	return optionsMenu.get();
 }

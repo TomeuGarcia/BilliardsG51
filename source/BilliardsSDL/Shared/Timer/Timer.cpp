@@ -24,6 +24,11 @@ void Timer::ClearTime()
 	m_currentTime = 0.0f;
 }
 
+void Timer::CompleteTime()
+{
+	m_currentTime = m_duration;
+}
+
 void Timer::Update(const float& deltaTime)
 {
 	m_currentTime += deltaTime;

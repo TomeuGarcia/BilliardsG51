@@ -294,7 +294,7 @@ void BilliardsGameplayManager::OnGameFinishStart()
 
 void BilliardsGameplayManager::PositionBallsRandomly() const
 {
-	const Vector2<float> randomBounds{ 1.0f, 0.75f };
+	const Vector2<float> randomBounds{ 2.5f, 1.75f };
 	const std::vector<BilliardBall*>& balls = m_gameplayStatesBlackboard.GetBalls();
 	const float checkRadius = 0.5f;
 

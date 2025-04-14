@@ -18,6 +18,7 @@ public:
 	virtual bool IsActive() const override;
 
 	virtual void Update(const float& deltaTime) override;
+	virtual void WhenNotActiveUpdate() override;
 
 	virtual void OnUnhovered() override;
 	virtual void OnHovered() override;

@@ -6,11 +6,14 @@ void RankingScene::CreateGameObjects()
 	RankingManager rankingManager{};
 	rankingManager.Load();
 
+	const float startY = 1.8f;
+	const float spacingY = 0.5f;
+
 	std::vector<RankingEntry> entries = rankingManager.GetFilledRankingEntries();
 	const int occuppiedEntriesSize = entries.size();
 	for (int i = 0; i < occuppiedEntriesSize; ++i)
 	{
-		const Vector2<float> position = { 0.0f, 1.4f - (i * 0.4f) };
+		const Vector2<float> position = { 0.0f, startY - (i * spacingY) };
 		GetPrefabUtilities().CreateRankingEntryDisplay(position, entries[i], i);
 	}
 
@@ -18,18 +21,18 @@ void RankingScene::CreateGameObjects()
 	for (int i = 0; i < entries.size(); ++i)
 	{
 		const int index = i + occuppiedEntriesSize;
-		const Vector2<float> position = { 0.0f, 1.4f - (index * 0.4f) };
+		const Vector2<float> position = { 0.0f, startY - (index * spacingY) };
 		GetPrefabUtilities().CreateRankingEntryDisplay(position, entries[i], index);
 	}
 
 
 
-	MenuButton* backToMenuButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(-6.0f, -3.25f),
+	MenuButton* backToMenuButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(-6.0f, -3.25f), true,
 		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Back", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
 	backToMenuButton->SetSelectedCallback([]() { SceneManager::GetInstance()->LoadScene(SceneName::MainMenu); });
 
 
-	MenuButton* clearRankingButton = GetPrefabUtilities().CreateDangerMenuButton(Vector2<float>(5.3f, -3.35f),
+	MenuButton* clearRankingButton = GetPrefabUtilities().CreateDangerMenuButton(Vector2<float>(5.3f, -3.35f), true,
 		GameAssetResources::GetInstance()->GetText().debugTextFontData, "Clear Ranking", 25);
 	clearRankingButton->SetSelectedCallback([]() {
 		RankingManager rankingManager{};

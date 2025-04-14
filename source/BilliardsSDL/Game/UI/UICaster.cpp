@@ -119,5 +119,9 @@ void UICaster::UpdateSelectables(const float& deltaTime)
 		{
 			selectable->Update(deltaTime);
 		}		
+		else
+		{
+			selectable->WhenNotActiveUpdate();
+		}
 	}
 }
