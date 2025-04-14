@@ -10,11 +10,7 @@
 #include "../../../Physics/Physics2DManager.h"
 #include "../../../Physics/Helpers/GamePhysicsUtilities.h"
 
-#include "States/Init/BilliardsGameplayState_Init.h"
-#include "States/PlacingBalls/BilliardsGameplayState_PlacingBalls.h"
-#include "States/Thinking/BilliardsGameplayState_PlayerThinking.h"
-#include "States/ResolvingBoard/BilliardsGameplayState_ResolvingBoard.h"
-#include "States/GameFinish/BilliardsGameplayState_GameFinish.h"
+#include "States/BilliardsGameplayFSM.h"
 
 #include "Holes/IBilliardBoardHoleInteractionsManager.h"
 #include "BilliardsGameplayFeedbackDisplay.h"
@@ -40,9 +36,11 @@ public:
 		const std::shared_ptr<BilliardsGameplayFeedbackDisplay>& feedbackDisplay,
 		const std::shared_ptr<IPlayerScoresDisplay>& scoresDisplay);
 
-	virtual void Start() override;
-	virtual void Update() override;
+
 	virtual void OnDestroy() override;
+
+
+	BilliardsGameplayStateBlackboard* GetBlackboard();
 
 
 public:
@@ -61,12 +59,12 @@ public:
 	virtual void OnPlayerStartsPlaying() override;
 	virtual void OnGameFinishStart() override;
 
-
 	virtual void AskWinnerNameAndAddToRanking(BilliardsPlayer* winnerPlayer) override;
 
 
 public:
-	void OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter) override;
+	virtual void OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter) override;
+
 
 private:
 	void OnAnyBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter);
@@ -82,10 +80,7 @@ private:
 
 
 private:
-	std::unordered_map<BilliardsGameplayState::Type, std::shared_ptr<BilliardsGameplayState>> m_gameplayStatesMap;
-	BilliardsGameplayState* m_currentState;
 	BilliardsGameplayStateBlackboard m_gameplayStatesBlackboard;
-
 
 	std::shared_ptr<BilliardsGameplayFeedbackDisplay> m_feedbackDisplay;
 	std::shared_ptr<IPlayerScoresDisplay> m_scoresDisplay;

@@ -1,6 +1,48 @@
 #include "BilliardsGameScene.h"
 
+#include "../../GameObjects/Behaviours/Billiards/BilliardsGameplayManager.h"
+
+
+
 void BilliardsGameScene::CreateGameObjects()
+{
+	BilliardsGameplayManager* gameplayManager = CreateGameplayGameObjects();
+	PauseMenu* pauseMenu = GetPrefabUtilities().CreatePauseMenu();
+	OptionsMenu* optionsMenu = GetPrefabUtilities().CreateOptionsMenu();
+
+	GameObject* gameSceneManagerGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>::Zero(), "BilliardsGameSceneManager");
+	std::shared_ptr<BilliardsGameSceneManager> billiardsGameSceneManager = std::make_shared<BilliardsGameSceneManager>(
+		gameplayManager->GetBlackboard(), pauseMenu, optionsMenu);
+	gameSceneManagerGameObject->AttachBehaviour(billiardsGameSceneManager);
+}
+
+
+
+void BilliardsGameScene::DoStart()
+{
+	AABoxColliderDrawer::s_enabled = false;
+	CircleColliderDrawer::s_enabled = false;
+}
+
+void BilliardsGameScene::DoUpdate()
+{
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::C))
+	{
+		AABoxColliderDrawer::s_enabled = !AABoxColliderDrawer::s_enabled;
+		CircleColliderDrawer::s_enabled = !CircleColliderDrawer::s_enabled;
+	}
+}
+
+void BilliardsGameScene::OnDestroy()
+{
+	AABoxColliderDrawer::s_enabled = false;
+	CircleColliderDrawer::s_enabled = false;
+}
+
+
+
+
+BilliardsGameplayManager* BilliardsGameScene::CreateGameplayGameObjects()
 {
 	BilliardsScore::Configuration scoreConfiguration{ 10, 30, 50, 5 };
 
@@ -23,16 +65,14 @@ void BilliardsGameScene::CreateGameObjects()
 
 
 
-
-
 	FadingRenderer* fadingText_whiteBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Oops!", Colors::White, false);
 	FadingRenderer* fadingText_blackBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Oops!", Colors::DarkPurple, false);
 	FadingRenderer* fadingText_wrongBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Wrong!", Colors::White, false);
-	FadingRenderer* fadingText_ballEnterHoleScore = 
+	FadingRenderer* fadingText_ballEnterHoleScore =
 		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_addValue), Colors::White, true);
-	FadingRenderer* fadingText_ballEnterHoleScoreConsecutive = 
+	FadingRenderer* fadingText_ballEnterHoleScoreConsecutive =
 		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_consecutiveAddValue), Colors::White, true);
-	FadingRenderer* fadingText_ballEnterHoleScoreLast = 
+	FadingRenderer* fadingText_ballEnterHoleScoreLast =
 		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_addLastValue), Colors::White, true);
 
 
@@ -62,31 +102,10 @@ void BilliardsGameScene::CreateGameObjects()
 			GameAssetResources::GetInstance()->GetAudio().gamePlayerChangeSoundData,
 			GameAssetResources::GetInstance()->GetAudio().gameVictorySoundData,
 		}
-	);
+		);
 
 	manager->Init(balls, boardPosition, redStick, blueStick, gameplayFeedbackisplay, consolePlayerScoresDisplay);
-}
 
-
-
-void BilliardsGameScene::DoStart()
-{
-	AABoxColliderDrawer::s_enabled = false;
-	CircleColliderDrawer::s_enabled = false;
-}
-
-void BilliardsGameScene::DoUpdate()
-{
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::C))
-	{
-		AABoxColliderDrawer::s_enabled = !AABoxColliderDrawer::s_enabled;
-		CircleColliderDrawer::s_enabled = !CircleColliderDrawer::s_enabled;
-	}
-}
-
-void BilliardsGameScene::OnDestroy()
-{
-	AABoxColliderDrawer::s_enabled = false;
-	CircleColliderDrawer::s_enabled = false;
+	return manager.get();
 }
 

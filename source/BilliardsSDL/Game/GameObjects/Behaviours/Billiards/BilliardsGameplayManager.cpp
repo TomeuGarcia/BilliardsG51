@@ -1,8 +1,7 @@
 #include "BilliardsGameplayManager.h"
 
 BilliardsGameplayManager::BilliardsGameplayManager(const BilliardsScore::Configuration& scoreConfiguration)
-	: m_gameplayStatesMap(),
-	m_currentState(nullptr),
+	: 
 	m_gameplayStatesBlackboard(),
 	m_playerRed(scoreConfiguration),
 	m_playerBlue(scoreConfiguration),
@@ -52,63 +51,18 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 
 
 	m_gameplayStatesBlackboard.Init(balls, boardCenter, &m_playerRed, &m_playerBlue, this);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Init] =
-		std::make_shared<BilliardsGameplayState_Init>(&m_gameplayStatesBlackboard);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::PlacingBalls] =
-		std::make_shared<BilliardsGameplayState_PlacingBalls>(&m_gameplayStatesBlackboard);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Red] =
-		std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerRed);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Blue] =
-		std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerBlue);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::ResolvingBoard] =
-		std::make_shared<BilliardsGameplayState_ResolvingBoard>(&m_gameplayStatesBlackboard);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::GameFinish] =
-		std::make_shared<BilliardsGameplayState_GameFinish>(&m_gameplayStatesBlackboard);
 }
 
-
-
-
-void BilliardsGameplayManager::Start()
-{
-	m_currentState = (m_gameplayStatesMap[BilliardsGameplayState::Type::Init]).get();
-	m_currentState->Enter();
-}
-
-void BilliardsGameplayManager::Update()
-{
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::Esc))
-	{
-		SceneManager::GetInstance()->LoadScene(SceneName::MainMenu);
-		return;
-	}
-
-	if (m_currentState->Update())
-	{
-		m_currentState->Exit();
-		
-		const BilliardsGameplayState::Type nextState = m_currentState->GetNextState();
-		if (nextState == BilliardsGameplayState::Type::GameQuit)
-		{
-			SceneManager::GetInstance()->LoadScene(SceneName::MainMenu);
-			return;
-		}
-
-		m_currentState = (m_gameplayStatesMap[nextState]).get();
-		m_currentState->Enter();
-	}
-}
 
 void BilliardsGameplayManager::OnDestroy()
 {
-	m_currentState->Exit();
 	m_scoresDisplay->Cleanup();
+}
+
+
+BilliardsGameplayStateBlackboard* BilliardsGameplayManager::GetBlackboard()
+{
+	return &m_gameplayStatesBlackboard;
 }
 
 

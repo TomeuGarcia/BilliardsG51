@@ -308,16 +308,23 @@ void CustomPrefabUtilities::CreateRankingEntryDisplay(const Vector2<float>& posi
 
 
 
-OptionsMenu* CustomPrefabUtilities::CreateOptionsMenu()
+GameObject* CustomPrefabUtilities::CreateTransparentBlackBackground()
 {
-	GameObjectGroup gameObjects{ 3 + (5 * 3) };
-
-
 	GameObject* backgroundGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), "Background");
 	std::shared_ptr<Image> backgroundImage = m_sceneCreateUtilities->CreateImageComponent(backgroundGameObject,
 		GameAssetResources::GetInstance()->GetImage().debugPixelImageData);
 	backgroundImage->p_scale *= 2000.0f;
 	backgroundImage->SetColorTint(Color{ 0, 0, 0, 200 });
+
+	return backgroundGameObject;
+}
+
+OptionsMenu* CustomPrefabUtilities::CreateOptionsMenu()
+{
+	GameObjectGroup gameObjects{ 3 + (5 * 3) };
+
+
+	GameObject* backgroundGameObject = CreateTransparentBlackBackground();
 	gameObjects.Add(backgroundGameObject);
 
 
@@ -348,7 +355,6 @@ OptionsMenu* CustomPrefabUtilities::CreateOptionsMenu()
 
 
 
-
 	GameObject* optionMenuGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 0.0f), "OptionsMenu");
 	std::shared_ptr<OptionsMenu> optionsMenu = std::make_shared<OptionsMenu>(gameObjects, backButton,
 		masterVolumeIncDecButton, musicVolumeIncDecButton, sfxVolumeIncDecButton);
@@ -356,4 +362,53 @@ OptionsMenu* CustomPrefabUtilities::CreateOptionsMenu()
 
 
 	return optionsMenu.get();
+}
+
+
+
+PauseMenu* CustomPrefabUtilities::CreatePauseMenu()
+{
+	GameObjectGroup gameObjects{ 3 + (5 * 3) };
+
+
+	GameObject* backgroundGameObject = CreateTransparentBlackBackground();
+	gameObjects.Add(backgroundGameObject);
+
+
+	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 3.0f), "PauseTitle");
+	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().debugTextFontData, "Paused", 48);
+	gameObjects.Add(titleGameObject);
+
+
+	MenuButton* backButton = CreateDefaultMenuButton(Vector2<float>(0.0f, 1.25f), false, 
+		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		"Resume", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
+	gameObjects.Add(backButton->GetGameObject());
+
+
+	MenuButton* optionsButton = CreateDefaultMenuButton(Vector2<float>(0.0f, 0.5f), false, 
+		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		"Options", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);
+	gameObjects.Add(optionsButton->GetGameObject());
+	
+
+	MenuButton* restartButton = CreateDefaultMenuButton(Vector2<float>(0.0f, -0.25f), false, 
+		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		"Restart Game", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
+	gameObjects.Add(restartButton->GetGameObject());
+
+
+	MenuButton* quitButton = CreateDefaultMenuButton(Vector2<float>(0.0f, -1.0f), false, 
+		GameAssetResources::GetInstance()->GetText().debugTextFontData,
+		"Quit to Main Menu", 36, GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData);
+	gameObjects.Add(quitButton->GetGameObject());
+
+
+
+	GameObject* pauseMenuGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 0.0f), "PauseMenu");
+	std::shared_ptr<PauseMenu> pauseMenu = std::make_shared<PauseMenu>(gameObjects, backButton,	optionsButton, restartButton, quitButton);
+	pauseMenuGameObject->AttachBehaviour(pauseMenu);
+
+
+	return pauseMenu.get();
 }

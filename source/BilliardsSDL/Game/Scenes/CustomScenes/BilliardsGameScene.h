@@ -7,12 +7,15 @@
 
 #include "../../GameObjects/Behaviours/Billiards/BilliardBall.h"
 #include "../../GameObjects/Behaviours/Billiards/BilliardStick.h"
-#include "../../GameObjects/Behaviours/Billiards/BilliardsGameplayManager.h"
 #include "../../GameObjects/Behaviours/Billiards/Holes/BilliardsBoardHole.h"
 
 #include "../../GameObjects/Behaviours/Billiards/ScoreDisplay/ConsolePlayerScoresDisplay.h"
 
+#include "../../GameObjects/Behaviours/Billiards/SceneManager/BilliardsGameSceneManager.h"
 
+
+
+class BilliardsGameplayManager;
 
 class BilliardsGameScene : public Scene
 {
@@ -21,4 +24,7 @@ protected:
 	virtual void DoStart() override;
 	virtual void DoUpdate() override;
 	virtual void OnDestroy() override;
+
+private:
+	BilliardsGameplayManager* CreateGameplayGameObjects();
 };

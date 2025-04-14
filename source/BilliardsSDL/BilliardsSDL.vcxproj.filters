@@ -184,6 +184,15 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\GameOptions">
       <UniqueIdentifier>{c6d2fc19-1700-405a-ba39-70f90a344c0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager">
+      <UniqueIdentifier>{4e0ae87c-c547-4388-b31f-7b2ffdc137af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States">
+      <UniqueIdentifier>{bd17577a-8175-445c-b4d8-1da9e74db4db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu">
+      <UniqueIdentifier>{3b84d5a4-a3aa-42da-a455-70e5f31f99d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -512,6 +521,27 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuBilliardsBoardManager.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayFSM.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\BilliardsGameSceneManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Playing.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Paused.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Options.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -898,6 +928,27 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuBilliardsBoardManager.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayFSM.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\BilliardsGameSceneManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Playing.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Paused.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Options.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

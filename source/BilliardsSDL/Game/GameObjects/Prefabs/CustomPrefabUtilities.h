@@ -16,7 +16,8 @@
 #include "../Behaviours/CustomUI/MenuButton.h"
 #include "../Behaviours/CustomUI/MenuIncDecButton.h"
 
-#include "../../GameObjects/Behaviours/GameOptions/OptionsMenu.h"
+#include "../Behaviours/GameOptions/OptionsMenu.h"
+#include "../Behaviours/Billiards/PauseMenu/PauseMenu.h"
 
 
 
@@ -67,7 +68,9 @@ public:
 
 
 public:
+	GameObject* CreateTransparentBlackBackground();
 	OptionsMenu* CreateOptionsMenu();
+	PauseMenu* CreatePauseMenu();
 
 
 private:

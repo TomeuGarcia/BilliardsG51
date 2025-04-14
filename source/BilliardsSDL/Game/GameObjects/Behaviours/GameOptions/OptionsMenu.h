@@ -25,10 +25,10 @@ public:
 
 	bool IsBeingShown();
 	void Show();
+	void SilentHide();
 
 private:
 	void Hide();
-	void SilentHide();
 
 
 
