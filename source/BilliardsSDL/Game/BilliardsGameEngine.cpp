@@ -3,7 +3,8 @@
 
 BilliardsGameEngine::BilliardsGameEngine()
 	: m_gameAppInteractions(), m_gameTime(nullptr), m_gameInput(nullptr),
-	m_gameRenderManager(nullptr), m_gameAudioManager(nullptr),
+	m_gameRenderManager(nullptr), 
+	m_gameAudioManager(nullptr), m_gameMusicService(nullptr),
 	m_physicsManager(nullptr),
 	m_sceneManager(nullptr), m_uiCaster(nullptr),
 	m_gameAssetResources(nullptr),	m_gameFileResources(nullptr),
@@ -18,12 +19,13 @@ BilliardsGameEngine::~BilliardsGameEngine()
 	delete m_gameTweener;
 	delete m_gameRandom;
 	delete m_gameSpacesComputer;
-	delete m_gameFileResources;
-	delete m_gameAssetResources;
 	delete m_sceneManager;
 	delete m_physicsManager;
+	delete m_gameMusicService;
 	delete m_gameAudioManager;
 	delete m_gameRenderManager;
+	delete m_gameFileResources;
+	delete m_gameAssetResources;
 	delete m_uiCaster;
 	delete m_gameInput;
 	delete m_gameTime;
@@ -38,15 +40,18 @@ void BilliardsGameEngine::Init(const GameSpecifications& specifications,
 	m_gameTime = new GameTime(timeState);
 	m_gameInput = new GameInput(inputState);
 	m_uiCaster = new UICaster(m_gameInput);
-	m_gameRenderManager = new GameRenderManager(renderSystem);
-	m_gameAudioManager = new GameAudioManager(audioSystem);
-	m_physicsManager = new Physics2DManager();
-	m_sceneManager = new SceneManager();
+	
 	m_gameAssetResources = new GameAssetResources(specifications.p_worldWidthInWindow / renderSystem->GetWindowSize().x,
 												  specifications.p_pathToResourceImages,
 												  specifications.p_pathToResourceFonts,
 												  specifications.p_pathToResourceAudios);
 	m_gameFileResources = new GameFileResources(specifications.p_pathToResourceFiles);
+
+	m_gameRenderManager = new GameRenderManager(renderSystem);
+	m_gameAudioManager = new GameAudioManager(audioSystem);
+	m_gameMusicService = new GameMusicService();
+	m_physicsManager = new Physics2DManager();
+	m_sceneManager = new SceneManager();
 
 	m_gameSpacesComputer = new GameSpacesComputer(renderSystem, specifications.p_worldWidthInWindow);
 	m_gameRandom = new GameRandom(rngSystem);

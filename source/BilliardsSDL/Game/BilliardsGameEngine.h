@@ -14,6 +14,7 @@
 #include "Physics/Physics2DManager.h"
 #include "Render/GameRenderManager.h"
 #include "Audio/GameAudioManager.h"
+#include "Audio/MusicService/GameMusicService.h"
 #include "Scenes/SceneManager.h"
 #include "UI/UICaster.h"
 
@@ -40,6 +41,7 @@ private:
 	GameInput* m_gameInput;
 	GameRenderManager* m_gameRenderManager;
 	GameAudioManager* m_gameAudioManager;
+	GameMusicService* m_gameMusicService;
 	Physics2DManager* m_physicsManager;
 	SceneManager* m_sceneManager;
 	UICaster* m_uiCaster;

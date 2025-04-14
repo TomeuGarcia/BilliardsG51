@@ -4,7 +4,7 @@
 
 ResolvingBoardState_ReturningMissplacedBalls::ResolvingBoardState_ReturningMissplacedBalls(BilliardsGameplayStateBlackboard* blackboard)
 	: ResolvingBoardState(blackboard), m_playerkeepsPlaying(false),
-	m_repositionMissplacedBallTimer(0.5f), m_missplacedBalls(nullptr)
+	m_repositionMissplacedBallTimer(0.5f), m_missplacedBalls(nullptr), m_missplacedBallsI(0)
 {}
 
 ResolvingBoardState_ReturningMissplacedBalls::~ResolvingBoardState_ReturningMissplacedBalls()

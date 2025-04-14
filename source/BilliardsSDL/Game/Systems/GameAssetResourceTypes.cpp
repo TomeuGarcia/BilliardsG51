@@ -29,6 +29,9 @@ TextResources::TextResources(const std::string& pathToResourceFonts)
 
 AudioResources::AudioResources(const std::string& pathToResourceAudios)
 	:
+	musicMainMenuSoundData(pathToResourceAudios + "Music/Scattle-Surfs_Up.mp3"),
+	musicGameplaySoundData(pathToResourceAudios + "Music/Scattle-Generator.mp3"),
+
 	buttonOkSoundData(pathToResourceAudios + "ButtonOk.wav"),
 	buttonBackSoundData(pathToResourceAudios + "ButtonBack.wav"),
 	buttonDangerSoundData(pathToResourceAudios + "ButtonDanger.wav"),

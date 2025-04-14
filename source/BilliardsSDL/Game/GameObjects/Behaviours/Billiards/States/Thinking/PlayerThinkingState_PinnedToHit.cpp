@@ -43,6 +43,13 @@ bool PlayerThinkingState_PinnedToHit::Update()
 
 	if (GameInput::GetInstance()->GetKeyUp(KeyCode::MouseLeft))
 	{
+		if (pinDragDistance < GetBlackboard()->GetPinPullMinDistance())
+		{
+			SetNextState(Type::MovingAround);
+			return true;
+		}
+
+
 		GetBlackboard()->p_pinPosition = m_pinPosition;
 		GetBlackboard()->p_pinPullDistanceForHit = pinDragDistance;
 

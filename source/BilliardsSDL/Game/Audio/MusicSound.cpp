@@ -3,7 +3,7 @@
 MusicSound::MusicSound(IMusicSoundManager* manager, const SoundResourceData& resourceData)
 	: m_manager(manager),
 	m_singleSound(manager->GetAudioSystem()->LoadSingleSound(resourceData.p_sourcePath)),
-	m_volume01(1.0f), m_loops(0)
+	m_volume01(1.0f), m_loops(-1)
 {
 	m_manager->AddActiveMusicSound(this);
 }

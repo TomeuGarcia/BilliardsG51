@@ -129,6 +129,14 @@ void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vecto
 
 
 
+void BilliardsGameplayManager::OnBallExitsBoardBounds(BilliardBall* ball)
+{
+	m_missplacedBallsThisTurn.emplace_back(ball);
+	ball->SetIgnoringPhysics();
+}
+
+
+
 void BilliardsGameplayManager::OnAnyBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter)
 {
 	ball->PlayEnterEnterHoleAnimation(holeCenter);

@@ -193,6 +193,12 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu">
       <UniqueIdentifier>{3b84d5a4-a3aa-42da-a455-70e5f31f99d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Audio\MusicService">
+      <UniqueIdentifier>{4b665ac5-43cc-4d88-9b0c-adf62aa1ad88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\Bounds">
+      <UniqueIdentifier>{8cad42cd-a158-4a5a-b1de-53bc6f4d8dd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -542,6 +548,12 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\MusicService\GameMusicService.cpp">
+      <Filter>Source Files\Game\Audio\MusicService</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Bounds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -949,6 +961,15 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\MusicService\GameMusicService.h">
+      <Filter>Source Files\Game\Audio\MusicService</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Bounds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\IBilliardsBoardBoundsListener.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Bounds</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

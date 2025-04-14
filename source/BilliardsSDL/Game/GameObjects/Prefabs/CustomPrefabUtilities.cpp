@@ -237,6 +237,21 @@ GameObject* CustomPrefabUtilities::CreateBoardHole(const Vector2<float>& positio
 	return holeGameObject;
 }
 
+GameObject* CustomPrefabUtilities::CreateBilliardsBoardBounds(const Vector2<float>& boardCenter, const Vector2<float>& size, 
+	IBilliardsBoardBoundsListener* boundsListener)
+{
+	GameObject* wallGameObject = m_sceneCreateUtilities->CreateGameObject(boardCenter, "Board Bounds");
+	std::shared_ptr<AABoxCollider2D> collider = m_sceneCreateUtilities->CreateAABoxColliderComponent(wallGameObject, nullptr, true, size);
+
+	std::shared_ptr<AABoxColliderDrawer> colliderDrawer = std::make_shared<AABoxColliderDrawer>(collider);
+	wallGameObject->AttachBehaviour(colliderDrawer);
+
+	std::shared_ptr<BilliardsBoardBounds> boardBounds = std::make_shared<BilliardsBoardBounds>(boundsListener);
+	wallGameObject->AttachBehaviour(boardBounds);
+
+	return wallGameObject;
+}
+
 
 
 

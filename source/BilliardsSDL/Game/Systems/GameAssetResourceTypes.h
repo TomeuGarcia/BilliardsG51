@@ -43,6 +43,9 @@ public:
 	AudioResources(const std::string& pathToResourceAudios);
 
 public:
+	SoundResourceData musicMainMenuSoundData;
+	SoundResourceData musicGameplaySoundData;
+
 	SoundResourceData buttonOkSoundData;
 	SoundResourceData buttonBackSoundData;
 	SoundResourceData buttonDangerSoundData;

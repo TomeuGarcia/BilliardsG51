@@ -221,6 +221,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Application\Systems\Render\RenderSystem.cpp" />
     <ClCompile Include="Application\Systems\Time\TimeSystem.cpp" />
     <ClCompile Include="Game\Audio\GameAudioManager.cpp" />
+    <ClCompile Include="Game\Audio\MusicService\GameMusicService.cpp" />
     <ClCompile Include="Game\Audio\MusicSound.cpp" />
     <ClCompile Include="Game\Audio\SFXSound.cpp" />
     <ClCompile Include="Game\Audio\SFXSoundBuffer.cpp" />
@@ -233,6 +234,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Player\BilliardsPlayer.cpp" />
@@ -346,6 +348,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Audio\GameAudioManager.h" />
     <ClInclude Include="Game\Audio\IMusicSoundManager.h" />
     <ClInclude Include="Game\Audio\ISFXSoundManager.h" />
+    <ClInclude Include="Game\Audio\MusicService\GameMusicService.h" />
     <ClInclude Include="Game\Audio\MusicSound.h" />
     <ClInclude Include="Game\Audio\SFXSound.h" />
     <ClInclude Include="Game\Audio\SFXSoundBuffer.h" />
@@ -360,6 +363,8 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\IBilliardsBoardBoundsListener.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\IBilliardBoardHoleInteractionsManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.h" />

@@ -7,6 +7,7 @@
 #include "../Behaviours/Billiards/BilliardBall.h"
 #include "../Behaviours/Billiards/BilliardStick.h"
 #include "../Behaviours/Billiards/Holes/BilliardsBoardHole.h"
+#include "../Behaviours/Billiards/Bounds/BilliardsBoardBounds.h"
 
 #include "../Behaviours/RendererExtras/FadingRenderer.h"
 
@@ -55,6 +56,8 @@ public:
 	void CreateBoardHoles(const Vector2<float>& boardCenter, IBilliardBoardHoleInteractionsManager* holeInteractionManager);
 	GameObject* CreateBoardHole(const Vector2<float>& position, const float& radius, const std::string& holeName,
 		IBilliardBoardHoleInteractionsManager* holeInteractionManager);
+	GameObject* CreateBilliardsBoardBounds(const Vector2<float>& boardCenter, const Vector2<float>& size,
+		IBilliardsBoardBoundsListener* boundsListener);
 
 
 public:

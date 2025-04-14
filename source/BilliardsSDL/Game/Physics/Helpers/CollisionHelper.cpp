@@ -22,16 +22,10 @@ namespace CollisionHelper
 		Line<float> collisionLineEdge;
 		Vector2<float> collisionPointOnEdge;
 		float distanceEdgeToCircleCenter;
-		const bool collided = Math::GetCollisiontRectEdgeLineWithCircle(circleA, aaRectB,
+		const bool collidedWithEdge = Math::GetCollisiontRectEdgeLineWithCircle(circleA, aaRectB,
 			collisionLineEdge, collisionPointOnEdge, distanceEdgeToCircleCenter);
 
-		if (!collided)
-		{
-			return false;
-		}
-
-
-
+		
 		const Vector2<float> rectCenter = aaRectB.GetCenterPosition();
 		const Vector2<float> ab = rectCenter - circleA.p_position;
 		const float distanceBetweenRectAndCircle = ab.Length();
@@ -44,11 +38,16 @@ namespace CollisionHelper
 		if (circleIsInside)
 		{
 			outIntersectDistance = circleA.GetRadius() + distanceEdgeToCircleCenter;
+			return true;
 		}
-		else
-		{			
-			outIntersectDistance = circleA.GetRadius() - distanceEdgeToCircleCenter;
+
+		if (!collidedWithEdge)
+		{
+			return false;
 		}
+
+		
+		outIntersectDistance = circleA.GetRadius() - distanceEdgeToCircleCenter;
 		
 		return true;
 	}

@@ -26,6 +26,7 @@ public:
 
 private:
 	void NotifyEnter();
+	void NotifyExit();
 
 
 private:

@@ -33,6 +33,7 @@ public:
 
 	Vector2<float> GetBoardCenter() const;
 	float GetStickForceOverDistanceMultiplier() const;
+	float GetPinPullMinDistance() const;
 	float GetPinPullMaxDistance() const;
 
 
@@ -59,5 +60,6 @@ private:
 
 	float m_stickForceOverDistanceMultiplier;
 
+	float m_pinPullMinDistance;
 	float m_pinPullMaxDistance;
 };

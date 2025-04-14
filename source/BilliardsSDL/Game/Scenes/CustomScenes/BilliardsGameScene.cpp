@@ -20,6 +20,8 @@ void BilliardsGameScene::CreateGameObjects()
 
 void BilliardsGameScene::DoStart()
 {
+	GameMusicService::GetInstance()->TransitionMusic(GameMusicService::MusicType::Gameplay);
+	
 	AABoxColliderDrawer::s_enabled = false;
 	CircleColliderDrawer::s_enabled = false;
 }
@@ -53,6 +55,10 @@ BilliardsGameplayManager* BilliardsGameScene::CreateGameplayGameObjects()
 
 	const Vector2<float> boardPosition = Vector2<float>::Zero();
 	GetPrefabUtilities().CreateBilliardsBoard(boardPosition, manager.get());
+
+	GetPrefabUtilities().CreateBilliardsBoardBounds(boardPosition, Vector2<float>(10.0f, 5.5f), manager.get());
+
+
 
 	BallCollisionFeedbackManager* ballCollisionFeedbackManager = GetPrefabUtilities().CreateBallCollisionFeedbackManager();
 

@@ -13,6 +13,7 @@
 #include "States/BilliardsGameplayFSM.h"
 
 #include "Holes/IBilliardBoardHoleInteractionsManager.h"
+#include "Bounds/IBilliardsBoardBoundsListener.h"
 #include "BilliardsGameplayFeedbackDisplay.h"
 #include "ScoreDisplay/IPlayerScoresDisplay.h"
 
@@ -25,7 +26,8 @@
 
 class BilliardsGameplayManager : public Behaviour, 
 	public IBilliardsGameplayStateEventsManager,
-	public IBilliardBoardHoleInteractionsManager
+	public IBilliardBoardHoleInteractionsManager,
+	public IBilliardsBoardBoundsListener
 {
 public:
 	BilliardsGameplayManager(const BilliardsScore::Configuration& scoreConfiguration);
@@ -64,6 +66,10 @@ public:
 
 public:
 	virtual void OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter) override;
+
+
+public:
+	virtual void OnBallExitsBoardBounds(BilliardBall* ball) override;
 
 
 private:

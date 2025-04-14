@@ -34,7 +34,7 @@ void MainMenuScene::CreateGameObjects()
 	
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
-	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().titleTextFontData, "Billiards G51", 78);
+	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().titleTextFontData, "A Billiards Game", 78);
 
 	MenuButton* playButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, 0.5f), true,
 		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Play", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);	
@@ -74,6 +74,7 @@ void MainMenuScene::CreateGameObjects()
 void MainMenuScene::DoStart()
 {
 	GameRenderManager::GetInstance()->SetBackgroundColor(Colors::DarkPurple);
+	GameMusicService::GetInstance()->TransitionMusic(GameMusicService::MusicType::MainMenu);
 
 	AABoxColliderDrawer::s_enabled = false;
 	CircleColliderDrawer::s_enabled = false;

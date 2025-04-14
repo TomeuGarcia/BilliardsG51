@@ -122,6 +122,7 @@ void AudioSystem::PlaySingleSound(SingleSound& singleSound, const float& volume0
 	}
 	else
 	{
+		singleSound.SetChannel(channel);
 		SetSingleSoundVolume(singleSound, volume01);
 		AudioSystem::SetPlayingSingleSound(&singleSound);
 	}
