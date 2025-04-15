@@ -8,8 +8,9 @@ PlayerThinkingState_PinnedToHit::PlayerThinkingState_PinnedToHit(BilliardsGamepl
 
 void PlayerThinkingState_PinnedToHit::DoEnter()
 {
-	Vector2<float> currentMousePosition = GameInput::GetInstance()->GetMouseWorldPosition();
-	m_pinPosition = currentMousePosition;
+	m_pinPosition = GetBlackboard()->GetCanHitWhiteBall() 
+		? GetBlackboard()->GetWhiteBallPosition()
+		: GameInput::GetInstance()->GetMouseWorldPosition();
 }
 
 bool PlayerThinkingState_PinnedToHit::Update()
@@ -26,9 +27,13 @@ bool PlayerThinkingState_PinnedToHit::Update()
 	tipPosition -= currentToPinDirection * pinDragDistance;
 
 
+	Color pinLineColor = GetBlackboard()->GetCanHitWhiteBall()
+		? Colors::Orange
+		: Colors::DarkPurple;
+
 	GetPlayer()->GetStick()->SetTipPositionAndLookDirection(tipPosition, currentToPinDirection);
 	GameRenderManager::GetInstance()->DrawDebugLine(
-		Colors::Yellow, GameSpacesComputer::GetInstance()->WorldToWindowLine(Line<float>(m_pinPosition, tipPosition))
+		pinLineColor, GameSpacesComputer::GetInstance()->WorldToWindowLine(Line<float>(m_pinPosition, tipPosition))
 	);
 
 	GetBlackboard()->p_directionToPinPosition = currentToPinDirection;

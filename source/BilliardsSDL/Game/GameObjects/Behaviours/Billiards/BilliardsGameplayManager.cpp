@@ -50,7 +50,7 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 	m_scoresDisplay->UpdateDisplayedScore();
 
 
-	m_gameplayStatesBlackboard.Init(balls, boardCenter, &m_playerRed, &m_playerBlue, this);
+	m_gameplayStatesBlackboard.Init(balls, m_whiteBall, boardCenter, &m_playerRed, &m_playerBlue, this);
 }
 
 
@@ -68,23 +68,18 @@ BilliardsGameplayStateBlackboard* BilliardsGameplayManager::GetBlackboard()
 
 
 
-bool BilliardsGameplayManager::TryHitWhiteBall(const Vector2<float>& position, const Vector2<float>& direction,
-	const float& forceMagnitude)
+bool BilliardsGameplayManager::CanHitWhiteBall(const Vector2<float>& position)
 {
 	const Circle probingCircle{ position, 0.2f };
-
 	bool intersecting = Math::AreCirclesIntersecting(probingCircle, m_whiteBall->GetCollisionCircle());
-	if (!intersecting)
-	{
-		return false;
-	}
-
-
-	const Vector2<float> force = direction * forceMagnitude;
-	m_whiteBall->ApplyForce(force);
-	return true;
+	return intersecting;
 }
 
+void BilliardsGameplayManager::HitWhiteBall(const Vector2<float>& direction, const float& forceMagnitude)
+{
+	const Vector2<float> force = direction * forceMagnitude;
+	m_whiteBall->ApplyForce(force);
+}
 
 
 bool BilliardsGameplayManager::AllBallsStoppedMoving() const

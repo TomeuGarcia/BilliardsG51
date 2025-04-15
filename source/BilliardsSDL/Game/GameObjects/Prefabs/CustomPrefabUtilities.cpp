@@ -261,7 +261,7 @@ FadingRenderer* CustomPrefabUtilities::CreateBanishingFadingText(const std::stri
 
 	const int fonSize = big ? 32 : 23;
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(fadingTextGameObject, 
-		GameAssetResources::GetInstance()->GetText().defaultTextFontData, textString, fonSize);
+		GameAssetResources::GetInstance()->GetText().popUpTextFontData, textString, fonSize);
 
 	std::shared_ptr<FadingRenderer> fadingRenderer = std::make_shared<FadingRenderer>(text.get(), 1.0f, 
 		0.0f, Vector2<float>::Up() * 0.5f, 1.2f);
@@ -276,7 +276,7 @@ FadingRenderer* CustomPrefabUtilities::CreateOpaqueFadingText(const std::string&
 {
 	GameObject* fadingTextGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>::Zero(), std::string("OpFadingText_") + textString);
 
-	const int fonSize = big ? 72 : 48;
+	const int fonSize = big ? 100 : 48;
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(fadingTextGameObject,
 		GameAssetResources::GetInstance()->GetText().defaultTextFontData, textString, fonSize);
 
@@ -286,6 +286,16 @@ FadingRenderer* CustomPrefabUtilities::CreateOpaqueFadingText(const std::string&
 	fadingTextGameObject->AttachBehaviour(fadingRenderer);
 
 	return fadingRenderer.get();
+}
+
+
+TrippyText* CustomPrefabUtilities::CreateTrippyText(const Vector2<float>& position, const TrippyText::Config& config, const std::string& textString)
+{
+	GameObject* trippyTextGameObject = m_sceneCreateUtilities->CreateGameObject(position, "Trippy_" + textString);
+	std::shared_ptr<TrippyText> trippyText = std::make_shared<TrippyText>(trippyTextGameObject, config, textString, m_sceneCreateUtilities);
+	trippyTextGameObject->AttachBehaviour(trippyText);
+
+	return trippyText.get();
 }
 
 
@@ -343,8 +353,8 @@ OptionsMenu* CustomPrefabUtilities::CreateOptionsMenu()
 	gameObjects.Add(backgroundGameObject);
 
 
-	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 3.0f), "OptionsTitle");
-	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Options", 48);
+	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 2.5f), "OptionsTitle");
+	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "-  Options  -", 64);
 	gameObjects.Add(titleGameObject);
 
 
@@ -390,8 +400,8 @@ PauseMenu* CustomPrefabUtilities::CreatePauseMenu()
 	gameObjects.Add(backgroundGameObject);
 
 
-	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 3.0f), "PauseTitle");
-	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Paused", 48);
+	GameObject* titleGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 2.5f), "PauseTitle");
+	m_sceneCreateUtilities->CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "-  Paused  -", 64);
 	gameObjects.Add(titleGameObject);
 
 

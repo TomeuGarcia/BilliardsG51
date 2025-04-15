@@ -12,7 +12,8 @@ public:
 	BilliardsGameplayStateBlackboard();
 	~BilliardsGameplayStateBlackboard();
 
-	void Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter,
+	void Init(const std::vector<BilliardBall*>& balls, BilliardBall* whiteBall,
+		const Vector2<float>& boardCenter,
 		BilliardsPlayer* playerRed, BilliardsPlayer* playerBlue,
 		IBilliardsGameplayStateEventsManager* specialEventsManager);
 
@@ -36,6 +37,10 @@ public:
 	float GetPinPullMinDistance() const;
 	float GetPinPullMaxDistance() const;
 
+	bool GetCanHitWhiteBall() const;
+	void SetCanHitWhiteBall(const bool& canHitWhiteBall);
+
+	Vector2<float> GetWhiteBallPosition() const;
 
 
 public:
@@ -53,6 +58,7 @@ private:
 	BilliardsPlayer* m_winnerPlayer;
 
 	std::vector<BilliardBall*> m_balls;
+	BilliardBall* m_whiteBall;
 
 	IBilliardsGameplayStateEventsManager* m_specialEventsManager;
 
@@ -62,4 +68,6 @@ private:
 
 	float m_pinPullMinDistance;
 	float m_pinPullMaxDistance;
+
+	bool m_canHitWhiteBall;
 };

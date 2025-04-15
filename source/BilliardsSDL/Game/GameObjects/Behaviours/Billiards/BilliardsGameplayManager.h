@@ -46,8 +46,8 @@ public:
 
 
 public:
-	virtual bool TryHitWhiteBall(const Vector2<float>& position, const Vector2<float>& direction,
-		const float& forceMagnitude) override;
+	virtual bool CanHitWhiteBall(const Vector2<float>& position) override;
+	virtual void HitWhiteBall(const Vector2<float>& direction, const float& forceMagnitude) override;
 	virtual bool AllBallsStoppedMoving() const override;
 
 	virtual void PositionBallsRandomly() const override;

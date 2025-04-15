@@ -7,8 +7,8 @@
 class IBilliardsGameplayStateEventsManager
 {
 public:
-	virtual bool TryHitWhiteBall(const Vector2<float>& position, const Vector2<float>& direction, 
-		const float& forceMagnitude) = 0;
+	virtual bool CanHitWhiteBall(const Vector2<float>& position) = 0;
+	virtual void HitWhiteBall(const Vector2<float>& direction, const float& forceMagnitude) = 0;
 
 	virtual bool AllBallsStoppedMoving() const = 0;
 

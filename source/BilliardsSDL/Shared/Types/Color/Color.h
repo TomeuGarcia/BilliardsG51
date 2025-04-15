@@ -51,11 +51,13 @@ namespace Colors
 {
 	constexpr inline Color White	{ 255,	255,	255,	255 };
 	constexpr inline Color Black	{ 0,	0,		0,		255 };
+	constexpr inline Color DarkGrey { 30,	30,		30,		255 };
 	constexpr inline Color Red		{ 255,	0,		0,		255 };
 	constexpr inline Color Green	{ 0,	255,	0,		255 };
 	constexpr inline Color Blue		{ 0,	0,		255,	255 };
 	constexpr inline Color Cyan		{ 0,	255,	255,	255 };
 	constexpr inline Color Yellow	{ 255,	255,	0,		255 };
+	constexpr inline Color Orange	{ 255,	150,	0,		255 };
 
 	constexpr inline Color SoftRed		{ 220,	30,		70,		255 };
 	constexpr inline Color SoftGreen	{ 40,	230,	120,	255 };

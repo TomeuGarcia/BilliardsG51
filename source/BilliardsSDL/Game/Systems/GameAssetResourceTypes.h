@@ -33,6 +33,7 @@ public:
 public:
 	TextResourceData defaultTextFontData;
 	TextResourceData titleTextFontData;
+	TextResourceData popUpTextFontData;
 };
 
 

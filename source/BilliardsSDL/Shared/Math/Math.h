@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cmath>
 #include <math.h>
 #include <limits>
 #include "../Types/Vector2/Vector2.h"
@@ -11,6 +12,8 @@ namespace Math
 {
 #define PI 3.14159265f
 
+	float Modulo(float value, float divisor);
+
 	float Sqrt(const float& value);
 
 	float Min(const float& a, const float& b);
@@ -21,8 +24,9 @@ namespace Math
 	float Rad2Deg(const float& radians);
 	float Deg2Rad(const float& degrees);
 
-	float Sin(const float& degrees);
-	float Cos(const float& degrees);
+	float Sin(const float& radians);
+	float Cos(const float& radians);
+	float Sin01(const float& radians);
 
 
 	float Angle(const Vector2<float>& from, const Vector2<float>& to);

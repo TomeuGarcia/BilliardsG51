@@ -555,6 +555,9 @@
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Bounds</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\TrippyText.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
@@ -970,6 +973,9 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\IBilliardsBoardBoundsListener.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Bounds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\TrippyText.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

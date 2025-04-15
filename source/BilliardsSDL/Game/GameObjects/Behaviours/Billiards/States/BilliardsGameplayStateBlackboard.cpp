@@ -1,7 +1,8 @@
 #include "BilliardsGameplayStateBlackboard.h"
 
 BilliardsGameplayStateBlackboard::BilliardsGameplayStateBlackboard()
-	: m_playerRed(nullptr), m_playerBlue(nullptr), m_currentPlayer(nullptr), m_boardCenter(), m_balls(),
+	: m_playerRed(nullptr), m_playerBlue(nullptr), m_currentPlayer(nullptr), m_boardCenter(), 
+	m_balls(), m_whiteBall(nullptr),
 	m_specialEventsManager(nullptr),
 	m_pinPullMinDistance(0.1f),
 	m_pinPullMaxDistance(1.5f),
@@ -12,12 +13,14 @@ BilliardsGameplayStateBlackboard::BilliardsGameplayStateBlackboard()
 BilliardsGameplayStateBlackboard::~BilliardsGameplayStateBlackboard()
 {}
 
-void BilliardsGameplayStateBlackboard::Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter,
+void BilliardsGameplayStateBlackboard::Init(const std::vector<BilliardBall*>& balls, BilliardBall* whiteBall,
+	const Vector2<float>& boardCenter,
 	BilliardsPlayer* playerRed, BilliardsPlayer* playerBlue,
 	IBilliardsGameplayStateEventsManager* specialEventsManager)
 {
 	m_balls.resize(balls.size());
 	std::copy(balls.begin(), balls.end(), std::begin(m_balls));
+	m_whiteBall = whiteBall;
 	m_boardCenter = boardCenter;
 	m_playerRed = playerRed;
 	m_playerBlue = playerBlue;
@@ -91,4 +94,19 @@ float BilliardsGameplayStateBlackboard::GetPinPullMinDistance() const
 float BilliardsGameplayStateBlackboard::GetPinPullMaxDistance() const
 {
 	return m_pinPullMaxDistance;
+}
+
+bool BilliardsGameplayStateBlackboard::GetCanHitWhiteBall() const
+{
+	return m_canHitWhiteBall;
+}
+
+void BilliardsGameplayStateBlackboard::SetCanHitWhiteBall(const bool& canHitWhiteBall)
+{
+	m_canHitWhiteBall = canHitWhiteBall;
+}
+
+Vector2<float> BilliardsGameplayStateBlackboard::GetWhiteBallPosition() const
+{
+	return m_whiteBall->GetTransform()->p_worldPosition;
 }

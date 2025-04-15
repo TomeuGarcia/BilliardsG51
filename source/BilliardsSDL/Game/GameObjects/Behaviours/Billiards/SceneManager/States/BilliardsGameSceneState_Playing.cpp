@@ -45,6 +45,7 @@ bool BilliardsGameSceneState_Playing::CanPause() const
 	const BilliardsGameplayState::Type currentState = m_gameplayFSM.GetCurrentStateType();
 
 	return 
+		currentState == BilliardsGameplayState::Type::PlacingBalls ||
 		currentState == BilliardsGameplayState::Type::Thinking_Red ||
 		currentState == BilliardsGameplayState::Type::Thinking_Blue ||
 		currentState == BilliardsGameplayState::Type::ResolvingBoard;

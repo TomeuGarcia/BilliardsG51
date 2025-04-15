@@ -56,7 +56,7 @@ BilliardsGameplayManager* BilliardsGameScene::CreateGameplayGameObjects()
 	const Vector2<float> boardPosition = Vector2<float>::Zero();
 	GetPrefabUtilities().CreateBilliardsBoard(boardPosition, manager.get());
 
-	GetPrefabUtilities().CreateBilliardsBoardBounds(boardPosition, Vector2<float>(10.0f, 5.5f), manager.get());
+	GetPrefabUtilities().CreateBilliardsBoardBounds(boardPosition, Vector2<float>(10.5f, 6.0f), manager.get());
 
 
 

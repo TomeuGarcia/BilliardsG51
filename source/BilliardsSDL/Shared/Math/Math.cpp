@@ -2,6 +2,11 @@
 
 namespace Math
 {
+	float Modulo(float value, float divisor)
+	{
+		return std::modf(value, &divisor);
+	}
+
 	float Sqrt(const float& value)
 	{
 		return sqrtf(value);
@@ -47,6 +52,12 @@ namespace Math
 	{
 		return std::cosf(radians);
 	}
+
+	float Sin01(const float& radians)
+	{
+		return (Sin(radians - (0.5f * PI)) + 1.0f) * 0.5f;
+	}
+
 
 	float Angle(const Vector2<float>& from, const Vector2<float>& to)
 	{

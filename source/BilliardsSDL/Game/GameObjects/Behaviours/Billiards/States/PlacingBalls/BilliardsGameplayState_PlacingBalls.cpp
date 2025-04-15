@@ -52,9 +52,9 @@ void BilliardsGameplayState_PlacingBalls::SetBallsIgnoringPhysics()
 void BilliardsGameplayState_PlacingBalls::SetBallsCheckingPhysics()
 {
 	const std::vector<BilliardBall*>& balls = GetBlackboard()->GetBalls();
-	for (auto it = balls.begin(); it != balls.end(); ++it)
+	for (size_t i = 0; i < balls.size(); ++i)
 	{
-		(*it)->SetUsingPhysics();
+		balls[i]->SetUsingPhysics();
 	}
 }
 

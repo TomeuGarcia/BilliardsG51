@@ -21,8 +21,9 @@ ImageResources::ImageResources(const float& pixelsToUnits, const std::string& pa
 
 TextResources::TextResources(const std::string& pathToResourceFonts)
 	:
-	defaultTextFontData(pathToResourceFonts + "ColateraSoft.ttf"),
-	titleTextFontData(pathToResourceFonts + "Movie Font.ttf")
+	defaultTextFontData(pathToResourceFonts + "Moviecal Regular.ttf"),
+	titleTextFontData(pathToResourceFonts + "Movie Font.ttf"),
+	popUpTextFontData(pathToResourceFonts + "ColateraSoft.ttf")
 {
 }
 

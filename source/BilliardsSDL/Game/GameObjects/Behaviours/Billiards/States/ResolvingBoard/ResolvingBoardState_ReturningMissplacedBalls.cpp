@@ -61,9 +61,9 @@ bool ResolvingBoardState_ReturningMissplacedBalls::Update()
 
 void ResolvingBoardState_ReturningMissplacedBalls::Exit()
 {
-	for (auto it = m_missplacedBalls->begin(); it != m_missplacedBalls->end(); ++it)
+	for (size_t i = 0; i < m_missplacedBalls->size(); ++i)
 	{
-		(*it)->SetUsingPhysics();
+		m_missplacedBalls->at(i)->SetUsingPhysics();
 	}
 
 	GetBlackboard()->GetSpecialEventsManager()->ClearMissplacedBalls();

@@ -33,8 +33,25 @@ void MainMenuScene::CreateGameObjects()
 	*/
 	
 
-	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 3.0f), "Title");
-	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().titleTextFontData, "A Billiards Game", 78);
+	TrippyText::Config trippyTitleConfig
+	{
+		88,
+		&(GameAssetResources::GetInstance()->GetText().titleTextFontData),
+
+		6,
+		0.25f,
+
+		1.6f,
+		2.5f,
+
+		Colors::White,
+		Colors::DarkGrey,
+		Colors::SoftRed,
+		Colors::SoftBlue
+	};
+
+	TrippyText* trippyTitle = GetPrefabUtilities().CreateTrippyText(Vector2<float>(0.0f, 3.0f), trippyTitleConfig, "A Billiards Game");
+
 
 	MenuButton* playButton = GetPrefabUtilities().CreateDefaultMenuButton(Vector2<float>(0.0f, 0.5f), true,
 		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Play", 36, GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData);	
@@ -53,7 +70,8 @@ void MainMenuScene::CreateGameObjects()
 	OptionsMenu* optionsMenu = GetPrefabUtilities().CreateOptionsMenu();
 
 	GameObjectGroup objectsToHideWhenOptionsShown{5};
-	objectsToHideWhenOptionsShown.Add(titleGameObject);
+	//objectsToHideWhenOptionsShown.Add(titleGameObject);
+	objectsToHideWhenOptionsShown.Add(trippyTitle->GetGameObjects());
 	objectsToHideWhenOptionsShown.Add(playButton->GetGameObject());
 	objectsToHideWhenOptionsShown.Add(rankingButton->GetGameObject());
 	objectsToHideWhenOptionsShown.Add(optionsButton->GetGameObject());
