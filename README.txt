@@ -1,3 +1,7 @@
+Windows x64, C++ 20
+(Build with Visual Studio)
+
+
 HOW TO PLAY
 ===========
 - YOU CAN ONLY HIT THE WHITE BALL
