@@ -3,6 +3,55 @@
 
 void RankingScene::CreateGameObjects()
 {
+	CreateBackgroundGameObject();
+	CreateRankingGameObject();
+}
+
+void RankingScene::DoStart()
+{
+	GameRenderManager::GetInstance()->SetBackgroundColor(Colors::DarkPurple);
+}
+
+void RankingScene::DoUpdate()
+{
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::R))
+	{
+		RankingManager rankingManager{};
+		rankingManager.ClearEntries();
+		rankingManager.Save();
+	}
+}
+
+
+
+void RankingScene::CreateBackgroundGameObject()
+{
+	ParallaxBallsBackground::Config backgroundConfig
+	{
+		20,
+
+		Vector2<float>{ 7.0f, 3.0f },
+		4.5f,
+
+		0.8f,
+		0.4f,
+		8,
+
+		0.8f,
+		0.3f
+	};
+
+
+	GameObject* backgroundGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>::Zero(), "Background");
+	std::shared_ptr<ParallaxBallsBackground> parallaxBallsBackground = std::make_shared<ParallaxBallsBackground>(
+		backgroundConfig, &GetCreateUtilities());
+	backgroundGameObject->AttachBehaviour(parallaxBallsBackground);
+}
+
+
+
+void RankingScene::CreateRankingGameObject()
+{
 	RankingManager rankingManager{};
 	rankingManager.Load();
 
@@ -34,29 +83,15 @@ void RankingScene::CreateGameObjects()
 
 	MenuButton* clearRankingButton = GetPrefabUtilities().CreateDangerMenuButton(Vector2<float>(5.3f, -3.35f), true,
 		GameAssetResources::GetInstance()->GetText().defaultTextFontData, "Clear Ranking", 25);
-	clearRankingButton->SetSelectedCallback([]() {
-		RankingManager rankingManager{};
-		rankingManager.ClearEntries();
-		rankingManager.Save();
-		SceneManager::GetInstance()->LoadScene(SceneName::Ranking); 
-	});
+	clearRankingButton->SetSelectedCallback([]()
+		{
+			RankingManager rankingManager{};
+			rankingManager.ClearEntries();
+			rankingManager.Save();
+			SceneManager::GetInstance()->LoadScene(SceneName::Ranking);
+		});
 
 
 	GameObject* titleGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>(0.0f, 2.75f), "Title");
 	GetCreateUtilities().CreateTextComponent(titleGameObject, GameAssetResources::GetInstance()->GetText().defaultTextFontData, "-  Ranking  -", 64);
-}
-
-void RankingScene::DoStart()
-{
-	GameRenderManager::GetInstance()->SetBackgroundColor(Colors::DarkPurple);
-}
-
-void RankingScene::DoUpdate()
-{
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::R))
-	{
-		RankingManager rankingManager{};
-		rankingManager.ClearEntries();
-		rankingManager.Save();
-	}
 }

@@ -252,17 +252,8 @@ void BilliardsGameplayManager::OnGameFinishStart()
 void BilliardsGameplayManager::PositionBallsRandomly() const
 {
 	const Vector2<float> randomBounds{ 2.5f, 1.75f };
-	const std::vector<BilliardBall*>& balls = m_gameplayStatesBlackboard.GetBalls();
-	const float checkRadius = 0.5f;
-
-	for (auto it = balls.begin(); it != balls.end(); ++it)
-	{
-		Vector2<float> position = 
-			GamePhysicsUtilities::FindRandomPositionWithoutObstacles(m_gameplayStatesBlackboard.GetBoardCenter(), randomBounds,
-				checkRadius, 5);
-
-		(*it)->SetPosition(position);
-	}
+	BilliardsUtilities::PositionBallsRandomly(m_gameplayStatesBlackboard.GetBalls(), 
+		m_gameplayStatesBlackboard.GetBoardCenter(), randomBounds);
 }
 
 const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(BilliardBall* ball) const

@@ -5,10 +5,10 @@
 #include "../Behaviour.h"
 #include "BilliardBall.h"
 #include "BilliardStick.h"
+#include "BilliardsUtilities.h"
 
 #include "../../../Systems/GameInput.h"
 #include "../../../Physics/Physics2DManager.h"
-#include "../../../Physics/Helpers/GamePhysicsUtilities.h"
 
 #include "States/BilliardsGameplayFSM.h"
 

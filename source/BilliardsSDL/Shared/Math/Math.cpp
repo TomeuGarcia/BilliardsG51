@@ -7,6 +7,11 @@ namespace Math
 		return std::modf(value, &divisor);
 	}
 
+	float Abs(const float& value)
+	{
+		return value < 0 ? -value : value;
+	}
+
 	float Sqrt(const float& value)
 	{
 		return sqrtf(value);
@@ -31,6 +36,11 @@ namespace Math
 	float Clamp01(const float& value)
 	{
 		return Clamp(value, 0.0f, 1.0f);
+	}
+
+	float Lerp(const float& a, const float& b, const float& t)
+	{
+		return a + ((b - a) * t);
 	}
 
 	float Rad2Deg(const float& radians)

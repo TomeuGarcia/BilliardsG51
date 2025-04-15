@@ -2,36 +2,23 @@
 
 void MainMenuScene::CreateGameObjects()
 {
-	/*
-	const Vector2<float> ballBounds{6.0f, 4.0f};
-	for (int i = 0; i < 40; ++i)
-	{
-		const Vector2<float> position = GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(ballBounds);
-		const ImageResourceData imageData = GameRandom::GetInstance()->GetRandomBool(0.5f)
-			? GameAssetResources::GetInstance()->GetBlueBallImageData()
-			: GameAssetResources::GetInstance()->GetRedBallImageData();
-
-		const float scale = GameRandom::GetInstance()->GetRandomFloat(1.0f, 0.5f);
-		const Vector2 size = Vector2<float>::One() * scale;
-
-
-		GameObject* ballGameObject = CreateGameObject(position, std::string("Ball_") + std::to_string(i));
-		std::shared_ptr<Image> image = CreateImageComponent(ballGameObject, imageData, size);
-		image->SetColorTint(Colors::White * (1.0f - scale));
-	}
-	*/
-
-
+	const Vector2<float> boardPosition{ 0.0f, -0.6f };
 	std::shared_ptr<MainMenuBilliardsBoardManager> boardManager = std::make_shared<MainMenuBilliardsBoardManager>();
-	GetPrefabUtilities().CreateBilliardsBoard(Vector2<float>(0.0f, -0.6f), boardManager.get());
+	GetPrefabUtilities().CreateBilliardsBoard(boardPosition, boardManager.get());
 
+	const Vector2<float> randomBounds{ 5.0f, 2.0f };
+	std::vector<BilliardBall*> balls = GetPrefabUtilities().CreateBilliardsGameBalls(nullptr);
+	for (auto it = balls.begin(); it != balls.end(); ++it)
+	{
+		BilliardBall* ball = *it;
+		do
+		{
+			Vector2<float> position = GamePhysicsUtilities::FindRandomPositionWithoutObstacles(boardPosition, randomBounds, 0.2f, 5);
+			ball->SetPosition(position);
+		} 
+		while (Math::Abs(ball->GetTransform()->p_worldPosition.x + boardPosition.x) < 1.0f);
+	}
 
-	/*
-	GameObject* holeGameObject = CreateGameObject(Vector2<float>(0.0f, -2.0f), "Hole");
-	std::shared_ptr<BilliardsBoardHole> boardHole = std::make_shared<BilliardsBoardHole>(holeGameObject->GetTransform(), );
-	holeGameObject->AttachBehaviour(boardHole);
-	*/
-	
 
 	TrippyText::Config trippyTitleConfig
 	{

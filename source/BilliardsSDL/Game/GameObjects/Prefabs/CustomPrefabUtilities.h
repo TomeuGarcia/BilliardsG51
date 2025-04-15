@@ -8,6 +8,7 @@
 #include "../Behaviours/Billiards/BilliardStick.h"
 #include "../Behaviours/Billiards/Holes/BilliardsBoardHole.h"
 #include "../Behaviours/Billiards/Bounds/BilliardsBoardBounds.h"
+#include "../Behaviours/Billiards/BilliardsUtilities.h"
 
 #include "../Behaviours/RendererExtras/FadingRenderer.h"
 #include "../Behaviours/RendererExtras/TrippyText.h"

@@ -199,6 +199,9 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\Bounds">
       <UniqueIdentifier>{8cad42cd-a158-4a5a-b1de-53bc6f4d8dd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Backgrounds">
+      <UniqueIdentifier>{0875c111-b07a-4118-bcc3-2f8086cf34c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -557,6 +560,12 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\TrippyText.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsUtilities.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Backgrounds\ParallaxBallsBackground.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Backgrounds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -976,6 +985,12 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\TrippyText.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsUtilities.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Backgrounds\ParallaxBallsBackground.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Backgrounds</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

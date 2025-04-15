@@ -67,12 +67,10 @@ void PauseMenu::OnOptionsSelected()
 
 void PauseMenu::OnRestartSelected()
 {
-	SilentHide();
 	m_onRestartCallback();
 }
 
 void PauseMenu::OnQuitSelected()
 {
-	SilentHide();
 	m_onQuitCallback();
 }

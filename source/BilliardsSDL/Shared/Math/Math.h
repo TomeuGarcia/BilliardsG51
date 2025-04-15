@@ -14,12 +14,16 @@ namespace Math
 
 	float Modulo(float value, float divisor);
 
+	float Abs(const float& value);
+
 	float Sqrt(const float& value);
 
 	float Min(const float& a, const float& b);
 	float Max(const float& a, const float& b);
 	float Clamp(const float& value, const float& min, const float& max);	
 	float Clamp01(const float& value);
+
+	float Lerp(const float& a, const float& b, const float& t);
 
 	float Rad2Deg(const float& radians);
 	float Deg2Rad(const float& degrees);

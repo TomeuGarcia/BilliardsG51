@@ -227,6 +227,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Audio\SFXSoundBuffer.cpp" />
     <ClCompile Include="Game\Audio\SoundResourceData.cpp" />
     <ClCompile Include="Game\BilliardsGameEngine.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Backgrounds\ParallaxBallsBackground.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollision.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionDetector.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionFeedbackManager.cpp" />
@@ -234,6 +235,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsUtilities.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.cpp" />
@@ -355,6 +357,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Audio\SFXSoundBuffer.h" />
     <ClInclude Include="Game\Audio\SoundResourceData.h" />
     <ClInclude Include="Game\BilliardsGameEngine.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Backgrounds\ParallaxBallsBackground.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Behaviour.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollision.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionDetector.h" />
@@ -364,6 +367,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardStick.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsUtilities.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\IBilliardsBoardBoundsListener.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Holes\BilliardsBoardHole.h" />
