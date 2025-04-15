@@ -63,7 +63,7 @@ namespace Colors
 	constexpr inline Color SoftGreen	{ 40,	230,	120,	255 };
 	constexpr inline Color SoftBlue		{ 60,	100,	210,	255 };
 	constexpr inline Color DarkPurple	{ 90,	30,		90,		255 };
-	constexpr inline Color LightPurple	{ 180,	180,	255,	255 };
+	constexpr inline Color LightBlue	{ 160,	200,	255,	255 };
 	constexpr inline Color Gold			{ 255,	215,	0,		255 };
 
 	constexpr inline Color SoftYellow	{ 247,	219,	167,	255 };

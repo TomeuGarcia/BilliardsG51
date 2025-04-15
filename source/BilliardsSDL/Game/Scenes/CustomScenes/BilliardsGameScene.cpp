@@ -7,6 +7,13 @@
 void BilliardsGameScene::CreateGameObjects()
 {
 	BilliardsGameplayManager* gameplayManager = CreateGameplayGameObjects();
+
+	const GameMusicService::MusicType musicType = GameMusicService::MusicType::Gameplay;
+	if (!GameMusicService::GetInstance()->IsMusicPlaying(musicType))
+	{
+		GetPrefabUtilities().CreatePlayingMusicText(Vector2<float>(-5.5f, -3.5f), musicType);
+	}
+
 	PauseMenu* pauseMenu = GetPrefabUtilities().CreatePauseMenu();
 	OptionsMenu* optionsMenu = GetPrefabUtilities().CreateOptionsMenu();
 

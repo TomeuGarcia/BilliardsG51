@@ -23,7 +23,8 @@ TextResources::TextResources(const std::string& pathToResourceFonts)
 	:
 	defaultTextFontData(pathToResourceFonts + "Moviecal Regular.ttf"),
 	titleTextFontData(pathToResourceFonts + "Movie Font.ttf"),
-	popUpTextFontData(pathToResourceFonts + "ColateraSoft.ttf")
+	popUpTextFontData(pathToResourceFonts + "ColateraSoft.ttf"),
+	musicTextFontData(pathToResourceFonts + "PleaseWriteMeASong-70vV.ttf")
 {
 }
 

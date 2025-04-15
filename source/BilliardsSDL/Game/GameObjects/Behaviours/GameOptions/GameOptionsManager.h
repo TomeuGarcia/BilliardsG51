@@ -16,6 +16,8 @@ public:
 	void Load();
 	void Save();
 
+	const GameAudioFileData& GetGameAudioData();
+
 private:
 	const float ToVolume01(const int& volume100);
 	const int ToVolume100(const float& volume01);

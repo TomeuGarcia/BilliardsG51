@@ -12,6 +12,10 @@ OptionsMenu::OptionsMenu(const GameObjectGroup& menuGameObjects,
 	m_sfxVolumeIncDecButton(sfxVolumeIncDecButton)
 {
 	m_gameOptionsManager.Load();
+
+	m_masterVolumeIncDecButton->Init(m_gameOptionsManager.GetGameAudioData().GetMasterVolume());
+	m_musicVolumeIncDecButton->Init(m_gameOptionsManager.GetGameAudioData().GetMusicVolume());
+	m_sfxVolumeIncDecButton->Init(m_gameOptionsManager.GetGameAudioData().GetSFXVolume());
 }
 
 

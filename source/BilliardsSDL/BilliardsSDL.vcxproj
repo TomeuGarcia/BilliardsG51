@@ -278,6 +278,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingFileData.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingManager.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\PlayingMusicText.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\TrippyText.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.cpp" />
@@ -414,6 +415,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingFileData.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\PlayingMusicText.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\TrippyText.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.h" />

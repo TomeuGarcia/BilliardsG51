@@ -27,6 +27,12 @@ void GameOptionsManager::Save()
 }
 
 
+const GameAudioFileData& GameOptionsManager::GetGameAudioData()
+{
+	return m_gameAudioFileData;
+}
+
+
 const float GameOptionsManager::ToVolume01(const int& volume100)
 {
 	return volume100 / 100.0f;

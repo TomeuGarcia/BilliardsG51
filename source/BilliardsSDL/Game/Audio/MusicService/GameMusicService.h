@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include <string>
 #include "../GameAudioManager.h"
 #include "../../Systems/GameAssetResources.h"
 
@@ -14,6 +15,14 @@ public:
 		Gameplay
 	};
 
+private:
+	struct MusicData
+	{
+		std::shared_ptr<MusicSound> musicSound;
+		std::string authorAndName;
+	};
+
+
 public:
 	GameMusicService();
 	~GameMusicService();
@@ -21,7 +30,9 @@ public:
 	static GameMusicService* GetInstance();
 
 public:
-	void TransitionMusic(const MusicType& newMusicType);
+	std::string_view GetMusicAuthorAndName(const MusicType& musicType);
+	bool IsMusicPlaying(const MusicType& musicType);
+	bool TransitionMusic(const MusicType& newMusicType);
 
 private:
 	void StopCurrentMusic();
@@ -29,9 +40,9 @@ private:
 
 
 private:
-	std::unordered_map<MusicType, std::shared_ptr<MusicSound>> m_musicTypeToSound;
+	std::unordered_map<MusicType, MusicData> m_musicTypeToSound;
 	MusicType m_currentMusicType;
-	MusicSound* m_currentMusicSound;
+	MusicData* m_currentMusic;
 
 private:
 	static GameMusicService* s_instance;

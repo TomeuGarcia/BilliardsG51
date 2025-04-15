@@ -72,6 +72,14 @@ void MainMenuScene::CreateGameObjects()
 		optionsMenu, objectsToHideWhenOptionsShown
 	);
 	managerGameObject->AttachBehaviour(mainMenuManager);
+
+
+
+	const GameMusicService::MusicType musicType = GameMusicService::MusicType::MainMenu;
+	if (!GameMusicService::GetInstance()->IsMusicPlaying(musicType))
+	{
+		GetPrefabUtilities().CreatePlayingMusicText(Vector2<float>(-5.5f, -3.5f), musicType);
+	}
 }
 
 

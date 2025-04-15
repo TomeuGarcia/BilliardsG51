@@ -56,6 +56,12 @@ MenuIncDecButton::MenuIncDecButton(SceneCreateUtilities* sceneCreateUtilities, c
     m_gameObjects.Add(valueTextsGameObject);
 }
 
+void MenuIncDecButton::Init(const int& startingValue)
+{
+    m_currentValueIndex = ((float)(startingValue - m_minValue) / (m_maxValue - m_minValue)) * m_numberOfSteps;
+    UpdateValueText();
+}
+
 void MenuIncDecButton::SetValueUpdateCallback(const std::function<void(int)>& valueUpdateCallback)
 {
     m_valueUpdateCallback = valueUpdateCallback;

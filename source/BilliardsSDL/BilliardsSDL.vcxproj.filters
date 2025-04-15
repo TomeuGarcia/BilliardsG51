@@ -567,6 +567,9 @@
     <ClCompile Include="Game\GameObjects\Behaviours\Backgrounds\ParallaxBallsBackground.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Backgrounds</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\PlayingMusicText.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\BilliardsApplication.h">
@@ -991,6 +994,9 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Backgrounds\ParallaxBallsBackground.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Backgrounds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\PlayingMusicText.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

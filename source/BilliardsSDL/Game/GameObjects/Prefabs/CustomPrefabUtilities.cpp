@@ -13,7 +13,7 @@ MenuButton* CustomPrefabUtilities::CreateDefaultMenuButton(const Vector2<float>&
 {
 	GameObject* buttonGameObject = m_sceneCreateUtilities->CreateGameObject(position, std::string("Button_") + textString);
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(buttonGameObject, textData, textString, pointSize);
-	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightPurple, Colors::SoftYellow, Colors::SoftGreen });
+	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightBlue, Colors::SoftYellow, Colors::SoftGreen });
 
 	std::shared_ptr<MenuButton> menuButton = std::make_shared<MenuButton>(button.get(), canBeSelectedOnlyOnce,
 		GameAudioManager::GetInstance()->CreateSFXSound(soundData));
@@ -27,7 +27,7 @@ MenuButton* CustomPrefabUtilities::CreateDangerMenuButton(const Vector2<float>& 
 {
 	GameObject* buttonGameObject = m_sceneCreateUtilities->CreateGameObject(position, std::string("DangerButton_") + textString);
 	std::shared_ptr<Text> text = m_sceneCreateUtilities->CreateTextComponent(buttonGameObject, textData, textString, pointSize);
-	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightPurple, Colors::Red, Colors::Red });
+	std::shared_ptr<UIButton> button = m_sceneCreateUtilities->CreateButton(text, ColorBlock{ Colors::LightBlue, Colors::Red, Colors::Red });
 
 	const SoundResourceData soundData = GameAssetResources::GetInstance()->GetAudio().buttonDangerSoundData;
 
@@ -48,8 +48,8 @@ MenuIncDecButton* CustomPrefabUtilities::CreateDefaultMenuIncDecButton(const Vec
 	28,
 	36,
 	48,
-	ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftGreen},
-	ColorBlock{Colors::LightPurple, Colors::SoftYellow, Colors::SoftRed},
+	ColorBlock{Colors::LightBlue, Colors::SoftYellow, Colors::SoftGreen},
+	ColorBlock{Colors::LightBlue, Colors::SoftYellow, Colors::SoftRed},
 	&GameAssetResources::GetInstance()->GetAudio().buttonOkSoundData,
 	&GameAssetResources::GetInstance()->GetAudio().buttonBackSoundData,
 	&GameAssetResources::GetInstance()->GetText().defaultTextFontData,
@@ -297,6 +297,31 @@ TrippyText* CustomPrefabUtilities::CreateTrippyText(const Vector2<float>& positi
 
 	return trippyText.get();
 }
+
+
+
+
+PlayingMusicText* CustomPrefabUtilities::CreatePlayingMusicText(const Vector2<float>& position, const GameMusicService::MusicType& musicType)
+{
+	PlayingMusicText::Config config
+	{
+		std::string("[ "),
+		std::string(" ["),
+
+		24,
+		&GameAssetResources::GetInstance()->GetText().musicTextFontData,
+
+		3.0f,
+		1.0f
+	};
+
+	GameObject* musicTextGameObject = m_sceneCreateUtilities->CreateGameObject(position, "MusicText");
+	std::shared_ptr<PlayingMusicText> trippyText = std::make_shared<PlayingMusicText>(musicTextGameObject, musicType, config, m_sceneCreateUtilities);
+	musicTextGameObject->AttachBehaviour(trippyText);
+
+	return trippyText.get();
+}
+
 
 
 

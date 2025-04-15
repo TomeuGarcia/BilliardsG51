@@ -12,6 +12,7 @@
 
 #include "../Behaviours/RendererExtras/FadingRenderer.h"
 #include "../Behaviours/RendererExtras/TrippyText.h"
+#include "../Behaviours/RendererExtras/PlayingMusicText.h"
 
 #include "../Behaviours/Ranking/RankingEntry.h"
 #include "../Behaviours/Ranking/RankingEntryDisplay.h"
@@ -68,6 +69,10 @@ public:
 	FadingRenderer* CreateOpaqueFadingText(const std::string& textString, const Color& color, const bool& big);
 
 	TrippyText* CreateTrippyText(const Vector2<float>& position, const TrippyText::Config& config, const std::string& textString);
+
+
+public:
+	PlayingMusicText* CreatePlayingMusicText(const Vector2<float>& position, const GameMusicService::MusicType& musicType);
 
 
 public:

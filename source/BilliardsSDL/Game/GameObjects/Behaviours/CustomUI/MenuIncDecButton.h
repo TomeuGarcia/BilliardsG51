@@ -42,6 +42,8 @@ public:
 	MenuIncDecButton(SceneCreateUtilities* sceneCreateUtilities, const Config& config, 
 		const std::string& name, const int& startingValue, GameObject* gameObject);
 
+	void Init(const int& startingValue);
+
 	void SetValueUpdateCallback(const std::function<void(int)>& valueUpdateCallback);
 
 	const GameObjectGroup& GetGameObjects();

@@ -28,9 +28,9 @@ void RankingScene::CreateBackgroundGameObject()
 {
 	ParallaxBallsBackground::Config backgroundConfig
 	{
-		20,
+		30,
 
-		Vector2<float>{ 7.0f, 3.0f },
+		Vector2<float>{ 7.0f, 4.0f },
 		4.5f,
 
 		0.8f,
