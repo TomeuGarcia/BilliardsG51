@@ -19,8 +19,6 @@ MenuIncDecButton::MenuIncDecButton(SceneCreateUtilities* sceneCreateUtilities, c
     m_incSound(GameAudioManager::GetInstance()->CreateSFXSound(*config.incSoundData)),
     m_decSound(GameAudioManager::GetInstance()->CreateSFXSound(*config.decSoundData))
 {
-    m_currentValueIndex = ((float)(startingValue - m_minValue) / (m_maxValue - m_minValue)) * config.numberOfSteps;
-
     const Vector2<float> centerPosition = gameObject->GetTransform()->p_worldPosition;
 
     GameObject* nameGameObject = sceneCreateUtilities->CreateGameObject(centerPosition + Vector2<float>(-2.0f, 0.0f), "Name_" + name);
@@ -46,7 +44,7 @@ MenuIncDecButton::MenuIncDecButton(SceneCreateUtilities* sceneCreateUtilities, c
 
         m_valueTexts.emplace_back(valueText.get());
     }
-    UpdateValueText();
+    Init(startingValue);
 
 
     m_gameObjects.Add(gameObject);
@@ -58,7 +56,7 @@ MenuIncDecButton::MenuIncDecButton(SceneCreateUtilities* sceneCreateUtilities, c
 
 void MenuIncDecButton::Init(const int& startingValue)
 {
-    m_currentValueIndex = ((float)(startingValue - m_minValue) / (m_maxValue - m_minValue)) * m_numberOfSteps;
+    m_currentValueIndex = ((float)(startingValue - m_minValue) / (m_maxValue - m_minValue)) * (m_numberOfSteps-1);
     UpdateValueText();
 }
 

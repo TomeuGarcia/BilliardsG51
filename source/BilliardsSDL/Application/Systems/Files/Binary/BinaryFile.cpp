@@ -18,7 +18,7 @@ void BinaryFile::Write(IBinarySerializable* rootSerializable)
 	outputFile.open(m_completePathToFile, std::ofstream::out | std::ifstream::binary);
 	if (!outputFile.is_open())
 	{
-		std::printf("Couldn't open file: %s\n", m_completePathToFile.c_str());
+		//std::printf("Couldn't open file: %s\n", m_completePathToFile.c_str());
 		return;
 	}
 
@@ -33,7 +33,7 @@ void BinaryFile::Read(IBinarySerializable* rootSerializable)
 	inputFile.open(m_completePathToFile, std::ifstream::in | std::ifstream::binary);
 	if (!inputFile.is_open())
 	{
-		std::printf("Couldn't open file: %s\n", m_completePathToFile.c_str());
+		//std::printf("Couldn't open file: %s\n", m_completePathToFile.c_str());
 		return;
 	}
 
