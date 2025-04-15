@@ -6,6 +6,7 @@
 *.pdb
 binaries/*
 tmp/*
+resources/Files/*.bin
 
 # User-specific files
 *.rsuser
