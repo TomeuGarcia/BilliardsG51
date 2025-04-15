@@ -202,6 +202,9 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Backgrounds">
       <UniqueIdentifier>{0875c111-b07a-4118-bcc3-2f8086cf34c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shared\DataStructures">
+      <UniqueIdentifier>{a7fa3bef-b031-4a42-ad0c-08463f1bf6bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -997,6 +1000,9 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\PlayingMusicText.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\DataStructures\SteppingBuffer.h">
+      <Filter>Source Files\Shared\DataStructures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

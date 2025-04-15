@@ -1,4 +1,5 @@
 #pragma once
+#include "../../../Shared/DataStructures/SteppingBuffer.h"
 
 #include "../../GameObjects/GameObject.h"
 #include "../../GameObjects/Behaviours/Testers/AABoxColliderDrawer.h"
@@ -29,7 +30,7 @@
 class SceneCreateUtilities
 {
 public:
-	SceneCreateUtilities(std::vector<GameObject>* sceneGameObjects);
+	SceneCreateUtilities(SteppingBuffer<GameObject>* sceneGameObjectsBuffer);
 
 
 	GameObject* CreateGameObject(const Vector2<float>& position, const std::string& name);
@@ -55,5 +56,5 @@ public:
 
 
 private:
-	std::vector<GameObject>* m_sceneGameObjects;
+	SteppingBuffer<GameObject>* m_sceneGameObjectsBuffer;
 };

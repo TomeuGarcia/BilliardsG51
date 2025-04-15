@@ -7,7 +7,7 @@ void MainMenuScene::CreateGameObjects()
 	GetPrefabUtilities().CreateBilliardsBoard(boardPosition, boardManager.get());
 
 	const Vector2<float> randomBounds{ 5.0f, 2.0f };
-	std::vector<BilliardBall*> balls = GetPrefabUtilities().CreateBilliardsGameBalls(nullptr);
+	std::vector<BilliardBall*> balls = GetPrefabUtilities().CreateBilliardsGameBalls(boardManager.get());
 	for (auto it = balls.begin(); it != balls.end(); ++it)
 	{
 		BilliardBall* ball = *it;

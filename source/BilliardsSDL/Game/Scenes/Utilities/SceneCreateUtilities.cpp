@@ -1,15 +1,16 @@
 #include "SceneCreateUtilities.h"
 
-SceneCreateUtilities::SceneCreateUtilities(std::vector<GameObject>* sceneGameObjects)
-	: m_sceneGameObjects(sceneGameObjects)
+
+
+SceneCreateUtilities::SceneCreateUtilities(SteppingBuffer<GameObject>* sceneGameObjectsBuffer)
+	: m_sceneGameObjectsBuffer(sceneGameObjectsBuffer)
 {
 }
 
-
-
 GameObject* SceneCreateUtilities::CreateGameObject(const Vector2<float>& position, const std::string& name)
 {
-	return &m_sceneGameObjects->emplace_back(position, name);
+	m_sceneGameObjectsBuffer->TryExpand();
+	return &m_sceneGameObjectsBuffer->GetCurrent()->emplace_back(position, name);
 }
 
 

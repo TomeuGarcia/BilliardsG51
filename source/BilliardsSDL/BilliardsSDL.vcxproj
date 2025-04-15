@@ -466,6 +466,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\UI\Selectables\ColorBlock.h" />
     <ClInclude Include="Game\UI\Selectables\UISelectable.h" />
     <ClInclude Include="Game\UI\UICaster.h" />
+    <ClInclude Include="Shared\DataStructures\SteppingBuffer.h" />
     <ClInclude Include="Shared\Math\Math.h" />
     <ClInclude Include="Shared\Timer\Timer.h" />
     <ClInclude Include="Shared\Types\Circle\Circle.h" />

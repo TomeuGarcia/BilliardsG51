@@ -47,8 +47,8 @@ public:
 	BallCollisionFeedbackManager* CreateBallCollisionFeedbackManager();
 
 	BilliardBall* CreateBilliardsBall(const Vector2<float>& position, const ImageResourceData& imageData,
-		const BilliardBall::ColorType& colorType, const int& number, BallCollisionFeedbackManager* feedbackManager);
-	std::vector<BilliardBall*> CreateBilliardsGameBalls(BallCollisionFeedbackManager* feedbackManager);
+		const BilliardBall::ColorType& colorType, const int& number, IBallCollisionFeedbackManager* feedbackManager);
+	std::vector<BilliardBall*> CreateBilliardsGameBalls(IBallCollisionFeedbackManager* feedbackManager);
 
 	
 	BilliardStick* CreateBilliardsStick(const Vector2<float>& position, const ImageResourceData& imageData, const std::string& name);

@@ -83,7 +83,7 @@ BallCollisionFeedbackManager* CustomPrefabUtilities::CreateBallCollisionFeedback
 
 
 BilliardBall* CustomPrefabUtilities::CreateBilliardsBall(const Vector2<float>& position, const ImageResourceData& imageData, 
-	const BilliardBall::ColorType& colorType, const int& number, BallCollisionFeedbackManager* feedbackManager)
+	const BilliardBall::ColorType& colorType, const int& number, IBallCollisionFeedbackManager* feedbackManager)
 {
 	GameObject* ballGameObject = m_sceneCreateUtilities->CreateGameObject(position, "Ball_" + std::to_string(number));
 	ballGameObject->AddTag(GameObjectTag::Ball);
@@ -111,7 +111,7 @@ BilliardBall* CustomPrefabUtilities::CreateBilliardsBall(const Vector2<float>& p
 	return billiardBall.get();
 }
 
-std::vector<BilliardBall*> CustomPrefabUtilities::CreateBilliardsGameBalls(BallCollisionFeedbackManager* feedbackManager)
+std::vector<BilliardBall*> CustomPrefabUtilities::CreateBilliardsGameBalls(IBallCollisionFeedbackManager* feedbackManager)
 {
 	std::vector<BilliardBall*> balls(16);
 

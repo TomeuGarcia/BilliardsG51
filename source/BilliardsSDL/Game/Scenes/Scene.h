@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <forward_list>
 
 #include "../GameObjects/Prefabs/CustomPrefabUtilities.h"
 #include "../Audio/MusicService/GameMusicService.h"
@@ -29,7 +30,8 @@ protected:
 	virtual void OnDestroy();
 
 private:
-	std::vector<GameObject> m_gameObjects;
+	SteppingBuffer<GameObject> m_gameObjectsBuffer;
+
 	SceneCreateUtilities m_createUtilities;
 	CustomPrefabUtilities m_customPrefabs;
 };

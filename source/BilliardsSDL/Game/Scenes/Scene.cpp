@@ -2,11 +2,10 @@
 
 
 Scene::Scene()
-	: m_gameObjects(),
-	m_createUtilities(&m_gameObjects),
+	: m_gameObjectsBuffer(40),
+	m_createUtilities(&m_gameObjectsBuffer),
 	m_customPrefabs(&m_createUtilities)
-{
-	m_gameObjects.reserve(80); // If this is resized, the old GameObject* references are lost...
+{	
 }
 
 Scene::~Scene()
@@ -21,13 +20,15 @@ void Scene::Init()
 
 void Scene::Cleanup()
 {
-	for (auto it = m_gameObjects.begin(); it != m_gameObjects.end(); ++it)
-	{
-		it->OnDestroy();
-	}
+	m_gameObjectsBuffer.IterateAll([](GameObject& gameObject, const size_t& i)
+		{
+			gameObject.OnDestroy();
+		}
+	);
+
 	OnDestroy();
 
-	m_gameObjects.clear();
+	m_gameObjectsBuffer.Clear();
 	GameRenderManager::GetInstance()->ClearRenderQueue();
 	Physics2DManager::GetInstance()->ClearReferences();
 	UICaster::GetInstance()->ClearSelectables();
@@ -37,23 +38,25 @@ void Scene::Cleanup()
 
 void Scene::Start()
 {
-	for (auto it = m_gameObjects.begin(); it != m_gameObjects.end(); ++it)
-	{
-		it->Start();
-	}
+	m_gameObjectsBuffer.IterateAll([](GameObject& gameObject, const size_t& i)
+		{
+			gameObject.Start();
+		}
+	);
 
 	DoStart();
 }
 
 void Scene::Update()
 {
-	for (auto it = m_gameObjects.begin(); it != m_gameObjects.end(); ++it)
-	{
-		if (it->IsActive())
+	m_gameObjectsBuffer.IterateAll([](GameObject& gameObject, const size_t& i)
 		{
-			it->Update();
-		}		
-	}
+			if (gameObject.IsActive())
+			{
+				gameObject.Update();
+			}
+		}
+	);
 
 	DoUpdate();
 }
