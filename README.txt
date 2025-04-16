@@ -11,7 +11,8 @@ HOW TO PLAY
 - Click 'MouseRight' to stop aiming
 
 
-Other Inputs
+Other Inputs (while in Game)
 ------------
+- Press 'Esc' to Pause
 - Press 'X' to toggle Ball direction preview
 - Press 'C' to toggle collider visibility
