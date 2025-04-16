@@ -436,9 +436,10 @@ std::list<Collider2D*> Physics2DManager::CircleOverlap(const Vector2<float>& pos
 
 
 
-std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
+std::vector<CollisionHit2D> Physics2DManager::Raycast(const Line<float>& raySegment)
 {
-	std::list<Collider2D*> overlappedColliders{};
+	std::vector<CollisionHit2D> hits{};
+	hits.reserve(10);
 	Vector2<float> pointInLine;
 	float distance;
 
@@ -457,7 +458,7 @@ std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
 	{		
 		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
-			overlappedColliders.push_back(it->get());
+			hits.emplace_back(it->get(), pointInLine, Vector2<float>::Distance(pointInLine, raySegment.GetOrigin()));
 		}
 	}
 
@@ -465,25 +466,48 @@ std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
 	{
 		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
-			overlappedColliders.push_back(it->get());
+			hits.emplace_back(it->get(), pointInLine, Vector2<float>::Distance(pointInLine, raySegment.GetOrigin()));
 		}
 	}
 
 	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
 	{
-		if (Math::IsLineIntersectingAARect(raySegment, (*it)->GetShape()))
+		if (Math::ComputeLineToAARectDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
-			overlappedColliders.push_back(it->get());
+			hits.emplace_back(it->get(), pointInLine, distance);
 		}
 	}
 
 	for (auto it = rigidbodyLESSAABoxColliders.begin(); it != rigidbodyLESSAABoxColliders.end(); ++it)
 	{
-		if (Math::IsLineIntersectingAARect(raySegment, (*it)->GetShape()))
+		if (Math::ComputeLineToAARectDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
-			overlappedColliders.push_back(it->get());
+			hits.emplace_back(it->get(), pointInLine, distance);
 		}
 	}
 
-	return overlappedColliders;
+	return hits;
+}
+
+bool Physics2DManager::RaycastFirstHit(const Line<float>& raySegment, CollisionHit2D& outHit)
+{
+	const std::vector<CollisionHit2D> hits = Raycast(raySegment);
+	const size_t hitsCount = hits.size();
+
+	if (hitsCount < 1)
+	{
+		return false;
+	}
+
+	outHit = hits.front();
+	for (size_t i = 1; i < hitsCount; ++i)
+	{
+		const CollisionHit2D& itHit = hits[i];
+		if (outHit.distanceFromOrigin > itHit.distanceFromOrigin)
+		{
+			outHit = itHit;
+		}
+	}
+
+	return true;
 }

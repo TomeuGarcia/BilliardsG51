@@ -7,7 +7,9 @@ BilliardsGameplayStateBlackboard::BilliardsGameplayStateBlackboard()
 	m_pinPullMinDistance(0.1f),
 	m_pinPullMaxDistance(1.5f),
 	m_stickForceOverDistanceMultiplier(13.3f),
-	p_victoryAchieved(false)
+	p_victoryAchieved(false),
+	m_samePlayerIsPlayingConsecutiveTurns(false),
+	m_previewHitDirectionIsVisible(true)
 {}
 
 BilliardsGameplayStateBlackboard::~BilliardsGameplayStateBlackboard()
@@ -109,4 +111,29 @@ void BilliardsGameplayStateBlackboard::SetCanHitWhiteBall(const bool& canHitWhit
 Vector2<float> BilliardsGameplayStateBlackboard::GetWhiteBallPosition() const
 {
 	return m_whiteBall->GetTransform()->p_worldPosition;
+}
+
+float BilliardsGameplayStateBlackboard::GetWhiteBallRadius() const
+{
+	return m_whiteBall->GetCollisionCircle().GetRadius();
+}
+
+bool BilliardsGameplayStateBlackboard::GetSamePlayerIsPlayingConsecutiveTurns() const
+{
+	return m_samePlayerIsPlayingConsecutiveTurns;
+}
+
+void BilliardsGameplayStateBlackboard::SetSamePlayerIsPlayingConsecutiveTurns(const bool& samePlayerIsPlayingConsecutiveTurns)
+{
+	m_samePlayerIsPlayingConsecutiveTurns = samePlayerIsPlayingConsecutiveTurns;
+}
+
+bool BilliardsGameplayStateBlackboard::GetPreviewHitDirectionIsVisible() const
+{
+	return m_previewHitDirectionIsVisible;
+}
+
+void BilliardsGameplayStateBlackboard::SetPreviewHitDirectionIsVisible(const bool& previewHitDirectionIsVisible)
+{
+	m_previewHitDirectionIsVisible = previewHitDirectionIsVisible;
 }

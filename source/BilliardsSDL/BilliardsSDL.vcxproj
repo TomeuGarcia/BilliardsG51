@@ -443,6 +443,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Physics\Colliders\Collider2D.h" />
     <ClInclude Include="Game\Physics\CircleCollider2DGroup.h" />
     <ClInclude Include="Game\Physics\Collision\Collision2D.h" />
+    <ClInclude Include="Game\Physics\Collision\CollisionHit2D.h" />
     <ClInclude Include="Game\Physics\Helpers\CollisionHelper.h" />
     <ClInclude Include="Game\Physics\Helpers\GamePhysicsUtilities.h" />
     <ClInclude Include="Game\Physics\Physics2DManager.h" />

@@ -1,7 +1,8 @@
 #include "BilliardsGameSceneState_Playing.h"
 
 BilliardsGameSceneState_Playing::BilliardsGameSceneState_Playing(BilliardsGameplayStateBlackboard* gameplayBlackboard)
-	: m_gameplayFSM()
+	: m_gameplayFSM(),
+	m_gameplayBlackboard(gameplayBlackboard)
 {
 	m_gameplayFSM.Init(gameplayBlackboard);
 	m_gameplayFSM.Start();
@@ -19,6 +20,13 @@ void BilliardsGameSceneState_Playing::DoEnter()
 
 bool BilliardsGameSceneState_Playing::Update()
 {
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::X))
+	{
+		m_gameplayBlackboard->SetPreviewHitDirectionIsVisible(
+			!m_gameplayBlackboard->GetPreviewHitDirectionIsVisible()
+		);		
+	}
+
 	if (GameInput::GetInstance()->GetKeyDown(KeyCode::Esc) && CanPause())
 	{
 		SetNextState(BilliardsGameSceneState::Type::Paused);

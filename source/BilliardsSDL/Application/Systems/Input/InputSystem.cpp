@@ -20,6 +20,7 @@ void InputSystem::Init(SDL_Window* window)
 	AddKeyEntry(SDLK_SPACE, KeyCode::Space);
 	AddKeyEntry(SDLK_c, KeyCode::C);
 	AddKeyEntry(SDLK_r, KeyCode::R);
+	AddKeyEntry(SDLK_x, KeyCode::X);
 }
 
 void InputSystem::AddKeyEntry(const SDL_Keycode sdlKeyCode, const KeyCode keyCode)

@@ -9,5 +9,6 @@ enum class KeyCode
 	Esc,
 	Space,
 	C,
-	R
+	R,
+	X
 };

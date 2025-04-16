@@ -195,8 +195,9 @@ void BilliardsGameplayManager::OnPlayerBallEnteredHole(BilliardBall* ball, const
 void BilliardsGameplayManager::IncrementPlayerScoreWithThisTurnState(const Vector2<float>& holeCenter)
 {
 	BilliardsPlayer* currentPlayer = m_gameplayStatesBlackboard.GetCurrentPlayer();
+	bool playerIsPlayingConsecutiveTurns = m_gameplayStatesBlackboard.GetSamePlayerIsPlayingConsecutiveTurns();
 
-	if (m_wellplacedBallsThisTurn.size() <= 1)
+	if (m_wellplacedBallsThisTurn.size() <= 1 && !playerIsPlayingConsecutiveTurns)
 	{
 		currentPlayer->GetScore().Add();
 		m_feedbackDisplay->PlayBallEnterHoleScore(holeCenter);

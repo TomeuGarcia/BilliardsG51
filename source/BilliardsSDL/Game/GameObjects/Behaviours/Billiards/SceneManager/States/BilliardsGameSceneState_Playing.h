@@ -22,4 +22,6 @@ private:
 
 private:
 	BilliardsGameplayFSM m_gameplayFSM;
+
+	BilliardsGameplayStateBlackboard* m_gameplayBlackboard;
 };

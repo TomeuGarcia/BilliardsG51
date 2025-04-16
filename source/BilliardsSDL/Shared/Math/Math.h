@@ -61,7 +61,8 @@ namespace Math
 		Line<float>& outCollisionLineEdge, Vector2<float>& collisionPointOnEdge, float& outDistanceEdgeToCircleCenter);
 
 
-	bool AreLinesIntersecting(const Line<float>& lineA, const Line<float>& lineB);
-	bool IsLineIntersectingAARect(const Line<float>& line, const Rect<float>& rect);
+	bool AreLinesIntersecting(const Line<float>& lineA, const Line<float>& lineB, Vector2<float>& outIntersectionPoint);
+
+	bool ComputeLineToAARectDistance(const Line<float>& line, const Rect<float>& rect, Vector2<float>& outPointInLine, float& outDistanceToRectEdge);
 
 }

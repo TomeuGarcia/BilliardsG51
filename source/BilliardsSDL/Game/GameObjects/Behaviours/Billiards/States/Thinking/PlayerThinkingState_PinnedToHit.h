@@ -1,5 +1,6 @@
 #pragma once
 #include "PlayerThinkingState.h"
+#include "../../../../../Physics/Physics2DManager.h"
 
 
 class PlayerThinkingState_PinnedToHit : public PlayerThinkingState
@@ -12,6 +13,9 @@ public:
 
 protected:
 	virtual void DoEnter() override;
+
+private:
+	void PreviewHitDirection(const Vector2<float>& currentToPinDirection, const float& pinDragDistance);
 
 
 private:

@@ -1079,5 +1079,8 @@
     <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameOptionsFileData.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions\FileData</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Physics\Collision\CollisionHit2D.h">
+      <Filter>Source Files\Game\Physics\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

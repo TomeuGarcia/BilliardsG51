@@ -68,6 +68,8 @@ namespace Colors
 
 	constexpr inline Color SoftYellow	{ 247,	219,	167,	255 };
 
+	constexpr inline Color DarkGreen	{ 20,	100,	60,		255 };
+
 	constexpr inline Color Transparent		{ 0,	0,		0,		0 };
 	constexpr inline Color TransparentWhite	{ 255,	255,	255,	0 };
 };

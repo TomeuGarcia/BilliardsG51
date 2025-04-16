@@ -155,10 +155,20 @@ namespace Math
 
 		if (projectsOnLine)
 		{
-			outPointInLine = line.GetOrigin() + (line.GetDirection() * distanceLineOriginToCircleProjectedOnLine);
-			outDistanceToCircleCenter = Vector2<float>::Distance(circle.p_position, outPointInLine);
+			Vector2<float> pointInsideCircle = line.GetOrigin() + (line.GetDirection() * distanceLineOriginToCircleProjectedOnLine);
+			outDistanceToCircleCenter = Vector2<float>::Distance(circle.p_position, pointInsideCircle);
+			bool intersecting = outDistanceToCircleCenter < circle.GetRadius();
+
+			if (intersecting)
+			{
+				const float& y = outDistanceToCircleCenter;
+				float x = sqrtf((circle.GetRadius() * circle.GetRadius()) - (y * y));
+				float t1 = distanceLineOriginToCircleProjectedOnLine - x;
+
+				outPointInLine = line.GetOrigin() + (line.GetDirection() * t1);
+			}
 			
-			return outDistanceToCircleCenter < circle.GetRadius();
+			return intersecting;
 		}
 
 
@@ -313,7 +323,7 @@ namespace Math
 
 
 
-	bool AreLinesIntersecting(const Line<float>& lineA, const Line<float>& lineB)
+	bool AreLinesIntersecting(const Line<float>& lineA, const Line<float>& lineB, Vector2<float>& outIntersectionPoint)
 	{
 		// Only taking into account crossing (no interlinear)
 		// Solving for: A + alpha*AB = C + beta*CD
@@ -338,22 +348,80 @@ namespace Math
 		float alpha = Vector2<float>::Cross(originAtoOriginB, originToEndB) / originsToEndsCross;
 		float beta = Vector2<float>::Cross(-originToEndA, originAtoOriginB) / originsToEndsCross;
 		
-		return (alpha < 1.0f && alpha > 0.0f) && (beta < 1.0f && beta > 0.0f);
+		bool areIntersecting = (alpha < 1.0f && alpha > 0.0f) && (beta < 1.0f && beta > 0.0f);
+
+		outIntersectionPoint = originA + (originToEndA * alpha);
+
+		return areIntersecting;
 	}
 
-	bool IsLineIntersectingAARect(const Line<float>& line, const Rect<float>& rect)
-	{
-		// 2 cases: line inside rect, line crossing rect
 
-		if (IsPointInsideRect(rect, line.GetOrigin()) || IsPointInsideRect(rect, line.GetEnd()))
+
+	bool ComputeLineToAARectDistance(const Line<float>& line, const Rect<float>& rect, Vector2<float>& outPointInLine, float& outDistanceToRectEdge)
+	{
+		// 2 cases: line inside rect (only checking intersection start if inside), line crossing rect
+
+		bool intersecting{ false };
+		outDistanceToRectEdge = std::numeric_limits<float>::max();
+
+		Vector2<float> tempEdgeIntersectionPoint;
+		float tempDistanceToEdge;
+
+
+		if (AreLinesIntersecting(line, rect.MakeLeftEdgeLine(), tempEdgeIntersectionPoint))
 		{
-			return true;
+			tempDistanceToEdge = Vector2<float>::Distance(line.GetOrigin(), tempEdgeIntersectionPoint);
+			if (tempDistanceToEdge < outDistanceToRectEdge)
+			{
+				outPointInLine = tempEdgeIntersectionPoint;
+				outDistanceToRectEdge = tempDistanceToEdge;
+				intersecting = true;
+			}
+		}
+		if (AreLinesIntersecting(line, rect.MakeRightEdgeLine(), tempEdgeIntersectionPoint))
+		{
+			tempDistanceToEdge = Vector2<float>::Distance(line.GetOrigin(), tempEdgeIntersectionPoint);
+			if (tempDistanceToEdge < outDistanceToRectEdge)
+			{
+				outPointInLine = tempEdgeIntersectionPoint;
+				outDistanceToRectEdge = tempDistanceToEdge;
+				intersecting = true;
+			}
+		}
+		if (AreLinesIntersecting(line, rect.MakeBottomEdgeLine(), tempEdgeIntersectionPoint))
+		{
+			tempDistanceToEdge = Vector2<float>::Distance(line.GetOrigin(), tempEdgeIntersectionPoint);
+			if (tempDistanceToEdge < outDistanceToRectEdge)
+			{
+				outPointInLine = tempEdgeIntersectionPoint;
+				outDistanceToRectEdge = tempDistanceToEdge;
+				intersecting = true;
+			}
+		}
+		if (AreLinesIntersecting(line, rect.MakeTopEdgeLine(), tempEdgeIntersectionPoint))
+		{
+			tempDistanceToEdge = Vector2<float>::Distance(line.GetOrigin(), tempEdgeIntersectionPoint);
+			if (tempDistanceToEdge < outDistanceToRectEdge)
+			{
+				outPointInLine = tempEdgeIntersectionPoint;
+				outDistanceToRectEdge = tempDistanceToEdge;
+				intersecting = true;
+			}
 		}
 
-		return AreLinesIntersecting(line, rect.MakeLeftEdgeLine())	 ||
-			   AreLinesIntersecting(line, rect.MakeRightEdgeLine())  ||
-			   AreLinesIntersecting(line, rect.MakeBottomEdgeLine()) ||
-			   AreLinesIntersecting(line, rect.MakeTopEdgeLine());
+
+		if (!intersecting)
+		{
+			if (IsPointInsideRect(rect, line.GetOrigin()))
+			{
+				outPointInLine = line.GetOrigin();
+				outDistanceToRectEdge = 0.0f;
+				intersecting = true;
+			}
+		}
+
+
+		return intersecting;
 	}
 
 

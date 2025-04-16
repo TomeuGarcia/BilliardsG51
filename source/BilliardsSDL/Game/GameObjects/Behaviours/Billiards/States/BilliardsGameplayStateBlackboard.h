@@ -41,6 +41,13 @@ public:
 	void SetCanHitWhiteBall(const bool& canHitWhiteBall);
 
 	Vector2<float> GetWhiteBallPosition() const;
+	float GetWhiteBallRadius() const;
+
+	bool GetSamePlayerIsPlayingConsecutiveTurns() const;
+	void SetSamePlayerIsPlayingConsecutiveTurns(const bool& samePlayerIsPlayingConsecutiveTurns);
+
+	bool GetPreviewHitDirectionIsVisible() const;
+	void SetPreviewHitDirectionIsVisible(const bool& previewHitDirectionIsVisible);
 
 
 public:
@@ -70,4 +77,8 @@ private:
 	float m_pinPullMaxDistance;
 
 	bool m_canHitWhiteBall;
+
+	bool m_samePlayerIsPlayingConsecutiveTurns;
+
+	bool m_previewHitDirectionIsVisible;
 };

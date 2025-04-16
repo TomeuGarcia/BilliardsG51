@@ -5,12 +5,13 @@ Windows x64, C++ 20
 HOW TO PLAY
 ===========
 - YOU CAN ONLY HIT THE WHITE BALL
-- Hold MouseLeft to pin the stick
-- Drag the Mouse while holding MouseLeft to aim
-- Release MouseLeft to hit with the stick
-- Click MouseRight to cancel aiming
+- Hold 'MouseLeft' to pin the Stick
+- Drag the Mouse while holding 'MouseLeft' to aim
+- Release 'MouseLeft' to hit with the Stick
+- Click 'MouseRight' to stop aiming
 
 
 Other Inputs
 ------------
+- Press 'X' to toggle Ball direction preview
 - Press 'C' to toggle collider visibility
