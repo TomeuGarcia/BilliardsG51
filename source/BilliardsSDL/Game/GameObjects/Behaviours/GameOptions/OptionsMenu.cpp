@@ -2,20 +2,23 @@
 
 OptionsMenu::OptionsMenu(const GameObjectGroup& menuGameObjects,
 	MenuButton* backButton,
-	MenuIncDecButton* masterVolumeIncDecButton, MenuIncDecButton* musicVolumeIncDecButton, MenuIncDecButton* sfxVolumeIncDecButton)
+	MenuIncDecButton* masterVolumeIncDecButton, MenuIncDecButton* musicVolumeIncDecButton, MenuIncDecButton* sfxVolumeIncDecButton,
+	MenuIncDecButton* cameraShakeIncDecButton)
 	: 
 	m_gameOptionsManager(),
 	m_menuGameObjects(menuGameObjects),
 	m_backButton(backButton),
 	m_masterVolumeIncDecButton(masterVolumeIncDecButton), 
 	m_musicVolumeIncDecButton(musicVolumeIncDecButton), 
-	m_sfxVolumeIncDecButton(sfxVolumeIncDecButton)
+	m_sfxVolumeIncDecButton(sfxVolumeIncDecButton),
+	m_cameraShakeIncDecButton(cameraShakeIncDecButton)
 {
 	m_gameOptionsManager.Load();
 
 	m_masterVolumeIncDecButton->Init(m_gameOptionsManager.GetGameAudioData().GetMasterVolume());
 	m_musicVolumeIncDecButton->Init(m_gameOptionsManager.GetGameAudioData().GetMusicVolume());
 	m_sfxVolumeIncDecButton->Init(m_gameOptionsManager.GetGameAudioData().GetSFXVolume());
+	m_cameraShakeIncDecButton->Init(m_gameOptionsManager.GetGameRenderData().GetCameraShakeAmount());
 }
 
 
@@ -31,6 +34,11 @@ void OptionsMenu::Start()
 	);
 	m_sfxVolumeIncDecButton->SetValueUpdateCallback(
 		[](int sfxVolume100) { GameAudioManager::GetInstance()->SetSFXVolume(sfxVolume100 / 100.0f); }
+	);
+
+	m_cameraShakeIncDecButton->SetValueUpdateCallback(
+		[](int cameraShake100) { GameRenderManager::GetInstance()->GetCameraFunctionalities()->
+			GetCameraShakeSettings()->SetShakeAmount(cameraShake100 / 100.0f) ; }
 	);
 
 	SilentHide();

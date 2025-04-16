@@ -17,6 +17,8 @@ public:
 
 public:
 	virtual ICameraShakePlayer* const GetCameraShakePlayer() override;
+	virtual CameraShakeSettings* GetCameraShakeSettings() override;
+
 	virtual Camera2D* const GetMainCamera() override;
 
 

@@ -136,6 +136,7 @@ void BilliardsGameplayManager::OnAnyBallEnteredHole(BilliardBall* ball, const Ve
 {
 	ball->PlayEnterEnterHoleAnimation(holeCenter);
 	ball->SetIgnoringPhysics();	
+	m_feedbackDisplay->PlayAnyBallEnterHole();
 }
 
 
@@ -184,7 +185,7 @@ void BilliardsGameplayManager::OnPlayerBallEnteredHole(BilliardBall* ball, const
 	{
 		BilliardsPlayer* otherPlayer = m_gameplayStatesBlackboard.GetOtherPlayer();
 		m_feedbackDisplay->PlayWrongBallEnterHole(holeCenter, otherPlayer->GetBackgroundColor());
-		otherPlayer->GetScore().AddByOtherPlayer();
+		otherPlayer->GetScore().AddByOtherPlayer();		
 	}
 
 	ballOwnerPlayer->RemoveRemainingColoredBall(ball);

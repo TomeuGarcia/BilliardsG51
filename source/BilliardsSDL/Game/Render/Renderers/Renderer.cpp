@@ -2,7 +2,7 @@
 
 
 Renderer::Renderer(GameObject* gameObject, const Vector2<float>& worldSize)
-    : m_gameObject(gameObject), p_scale(1.0f, 1.0f), r_worldSize(worldSize), m_textureState()
+    : m_gameObject(gameObject), p_scale(1.0f, 1.0f), r_worldSize(worldSize), m_textureState(), m_colorTint(Colors::White)
 {
 }
 

@@ -389,25 +389,30 @@ OptionsMenu* CustomPrefabUtilities::CreateOptionsMenu()
 	gameObjects.Add(backButton->GetGameObject());
 
 
-	MenuIncDecButton* masterVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, 1.0f), "Master Volume",
+	MenuIncDecButton* masterVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, 1.25f), "Master Volume",
 		GameAudioManager::GetInstance()->GetMasterVolume01() * 100, 0, 100);
 	gameObjects.Add(masterVolumeIncDecButton->GetGameObjects());
 
 
-	MenuIncDecButton* musicVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, 0.25f), "Music Volume",
+	MenuIncDecButton* musicVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, 0.5f), "Music Volume",
 		GameAudioManager::GetInstance()->GetMusicVolume01() * 100, 0, 100);
 	gameObjects.Add(musicVolumeIncDecButton->GetGameObjects());
 
 
-	MenuIncDecButton* sfxVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, -0.5f), "SFX Volume",
+	MenuIncDecButton* sfxVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, -0.25f), "SFX Volume",
 		GameAudioManager::GetInstance()->GetSFXVolume01() * 100, 0, 100);
 	gameObjects.Add(sfxVolumeIncDecButton->GetGameObjects());
 
 
+	MenuIncDecButton* cameraShakeVolumeIncDecButton = CreateDefaultMenuIncDecButton(Vector2<float>(0.5f, -1.25f), "Camera Shake",
+		GameRenderManager::GetInstance()->GetCameraFunctionalities()->GetCameraShakeSettings()->GetShakeAmount() * 100, 0, 100);
+	gameObjects.Add(cameraShakeVolumeIncDecButton->GetGameObjects());
+
 
 	GameObject* optionMenuGameObject = m_sceneCreateUtilities->CreateGameObject(Vector2<float>(0.0f, 0.0f), "OptionsMenu");
 	std::shared_ptr<OptionsMenu> optionsMenu = std::make_shared<OptionsMenu>(gameObjects, backButton,
-		masterVolumeIncDecButton, musicVolumeIncDecButton, sfxVolumeIncDecButton);
+		masterVolumeIncDecButton, musicVolumeIncDecButton, sfxVolumeIncDecButton,
+		cameraShakeVolumeIncDecButton);
 	optionMenuGameObject->AttachBehaviour(optionsMenu);
 
 

@@ -114,6 +114,12 @@ BilliardsGameplayManager* BilliardsGameScene::CreateGameplayGameObjects()
 			GameAssetResources::GetInstance()->GetAudio().gameScorePointsSoundData,
 			GameAssetResources::GetInstance()->GetAudio().gamePlayerChangeSoundData,
 			GameAssetResources::GetInstance()->GetAudio().gameVictorySoundData,
+		},
+		BilliardsGameplayFeedbackDisplay::ShakesConfig{
+			0.3f,
+			0.1f,
+			0.1f,
+			0.2f
 		}
 		);
 

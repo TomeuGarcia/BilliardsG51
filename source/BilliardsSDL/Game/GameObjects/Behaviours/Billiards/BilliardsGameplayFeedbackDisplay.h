@@ -1,6 +1,7 @@
 #pragma once
 #include "../RendererExtras/FadingRenderer.h"
 #include "../../../Audio/SFXSoundBuffer.h"
+#include "../../../Render/GameRenderManager.h"
 
 
 class BilliardsGameplayFeedbackDisplay
@@ -40,11 +41,20 @@ public:
 		std::shared_ptr<SFXSound> victorySound;
 	};
 
+	struct ShakesConfig
+	{
+		float anyBallEnter;
+		float badBallEnter;
+		float consecutiveBallEnter;
+		float lastBallEnter;
+	};
+
 
 
 public:
-	BilliardsGameplayFeedbackDisplay(const FadingTextsConfig& fadingTexts, const SoundsConfig& sounds);
+	BilliardsGameplayFeedbackDisplay(const FadingTextsConfig& fadingTexts, const SoundsConfig& sounds, const ShakesConfig& shakes);
 
+	void PlayAnyBallEnterHole();
 	void PlayWhiteBallEnterHole(const Vector2<float>& holeCenter);
 	void PlayBlackBallEnterHole(const Vector2<float>& holeCenter);
 	void PlayWrongBallEnterHole(const Vector2<float>& holeCenter, const Color& ballColor);
@@ -64,4 +74,5 @@ private:
 private:
 	FadingTextsConfig m_fadingTexts;
 	SoundsConfig m_sounds;
+	ShakesConfig m_shakesConfig;
 };

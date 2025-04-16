@@ -1,10 +1,11 @@
 #pragma once
-#include "GameAudioFileData.h"
+#include "FileData/GameOptionsFileData.h"
 #include "../../../../Application/Systems/Files/Binary/BinaryFile.h"
 
 #include "../../../Systems/GameFileResources.h"
 
 #include "../../../Audio/GameAudioManager.h"
+#include "../../../Render/GameRenderManager.h"
 
 
 
@@ -17,13 +18,14 @@ public:
 	void Save();
 
 	const GameAudioFileData& GetGameAudioData();
+	const GameRenderFileData& GetGameRenderData();
 
 private:
-	const float ToVolume01(const int& volume100);
-	const int ToVolume100(const float& volume01);
+	const float To01(const int& value100);
+	const int To100(const float& value01);
 
 
 private:
 	BinaryFile m_optionsFile;
-	GameAudioFileData m_gameAudioFileData;
+	GameOptionsFileData m_gameOptionsFileData;
 };

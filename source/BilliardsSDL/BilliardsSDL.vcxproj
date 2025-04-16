@@ -268,7 +268,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuButton.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.cpp" />
-    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\GameAudioFileData.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameAudioFileData.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameOptionsFileData.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameRenderFileData.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\GameOptionsManager.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\OptionsMenu.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuBilliardsBoardManager.cpp" />
@@ -301,6 +303,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Physics\Solvers\EulerSolver.cpp" />
     <ClCompile Include="Game\Render\Camera\Camera2D.cpp" />
     <ClCompile Include="Game\Render\Camera\CameraShaker.cpp" />
+    <ClCompile Include="Game\Render\Camera\CameraShakeSettings.cpp" />
     <ClCompile Include="Game\Render\Camera\CameraSystem.cpp" />
     <ClCompile Include="Game\Render\Camera\CameraTransformations.cpp" />
     <ClCompile Include="Game\Render\GameRenderManager.cpp" />
@@ -411,7 +414,9 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\Thinking\PlayerThinkingState_Starting.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuButton.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.h" />
-    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\GameAudioFileData.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameAudioFileData.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameOptionsFileData.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameRenderFileData.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\GameOptionsManager.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\OptionsMenu.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuBilliardsBoardManager.h" />
@@ -446,6 +451,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Physics\Solvers\EulerSolver.h" />
     <ClInclude Include="Game\Render\Camera\Camera2D.h" />
     <ClInclude Include="Game\Render\Camera\CameraShaker.h" />
+    <ClInclude Include="Game\Render\Camera\CameraShakeSettings.h" />
     <ClInclude Include="Game\Render\Camera\CameraSystem.h" />
     <ClInclude Include="Game\Render\Camera\CameraTransformations.h" />
     <ClInclude Include="Game\Render\Camera\ICameraFunctionalities.h" />

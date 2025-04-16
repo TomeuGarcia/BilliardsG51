@@ -1,14 +1,15 @@
 #include "CameraShaker.h"
 
 CameraShaker::CameraShaker(const Config& config, Camera2D* shakeCamera)
-	: m_config(config), m_shakeCamera(shakeCamera), m_currentTrauma01(0.0f)
+	: m_settings(1.0f),
+	m_config(config), m_shakeCamera(shakeCamera), m_currentTrauma01(0.0f)
 {
 }
 
 
 void CameraShaker::Update(const float& deltaTime, const Camera2D* const defaultCamera)
 {
-	const float currentShake = Math::Pow(m_currentTrauma01, m_config.traumaExponent);
+	const float currentShake = Math::Pow(m_currentTrauma01, m_config.traumaExponent) * m_settings.GetShakeAmount();
 	m_currentTrauma01 = Math::Clamp01(m_currentTrauma01 - (deltaTime * m_config.traumaDecreaseSpeed));
 
 
@@ -19,6 +20,11 @@ void CameraShaker::Update(const float& deltaTime, const Camera2D* const defaultC
 	};
 
 	m_shakeCamera->SetWorldPosition(defaultCamera->GetWorldPosition() + positionOffset);
+}
+
+CameraShakeSettings* CameraShaker::GetSettings()
+{
+	return &m_settings;
 }
 
 

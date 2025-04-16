@@ -20,11 +20,17 @@ BilliardsGameplayFeedbackDisplay::SoundsConfig::SoundsConfig(GameAudioManager* m
 
 
 
-BilliardsGameplayFeedbackDisplay::BilliardsGameplayFeedbackDisplay(const FadingTextsConfig& fadingTexts, const SoundsConfig& sounds)
-	: m_fadingTexts(fadingTexts), m_sounds(sounds)
+BilliardsGameplayFeedbackDisplay::BilliardsGameplayFeedbackDisplay(const FadingTextsConfig& fadingTexts, const SoundsConfig& sounds, const ShakesConfig& shakes)
+	: m_fadingTexts(fadingTexts), m_sounds(sounds), m_shakesConfig(shakes)
 {
 	m_fadingTexts.victoryHeader->GetGameObject()->SetActive(false);
 	m_fadingTexts.victorySubHeader->GetGameObject()->SetActive(false);
+}
+
+
+void BilliardsGameplayFeedbackDisplay::PlayAnyBallEnterHole()
+{
+	GameRenderManager::GetInstance()->GetCameraFunctionalities()->GetCameraShakePlayer()->Play(m_shakesConfig.anyBallEnter);
 }
 
 
@@ -32,12 +38,16 @@ void BilliardsGameplayFeedbackDisplay::PlayWhiteBallEnterHole(const Vector2<floa
 {
 	m_fadingTexts.whiteBallEnterHole->StartShowing(HoleCenterToFadingPosition(holeCenter));	
 	m_sounds.penaltySoundBuffer.PlayNext();
+
+	GameRenderManager::GetInstance()->GetCameraFunctionalities()->GetCameraShakePlayer()->Play(m_shakesConfig.badBallEnter);
 }
 
 void BilliardsGameplayFeedbackDisplay::PlayBlackBallEnterHole(const Vector2<float>& holeCenter)
 {
 	m_fadingTexts.blackBallEnterHole->StartShowing(HoleCenterToFadingPosition(holeCenter));
 	m_sounds.penaltySoundBuffer.PlayNext();
+
+	GameRenderManager::GetInstance()->GetCameraFunctionalities()->GetCameraShakePlayer()->Play(m_shakesConfig.badBallEnter);
 }
 
 void BilliardsGameplayFeedbackDisplay::PlayWrongBallEnterHole(const Vector2<float>& holeCenter, const Color& ballColor)
@@ -45,6 +55,8 @@ void BilliardsGameplayFeedbackDisplay::PlayWrongBallEnterHole(const Vector2<floa
 	m_fadingTexts.wrongBallEnterHole->SetStartingColor(ballColor);
 	m_fadingTexts.wrongBallEnterHole->StartShowing(HoleCenterToFadingPosition(holeCenter));
 	m_sounds.lowPenaltySoundBuffer.PlayNext();
+
+	GameRenderManager::GetInstance()->GetCameraFunctionalities()->GetCameraShakePlayer()->Play(m_shakesConfig.badBallEnter);
 }
 
 void BilliardsGameplayFeedbackDisplay::PlayBallEnterHoleScore(const Vector2<float>& holeCenter)
@@ -57,12 +69,16 @@ void BilliardsGameplayFeedbackDisplay::PlayBallEnterHoleScoreConsecutive(const V
 {
 	m_fadingTexts.ballEnterHoleScoreConsecutive->StartShowing(HoleCenterToFadingPosition(holeCenter));
 	m_sounds.scorePointsSoundBuffer.PlayNext();
+
+	GameRenderManager::GetInstance()->GetCameraFunctionalities()->GetCameraShakePlayer()->Play(m_shakesConfig.consecutiveBallEnter);
 }
 
 void BilliardsGameplayFeedbackDisplay::PlayBallEnterHoleScoreLast(const Vector2<float>& holeCenter)
 {
 	m_fadingTexts.ballEnterHoleScoreLast->StartShowing(HoleCenterToFadingPosition(holeCenter));
 	m_sounds.scorePointsSoundBuffer.PlayNext();
+
+	GameRenderManager::GetInstance()->GetCameraFunctionalities()->GetCameraShakePlayer()->Play(m_shakesConfig.lastBallEnter);
 }
 
 

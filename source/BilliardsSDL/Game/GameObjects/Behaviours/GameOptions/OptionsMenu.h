@@ -14,7 +14,8 @@ class OptionsMenu : public Behaviour
 public:
 	OptionsMenu(const GameObjectGroup& menuGameObjects, 
 		MenuButton* backButton,
-		MenuIncDecButton* masterVolumeIncDecButton,	MenuIncDecButton* musicVolumeIncDecButton, MenuIncDecButton* sfxVolumeIncDecButton);
+		MenuIncDecButton* masterVolumeIncDecButton,	MenuIncDecButton* musicVolumeIncDecButton, MenuIncDecButton* sfxVolumeIncDecButton,
+		MenuIncDecButton* cameraShakeIncDecButton);
 
 	virtual void Start() override;
 	virtual void OnDestroy() override;
@@ -37,9 +38,12 @@ private:
 
 	GameObjectGroup m_menuGameObjects;
 	MenuButton* m_backButton;
+
 	MenuIncDecButton* m_masterVolumeIncDecButton;
 	MenuIncDecButton* m_musicVolumeIncDecButton;
 	MenuIncDecButton* m_sfxVolumeIncDecButton;
+
+	MenuIncDecButton* m_cameraShakeIncDecButton;
 
 	std::function<void()> m_onHideCallback;
 };
