@@ -7,6 +7,11 @@ namespace Math
 		return std::modf(value, &divisor);
 	}
 
+	float Pow(const float& base, const float& exponent)
+	{
+		return std::powf(base, exponent);
+	}
+
 	float Abs(const float& value)
 	{
 		return value < 0 ? -value : value;

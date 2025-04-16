@@ -13,6 +13,7 @@ namespace Math
 #define PI 3.14159265f
 
 	float Modulo(float value, float divisor);
+	float Pow(const float& base, const float& exponent);
 
 	float Abs(const float& value);
 

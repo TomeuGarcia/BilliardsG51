@@ -2,8 +2,10 @@
 
 GameRenderManager* GameRenderManager::s_instance = nullptr;
 
-GameRenderManager::GameRenderManager(RenderSystem* renderSystem)
-	: m_renderSystem(renderSystem), m_renderersQueue()
+GameRenderManager::GameRenderManager(RenderSystem* renderSystem, IGameSpacesComputer* gameSpacesComputer)
+	: m_renderSystem(renderSystem), m_renderersQueue(), 
+	m_cameraSystem(),
+	m_outputRenderer(renderSystem->GetRenderer(), m_cameraSystem.GetTransformations(), gameSpacesComputer)
 {
 	m_renderersQueue.reserve(20);
 	s_instance = this;
@@ -19,6 +21,13 @@ GameRenderManager::~GameRenderManager()
 GameRenderManager* GameRenderManager::GetInstance()
 {
 	return s_instance;
+}
+
+
+
+ICameraFunctionalities* GameRenderManager::GetCameraFunctionalities()
+{
+	return &m_cameraSystem;
 }
 
 
@@ -40,40 +49,29 @@ Color GameRenderManager::GetBackgroundColor() const
 
 
 
-void GameRenderManager::DrawDebugLine(const Color& color, const Vector2<int>& start, const Vector2<int>& end) const
-{
-	m_renderSystem->StartDrawingToDebug();
-	SetDrawColor(color);
-	SDL_RenderDrawLine(m_renderSystem->GetRenderer(), start.x, start.y, end.x, end.y);
-	m_renderSystem->StopDrawingToDebug();
-}
-
-void GameRenderManager::DrawDebugLine(const Color& color, const Line<int>& line) const
+void GameRenderManager::DrawDebugLine(const Color& color, const Line<float>& line)
 {
 	DrawDebugLine(color, line.GetOrigin(), line.GetEnd());
 }
 
-void GameRenderManager::DrawDebugLines(const Color& color, const std::vector<Vector2<int>>& points) const
+void GameRenderManager::DrawDebugLine(const Color& color, const Vector2<float>& start, const Vector2<float>& end)
 {
 	m_renderSystem->StartDrawingToDebug();
-	SetDrawColor(color);
-	
-	std::vector<SDL_Point> sdlPoints(points.size());
-	for (size_t i = 0; i < points.size(); ++i)
-	{
-		sdlPoints[i] = { points[i].x, points[i].y };
-	}
-
-	SDL_RenderDrawLines(m_renderSystem->GetRenderer(), &*sdlPoints.begin(), sdlPoints.size());
+	m_outputRenderer.DrawLine(color, start, end);
 	m_renderSystem->StopDrawingToDebug();
 }
 
-void GameRenderManager::DrawDebugRect(const Color& color, const Rect<int>& rect) const
+void GameRenderManager::DrawDebugLines(const Color& color, const std::vector<Vector2<float>>& points)
 {
 	m_renderSystem->StartDrawingToDebug();
-	SetDrawColor(color);
-	SDL_Rect sdlRect = rect.ToSDLRect();
-	SDL_RenderDrawRect(m_renderSystem->GetRenderer(), &sdlRect);
+	m_outputRenderer.DrawLines(color, points);
+	m_renderSystem->StopDrawingToDebug();
+}
+
+void GameRenderManager::DrawDebugRect(const Color& color, const Rect<float>& rect)
+{
+	m_renderSystem->StartDrawingToDebug();
+	m_outputRenderer.DrawRect(color, rect);
 	m_renderSystem->StopDrawingToDebug();
 }
 
@@ -121,12 +119,18 @@ void GameRenderManager::ClearRenderQueue()
 	m_renderersQueue.clear();
 }
 
+
 void GameRenderManager::UpdateRendererQueue()
 {
 	for (auto it = m_renderersQueue.begin(); it != m_renderersQueue.end(); ++it)
 	{
-		(*it)->Update();
+		(*it)->Update(m_cameraSystem.GetTransformations());
 	}
+}
+
+void GameRenderManager::UpdateState(const float& deltaTime)
+{
+	m_cameraSystem.Update(deltaTime);
 }
 
 void GameRenderManager::DrawRendererQueue()
@@ -138,15 +142,8 @@ void GameRenderManager::DrawRendererQueue()
 		Renderer* renderer = it->get();
 		if (renderer->IsActive())
 		{
-			renderer->Render(m_renderSystem->GetRenderer());
+			renderer->Render(&m_outputRenderer);
 		}
 	}
 }
 
-
-
-
-void GameRenderManager::SetDrawColor(const Color& color) const
-{
-	SDL_SetRenderDrawColor(m_renderSystem->GetRenderer(), color.r, color.g, color.b, color.a);
-}

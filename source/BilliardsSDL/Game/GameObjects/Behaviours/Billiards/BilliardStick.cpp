@@ -27,7 +27,7 @@ void BilliardStick::SetTipPositionAndLookDirection(const Vector2<float>& tipPosi
 	m_transform->p_worldPosition = position;
 
 	float rotation = Math::Angle(m_defaultImageDirection, lookDirection) - 90.0f;
-	m_image->p_rotationInDegrees = rotation;
+	m_image->SetRotation(rotation);
 }
 
 
@@ -45,7 +45,7 @@ void BilliardStick::TweenTipToPosition(const Vector2<float>& tipGoalPosition, fl
 
 void BilliardStick::TweenToResting()
 {
-	m_image->p_rotationInDegrees = 0.0f;
+	m_image->SetRotation(0.0f);
 
 	float duration = Vector2<float>::Distance(m_restingPosition, m_transform->p_worldPosition) / m_moveSpeed;
 

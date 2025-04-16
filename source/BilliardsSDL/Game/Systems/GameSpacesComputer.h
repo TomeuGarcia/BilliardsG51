@@ -3,8 +3,10 @@
 #include "../../Shared/Types/Vector2/Vector2.h"
 #include "../../Shared/Types/Rect/Rect.h"
 
+#include "../Render/IGameSpacesComputer.h"
 
-class GameSpacesComputer
+
+class GameSpacesComputer : public IGameSpacesComputer
 {
 public:
 	GameSpacesComputer(RenderSystem* renderSystem, float worldWidthInWindow);
@@ -16,16 +18,17 @@ public:
 public:
 	void Update();
 
-	Vector2<int> WorldToWindowPosition(const Vector2<float>& worldPosition);
-	Vector2<float> WindowToWorldPosition(const Vector2<int>& windowPosition);
+public:
+	virtual Vector2<int> WorldToWindowPosition(const Vector2<float>& worldPosition) override;
+	virtual Vector2<float> WindowToWorldPosition(const Vector2<int>& windowPosition) override;
 
-	Vector2<int> WorldToWindowVector(const Vector2<float>& worldVector);
-	Vector2<float> WindowToWorldVector(const Vector2<int>& windowVector);
+	virtual Vector2<int> WorldToWindowVector(const Vector2<float>& worldVector) override;
+	virtual Vector2<float> WindowToWorldVector(const Vector2<int>& windowVector) override;
 
-	Rect<int> WorldToWindowRect(const Rect<float>& worldRect);
-	Rect<float> WindowToWorldRect(const Rect<int>& windowRect);
+	virtual Rect<int> WorldToWindowRect(const Rect<float>& worldRect) override;
+	virtual Rect<float> WindowToWorldRect(const Rect<int>& windowRect) override;
 
-	Line<int> WorldToWindowLine(const Line<float>& worldLine);
+	virtual Line<int> WorldToWindowLine(const Line<float>& worldLine) override;
 
 
 private:

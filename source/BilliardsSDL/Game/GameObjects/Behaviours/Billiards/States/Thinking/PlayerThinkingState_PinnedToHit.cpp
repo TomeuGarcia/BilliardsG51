@@ -32,9 +32,7 @@ bool PlayerThinkingState_PinnedToHit::Update()
 		: Colors::DarkPurple;
 
 	GetPlayer()->GetStick()->SetTipPositionAndLookDirection(tipPosition, currentToPinDirection);
-	GameRenderManager::GetInstance()->DrawDebugLine(
-		pinLineColor, GameSpacesComputer::GetInstance()->WorldToWindowLine(Line<float>(m_pinPosition, tipPosition))
-	);
+	GameRenderManager::GetInstance()->DrawDebugLine(pinLineColor, Line<float>(m_pinPosition, tipPosition));
 
 	GetBlackboard()->p_directionToPinPosition = currentToPinDirection;
 

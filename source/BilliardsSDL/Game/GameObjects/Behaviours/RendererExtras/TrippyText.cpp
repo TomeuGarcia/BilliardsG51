@@ -54,7 +54,7 @@ void TrippyText::Update()
 		const float animationTime = m_animationTime + (i * m_config.textsTimeOffset);
 		const float rotationAngle = Math::Sin(animationTime * m_config.rotationSpeed) * m_config.maxRotation;
 
-		text->p_rotationInDegrees = rotationAngle;
+		text->SetRotation(rotationAngle);
 
 
 		if (i < m_config.numberOfTexts - 1)

@@ -119,7 +119,7 @@ void BilliardBall::UpdateRendererWithSpeed()
 	m_renderer->p_scale.y = m_originalScale.y * yScale;
 
 	const float rotation = Math::Angle(Vector2<float>::Right(), m_rigidbody->GetVelocity().Normalized());
-	m_renderer->p_rotationInDegrees = rotation;
+	m_renderer->SetRotation(rotation);
 }
 
 

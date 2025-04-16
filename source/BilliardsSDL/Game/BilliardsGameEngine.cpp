@@ -18,12 +18,12 @@ BilliardsGameEngine::~BilliardsGameEngine()
 	delete m_delayedCallScheduler;
 	delete m_gameTweener;
 	delete m_gameRandom;
-	delete m_gameSpacesComputer;
 	delete m_sceneManager;
 	delete m_physicsManager;
 	delete m_gameMusicService;
 	delete m_gameAudioManager;
 	delete m_gameRenderManager;
+	delete m_gameSpacesComputer;
 	delete m_gameFileResources;
 	delete m_gameAssetResources;
 	delete m_uiCaster;
@@ -47,13 +47,13 @@ void BilliardsGameEngine::Init(const GameSpecifications& specifications,
 												  specifications.p_pathToResourceAudios);
 	m_gameFileResources = new GameFileResources(specifications.p_pathToResourceFiles);
 
-	m_gameRenderManager = new GameRenderManager(renderSystem);
+	m_gameSpacesComputer = new GameSpacesComputer(renderSystem, specifications.p_worldWidthInWindow);
+	m_gameRenderManager = new GameRenderManager(renderSystem, m_gameSpacesComputer);
 	m_gameAudioManager = new GameAudioManager(audioSystem);
 	m_gameMusicService = new GameMusicService();
 	m_physicsManager = new Physics2DManager();
 	m_sceneManager = new SceneManager();
 
-	m_gameSpacesComputer = new GameSpacesComputer(renderSystem, specifications.p_worldWidthInWindow);
 	m_gameRandom = new GameRandom(rngSystem);
 	m_gameTweener = new GameTweener();
 	m_delayedCallScheduler = new GameDelayedCallScheduler();
@@ -75,6 +75,7 @@ void BilliardsGameEngine::Update()
 	m_gameSpacesComputer->Update();
 	m_sceneManager->UpdateLoading();
 	m_sceneManager->GetActiveScene()->Update();
+	m_gameRenderManager->UpdateState(deltaTime);
 	m_gameRenderManager->UpdateRendererQueue();
 	m_uiCaster->Update(deltaTime);
 
