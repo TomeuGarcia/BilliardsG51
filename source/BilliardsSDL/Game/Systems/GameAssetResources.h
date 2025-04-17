@@ -1,4 +1,5 @@
 #pragma once
+#include <filesystem>
 #include "GameAssetResourceTypes.h"
 
 
@@ -6,9 +7,9 @@ class GameAssetResources
 {
 public:
 	GameAssetResources(const float& pixelsToUnits,
-		const std::string& pathToResourceImages, 
-		const std::string& pathToResourceFonts, 
-		const std::string& pathToResourceAudios);
+		const std::filesystem::path& pathToResourceImages, 
+		const std::filesystem::path& pathToResourceFonts,
+		const std::filesystem::path& pathToResourceAudios);
 	~GameAssetResources();
 
 public:

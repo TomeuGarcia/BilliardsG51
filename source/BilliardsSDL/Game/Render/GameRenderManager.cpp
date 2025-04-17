@@ -109,7 +109,7 @@ SDL_Texture* GameRenderManager::LoadTextTexture(const TextResourceData& textReso
 
 
 
-void GameRenderManager::AddToRenderQueue(const std::shared_ptr<Renderer> renderer)
+void GameRenderManager::AddToRenderQueue(const std::shared_ptr<Renderer>& renderer)
 {
 	m_renderersQueue.emplace_back(renderer);
 }

@@ -3,7 +3,7 @@
 
 GameFileResources* GameFileResources::s_instance = nullptr;
 
-GameFileResources::GameFileResources(const std::string& pathToResourceFiles) :
+GameFileResources::GameFileResources(const std::filesystem::path& pathToResourceFiles) :
 	m_optionsFilePathData(pathToResourceFiles, "Options"),
 	m_rankingFilePathData(pathToResourceFiles, "Ranking")
 {

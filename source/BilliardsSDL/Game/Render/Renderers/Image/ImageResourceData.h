@@ -7,7 +7,7 @@
 struct ImageResourceData
 {
 public:
-	ImageResourceData(const std::string& sourcePath, 
+	ImageResourceData(const std::string& sourcePath,
 					  const Vector2<int>& sourcePosition, const Vector2<int>& sourceSize,
 					  const bool& alphaTransparency,
 					  const float& pixelsToUnits);

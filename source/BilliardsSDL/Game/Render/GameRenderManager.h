@@ -44,7 +44,7 @@ public:
 								 Vector2<int>& outTextSize) const;
 
 public:
-	void AddToRenderQueue(const std::shared_ptr<Renderer> renderer);
+	void AddToRenderQueue(const std::shared_ptr<Renderer>& renderer);
 	void ClearRenderQueue();
 	void UpdateRendererQueue();
 	void UpdateState(const float& deltaTime);

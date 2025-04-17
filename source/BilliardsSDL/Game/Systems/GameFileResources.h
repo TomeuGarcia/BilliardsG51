@@ -1,11 +1,12 @@
 #pragma once
+#include <filesystem>
 #include "../../Application/Systems/Files/FilePathData.h"
 
 
 class GameFileResources
 {
 public:
-	GameFileResources(const std::string& pathToResourceFiles);
+	GameFileResources(const std::filesystem::path& pathToResourceFiles);
 	~GameFileResources();
 
 public:
