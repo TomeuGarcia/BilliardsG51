@@ -2,7 +2,7 @@
 
 GameOptionsFileData::GameOptionsFileData()
 	:
-	m_gameAudioFileData(100, 50, 50),
+	m_gameAudioFileData(30, 30, 30),
 	m_gameRenderFileData(100)
 {
 }

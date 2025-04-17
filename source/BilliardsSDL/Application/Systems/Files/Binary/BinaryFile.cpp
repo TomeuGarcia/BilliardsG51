@@ -2,9 +2,13 @@
 
 
 
-BinaryFile::BinaryFile(const std::string& path, const std::string& fileNameWithoutExtension)
-	: m_completePathToFile(path + fileNameWithoutExtension + ".bin")
+BinaryFile::BinaryFile(const std::filesystem::path& path, const std::string& fileNameWithoutExtension)
+	: m_completePathToFile(path / (fileNameWithoutExtension + ".bin"))
 {
+	if (!std::filesystem::exists(path))
+	{
+		std::filesystem::create_directory(path);
+	}	
 }
 
 BinaryFile::BinaryFile(const FilePathData& filePathData)

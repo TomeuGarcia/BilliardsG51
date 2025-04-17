@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
 #include "IBinarySerializable.h"
 #include "../FilePathData.h"
@@ -9,7 +10,7 @@
 class BinaryFile
 {
 public:
-	BinaryFile(const std::string& path, const std::string& fileNameWithoutExtension);
+	BinaryFile(const std::filesystem::path& path, const std::string& fileNameWithoutExtension);
 	BinaryFile(const FilePathData& filePathData);
 
 	void Write(IBinarySerializable* rootSerializable);
@@ -17,5 +18,5 @@ public:
 
 
 private:
-	std::string m_completePathToFile;
+	std::filesystem::path m_completePathToFile;
 };
