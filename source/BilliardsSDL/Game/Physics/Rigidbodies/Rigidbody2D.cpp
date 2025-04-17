@@ -105,7 +105,7 @@ void Rigidbody2D::ApplyFriction(const float& deltaTime)
 		return;
 	}
 
-	m_acceleration -= m_velocity * (deltaTime * m_physicMaterial->GetFriction());
+	m_acceleration -= m_velocity.Normalized() * (deltaTime * m_physicMaterial->GetFriction());
 }
 
 bool Rigidbody2D::IsAtRest() const
