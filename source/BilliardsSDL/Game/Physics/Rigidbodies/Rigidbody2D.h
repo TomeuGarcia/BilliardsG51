@@ -54,6 +54,7 @@ public:
 private:	
 	Vector2<float> m_velocity;
 	Vector2<float> m_acceleration;
+	Vector2<float> m_moveDirection;
 	float m_speed;
 	bool m_isEnabled;
 
