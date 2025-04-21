@@ -54,6 +54,7 @@ void BilliardsGameplayFeedbackDisplay::PlayWrongBallEnterHole(const Vector2<floa
 {
 	m_fadingTexts.wrongBallEnterHole->SetStartingColor(ballColor);
 	m_fadingTexts.wrongBallEnterHole->StartShowing(HoleCenterToFadingPosition(holeCenter));
+	m_fadingTexts.wrongBallEnterHoleScore->StartShowing(HoleCenterToFadingPosition(holeCenter + Vector2<float>(0.0f, -0.5f)));
 	m_sounds.lowPenaltySoundBuffer.PlayNext();
 
 	GameRenderManager::GetInstance()->GetCameraFunctionalities()->GetCameraShakePlayer()->Play(m_shakesConfig.badBallEnter);

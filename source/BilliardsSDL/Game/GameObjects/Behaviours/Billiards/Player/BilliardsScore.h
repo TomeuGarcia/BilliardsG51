@@ -7,10 +7,11 @@ public:
 	struct Configuration
 	{
 	public:
-		int p_addValue;
-		int p_consecutiveAddValue;
-		int p_addLastValue;
-		int p_addByOtherPlayerValue;
+		int addValue;
+		int consecutiveAddValue;
+		int addLastValue;
+		int addByOtherPlayerValue;
+		int subtractWrongValue;
 	};
 
 public:
@@ -23,6 +24,7 @@ public:
 	void AddConsecutive();
 	void AddLast();
 	void AddByOtherPlayer();
+	void SubtractWrong();
 
 private:
 	void IncrementScoreValue(const int& valueIncrement);

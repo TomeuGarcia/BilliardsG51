@@ -456,6 +456,11 @@ std::vector<CollisionHit2D> Physics2DManager::Raycast(const Line<float>& raySegm
 
 	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
 	{		
+		if (!(*it)->GetRigidbody()->GetIsEnabled())
+		{
+			continue;
+		}
+
 		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
 			hits.emplace_back(it->get(), pointInLine, Vector2<float>::Distance(pointInLine, raySegment.GetOrigin()));
@@ -472,6 +477,11 @@ std::vector<CollisionHit2D> Physics2DManager::Raycast(const Line<float>& raySegm
 
 	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
 	{
+		if (!(*it)->GetRigidbody()->GetIsEnabled())
+		{
+			continue;
+		}
+
 		if (Math::ComputeLineToAARectDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
 			hits.emplace_back(it->get(), pointInLine, distance);

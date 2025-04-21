@@ -53,7 +53,7 @@ void BilliardsGameScene::OnDestroy()
 
 BilliardsGameplayManager* BilliardsGameScene::CreateGameplayGameObjects()
 {
-	BilliardsScore::Configuration scoreConfiguration{ 10, 30, 50, 5 };
+	BilliardsScore::Configuration scoreConfiguration{ 10, 30, 50, 5, -5 };
 
 	GameObject* managerGameObject = GetCreateUtilities().CreateGameObject(Vector2<float>::Zero(), "Manager");
 	std::shared_ptr<BilliardsGameplayManager> manager = std::make_shared<BilliardsGameplayManager>(scoreConfiguration);
@@ -81,12 +81,14 @@ BilliardsGameplayManager* BilliardsGameScene::CreateGameplayGameObjects()
 	FadingRenderer* fadingText_whiteBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Oops!", Colors::White, false);
 	FadingRenderer* fadingText_blackBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Oops!", Colors::DarkPurple, false);
 	FadingRenderer* fadingText_wrongBallEnterHole = GetPrefabUtilities().CreateBanishingFadingText("Wrong!", Colors::White, false);
+	FadingRenderer* fadingText_wrongEnterHoleScore =
+		GetPrefabUtilities().CreateBanishingFadingText(std::to_string(scoreConfiguration.subtractWrongValue), Colors::White, false);
 	FadingRenderer* fadingText_ballEnterHoleScore =
-		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_addValue), Colors::White, true);
+		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.addValue), Colors::White, true);
 	FadingRenderer* fadingText_ballEnterHoleScoreConsecutive =
-		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_consecutiveAddValue), Colors::White, true);
+		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.consecutiveAddValue), Colors::White, true);
 	FadingRenderer* fadingText_ballEnterHoleScoreLast =
-		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.p_addLastValue), Colors::White, true);
+		GetPrefabUtilities().CreateBanishingFadingText("+" + std::to_string(scoreConfiguration.addLastValue), Colors::White, true);
 
 
 	FadingRenderer* fadingText_VictoryHeader = GetPrefabUtilities().CreateOpaqueFadingText("Victory", Colors::TransparentWhite, true);
@@ -100,6 +102,7 @@ BilliardsGameplayManager* BilliardsGameScene::CreateGameplayGameObjects()
 			fadingText_whiteBallEnterHole,
 			fadingText_blackBallEnterHole,
 			fadingText_wrongBallEnterHole,
+			fadingText_wrongEnterHoleScore,
 			fadingText_ballEnterHoleScore,
 			fadingText_ballEnterHoleScoreConsecutive,
 			fadingText_ballEnterHoleScoreLast,

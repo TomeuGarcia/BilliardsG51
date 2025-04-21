@@ -176,7 +176,8 @@ void BilliardsGameplayManager::OnBlueBallEnteredHole(BilliardBall* blueBall, con
 
 void BilliardsGameplayManager::OnPlayerBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter, BilliardsPlayer* ballOwnerPlayer)
 {
-	if (m_gameplayStatesBlackboard.GetCurrentPlayer() == ballOwnerPlayer)
+	BilliardsPlayer* currentPlayer = m_gameplayStatesBlackboard.GetCurrentPlayer();
+	if (currentPlayer == ballOwnerPlayer)
 	{
 		m_wellplacedBallsThisTurn.push_back(ball);
 		IncrementPlayerScoreWithThisTurnState(holeCenter);
@@ -186,6 +187,8 @@ void BilliardsGameplayManager::OnPlayerBallEnteredHole(BilliardBall* ball, const
 		BilliardsPlayer* otherPlayer = m_gameplayStatesBlackboard.GetOtherPlayer();
 		m_feedbackDisplay->PlayWrongBallEnterHole(holeCenter, otherPlayer->GetBackgroundColor());
 		otherPlayer->GetScore().AddByOtherPlayer();		
+
+		currentPlayer->GetScore().SubtractWrong();
 	}
 
 	ballOwnerPlayer->RemoveRemainingColoredBall(ball);
@@ -264,7 +267,7 @@ const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(Bi
 	const float checkRadius = 0.5f;
 
 	return GamePhysicsUtilities::FindRandomPositionWithoutObstacles(m_gameplayStatesBlackboard.GetBoardCenter(), randomBounds,
-		ball->GetCollisionCircle().GetRadius(), 5);
+		ball->GetCollisionCircle().GetRadius(), 15);
 }
 
 

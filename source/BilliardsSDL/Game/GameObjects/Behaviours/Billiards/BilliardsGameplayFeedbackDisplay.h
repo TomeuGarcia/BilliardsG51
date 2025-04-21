@@ -13,6 +13,7 @@ public:
 		FadingRenderer* whiteBallEnterHole;
 		FadingRenderer* blackBallEnterHole;
 		FadingRenderer* wrongBallEnterHole;
+		FadingRenderer* wrongBallEnterHoleScore;
 		FadingRenderer* ballEnterHoleScore;
 		FadingRenderer* ballEnterHoleScoreConsecutive;
 		FadingRenderer* ballEnterHoleScoreLast;

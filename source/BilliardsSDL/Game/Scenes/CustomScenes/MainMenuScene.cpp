@@ -57,7 +57,6 @@ void MainMenuScene::CreateGameObjects()
 	OptionsMenu* optionsMenu = GetPrefabUtilities().CreateOptionsMenu();
 
 	GameObjectGroup objectsToHideWhenOptionsShown{5};
-	//objectsToHideWhenOptionsShown.Add(titleGameObject);
 	objectsToHideWhenOptionsShown.Add(trippyTitle->GetGameObjects());
 	objectsToHideWhenOptionsShown.Add(playButton->GetGameObject());
 	objectsToHideWhenOptionsShown.Add(rankingButton->GetGameObject());

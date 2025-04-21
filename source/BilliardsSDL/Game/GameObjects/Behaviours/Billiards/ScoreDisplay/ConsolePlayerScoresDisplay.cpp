@@ -44,5 +44,6 @@ void ConsolePlayerScoresDisplay::PrintHeader() const
 
 void ConsolePlayerScoresDisplay::PrintPlayer(BilliardsPlayer* player) const
 {
-	std::printf("%s \t %i\n", player->GetName().c_str(), player->GetScore().GetCurrentValue());
+	const int scoreValue = player->GetScore().GetCurrentValue();
+	std::printf("%s \t %i\n", player->GetName().c_str(), scoreValue);
 }
