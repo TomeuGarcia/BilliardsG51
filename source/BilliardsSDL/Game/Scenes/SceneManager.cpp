@@ -80,6 +80,9 @@ Scene* SceneManager::MakeNewSceneByName(const SceneName sceneName)
 		case SceneName::BilliardGame:
 			return new BilliardsGameScene();
 			break;
+		case SceneName::TitleScreenshot:
+			return new TitleScreenshotScene();
+			break;
 		default:
 			return nullptr;
 			break;

@@ -5,5 +5,7 @@ enum class SceneName
 {
 	MainMenu,
 	Ranking,
-	BilliardGame
+	BilliardGame,
+
+	TitleScreenshot
 };

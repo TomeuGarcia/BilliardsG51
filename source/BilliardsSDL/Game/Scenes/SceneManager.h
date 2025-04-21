@@ -7,6 +7,7 @@
 #include "CustomScenes/MainMenuScene.h"
 #include "CustomScenes/BilliardsGameScene.h"
 #include "CustomScenes/RankingScene.h"
+#include "CustomScenes/TitleScreenshotScene.h"
 
 
 class SceneManager

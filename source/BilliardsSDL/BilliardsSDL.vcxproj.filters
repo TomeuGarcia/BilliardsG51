@@ -214,6 +214,9 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\GameOptions\FileData">
       <UniqueIdentifier>{600d5675-49c3-4c0b-960e-7e6e16eb489f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\TitleScreenshot">
+      <UniqueIdentifier>{819ec983-3e31-450b-9406-aec69cf262f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -608,6 +611,12 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameOptionsFileData.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions\FileData</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CustomScenes\TitleScreenshotScene.cpp">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\TitleScreenshot\TitleScreenshotManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\TitleScreenshot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1081,6 +1090,12 @@
     </ClInclude>
     <ClInclude Include="Game\Physics\Collision\CollisionHit2D.h">
       <Filter>Source Files\Game\Physics\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CustomScenes\TitleScreenshotScene.h">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\TitleScreenshot\TitleScreenshotManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\TitleScreenshot</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

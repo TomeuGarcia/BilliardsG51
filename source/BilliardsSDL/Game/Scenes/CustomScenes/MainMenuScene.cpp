@@ -94,5 +94,8 @@ void MainMenuScene::DoStart()
 
 void MainMenuScene::DoUpdate()
 {
-
+	if (GameInput::GetInstance()->GetKeyDown(KeyCode::Space))
+	{
+		SceneManager::GetInstance()->LoadScene(SceneName::TitleScreenshot);
+	}
 }

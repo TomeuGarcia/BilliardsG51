@@ -285,6 +285,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\GameObjects\Behaviours\TestBehaviour.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.cpp" />
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.cpp" />
+    <ClCompile Include="Game\GameObjects\Behaviours\TitleScreenshot\TitleScreenshotManager.cpp" />
     <ClCompile Include="Game\GameObjects\GameObject.cpp" />
     <ClCompile Include="Game\GameObjects\GameObjectGroup.cpp" />
     <ClCompile Include="Game\GameObjects\Prefabs\CustomPrefabUtilities.cpp" />
@@ -318,6 +319,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClCompile Include="Game\Scenes\CustomScenes\EmptyScene.cpp" />
     <ClCompile Include="Game\Scenes\CustomScenes\MainMenuScene.cpp" />
     <ClCompile Include="Game\Scenes\CustomScenes\RankingScene.cpp" />
+    <ClCompile Include="Game\Scenes\CustomScenes\TitleScreenshotScene.cpp" />
     <ClCompile Include="Game\Scenes\Scene.cpp" />
     <ClCompile Include="Game\Scenes\SceneManager.cpp" />
     <ClCompile Include="Game\Scenes\Utilities\SceneCreateUtilities.cpp" />
@@ -431,6 +433,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\GameObjects\Behaviours\TestBehaviour.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\AABoxColliderDrawer.h" />
     <ClInclude Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.h" />
+    <ClInclude Include="Game\GameObjects\Behaviours\TitleScreenshot\TitleScreenshotManager.h" />
     <ClInclude Include="Game\GameObjects\GameObjectGroup.h" />
     <ClInclude Include="Game\GameObjects\GameObjectTag.h" />
     <ClInclude Include="Game\GameObjects\Prefabs\CustomPrefabUtilities.h" />
@@ -471,6 +474,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Scenes\CustomScenes\EmptyScene.h" />
     <ClInclude Include="Game\Scenes\CustomScenes\MainMenuScene.h" />
     <ClInclude Include="Game\Scenes\CustomScenes\RankingScene.h" />
+    <ClInclude Include="Game\Scenes\CustomScenes\TitleScreenshotScene.h" />
     <ClInclude Include="Game\Scenes\Scene.h" />
     <ClInclude Include="Game\Scenes\SceneManager.h" />
     <ClInclude Include="Game\Scenes\SceneName.h" />
