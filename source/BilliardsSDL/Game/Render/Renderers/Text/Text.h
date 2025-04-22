@@ -12,6 +12,8 @@ public:
 	virtual ~Text();
 
 	void Init(const GameRenderManager& renderManager, const TextResourceData& resourceData);
+	void Reset(const GameRenderManager& renderManager, const TextResourceData& resourceData, const std::string& text);
+
 
 protected:
 	virtual SDL_Rect* GetSourceRect() override;

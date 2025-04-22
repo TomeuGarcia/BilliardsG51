@@ -33,6 +33,7 @@ public:
 
 protected:
 	void InitTexture(SDL_Texture* texture);
+	void CleanupTexture();
 
 	virtual SDL_Rect* GetSourceRect() = 0;
 

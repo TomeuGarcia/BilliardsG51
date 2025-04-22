@@ -63,6 +63,16 @@ bool RankingManager::TryReplaceBestPlayHighscore(std::vector<RankingEntry>& entr
 			if (it->GetPlayerHighscore() < rankingEntry.GetPlayerHighscore())
 			{
 				it->OverwritePlayerHighscore(rankingEntry.GetPlayerHighscore());
+				
+				for (auto it2 = entries.begin(); it2 != it; ++it2)
+				{
+					if (it2->GetPlayerHighscore() < rankingEntry.GetPlayerHighscore())
+					{
+						entries.erase(it);
+						entries.insert(it2, rankingEntry);
+						break;
+					}
+				}
 			}
 			return true;
 		}

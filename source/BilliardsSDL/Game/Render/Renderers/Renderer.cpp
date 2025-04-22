@@ -8,7 +8,7 @@ Renderer::Renderer(GameObject* gameObject, const Vector2<float>& worldSize)
 
 Renderer::~Renderer()
 {
-    SDL_DestroyTexture(m_textureState.texture);
+    CleanupTexture();
 }
 
 void Renderer::Update(CameraTransformations* cameraTransformations)
@@ -67,6 +67,11 @@ float Renderer::GetRotation() const
 void Renderer::InitTexture(SDL_Texture* texture)
 {
     m_textureState.texture = texture;
+}
+
+void Renderer::CleanupTexture()
+{
+    SDL_DestroyTexture(m_textureState.texture);
 }
 
 const SDL_Rect Renderer::UpdateDestination(CameraTransformations* cameraTransformations)

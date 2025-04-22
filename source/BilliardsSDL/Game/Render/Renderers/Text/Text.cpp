@@ -16,6 +16,14 @@ void Text::Init(const GameRenderManager& renderManager, const TextResourceData& 
 	r_worldSize = GameSpacesComputer::GetInstance()->WindowToWorldVector(windowSize);
 }
 
+void Text::Reset(const GameRenderManager& renderManager, const TextResourceData& resourceData, const std::string& text)
+{
+	CleanupTexture();
+	m_text = text;
+	Init(renderManager, resourceData);
+}
+
+
 SDL_Rect* Text::GetSourceRect()
 {
 	return NULL;
