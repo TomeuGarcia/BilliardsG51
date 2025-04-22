@@ -49,26 +49,26 @@ Color GameRenderManager::GetBackgroundColor() const
 
 
 
-void GameRenderManager::DrawDebugLine(const Color& color, const Line<float>& line)
+void GameRenderManager::DrawGizmoLine(const Color& color, const Line<float>& line)
 {
-	DrawDebugLine(color, line.GetOrigin(), line.GetEnd());
+	DrawGizmoLine(color, line.GetOrigin(), line.GetEnd());
 }
 
-void GameRenderManager::DrawDebugLine(const Color& color, const Vector2<float>& start, const Vector2<float>& end)
+void GameRenderManager::DrawGizmoLine(const Color& color, const Vector2<float>& start, const Vector2<float>& end)
 {
 	m_renderSystem->StartDrawingToDebug();
 	m_outputRenderer.DrawLine(color, start, end);
 	m_renderSystem->StopDrawingToDebug();
 }
 
-void GameRenderManager::DrawDebugLines(const Color& color, const std::vector<Vector2<float>>& points)
+void GameRenderManager::DrawGizmoLines(const Color& color, const std::vector<Vector2<float>>& points)
 {
 	m_renderSystem->StartDrawingToDebug();
 	m_outputRenderer.DrawLines(color, points);
 	m_renderSystem->StopDrawingToDebug();
 }
 
-void GameRenderManager::DrawDebugRect(const Color& color, const Rect<float>& rect)
+void GameRenderManager::DrawGizmoRect(const Color& color, const Rect<float>& rect)
 {
 	m_renderSystem->StartDrawingToDebug();
 	m_outputRenderer.DrawRect(color, rect);

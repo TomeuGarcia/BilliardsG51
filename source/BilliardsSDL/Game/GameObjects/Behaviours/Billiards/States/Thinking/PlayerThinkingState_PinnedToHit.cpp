@@ -33,7 +33,7 @@ bool PlayerThinkingState_PinnedToHit::Update()
 
 	GetBlackboard()->p_directionToPinPosition = currentToPinDirection;
 	GetPlayer()->GetStick()->SetTipPositionAndLookDirection(tipPosition, currentToPinDirection);
-	GameRenderManager::GetInstance()->DrawDebugLine(pinLineColor, Line<float>(m_pinPosition, tipPosition));
+	GameRenderManager::GetInstance()->DrawGizmoLine(pinLineColor, Line<float>(m_pinPosition, tipPosition));
 
 
 	if (GetBlackboard()->GetCanHitWhiteBall() &&
@@ -81,6 +81,6 @@ void PlayerThinkingState_PinnedToHit::PreviewHitDirection(const Vector2<float>& 
 	{
 		float dragT = pinDragDistance / GetBlackboard()->GetPinPullMaxDistance();
 		Color previewColor = Color::Lerp(Colors::DarkGreen, Colors::SoftGreen, dragT);
-		GameRenderManager::GetInstance()->DrawDebugLine(previewColor, Line<float>(m_pinPosition, hit.point));
+		GameRenderManager::GetInstance()->DrawGizmoLine(previewColor, Line<float>(m_pinPosition, hit.point));
 	}
 }

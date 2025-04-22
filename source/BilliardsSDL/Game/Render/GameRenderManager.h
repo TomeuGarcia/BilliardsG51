@@ -32,10 +32,10 @@ public:
 	void SetBackgroundColor(const Color& color) const;
 	Color GetBackgroundColor() const;
 
-	void DrawDebugLine(const Color& color, const Line<float>& line);
-	void DrawDebugLine(const Color& color, const Vector2<float>& start, const Vector2<float>& end);
-	void DrawDebugLines(const Color& color, const std::vector<Vector2<float>>& points);
-	void DrawDebugRect(const Color& color, const Rect<float>& rect);
+	void DrawGizmoLine(const Color& color, const Line<float>& line);
+	void DrawGizmoLine(const Color& color, const Vector2<float>& start, const Vector2<float>& end);
+	void DrawGizmoLines(const Color& color, const std::vector<Vector2<float>>& points);
+	void DrawGizmoRect(const Color& color, const Rect<float>& rect);
 
 public:
 	SDL_Texture* LoadImageTexture(const ImageResourceData& imageResourceData) const;

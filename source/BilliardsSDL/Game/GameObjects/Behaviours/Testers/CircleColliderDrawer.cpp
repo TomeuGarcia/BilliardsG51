@@ -31,5 +31,5 @@ void CircleColliderDrawer::Update()
 	}
 	octagonalPositions[octagonalPositions.size() - 1] = octagonalPositions[0];
 
-	GameRenderManager::GetInstance()->DrawDebugLines(Colors::Green, octagonalPositions);
+	GameRenderManager::GetInstance()->DrawGizmoLines(Colors::Green, octagonalPositions);
 }

@@ -16,5 +16,5 @@ void AABoxColliderDrawer::Update()
 {
 	if (!s_enabled) return;
 
-	GameRenderManager::GetInstance()->DrawDebugRect(Colors::Red, m_aaBoxCollider->GetShape());
+	GameRenderManager::GetInstance()->DrawGizmoRect(Colors::Red, m_aaBoxCollider->GetShape());
 }
