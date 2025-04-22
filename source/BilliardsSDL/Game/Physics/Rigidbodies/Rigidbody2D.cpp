@@ -4,7 +4,7 @@ Rigidbody2D::Rigidbody2D(GameObject* gameObject,
 						const std::shared_ptr<PhysicMaterial>& physicMaterial,
 						const float& mass, const float& gravityScale)
 	: m_gameObject(gameObject), m_physicMaterial(physicMaterial), p_mass(mass), p_gravityScale(gravityScale),
-	p_position(gameObject->GetTransform()->p_worldPosition),
+	m_position(gameObject->GetTransform()->p_worldPosition),
 	m_velocity(Vector2<float>::Zero()), m_speed(0),
 	m_acceleration(Vector2<float>::Zero()),
 	m_isEnabled(true)
@@ -30,6 +30,16 @@ bool Rigidbody2D::GetIsEnabled() const
 	return m_isEnabled;
 }
 
+
+const Vector2<float>& Rigidbody2D::GetPosition() const
+{
+	return m_position;
+}
+
+void Rigidbody2D::SetPosition(const Vector2<float>& position)
+{
+	m_position = position;
+}
 
 
 const Vector2<float>& Rigidbody2D::GetVelocity() const
@@ -85,15 +95,15 @@ GameObject* Rigidbody2D::GetGameObject() const
 
 
 
-void Rigidbody2D::MoveToPosition(const Vector2<float>& position)
+void Rigidbody2D::MoveToPositionUpdating(const Vector2<float>& position)
 {
-	p_position = position;
-	UpdatePosition();
+	m_position = position;
+	UpdateTransformPosition();
 }
 
-void Rigidbody2D::UpdatePosition()
+void Rigidbody2D::UpdateTransformPosition()
 {
-	m_gameObject->GetTransform()->p_worldPosition = p_position;
+	m_gameObject->GetTransform()->p_worldPosition = m_position;
 }
 
 
@@ -148,6 +158,6 @@ Vector2<float> Rigidbody2D::GetCurrentMotionForce()
 
 void Rigidbody2D::RefreshPosition()
 {
-	p_position = m_gameObject->GetTransform()->p_worldPosition;
+	m_position = m_gameObject->GetTransform()->p_worldPosition;
 }
 

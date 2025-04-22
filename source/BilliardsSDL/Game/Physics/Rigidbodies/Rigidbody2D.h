@@ -16,6 +16,9 @@ public:
 	bool GetIsEnabled() const;
 
 
+	const Vector2<float>& GetPosition() const;
+	void SetPosition(const Vector2<float>& position);
+
 	const Vector2<float>& GetVelocity() const;
 	void SetVelocity(const Vector2<float>& velocity);
 
@@ -29,8 +32,8 @@ public:
 	PhysicMaterial* GetPhysicMaterial() const;
 	GameObject* GetGameObject() const;
 
-	void MoveToPosition(const Vector2<float>& position);
-	void UpdatePosition();
+	void MoveToPositionUpdating(const Vector2<float>& position);
+	void UpdateTransformPosition();
 	void ApplyFriction(const float& deltaTime);
 
 	bool IsAtRest() const;
@@ -47,11 +50,11 @@ private:
 
 
 public:
-	Vector2<float> p_position;
 	float p_mass;
 	float p_gravityScale;
 
 private:	
+	Vector2<float> m_position;
 	Vector2<float> m_velocity;
 	Vector2<float> m_acceleration;
 	Vector2<float> m_moveDirection;

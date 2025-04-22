@@ -453,6 +453,7 @@ xcopy /d /y "$(SolutionDir)dependencies\SDL2-2.0.16\lib\$(PlatformTarget)\*.dll"
     <ClInclude Include="Game\Physics\Rigidbodies\PhysicMaterial.h" />
     <ClInclude Include="Game\Physics\Rigidbodies\Rigidbody2D.h" />
     <ClInclude Include="Game\Physics\Solvers\EulerSolver.h" />
+    <ClInclude Include="Game\Physics\Solvers\IPhysicsSolver.h" />
     <ClInclude Include="Game\Render\Camera\Camera2D.h" />
     <ClInclude Include="Game\Render\Camera\CameraShaker.h" />
     <ClInclude Include="Game\Render\Camera\CameraShakeSettings.h" />

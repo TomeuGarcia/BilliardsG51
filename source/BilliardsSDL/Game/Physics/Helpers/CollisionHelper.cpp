@@ -83,9 +83,9 @@ namespace CollisionHelper
 		// Position reflection
 		// Xt+dt = X't+dt - (1+BounceCoef)*(n·X't+dt + d)*n
 		// Xt+dt = X't+dt + (contactNormal * (2 + halfIntDist))
-		Vector2<float> position = rigidbody->p_position + (contactNormal * (2 * intersectDistance));
+		Vector2<float> position = rigidbody->GetPosition() + (contactNormal * (2 * intersectDistance));
 
-		rigidbody->p_position = position;
+		rigidbody->SetPosition(position);
 
 
 

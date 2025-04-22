@@ -1,11 +1,11 @@
 #pragma once
-#include "../Rigidbodies/Rigidbody2D.h"
+#include "IPhysicsSolver.h"
 
-class EulerSolver
+
+class EulerSolver : public IPhysicsSolver
 {
 public:
 	EulerSolver(const Vector2<float>& gravityForce);
-	~EulerSolver();
 
 	void Step(const float& deltaTime, Rigidbody2D& rigidbody);
 

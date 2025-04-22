@@ -12,6 +12,7 @@
 #include "Systems/GameTweener.h"
 #include "Systems/GameDelayedCallScheduler.h"
 #include "Physics/Physics2DManager.h"
+#include "Physics/Solvers/EulerSolver.h"
 #include "Render/GameRenderManager.h"
 #include "Audio/GameAudioManager.h"
 #include "Audio/MusicService/GameMusicService.h"

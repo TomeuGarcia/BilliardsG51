@@ -5,8 +5,8 @@
 
 Physics2DManager* Physics2DManager::s_instance = nullptr;
 
-Physics2DManager::Physics2DManager()
-	: m_solver(Vector2<float>(0.0f, -9.8f)),
+Physics2DManager::Physics2DManager(std::shared_ptr<IPhysicsSolver> solver)
+	: m_solver(solver),
 	m_circleCollidersGroup(),
 	m_aaBoxCollidersGroup()
 {
@@ -50,48 +50,9 @@ void Physics2DManager::AddAABoxCollider(const std::shared_ptr<AABoxCollider2D>&c
 
 void Physics2DManager::Update(const float& deltaTime)
 {
-	UpdateRigidbodies(deltaTime);
 	UpdateRigidbodylessColliders();
+	UpdateRigidbodies(deltaTime);
 	UpdateCollisions();
-}
-
-
-void Physics2DManager::UpdateRigidbodies(const float& deltaTime)
-{
-	std::vector<std::shared_ptr<CircleCollider2D>>& rigidbodyCircleColliders = 
-		m_circleCollidersGroup.p_rigidbodyColliders;
-
-	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
-	{		
-		Rigidbody2D& rigidbody = *(*it)->GetRigidbody();
-		if (!rigidbody.GetIsEnabled())
-		{
-			continue;
-		}
-
-		m_solver.Step(deltaTime, rigidbody);
-		rigidbody.UpdatePosition();
-		rigidbody.ApplyFriction(deltaTime);
-		(*it)->UpdateShape();
-	}
-
-
-	std::vector<std::shared_ptr<AABoxCollider2D>>& rigidbodyAABoxColliders = 
-		m_aaBoxCollidersGroup.p_rigidbodyColliders;
-
-	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
-	{
-		Rigidbody2D& rigidbody = *(*it)->GetRigidbody();
-		if (!rigidbody.GetIsEnabled())
-		{
-			continue;
-		}
-
-		m_solver.Step(deltaTime, rigidbody);
-		rigidbody.UpdatePosition();
-		rigidbody.ApplyFriction(deltaTime);
-		(*it)->UpdateShape();
-	}
 }
 
 
@@ -114,6 +75,53 @@ void Physics2DManager::UpdateRigidbodylessColliders()
 		(*it)->UpdateShape();
 	}
 }
+
+
+void Physics2DManager::UpdateRigidbodies(const float& deltaTime)
+{
+	std::vector<std::shared_ptr<CircleCollider2D>>& rigidbodyCircleColliders = 
+		m_circleCollidersGroup.p_rigidbodyColliders;
+
+	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
+	{		
+		Collider2D* collider = it->get();
+		Rigidbody2D* rigidbody = collider->GetRigidbody();
+		if (!rigidbody->GetIsEnabled())
+		{
+			continue;
+		}
+
+		UpdateRigidbody(deltaTime, collider, rigidbody);
+	}
+
+
+	std::vector<std::shared_ptr<AABoxCollider2D>>& rigidbodyAABoxColliders = 
+		m_aaBoxCollidersGroup.p_rigidbodyColliders;
+
+	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
+	{
+		Collider2D* collider = it->get();
+		Rigidbody2D* rigidbody = collider->GetRigidbody();
+		if (!rigidbody->GetIsEnabled())
+		{
+			continue;
+		}
+
+		UpdateRigidbody(deltaTime, collider, rigidbody);
+	}
+}
+
+void Physics2DManager::UpdateRigidbody(const float& deltaTime, Collider2D* collider, Rigidbody2D* rigidbody)
+{
+	m_solver->Step(deltaTime, *rigidbody);
+
+	rigidbody->UpdateTransformPosition();
+	rigidbody->ApplyFriction(deltaTime);
+	collider->UpdateShape();
+}
+
+
+
 
 
 

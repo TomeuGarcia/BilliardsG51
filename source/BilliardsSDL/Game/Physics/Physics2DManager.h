@@ -2,7 +2,7 @@
 #include <map>
 #include <list>
 #include "../../Shared/Math/Math.h"
-#include "Solvers/EulerSolver.h"
+#include "Solvers/IPhysicsSolver.h"
 #include "Collision/Collision2D.h"
 #include "Colliders/CircleCollider2D.h"
 #include "Colliders/AABoxCollider2D.h"
@@ -15,7 +15,7 @@
 class Physics2DManager
 {
 public:
-	Physics2DManager();
+	Physics2DManager(std::shared_ptr<IPhysicsSolver> solver);
 	~Physics2DManager();
 
 public:
@@ -32,8 +32,9 @@ public:
 
 
 private:
-	void UpdateRigidbodies(const float& deltaTime);
 	void UpdateRigidbodylessColliders();
+	void UpdateRigidbodies(const float& deltaTime);
+	void UpdateRigidbody(const float& deltaTime, Collider2D* collider, Rigidbody2D* rigidbody);
 	void UpdateCollisions();
 
 	void CheckCircleWithCircle(CircleCollider2D* circleColliderA, CircleCollider2D* circleColliderB);
@@ -53,7 +54,7 @@ public:
 
 
 private:
-	EulerSolver m_solver;
+	std::shared_ptr<IPhysicsSolver> m_solver;
 	CircleCollider2DGroup m_circleCollidersGroup;
 	AABoxCollider2DGroup m_aaBoxCollidersGroup;
 

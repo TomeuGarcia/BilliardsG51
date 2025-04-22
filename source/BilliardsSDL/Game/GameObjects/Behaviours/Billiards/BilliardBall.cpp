@@ -31,7 +31,7 @@ void BilliardBall::Update()
 
 void BilliardBall::SetPosition(const Vector2<float>& position)
 {
-	m_rigidbody->MoveToPosition(position);
+	m_rigidbody->MoveToPositionUpdating(position);
 	m_collider->UpdateShape();
 }
 

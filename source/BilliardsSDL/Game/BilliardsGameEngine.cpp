@@ -51,7 +51,7 @@ void BilliardsGameEngine::Init(const GameSpecifications& specifications,
 	m_gameRenderManager = new GameRenderManager(renderSystem, m_gameSpacesComputer);
 	m_gameAudioManager = new GameAudioManager(audioSystem);
 	m_gameMusicService = new GameMusicService();
-	m_physicsManager = new Physics2DManager();
+	m_physicsManager = new Physics2DManager(std::make_shared<EulerSolver>(Vector2<float>(0.0f, -9.81f)));
 	m_sceneManager = new SceneManager();
 
 	m_gameRandom = new GameRandom(rngSystem);

@@ -1097,5 +1097,8 @@
     <ClInclude Include="Game\GameObjects\Behaviours\TitleScreenshot\TitleScreenshotManager.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\TitleScreenshot</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Physics\Solvers\IPhysicsSolver.h">
+      <Filter>Source Files\Game\Physics\Solvers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
