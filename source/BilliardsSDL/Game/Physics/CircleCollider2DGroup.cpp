@@ -46,10 +46,6 @@ void CircleCollider2DGroup::UpdateActiveCollision(CircleCollider2D* colliderA, C
 	outWereAlreadyColliding = GetActiveCollision(colliderA, colliderB, outActiveCollision);
 	if (outWereAlreadyColliding)
 	{
-		if (areColliding)
-		{
-			areColliding;
-		}
 		outActiveCollision->UpdateStatus(areColliding);
 		if (outActiveCollision->GetStatus() == Collision2D::Status::Exit)
 		{

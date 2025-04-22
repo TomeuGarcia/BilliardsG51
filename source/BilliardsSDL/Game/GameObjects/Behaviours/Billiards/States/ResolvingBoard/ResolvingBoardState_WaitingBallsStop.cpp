@@ -31,6 +31,5 @@ bool ResolvingBoardState_WaitingBallsStop::Update()
 
 void ResolvingBoardState_WaitingBallsStop::Exit()
 {
-	GetBlackboard()->GetCurrentPlayer()->GetStick()->TweenToResting();
 }
 

@@ -2,27 +2,31 @@
 
 
 Renderer::Renderer(GameObject* gameObject, const Vector2<float>& worldSize)
-    : m_gameObject(gameObject), p_scale(1.0f, 1.0f), r_worldSize(worldSize), p_rotationInDegrees(0),
-    p_flip(SDL_FLIP_NONE), m_colorTint(Colors::White)
+    : m_gameObject(gameObject), p_scale(1.0f, 1.0f), r_worldSize(worldSize), m_textureState(), m_colorTint(Colors::White)
 {
 }
 
 Renderer::~Renderer()
 {
-    SDL_DestroyTexture(r_texture);
+    SDL_DestroyTexture(m_textureState.texture);
 }
 
-void Renderer::Render(SDL_Renderer* outputRenderer)
-{    
-    SDL_Rect destinationRect{ ComputeDestination() };
-    SDL_RenderCopyEx(outputRenderer, r_texture, GetSourceRect(), &destinationRect, p_rotationInDegrees, NULL, p_flip);
+void Renderer::Update(CameraTransformations* cameraTransformations)
+{
+    m_textureState.sourceRect = GetSourceRect();
+    m_textureState.destinationRect = UpdateDestination(cameraTransformations);
+}
+
+void Renderer::Render(IOutputRendererVisitor* outputRenderer)
+{        
+    outputRenderer->DrawTexture(m_textureState);
 }
 
 void Renderer::SetColorTint(const Color& color)
 {
     m_colorTint = color;
-    SDL_SetTextureColorMod(r_texture, color.r, color.g, color.b);
-    SDL_SetTextureAlphaMod(r_texture, color.a);
+    SDL_SetTextureColorMod(m_textureState.texture, color.r, color.g, color.b);
+    SDL_SetTextureAlphaMod(m_textureState.texture, color.a);
 }
 
 Color Renderer::GetColorTint() const
@@ -30,20 +34,49 @@ Color Renderer::GetColorTint() const
     return m_colorTint;
 }
 
-const SDL_Rect Renderer::ComputeDestination()
+Rect<int> Renderer::GetDestinationRect() const
+{
+    return m_destinationRect;
+}
+
+bool Renderer::IsActive() const
+{
+    return m_gameObject->IsActive();
+}
+
+GameObject* Renderer::GetGameObject() const
+{
+    return m_gameObject;
+}
+
+Transform* Renderer::GetTransform() const
+{
+    return m_gameObject->GetTransform();
+}
+
+void Renderer::SetRotation(const float& rotationInDegrees)
+{
+    m_textureState.rotationInDegrees = rotationInDegrees;
+}
+
+float Renderer::GetRotation() const
+{
+    return m_textureState.rotationInDegrees;
+}
+
+void Renderer::InitTexture(SDL_Texture* texture)
+{
+    m_textureState.texture = texture;
+}
+
+const SDL_Rect Renderer::UpdateDestination(CameraTransformations* cameraTransformations)
 {
     const Vector2<int> position = GameSpacesComputer::GetInstance()->WorldToWindowPosition(
-        m_gameObject->GetTransform()->p_worldPosition);
+        cameraTransformations->ApplyToWorldPosition(m_gameObject->GetTransform()->p_worldPosition));
+
     Vector2<int> scaledSize = GameSpacesComputer::GetInstance()->WorldToWindowVector(
         { r_worldSize.x * p_scale.x, -r_worldSize.y * p_scale.y });
 
-    const Vector2<int> halfScaledSize = scaledSize / 2;
-
-    SDL_Rect destinationRect{};
-    destinationRect.x = position.x - halfScaledSize.x;
-    destinationRect.y = position.y - halfScaledSize.y;
-    destinationRect.w = scaledSize.x;
-    destinationRect.h = scaledSize.y;
-
-    return destinationRect;
+    m_destinationRect = { position, scaledSize };
+    return m_destinationRect.ToSDLRect();
 }

@@ -136,6 +136,87 @@
     <Filter Include="Source Files\Game\GameObjects\Behaviours\Testers">
       <UniqueIdentifier>{8a7b00eb-b7c2-4107-917f-0fcd65f6d6bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Prefabs">
+      <UniqueIdentifier>{92c3dbf3-87bb-45cf-91e4-daec1a56c528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Scenes\Utilities">
+      <UniqueIdentifier>{3111597d-1695-4991-8ef8-ce851862c7ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\MainMenu">
+      <UniqueIdentifier>{b3af8cf7-acb5-4228-834f-797d57e1569d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\UI">
+      <UniqueIdentifier>{8a6ac001-567f-420a-8e4d-eb1aef86fc7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\UI\Selectables">
+      <UniqueIdentifier>{5ba03d8f-3425-4af8-9270-32678a0a5b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\UI\Selectables\Button">
+      <UniqueIdentifier>{23ab360c-b949-4f6b-9df9-953224f0f255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\RendererExtras">
+      <UniqueIdentifier>{1af4cf4f-d8ff-4b27-9ada-8982409dafdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\ScoreDisplay">
+      <UniqueIdentifier>{1d7c34d7-1613-4728-9de7-b2efab78dd9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application\Systems\Files">
+      <UniqueIdentifier>{40fdef07-2d3c-426b-ab00-3c5148a1c6d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application\Systems\Files\Binary">
+      <UniqueIdentifier>{ea235a93-b338-4a30-88f6-9811079b9c0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Ranking">
+      <UniqueIdentifier>{6a0ef233-86ee-4341-ab56-5e78357462a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application\Systems\Audio">
+      <UniqueIdentifier>{686a8023-9cb0-4f06-8414-88eea57e6638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Audio">
+      <UniqueIdentifier>{7a67d163-8d88-4b56-979b-391d2f48ea8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback">
+      <UniqueIdentifier>{38cb4d59-fe17-439f-8633-2c5dd193e5d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\CustomUI">
+      <UniqueIdentifier>{24dbb1ad-da40-401d-b2cf-bf5c9384c9e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\GameOptions">
+      <UniqueIdentifier>{c6d2fc19-1700-405a-ba39-70f90a344c0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager">
+      <UniqueIdentifier>{4e0ae87c-c547-4388-b31f-7b2ffdc137af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States">
+      <UniqueIdentifier>{bd17577a-8175-445c-b4d8-1da9e74db4db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu">
+      <UniqueIdentifier>{3b84d5a4-a3aa-42da-a455-70e5f31f99d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Audio\MusicService">
+      <UniqueIdentifier>{4b665ac5-43cc-4d88-9b0c-adf62aa1ad88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Billiards\Bounds">
+      <UniqueIdentifier>{8cad42cd-a158-4a5a-b1de-53bc6f4d8dd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\Backgrounds">
+      <UniqueIdentifier>{0875c111-b07a-4118-bcc3-2f8086cf34c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\DataStructures">
+      <UniqueIdentifier>{a7fa3bef-b031-4a42-ad0c-08463f1bf6bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Render\Textures">
+      <UniqueIdentifier>{50098f25-56d9-42b8-966d-820f979d3713}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Render\Camera">
+      <UniqueIdentifier>{f8b323ac-3f5a-4b2d-b771-c961faf099f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\GameOptions\FileData">
+      <UniqueIdentifier>{600d5675-49c3-4c0b-960e-7e6e16eb489f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Behaviours\TitleScreenshot">
+      <UniqueIdentifier>{819ec983-3e31-450b-9406-aec69cf262f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -332,6 +413,210 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Behaviours\Testers\CircleColliderDrawer.cpp">
       <Filter>Source Files\Game\GameObjects\Behaviours\Testers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CustomScenes\MainMenuScene.cpp">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\Utilities\SceneCreateUtilities.cpp">
+      <Filter>Source Files\Game\Scenes\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Prefabs\CustomPrefabUtilities.cpp">
+      <Filter>Source Files\Game\GameObjects\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\UICaster.cpp">
+      <Filter>Source Files\Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\Selectables\UISelectable.cpp">
+      <Filter>Source Files\Game\UI\Selectables</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\Selectables\Button\UIButton.cpp">
+      <Filter>Source Files\Game\UI\Selectables\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameAppInteractions.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\ScoreDisplay\ConsolePlayerScoresDisplay.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\ScoreDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Files\Binary\BinaryFile.cpp">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Files\Binary\BinaryUtilities.cpp">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameFileResources.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Files\FilePathData.cpp">
+      <Filter>Source Files\Application\Systems\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CustomScenes\RankingScene.cpp">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntry.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingFileData.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Audio\AudioSystem.cpp">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Audio\Sound.cpp">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Systems\Audio\SingleSound.cpp">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\GameAudioManager.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\SFXSound.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\MusicSound.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\SoundResourceData.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\SFXSoundBuffer.cpp">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollision.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionDetector.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionFeedbackManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameAssetResourceTypes.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Systems\GameDelayedCallScheduler.cpp">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_VictoryAnimation.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_AskingWinnerName.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Physics\Helpers\GamePhysicsUtilities.cpp">
+      <Filter>Source Files\Game\Physics\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuButton.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\GameObjectGroup.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\OptionsMenu.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\MainMenu\MainMenuBilliardsBoardManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayFSM.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\BilliardsGameSceneManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Playing.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Paused.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Options.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Audio\MusicService\GameMusicService.cpp">
+      <Filter>Source Files\Game\Audio\MusicService</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Bounds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\TrippyText.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Billiards\BilliardsUtilities.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\Backgrounds\ParallaxBallsBackground.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Backgrounds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\RendererExtras\PlayingMusicText.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\OutputRenderer.cpp">
+      <Filter>Source Files\Game\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Textures\TextureState.cpp">
+      <Filter>Source Files\Game\Render\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Camera\Camera2D.cpp">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Camera\CameraShaker.cpp">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Camera\CameraTransformations.cpp">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Camera\CameraSystem.cpp">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Render\Camera\CameraShakeSettings.cpp">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\GameOptionsManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameAudioFileData.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions\FileData</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameRenderFileData.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions\FileData</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameOptionsFileData.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions\FileData</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CustomScenes\TitleScreenshotScene.cpp">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Behaviours\TitleScreenshot\TitleScreenshotManager.cpp">
+      <Filter>Source Files\Game\GameObjects\Behaviours\TitleScreenshot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -565,6 +850,252 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard\ResolvingBoardState_WaitingBallsStop.h">
       <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\ResolvingBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CustomScenes\MainMenuScene.h">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Prefabs\CustomPrefabUtilities.h">
+      <Filter>Source Files\Game\GameObjects\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\Utilities\SceneCreateUtilities.h">
+      <Filter>Source Files\Game\Scenes\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\UICaster.h">
+      <Filter>Source Files\Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\Selectables\UISelectable.h">
+      <Filter>Source Files\Game\UI\Selectables</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\Selectables\Button\UIButton.h">
+      <Filter>Source Files\Game\UI\Selectables\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\Selectables\ColorBlock.h">
+      <Filter>Source Files\Game\UI\Selectables</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameAppInteractions.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\FadingRenderer.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsGameplayFeedbackDisplay.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\ScoreDisplay\IPlayerScoresDisplay.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\ScoreDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\ScoreDisplay\ConsolePlayerScoresDisplay.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\ScoreDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Files\Binary\IBinarySerializable.h">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Files\Binary\BinaryFile.h">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Files\Binary\BinaryUtilities.h">
+      <Filter>Source Files\Application\Systems\Files\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameFileResources.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Files\FilePathData.h">
+      <Filter>Source Files\Application\Systems\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CustomScenes\RankingScene.h">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingFileData.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntry.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Ranking\RankingEntryDisplay.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Audio\AudioSystem.h">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Audio\Sound.h">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Systems\Audio\SingleSound.h">
+      <Filter>Source Files\Application\Systems\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\GameAudioManager.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\SFXSound.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\ISFXSoundManager.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\IMusicSoundManager.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\SoundResourceData.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\MusicSound.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\SFXSoundBuffer.h">
+      <Filter>Source Files\Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\IBallCollisionFeedbackManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollision.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionDetector.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BallFeedback\BallCollisionFeedbackManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\BallFeedback</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\GameObjectTag.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameAssetResourceTypes.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Systems\GameDelayedCallScheduler.h">
+      <Filter>Source Files\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_VictoryAnimation.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\GameFinish\GameFinishState_AskingWinnerName.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States\GameFinish</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Helpers\GamePhysicsUtilities.h">
+      <Filter>Source Files\Game\Physics\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuButton.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\GameObjectGroup.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\CustomUI\MenuIncDecButton.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\CustomUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\OptionsMenu.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\MainMenu\MainMenuBilliardsBoardManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\States\BilliardsGameplayFSM.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\BilliardsGameSceneManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Playing.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Paused.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\SceneManager\States\BilliardsGameSceneState_Options.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\SceneManager\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\PauseMenu\PauseMenu.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\PauseMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Audio\MusicService\GameMusicService.h">
+      <Filter>Source Files\Game\Audio\MusicService</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\BilliardsBoardBounds.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Bounds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\Bounds\IBilliardsBoardBoundsListener.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards\Bounds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\TrippyText.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Billiards\BilliardsUtilities.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Billiards</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\Backgrounds\ParallaxBallsBackground.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\Backgrounds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\RendererExtras\PlayingMusicText.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\RendererExtras</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\DataStructures\SteppingBuffer.h">
+      <Filter>Source Files\Shared\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\OutputRenderer.h">
+      <Filter>Source Files\Game\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Textures\TextureState.h">
+      <Filter>Source Files\Game\Render\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Camera\CameraTransformations.h">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Camera\CameraSystem.h">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Camera\Camera2D.h">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Camera\CameraShaker.h">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Camera\ICameraShakePlayer.h">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Camera\ICameraFunctionalities.h">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Camera\IGameSpacesComputer.h">
+      <Filter>Source Files\Game\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\IGameSpacesComputer.h">
+      <Filter>Source Files\Game\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Render\Camera\CameraShakeSettings.h">
+      <Filter>Source Files\Game\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\GameOptionsManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameAudioFileData.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions\FileData</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameRenderFileData.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions\FileData</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\GameOptions\FileData\GameOptionsFileData.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\GameOptions\FileData</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Physics\Collision\CollisionHit2D.h">
+      <Filter>Source Files\Game\Physics\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CustomScenes\TitleScreenshotScene.h">
+      <Filter>Source Files\Game\Scenes\CustomScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Behaviours\TitleScreenshot\TitleScreenshotManager.h">
+      <Filter>Source Files\Game\GameObjects\Behaviours\TitleScreenshot</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

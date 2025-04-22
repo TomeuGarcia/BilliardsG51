@@ -6,7 +6,7 @@
 Physics2DManager* Physics2DManager::s_instance = nullptr;
 
 Physics2DManager::Physics2DManager()
-	: m_solver(Vector2<float>(0.0f, -9.8f)), m_forcePropagationConstant(0.25f),
+	: m_solver(Vector2<float>(0.0f, -9.8f)),
 	m_circleCollidersGroup(),
 	m_aaBoxCollidersGroup()
 {
@@ -337,12 +337,12 @@ void Physics2DManager::ResolveCollision(Rigidbody2D* rigidbodyA, Rigidbody2D* ri
 {
 	intersectDistance = bAlsoHasRigidbody ? intersectDistance / 2 : intersectDistance;
 	
-	Vector2<float> motionForceA = rigidbodyA->GetVelocity() * m_forcePropagationConstant;
-	Vector2<float> motionForceB = bAlsoHasRigidbody ? rigidbodyB->GetVelocity() * m_forcePropagationConstant : Vector2<float>::Zero();
+	Vector2<float> motionForceA = rigidbodyA->GetMomentum();
+	Vector2<float> motionForceB = bAlsoHasRigidbody ? rigidbodyB->GetMomentum() : Vector2<float>::Zero();
 
 	if (rigidbodyA->IsAtRest())
 	{
-		rigidbodyA->ApplyForce(motionForceB);
+		CollisionHelper::ApplyCollisionForceOnRestingBody(rigidbodyA, motionForceB, abNormal);
 	}
 	else
 	{
@@ -353,7 +353,7 @@ void Physics2DManager::ResolveCollision(Rigidbody2D* rigidbodyA, Rigidbody2D* ri
 	{
 		if (rigidbodyB->IsAtRest())
 		{
-			rigidbodyB->ApplyForce(motionForceA);
+			CollisionHelper::ApplyCollisionForceOnRestingBody(rigidbodyB, motionForceA, -abNormal);
 		}
 		else
 		{
@@ -436,9 +436,10 @@ std::list<Collider2D*> Physics2DManager::CircleOverlap(const Vector2<float>& pos
 
 
 
-std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
+std::vector<CollisionHit2D> Physics2DManager::Raycast(const Line<float>& raySegment)
 {
-	std::list<Collider2D*> overlappedColliders{};
+	std::vector<CollisionHit2D> hits{};
+	hits.reserve(10);
 	Vector2<float> pointInLine;
 	float distance;
 
@@ -455,9 +456,14 @@ std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
 
 	for (auto it = rigidbodyCircleColliders.begin(); it != rigidbodyCircleColliders.end(); ++it)
 	{		
+		if (!(*it)->GetRigidbody()->GetIsEnabled())
+		{
+			continue;
+		}
+
 		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
-			overlappedColliders.push_back(it->get());
+			hits.emplace_back(it->get(), pointInLine, Vector2<float>::Distance(pointInLine, raySegment.GetOrigin()));
 		}
 	}
 
@@ -465,25 +471,53 @@ std::list<Collider2D*> Physics2DManager::Raycast(const Line<float>& raySegment)
 	{
 		if (Math::ComputeLineToCircleDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
-			overlappedColliders.push_back(it->get());
+			hits.emplace_back(it->get(), pointInLine, Vector2<float>::Distance(pointInLine, raySegment.GetOrigin()));
 		}
 	}
 
 	for (auto it = rigidbodyAABoxColliders.begin(); it != rigidbodyAABoxColliders.end(); ++it)
 	{
-		if (Math::IsLineIntersectingAARect(raySegment, (*it)->GetShape()))
+		if (!(*it)->GetRigidbody()->GetIsEnabled())
 		{
-			overlappedColliders.push_back(it->get());
+			continue;
+		}
+
+		if (Math::ComputeLineToAARectDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
+		{
+			hits.emplace_back(it->get(), pointInLine, distance);
 		}
 	}
 
 	for (auto it = rigidbodyLESSAABoxColliders.begin(); it != rigidbodyLESSAABoxColliders.end(); ++it)
 	{
-		if (Math::IsLineIntersectingAARect(raySegment, (*it)->GetShape()))
+		if (Math::ComputeLineToAARectDistance(raySegment, (*it)->GetShape(), pointInLine, distance))
 		{
-			overlappedColliders.push_back(it->get());
+			hits.emplace_back(it->get(), pointInLine, distance);
 		}
 	}
 
-	return overlappedColliders;
+	return hits;
+}
+
+bool Physics2DManager::RaycastFirstHit(const Line<float>& raySegment, CollisionHit2D& outHit)
+{
+	const std::vector<CollisionHit2D> hits = Raycast(raySegment);
+	const size_t hitsCount = hits.size();
+
+	if (hitsCount < 1)
+	{
+		return false;
+	}
+
+	outHit = hits.front();
+	for (size_t i = 1; i < hitsCount; ++i)
+	{
+		const CollisionHit2D& itHit = hits[i];
+		if (outHit.distanceFromOrigin > itHit.distanceFromOrigin)
+		{
+			outHit = itHit;
+		}
+	}
+
+	return true;
 }

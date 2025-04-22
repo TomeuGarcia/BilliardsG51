@@ -72,13 +72,16 @@ Scene* SceneManager::MakeNewSceneByName(const SceneName sceneName)
 	switch (sceneName)
 	{
 		case SceneName::MainMenu:
-			return new EmptyScene(Colors::Red);
+			return new MainMenuScene();
 			break;
 		case SceneName::Ranking:
-			return new EmptyScene(Colors::Green);
+			return new RankingScene();
 			break;
 		case SceneName::BilliardGame:
 			return new BilliardsGameScene();
+			break;
+		case SceneName::TitleScreenshot:
+			return new TitleScreenshotScene();
 			break;
 		default:
 			return nullptr;

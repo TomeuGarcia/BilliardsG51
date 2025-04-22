@@ -40,18 +40,23 @@ bool BilliardsGameplayState_ResolvingBoard::Update()
 
         if (nextState == ResolvingBoardState::Type::KeepPlayer)
         {
+            GetBlackboard()->SetSamePlayerIsPlayingConsecutiveTurns(true);
             SetNextState(m_keepPlayerNextStateType);
             m_currentState = nullptr;
             return true;
         }
         else if (nextState == ResolvingBoardState::Type::ChangePlayer)
         {
+            GetBlackboard()->SetSamePlayerIsPlayingConsecutiveTurns(false);
+            GetBlackboard()->GetCurrentPlayer()->GetStick()->TweenToResting();
+            GetBlackboard()->GetSpecialEventsManager()->OnPlayerStartsPlaying();
             SetNextState(m_changePlayerNextStateType);
             m_currentState = nullptr;
             return true;
         }
         else if (nextState == ResolvingBoardState::Type::PlayerVictory)
         {
+            GetBlackboard()->GetCurrentPlayer()->GetStick()->TweenToResting();
             SetNextState(Type::GameFinish);
             m_currentState = nullptr;
             return true;

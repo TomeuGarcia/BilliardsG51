@@ -41,9 +41,15 @@ void PlayerThinkingState_Hitting::Exit()
 
 bool PlayerThinkingState_Hitting::TryHitBalls()
 {
-	const Vector2<float> hitPosition = GetBlackboard()->p_pinPosition;
-	const Vector2<float> hitDirection = GetBlackboard()->p_directionToPinPosition;
-	const float forceMagnitude = GetBlackboard()->p_pinPullDistanceForHit * GetBlackboard()->GetStickForceOverDistanceMultiplier();
+	if (GetBlackboard()->GetCanHitWhiteBall())
+	{
+		const Vector2<float> hitDirection = GetBlackboard()->p_directionToPinPosition;
+		const float forceMagnitude = GetBlackboard()->p_pinPullDistanceForHit * GetBlackboard()->GetStickForceOverDistanceMultiplier();
 
-	return GetBlackboard()->GetSpecialEventsManager()->TryHitWhiteBall(hitPosition, hitDirection, forceMagnitude);
+		GetBlackboard()->GetSpecialEventsManager()->HitWhiteBall(hitDirection, forceMagnitude);
+
+		return true;
+	}
+
+	return false;
 }

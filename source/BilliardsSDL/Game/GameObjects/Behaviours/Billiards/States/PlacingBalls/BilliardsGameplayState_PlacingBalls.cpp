@@ -23,6 +23,7 @@ bool BilliardsGameplayState_PlacingBalls::Update()
 
 	if (m_placingTimer.HasFinished())
 	{
+		GetBlackboard()->GetSpecialEventsManager()->OnPlayerStartsPlaying();
 		SetNextState(Type::Thinking_Red);
 		return true;
 	}
@@ -51,9 +52,9 @@ void BilliardsGameplayState_PlacingBalls::SetBallsIgnoringPhysics()
 void BilliardsGameplayState_PlacingBalls::SetBallsCheckingPhysics()
 {
 	const std::vector<BilliardBall*>& balls = GetBlackboard()->GetBalls();
-	for (auto it = balls.begin(); it != balls.end(); ++it)
+	for (size_t i = 0; i < balls.size(); ++i)
 	{
-		(*it)->SetUsingPhysics();
+		balls[i]->SetUsingPhysics();
 	}
 }
 
@@ -150,7 +151,8 @@ void BilliardsGameplayState_PlacingBalls::MoveBalls(const std::vector<BilliardBa
 
 	for (size_t i = 1; i < balls.size(); ++i)
 	{
-		Transform* ballTransform = balls[i]->GetTransform();
+		BilliardBall* ball = balls[i];
+		Transform* ballTransform = ball->GetTransform();
 		const Vector2<float> goalPosition = ballPositions[i];
 
 		const float distance = Vector2<float>::Distance(goalPosition, ballTransform->p_worldPosition);
@@ -163,9 +165,15 @@ void BilliardsGameplayState_PlacingBalls::MoveBalls(const std::vector<BilliardBa
 
 		moveSpeed *= 1.1f;
 		moveDelay += 0.1f;
+
+		ball->PlayMovedSound(moveDelay + (duration * 0.25f));
 	}
 
-	GameTweener::GetInstance()->TweenPosition(balls[0]->GetTransform(), ballPositions[0], 0.5f, 1.5f);
+	const float firstBallDuration = 0.5f;
+	const float firstBallDelay = 1.5f;
+	BilliardBall* firstBall = balls[0];
+	GameTweener::GetInstance()->TweenPosition(firstBall->GetTransform(), ballPositions[0], firstBallDuration, firstBallDelay);
+	firstBall->PlayMovedSound(firstBallDelay + (firstBallDuration * 0.75f));
 
 	m_placingTimer.SetDuration(2.25f);
 }

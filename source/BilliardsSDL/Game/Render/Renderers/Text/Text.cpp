@@ -12,7 +12,7 @@ Text::~Text()
 void Text::Init(const GameRenderManager& renderManager, const TextResourceData& resourceData)
 {
 	Vector2<int> windowSize;
-	r_texture = renderManager.LoadTextTexture(resourceData, m_text, m_pointSize, Colors::White, windowSize);
+	InitTexture(renderManager.LoadTextTexture(resourceData, m_text, m_pointSize, Colors::White, windowSize));
 	r_worldSize = GameSpacesComputer::GetInstance()->WindowToWorldVector(windowSize);
 }
 

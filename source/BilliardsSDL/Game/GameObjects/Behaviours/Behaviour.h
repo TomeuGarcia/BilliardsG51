@@ -14,5 +14,8 @@ public:
 	virtual void OnDestroy() {}
 
 	virtual void OnCollisionEnter(GameObject* other) {}
+	virtual void OnCollisionExit(GameObject* other) {}
+	
 	virtual void OnTriggerEnter(GameObject* other) {}
+	virtual void OnTriggerExit(GameObject* other) {}
 };

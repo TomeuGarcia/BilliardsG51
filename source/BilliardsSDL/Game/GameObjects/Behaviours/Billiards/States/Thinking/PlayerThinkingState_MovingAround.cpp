@@ -16,6 +16,9 @@ bool PlayerThinkingState_MovingAround::Update()
 
 	if (GameInput::GetInstance()->GetKeyDown(KeyCode::MouseLeft))
 	{
+		const bool canHitWhiteBall = GetBlackboard()->GetSpecialEventsManager()->CanHitWhiteBall(currentMousePosition);
+		GetBlackboard()->SetCanHitWhiteBall(canHitWhiteBall);
+
 		SetNextState(Type::PinnedToHit);
 		return true;
 	}

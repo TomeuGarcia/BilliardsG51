@@ -53,6 +53,10 @@ public:
     { 
         return Vector2{ x * scalar, y * scalar };
     }
+    friend Vector2 operator*(const Vector2& v1, const Vector2& v2)
+    {
+        return Vector2{ v1.x * v2.x, v1.y * v2.y };
+    }
     friend Vector2& operator*=(Vector2& v1, const Vector2& v2)
     {
         v1.x *= v2.x;
@@ -95,7 +99,7 @@ public:
         }
     }
 
-    Vector2 Normalized()
+    Vector2 Normalized() const
     {
         T length = Length();
         if (length > 0)
@@ -125,23 +129,27 @@ public:
         return v1 + (v2 - v1) * t;
     }
 
-    static Vector2 Zero() 
+    static inline Vector2 Zero() 
     {
         return { 0, 0 };
     }
-    static Vector2 Right() 
+    static inline Vector2 One()
+    {
+        return { 1, 1 };
+    }
+    static inline Vector2 Right()
     {
         return { 1, 0 };
     }
-    static Vector2 Left() 
+    static inline Vector2 Left()
     {
         return { -1, 0 };
     }
-    static Vector2 Up() 
+    static inline Vector2 Up()
     {
         return { 0, 1 };
     }
-    static Vector2 Down() 
+    static inline Vector2 Down()
     {
         return { 0, -1 };
     }

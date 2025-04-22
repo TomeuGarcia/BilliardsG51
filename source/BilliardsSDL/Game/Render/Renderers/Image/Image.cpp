@@ -14,7 +14,7 @@ Image::~Image()
 void Image::Init(const GameRenderManager& renderManager, const ImageResourceData& resourceData)
 {
 	m_sourceRect = resourceData.p_sourceRect;
-	r_texture = renderManager.LoadImageTexture(resourceData);
+	InitTexture(renderManager.LoadImageTexture(resourceData));
 }
 
 SDL_Rect* Image::GetSourceRect()

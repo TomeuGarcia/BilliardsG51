@@ -11,7 +11,7 @@ public:
 	void SetDuration(const float& duration);
 	float GetDuration() const;
 	void ClearTime();
-
+	void CompleteTime();
 
 	void Update(const float& deltaTime);
 	bool HasFinished() const;

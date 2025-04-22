@@ -1,14 +1,15 @@
 #include "BilliardsGameplayManager.h"
 
-BilliardsGameplayManager::BilliardsGameplayManager()
-	: m_gameplayStatesMap(),
-	m_currentState(nullptr),
+BilliardsGameplayManager::BilliardsGameplayManager(const BilliardsScore::Configuration& scoreConfiguration)
+	: 
 	m_gameplayStatesBlackboard(),
-	m_playerRed(),
-	m_playerBlue(),
+	m_playerRed(scoreConfiguration),
+	m_playerBlue(scoreConfiguration),
 	m_wellplacedBallsThisTurn(),
 	m_missplacedBallsThisTurn(),
-	m_blackBallWellPlaced(false)
+	m_blackBallWellPlaced(false),
+	m_blackBall(nullptr), m_whiteBall(nullptr),
+	m_feedbackDisplay(nullptr), m_scoresDisplay(nullptr)
 {
 	m_wellplacedBallsThisTurn.reserve(5);
 	m_missplacedBallsThisTurn.reserve(2);
@@ -18,9 +19,10 @@ BilliardsGameplayManager::~BilliardsGameplayManager()
 {
 }
 
-
 void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter, 
-	BilliardStick* redStick, BilliardStick* blueStick)
+	BilliardStick* redStick, BilliardStick* blueStick, 
+	const std::shared_ptr<BilliardsGameplayFeedbackDisplay>& feedbackDisplay, 
+	const std::shared_ptr<IPlayerScoresDisplay>& scoresDisplay)
 {
 	m_whiteBall = balls[0];
 	m_blackBall = balls[8];
@@ -37,103 +39,47 @@ void BilliardsGameplayManager::Init(const std::vector<BilliardBall*>& balls, con
 		remainingBlueBalls.emplace(balls[i]);
 	}
 
-	m_playerRed.Init(redStick, Colors::SoftRed, remainingRedBalls, "Red");
-	m_playerBlue.Init(blueStick, Colors::SoftBlue, remainingBlueBalls, "Blue");
-	m_gameplayStatesBlackboard.Init(balls, boardCenter, &m_playerRed, &m_playerBlue, this);
+	m_playerRed.Init(redStick, Colors::SoftRed, remainingRedBalls, "Player Red");
+	m_playerBlue.Init(blueStick, Colors::SoftBlue, remainingBlueBalls, "Player Blue");
 
 
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Init] = 
-			  std::make_shared<BilliardsGameplayState_Init>(&m_gameplayStatesBlackboard);
+	m_feedbackDisplay = feedbackDisplay;
 
-	m_gameplayStatesMap[BilliardsGameplayState::Type::PlacingBalls] = 
-			  std::make_shared<BilliardsGameplayState_PlacingBalls>(&m_gameplayStatesBlackboard);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Red] = 
-			  std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerRed);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::Thinking_Blue] = 
-			  std::make_shared<BilliardsGameplayState_PlayerThinking>(&m_gameplayStatesBlackboard, &m_playerBlue);
-	
-	m_gameplayStatesMap[BilliardsGameplayState::Type::ResolvingBoard] = 
-			  std::make_shared<BilliardsGameplayState_ResolvingBoard>(&m_gameplayStatesBlackboard);
-
-	m_gameplayStatesMap[BilliardsGameplayState::Type::GameFinish] = 
-			  std::make_shared<BilliardsGameplayState_GameFinish>(&m_gameplayStatesBlackboard);
+	m_scoresDisplay = scoresDisplay;
+	m_scoresDisplay->Init({ &m_playerRed, &m_playerBlue });
+	m_scoresDisplay->UpdateDisplayedScore();
 
 
-
-	m_currentState = (m_gameplayStatesMap[BilliardsGameplayState::Type::Init]).get();
-	m_currentState->Enter();
+	m_gameplayStatesBlackboard.Init(balls, m_whiteBall, boardCenter, &m_playerRed, &m_playerBlue, this);
 }
 
-
-
-void BilliardsGameplayManager::Update()
-{
-	if (m_currentState->Update())
-	{
-		m_currentState->Exit();
-		m_currentState = (m_gameplayStatesMap[m_currentState->GetNextState()]).get();
-		m_currentState->Enter();
-	}
-
-	if (GameInput::GetInstance()->GetKeyDown(KeyCode::R))
-	{
-		SceneManager::GetInstance()->LoadScene(SceneName::BilliardGame);
-	}
-}
 
 void BilliardsGameplayManager::OnDestroy()
 {
-	m_currentState->Exit();
+	m_scoresDisplay->Cleanup();
+}
+
+
+BilliardsGameplayStateBlackboard* BilliardsGameplayManager::GetBlackboard()
+{
+	return &m_gameplayStatesBlackboard;
 }
 
 
 
 
-bool BilliardsGameplayManager::TryHitWhiteBall(const Vector2<float>& position, const Vector2<float>& direction,
-	const float& forceMagnitude)
+bool BilliardsGameplayManager::CanHitWhiteBall(const Vector2<float>& position)
 {
 	const Circle probingCircle{ position, 0.2f };
-
 	bool intersecting = Math::AreCirclesIntersecting(probingCircle, m_whiteBall->GetCollisionCircle());
-	if (!intersecting)
-	{
-		return false;
-	}
-
-
-	const Vector2<float> force = direction * forceMagnitude;
-	m_whiteBall->ApplyForce(force);
-	return true;
-
-
-	/*
-	std::list<Collider2D*> colliders = Physics2DManager::GetInstance()->CircleOverlap(position, 0.2f);
-
-	std::vector<BilliardBall*> balls;
-	balls.reserve(8);
-
-	for (auto colliderIt = colliders.begin(); colliderIt != colliders.end(); ++colliderIt)
-	{
-		const std::vector<std::shared_ptr<Behaviour>>& behaviours = (*colliderIt)->GetGameObject()->GetBehaviours();
-
-		for (auto behaviourIt = behaviours.begin(); behaviourIt != behaviours.end(); ++behaviourIt)
-		{
-			BilliardBall* ball = dynamic_cast<BilliardBall*>(behaviourIt->get());
-			if (ball != nullptr)
-			{
-				balls.emplace_back(ball);
-
-				ball->ApplyForce(force);
-			}
-		}
-	}		
-
-	return balls.size() > 0;
-	*/
+	return intersecting;
 }
 
+void BilliardsGameplayManager::HitWhiteBall(const Vector2<float>& direction, const float& forceMagnitude)
+{
+	const Vector2<float> force = direction * forceMagnitude;
+	m_whiteBall->ApplyForce(force);
+}
 
 
 bool BilliardsGameplayManager::AllBallsStoppedMoving() const
@@ -153,23 +99,23 @@ bool BilliardsGameplayManager::AllBallsStoppedMoving() const
 
 
 
-void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float> holeCenter)
+void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter)
 {
 	OnAnyBallEnteredHole(ball, holeCenter);
 
 	switch (ball->GetColorType())
 	{
 	case BilliardBall::ColorType::White:
-		OnWhiteBallEnteredHole();
+		OnWhiteBallEnteredHole(holeCenter);
 		break;
 	case BilliardBall::ColorType::Black:
-		OnBlackBallEnteredHole();
+		OnBlackBallEnteredHole(holeCenter);
 		break;
 	case BilliardBall::ColorType::Red:
-		OnRedBallEnteredHole(ball);
+		OnRedBallEnteredHole(ball, holeCenter);
 		break;
 	case BilliardBall::ColorType::Blue:
-		OnBlueBallEnteredHole(ball);
+		OnBlueBallEnteredHole(ball, holeCenter);
 		break;
 	default:
 		break;
@@ -178,68 +124,98 @@ void BilliardsGameplayManager::OnBallEnteredHole(BilliardBall* ball, const Vecto
 
 
 
+void BilliardsGameplayManager::OnBallExitsBoardBounds(BilliardBall* ball)
+{
+	m_missplacedBallsThisTurn.emplace_back(ball);
+	ball->SetIgnoringPhysics();
+}
+
+
+
 void BilliardsGameplayManager::OnAnyBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter)
 {
 	ball->PlayEnterEnterHoleAnimation(holeCenter);
 	ball->SetIgnoringPhysics();	
+	m_feedbackDisplay->PlayAnyBallEnterHole();
 }
 
 
-void BilliardsGameplayManager::OnWhiteBallEnteredHole()
+void BilliardsGameplayManager::OnWhiteBallEnteredHole(const Vector2<float>& holeCenter)
 {
 	m_missplacedBallsThisTurn.emplace_back(m_whiteBall);
+	m_feedbackDisplay->PlayWhiteBallEnterHole(holeCenter);
 }
 
-void BilliardsGameplayManager::OnBlackBallEnteredHole()
+void BilliardsGameplayManager::OnBlackBallEnteredHole(const Vector2<float>& holeCenter)
 {
-	if (m_gameplayStatesBlackboard.GetCurrentPlayer()->StillHasRemainingColoredBalls())
+	BilliardsPlayer* currentPlayer = m_gameplayStatesBlackboard.GetCurrentPlayer();
+	if (currentPlayer->StillHasRemainingColoredBalls())
 	{
 		m_missplacedBallsThisTurn.emplace_back(m_blackBall);
+		m_feedbackDisplay->PlayBlackBallEnterHole(holeCenter);
 	}
 	else
 	{
-		m_gameplayStatesBlackboard.GetCurrentPlayer()->GetScore().AddLast();
+		currentPlayer->GetScore().AddLast();
 		m_wellplacedBallsThisTurn.emplace_back(m_blackBall);
 		m_gameplayStatesBlackboard.p_victoryAchieved = true;
+		m_feedbackDisplay->PlayBallEnterHoleScoreLast(holeCenter);
+		OnScoreChanged();
 	}
 }
 
-void BilliardsGameplayManager::OnRedBallEnteredHole(BilliardBall* redBall)
+void BilliardsGameplayManager::OnRedBallEnteredHole(BilliardBall* redBall, const Vector2<float>& holeCenter)
 {
-	if (m_gameplayStatesBlackboard.GetCurrentPlayer() == &m_playerRed)
-	{
-		m_wellplacedBallsThisTurn.push_back(redBall);
-	}
-
-	m_playerRed.RemoveRemainingColoredBall(redBall);
-
-	IncrementPlayerScoreWithThisTurnState();
+	OnPlayerBallEnteredHole(redBall, holeCenter, &m_playerRed);
 }
 
-void BilliardsGameplayManager::OnBlueBallEnteredHole(BilliardBall* blueBall)
+void BilliardsGameplayManager::OnBlueBallEnteredHole(BilliardBall* blueBall, const Vector2<float>& holeCenter)
 {
-	if (m_gameplayStatesBlackboard.GetCurrentPlayer() == &m_playerBlue)
-	{
-		m_wellplacedBallsThisTurn.push_back(blueBall);
-	}
-
-	m_playerBlue.RemoveRemainingColoredBall(blueBall);
-
-	IncrementPlayerScoreWithThisTurnState();
+	OnPlayerBallEnteredHole(blueBall, holeCenter, &m_playerBlue);
 }
 
-void BilliardsGameplayManager::IncrementPlayerScoreWithThisTurnState()
+void BilliardsGameplayManager::OnPlayerBallEnteredHole(BilliardBall* ball, const Vector2<float>& holeCenter, BilliardsPlayer* ballOwnerPlayer)
 {
-	if (m_wellplacedBallsThisTurn.size() < 2)
+	BilliardsPlayer* currentPlayer = m_gameplayStatesBlackboard.GetCurrentPlayer();
+	if (currentPlayer == ballOwnerPlayer)
 	{
-		m_gameplayStatesBlackboard.GetCurrentPlayer()->GetScore().Add();
+		m_wellplacedBallsThisTurn.push_back(ball);
+		IncrementPlayerScoreWithThisTurnState(holeCenter);
 	}
 	else
 	{
-		m_gameplayStatesBlackboard.GetCurrentPlayer()->GetScore().AddConsecutive();
+		BilliardsPlayer* otherPlayer = m_gameplayStatesBlackboard.GetOtherPlayer();
+		m_feedbackDisplay->PlayWrongBallEnterHole(holeCenter, otherPlayer->GetBackgroundColor());
+		otherPlayer->GetScore().AddByOtherPlayer();		
+
+		currentPlayer->GetScore().SubtractWrong();
+	}
+
+	ballOwnerPlayer->RemoveRemainingColoredBall(ball);
+	OnScoreChanged();
+}
+
+void BilliardsGameplayManager::IncrementPlayerScoreWithThisTurnState(const Vector2<float>& holeCenter)
+{
+	BilliardsPlayer* currentPlayer = m_gameplayStatesBlackboard.GetCurrentPlayer();
+	bool playerIsPlayingConsecutiveTurns = m_gameplayStatesBlackboard.GetSamePlayerIsPlayingConsecutiveTurns();
+
+	if (m_wellplacedBallsThisTurn.size() <= 1 && !playerIsPlayingConsecutiveTurns)
+	{
+		currentPlayer->GetScore().Add();
+		m_feedbackDisplay->PlayBallEnterHoleScore(holeCenter);
+	}
+	else
+	{
+		currentPlayer->GetScore().AddConsecutive();
+		m_feedbackDisplay->PlayBallEnterHoleScoreConsecutive(holeCenter);
 	}
 }
 
+void BilliardsGameplayManager::OnScoreChanged()
+{
+	m_scoresDisplay->UpdateDisplayedScore();
+}
 
 
 
@@ -265,26 +241,48 @@ void BilliardsGameplayManager::ClearMissplacedBalls()
 
 
 
-const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(BilliardBall* ball) const 
+void BilliardsGameplayManager::OnPlayerStartsPlaying()
 {
-	const Vector2<float> randomBounds{ 2.5f, 1.5f };
-	const Circle& ballCollisionShape = ball->GetCollisionCircle();
+	m_feedbackDisplay->PlayPlayerChange();
+}
 
-	bool foundValidPosition = false;
-	Vector2<float> randomPosition;
-
-	do
-	{
-		randomPosition =
-			m_gameplayStatesBlackboard.GetBoardCenter() +
-			GameRandom::GetInstance()->GetRandomVectorBetweenSignedBounds(randomBounds);
-
-		foundValidPosition = Physics2DManager::GetInstance()->CircleOverlap(randomPosition, ballCollisionShape.GetRadius()).size() < 1;
-
-
-	} while (!foundValidPosition);
+void BilliardsGameplayManager::OnGameFinishStart()
+{
+	m_feedbackDisplay->PlayVictory(m_gameplayStatesBlackboard.GetWinnerPlayer()->GetBackgroundColor());
+}
 
 
 
-	return randomPosition;
+
+void BilliardsGameplayManager::PositionBallsRandomly() const
+{
+	const Vector2<float> randomBounds{ 2.5f, 1.75f };
+	BilliardsUtilities::PositionBallsRandomly(m_gameplayStatesBlackboard.GetBalls(), 
+		m_gameplayStatesBlackboard.GetBoardCenter(), randomBounds);
+}
+
+const Vector2<float> BilliardsGameplayManager::FindRandomValidPositionForBall(BilliardBall* ball) const
+{
+	const Vector2<float> randomBounds{ 1.0f, 0.75f };
+	const float checkRadius = 0.5f;
+
+	return GamePhysicsUtilities::FindRandomPositionWithoutObstacles(m_gameplayStatesBlackboard.GetBoardCenter(), randomBounds,
+		ball->GetCollisionCircle().GetRadius(), 15);
+}
+
+
+
+void BilliardsGameplayManager::AskWinnerNameAndAddToRanking(BilliardsPlayer* winnerPlayer)
+{
+	std::printf("\nEnter winner's name: ");
+
+	std::string playerRealName;
+	std::cin >> playerRealName;
+
+	RankingEntry rankingEntry{ playerRealName , winnerPlayer->GetScore().GetCurrentValue() };
+
+	RankingManager rankingManager{};
+	rankingManager.Load();
+	rankingManager.TryAddRankingEntry(rankingEntry);
+	rankingManager.Save();
 }

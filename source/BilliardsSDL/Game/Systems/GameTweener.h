@@ -15,6 +15,7 @@ private:
 			const float& duration, const float& delay);
 
 		void Update(const float& deltaTime);
+		void UpdateComplete();
 		Vector2<float> GetCurrentValue() const;
 		bool HasFinished();
 
@@ -28,6 +29,27 @@ private:
 	};
 
 
+	struct RendererScaleTween
+	{
+	public:
+		RendererScaleTween(Renderer* renderer, const Vector2<float>& origin, const Vector2<float>& goal,
+			const float& duration, const float& delay);
+
+		void Update(const float& deltaTime);
+		void UpdateComplete();
+		Vector2<float> GetCurrentValue() const;
+		bool HasFinished();
+
+	public:
+		Renderer* p_renderer;
+	private:
+		Vector2<float> m_origin;
+		Vector2<float> m_goal;
+		float m_duration;
+		float m_currentTime;
+	};
+
+	
 	struct RendererColorTween
 	{
 	public:
@@ -35,6 +57,7 @@ private:
 			const float& duration, const float& delay);
 
 		void Update(const float& deltaTime);
+		void UpdateComplete();
 		Color GetCurrentValue() const;
 		bool HasFinished();
 
@@ -64,15 +87,24 @@ public:
 
 public:
 	void TweenPosition(Transform* transform, const Vector2<float>& goalPosition, const float& duration, const float& delay);
+	void TweenScaleBy(Renderer* renderer, const Vector2<float>& scaleBy, const float& duration, const float& delay);
 	void TweenColor(Renderer* renderer, const Color& goalColor, const float& duration, const float& delay);
+
+public:
+	void CompletePosition(Transform* transform);
+	void CompleteScale(Renderer* renderer);
+	void CompleteColor(Renderer* renderer);
+
 
 private:
 	void UpdatePositionTweens(const float& deltaTime);
+	void UpdateScaleTweens(const float& deltaTime);
 	void UpdateColorTweens(const float& deltaTime);
 
 
 private:
 	std::vector<TransformTween> m_positionTweens;
+	std::vector<RendererScaleTween> m_scaleTweens;
 	std::vector<RendererColorTween> m_colorTweens;
 
 private:

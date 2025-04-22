@@ -7,13 +7,14 @@
 struct ImageResourceData
 {
 public:
-	ImageResourceData(const std::string& sourcePath, 
+	ImageResourceData(const std::string& sourcePath,
 					  const Vector2<int>& sourcePosition, const Vector2<int>& sourceSize,
-					  const bool& alphaTransparency);
-	~ImageResourceData();
+					  const bool& alphaTransparency,
+					  const float& pixelsToUnits);
 
 public:
 	std::string p_sourcePath;
 	SDL_Rect p_sourceRect;
 	bool p_alphaTransparency;
+	Vector2<float> p_defaultUnitsSize;
 };

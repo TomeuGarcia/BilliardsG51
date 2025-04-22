@@ -24,6 +24,8 @@ public:
 
 	const float GetSpeed() const;
 
+	const Vector2<float> GetMomentum() const;
+
 	PhysicMaterial* GetPhysicMaterial() const;
 	GameObject* GetGameObject() const;
 
@@ -52,6 +54,7 @@ public:
 private:	
 	Vector2<float> m_velocity;
 	Vector2<float> m_acceleration;
+	Vector2<float> m_moveDirection;
 	float m_speed;
 	bool m_isEnabled;
 

@@ -1,48 +1,35 @@
 #pragma once
-#include "../Render/Renderers/Image/ImageResourceData.h"
-#include "../Render/Renderers/Text/TextResourceData.h"
+#include <filesystem>
+#include "GameAssetResourceTypes.h"
 
 
 class GameAssetResources
 {
 public:
-	GameAssetResources(const std::string& pathToResourceImages, 
-					   const std::string& pathToResourceFonts, 
-					   const std::string& pathToResourceAudios);
+	GameAssetResources(const float& pixelsToUnits,
+		const std::filesystem::path& pathToResourceImages, 
+		const std::filesystem::path& pathToResourceFonts,
+		const std::filesystem::path& pathToResourceAudios);
 	~GameAssetResources();
 
 public:
 	static GameAssetResources* GetInstance();
 
+
 public:
-	const ImageResourceData& GetDebugImageData();
-	const ImageResourceData& GetDebugTransparentImageData();
-
-	const ImageResourceData& GetWhiteBallImageData();
-	const ImageResourceData& GetBlackBallImageData();
-	const ImageResourceData& GetRedBallImageData();
-	const ImageResourceData& GetBlueBallImageData();
-	const ImageResourceData& GetRedStickImageData();
-	const ImageResourceData& GetBlueStickImageData();
-	const ImageResourceData& GetBoardImageData();
-
-	const TextResourceData& GetDebugTextFontData();
+	const ImageResources& GetImage() const;
+	const TextResources& GetText() const;
+	const AudioResources& GetAudio() const;
 
 
 private:
-	ImageResourceData m_debugImageData;
-	ImageResourceData m_debugTransparentImageData;
-
-	ImageResourceData m_whiteBallImageData;
-	ImageResourceData m_blackBallImageData;
-	ImageResourceData m_redBallImageData;
-	ImageResourceData m_blueBallImageData;
-	ImageResourceData m_redStickImageData;
-	ImageResourceData m_blueStickImageData;
-	ImageResourceData m_boardImageData;
-
-	TextResourceData m_debugTextFontData;
+	ImageResources m_imageResources;
+	TextResources m_textResources;
+	AudioResources m_audioResources;
 
 private:
 	static GameAssetResources* s_instance;
 };
+
+
+

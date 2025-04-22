@@ -12,7 +12,7 @@ TestBehaviour::~TestBehaviour()
 void TestBehaviour::Update()
 {
 	const float time{ GameTime::GetInstance()->GetTime() };
-	m_image->p_rotationInDegrees = time * 50.0f;
+	m_image->SetRotation(time * 50.0f);
 
 
 	const float t{ fmod(time, 1.0f) };

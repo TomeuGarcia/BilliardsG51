@@ -20,7 +20,9 @@ public:
 		Thinking_Red,
 		Thinking_Blue,
 		ResolvingBoard,
-		GameFinish
+		GameFinish,
+
+		GameQuit
 	};
 
 

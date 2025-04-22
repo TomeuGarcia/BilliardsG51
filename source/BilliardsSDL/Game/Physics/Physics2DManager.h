@@ -9,6 +9,7 @@
 #include "CircleCollider2DGroup.h"
 #include "AABoxCollider2DGroup.h"
 #include "Helpers/CollisionHelper.h"
+#include "Collision/CollisionHit2D.h"
 
 
 class Physics2DManager
@@ -47,15 +48,14 @@ private:
 public:
 	// Probing functions
 	std::list<Collider2D*> CircleOverlap(const Vector2<float>& position, const float& radius);
-	std::list<Collider2D*> Raycast(const Line<float>& raySegment);
+	std::vector<CollisionHit2D> Raycast(const Line<float>& raySegment);
+	bool RaycastFirstHit(const Line<float>& raySegment, CollisionHit2D& outHit);
 
 
 private:
 	EulerSolver m_solver;
 	CircleCollider2DGroup m_circleCollidersGroup;
 	AABoxCollider2DGroup m_aaBoxCollidersGroup;
-
-	float m_forcePropagationConstant;
 
 private:
 	static Physics2DManager* s_instance;

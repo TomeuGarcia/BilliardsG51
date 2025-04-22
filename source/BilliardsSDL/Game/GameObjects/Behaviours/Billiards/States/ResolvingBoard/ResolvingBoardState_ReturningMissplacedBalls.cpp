@@ -4,7 +4,7 @@
 
 ResolvingBoardState_ReturningMissplacedBalls::ResolvingBoardState_ReturningMissplacedBalls(BilliardsGameplayStateBlackboard* blackboard)
 	: ResolvingBoardState(blackboard), m_playerkeepsPlaying(false),
-	m_repositionMissplacedBallTimer(0.5f), m_missplacedBalls(nullptr)
+	m_repositionMissplacedBallTimer(0.5f), m_missplacedBalls(nullptr), m_missplacedBallsI(0)
 {}
 
 ResolvingBoardState_ReturningMissplacedBalls::~ResolvingBoardState_ReturningMissplacedBalls()
@@ -42,6 +42,7 @@ bool ResolvingBoardState_ReturningMissplacedBalls::Update()
 		if (GetBlackboard()->p_victoryAchieved)
 		{
 			SetNextState(Type::PlayerVictory);
+			m_playerkeepsPlaying = false;
 		}
 		else
 		{
@@ -60,13 +61,13 @@ bool ResolvingBoardState_ReturningMissplacedBalls::Update()
 
 void ResolvingBoardState_ReturningMissplacedBalls::Exit()
 {
-	for (auto it = m_missplacedBalls->begin(); it != m_missplacedBalls->end(); ++it)
+	for (size_t i = 0; i < m_missplacedBalls->size(); ++i)
 	{
-		(*it)->SetUsingPhysics();
+		m_missplacedBalls->at(i)->SetUsingPhysics();
 	}
 
 	GetBlackboard()->GetSpecialEventsManager()->ClearMissplacedBalls();
-	GetBlackboard()->GetSpecialEventsManager()->ClearWellplacedBalls();
+	GetBlackboard()->GetSpecialEventsManager()->ClearWellplacedBalls();	
 }
 
 

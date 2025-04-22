@@ -8,8 +8,9 @@ PlayerThinkingState_PinnedToHit::PlayerThinkingState_PinnedToHit(BilliardsGamepl
 
 void PlayerThinkingState_PinnedToHit::DoEnter()
 {
-	Vector2<float> currentMousePosition = GameInput::GetInstance()->GetMouseWorldPosition();
-	m_pinPosition = currentMousePosition;
+	m_pinPosition = GetBlackboard()->GetCanHitWhiteBall() 
+		? GetBlackboard()->GetWhiteBallPosition()
+		: GameInput::GetInstance()->GetMouseWorldPosition();
 }
 
 bool PlayerThinkingState_PinnedToHit::Update()
@@ -26,13 +27,20 @@ bool PlayerThinkingState_PinnedToHit::Update()
 	tipPosition -= currentToPinDirection * pinDragDistance;
 
 
-	GetPlayer()->GetStick()->SetTipPositionAndLookDirection(tipPosition, currentToPinDirection);
-	GameRenderManager::GetInstance()->DrawDebugLine(
-		Colors::Yellow, GameSpacesComputer::GetInstance()->WorldToWindowLine(Line<float>(m_pinPosition, tipPosition))
-	);
+	Color pinLineColor = GetBlackboard()->GetCanHitWhiteBall()
+		? Colors::Orange
+		: Colors::DarkPurple;
 
 	GetBlackboard()->p_directionToPinPosition = currentToPinDirection;
+	GetPlayer()->GetStick()->SetTipPositionAndLookDirection(tipPosition, currentToPinDirection);
+	GameRenderManager::GetInstance()->DrawDebugLine(pinLineColor, Line<float>(m_pinPosition, tipPosition));
 
+
+	if (GetBlackboard()->GetCanHitWhiteBall() &&
+		GetBlackboard()->GetPreviewHitDirectionIsVisible())
+	{
+		PreviewHitDirection(currentToPinDirection, pinDragDistance);
+	}	
 
 
 	if (GameInput::GetInstance()->GetKeyUp(KeyCode::MouseRight))
@@ -43,6 +51,13 @@ bool PlayerThinkingState_PinnedToHit::Update()
 
 	if (GameInput::GetInstance()->GetKeyUp(KeyCode::MouseLeft))
 	{
+		if (pinDragDistance < GetBlackboard()->GetPinPullMinDistance())
+		{
+			SetNextState(Type::MovingAround);
+			return true;
+		}
+
+
 		GetBlackboard()->p_pinPosition = m_pinPosition;
 		GetBlackboard()->p_pinPullDistanceForHit = pinDragDistance;
 
@@ -55,3 +70,17 @@ bool PlayerThinkingState_PinnedToHit::Update()
 
 void PlayerThinkingState_PinnedToHit::Exit()
 {}
+
+
+void PlayerThinkingState_PinnedToHit::PreviewHitDirection(const Vector2<float>& currentToPinDirection, const float& pinDragDistance)
+{
+	Vector2<float> hitPreviewOrigin = m_pinPosition + (currentToPinDirection * (GetBlackboard()->GetWhiteBallRadius() + 0.02f));
+	Line<float> hitPreviewRay{ hitPreviewOrigin, currentToPinDirection, 100.0f };
+	CollisionHit2D hit;
+	if (Physics2DManager::GetInstance()->RaycastFirstHit(hitPreviewRay, hit))
+	{
+		float dragT = pinDragDistance / GetBlackboard()->GetPinPullMaxDistance();
+		Color previewColor = Color::Lerp(Colors::DarkGreen, Colors::SoftGreen, dragT);
+		GameRenderManager::GetInstance()->DrawDebugLine(previewColor, Line<float>(m_pinPosition, hit.point));
+	}
+}

@@ -4,6 +4,7 @@
 #include <string_view>
 #include "Transform.h"
 #include "Behaviours/Behaviour.h"
+#include "GameObjectTag.h"
 
 
 class GameObject
@@ -18,6 +19,12 @@ public:
 
 	void AttachBehaviour(const std::shared_ptr<Behaviour>& behaviour);
 
+	void SetActive(const bool& active);
+	bool IsActive() const;
+
+	void AddTag(const GameObjectTag& tag);
+	bool HasTag(const GameObjectTag& tag);
+
 public:
 	Transform* const GetTransform();	
 	std::string_view GetName();
@@ -27,4 +34,6 @@ private:
 	std::string m_name;
 	Transform m_transform;	
 	std::vector<std::shared_ptr<Behaviour>> m_behaviours;
+	bool m_active;
+	GameObjectTag m_tags;
 };

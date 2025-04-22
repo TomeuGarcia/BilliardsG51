@@ -1,22 +1,28 @@
 #include "BilliardsGameplayStateBlackboard.h"
 
 BilliardsGameplayStateBlackboard::BilliardsGameplayStateBlackboard()
-	: m_playerRed(nullptr), m_playerBlue(nullptr), m_currentPlayer(nullptr), m_boardCenter(), m_balls(),
+	: m_playerRed(nullptr), m_playerBlue(nullptr), m_currentPlayer(nullptr), m_boardCenter(), 
+	m_balls(), m_whiteBall(nullptr),
 	m_specialEventsManager(nullptr),
-	m_pinPullMaxDistance(2.0f),
-	m_stickForceOverDistanceMultiplier(10.0f),
-	p_victoryAchieved(false)
+	m_pinPullMinDistance(0.1f),
+	m_pinPullMaxDistance(1.5f),
+	m_stickForceOverDistanceMultiplier(13.3f),
+	p_victoryAchieved(false),
+	m_samePlayerIsPlayingConsecutiveTurns(false),
+	m_previewHitDirectionIsVisible(true)
 {}
 
 BilliardsGameplayStateBlackboard::~BilliardsGameplayStateBlackboard()
 {}
 
-void BilliardsGameplayStateBlackboard::Init(const std::vector<BilliardBall*>& balls, const Vector2<float>& boardCenter,
+void BilliardsGameplayStateBlackboard::Init(const std::vector<BilliardBall*>& balls, BilliardBall* whiteBall,
+	const Vector2<float>& boardCenter,
 	BilliardsPlayer* playerRed, BilliardsPlayer* playerBlue,
 	IBilliardsGameplayStateEventsManager* specialEventsManager)
 {
 	m_balls.resize(balls.size());
 	std::copy(balls.begin(), balls.end(), std::begin(m_balls));
+	m_whiteBall = whiteBall;
 	m_boardCenter = boardCenter;
 	m_playerRed = playerRed;
 	m_playerBlue = playerBlue;
@@ -44,6 +50,23 @@ BilliardsPlayer* BilliardsGameplayStateBlackboard::GetCurrentPlayer() const
 	return m_currentPlayer;
 }
 
+BilliardsPlayer* BilliardsGameplayStateBlackboard::GetOtherPlayer() const
+{
+	return m_currentPlayer == m_playerRed ? m_playerBlue : m_playerRed;
+}
+
+
+void BilliardsGameplayStateBlackboard::SetWinnerPlayer(BilliardsPlayer* winnerPlayer)
+{
+	m_winnerPlayer = winnerPlayer;
+}
+
+BilliardsPlayer* BilliardsGameplayStateBlackboard::GetWinnerPlayer() const
+{
+	return m_winnerPlayer;
+}
+
+
 
 const std::vector<BilliardBall*>& BilliardsGameplayStateBlackboard::GetBalls() const
 {
@@ -65,7 +88,52 @@ float BilliardsGameplayStateBlackboard::GetStickForceOverDistanceMultiplier() co
 	return m_stickForceOverDistanceMultiplier;
 }
 
+float BilliardsGameplayStateBlackboard::GetPinPullMinDistance() const
+{
+	return m_pinPullMinDistance;
+}
+
 float BilliardsGameplayStateBlackboard::GetPinPullMaxDistance() const
 {
 	return m_pinPullMaxDistance;
+}
+
+bool BilliardsGameplayStateBlackboard::GetCanHitWhiteBall() const
+{
+	return m_canHitWhiteBall;
+}
+
+void BilliardsGameplayStateBlackboard::SetCanHitWhiteBall(const bool& canHitWhiteBall)
+{
+	m_canHitWhiteBall = canHitWhiteBall;
+}
+
+Vector2<float> BilliardsGameplayStateBlackboard::GetWhiteBallPosition() const
+{
+	return m_whiteBall->GetTransform()->p_worldPosition;
+}
+
+float BilliardsGameplayStateBlackboard::GetWhiteBallRadius() const
+{
+	return m_whiteBall->GetCollisionCircle().GetRadius();
+}
+
+bool BilliardsGameplayStateBlackboard::GetSamePlayerIsPlayingConsecutiveTurns() const
+{
+	return m_samePlayerIsPlayingConsecutiveTurns;
+}
+
+void BilliardsGameplayStateBlackboard::SetSamePlayerIsPlayingConsecutiveTurns(const bool& samePlayerIsPlayingConsecutiveTurns)
+{
+	m_samePlayerIsPlayingConsecutiveTurns = samePlayerIsPlayingConsecutiveTurns;
+}
+
+bool BilliardsGameplayStateBlackboard::GetPreviewHitDirectionIsVisible() const
+{
+	return m_previewHitDirectionIsVisible;
+}
+
+void BilliardsGameplayStateBlackboard::SetPreviewHitDirectionIsVisible(const bool& previewHitDirectionIsVisible)
+{
+	m_previewHitDirectionIsVisible = previewHitDirectionIsVisible;
 }

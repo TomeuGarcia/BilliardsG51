@@ -1,8 +1,13 @@
 #pragma once
 #include "../../Shared/Types/Color/Color.h"
+
 #include "SceneName.h"
+
 #include "CustomScenes/EmptyScene.h"
+#include "CustomScenes/MainMenuScene.h"
 #include "CustomScenes/BilliardsGameScene.h"
+#include "CustomScenes/RankingScene.h"
+#include "CustomScenes/TitleScreenshotScene.h"
 
 
 class SceneManager

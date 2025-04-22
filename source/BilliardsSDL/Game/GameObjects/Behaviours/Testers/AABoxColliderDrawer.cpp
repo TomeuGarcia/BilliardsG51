@@ -16,8 +16,5 @@ void AABoxColliderDrawer::Update()
 {
 	if (!s_enabled) return;
 
-	const Rect<float> rect = m_aaBoxCollider->GetShape();
-	const Rect<int> drawRect{ GameSpacesComputer::GetInstance()->WorldToWindowRect(rect) };
-
-	GameRenderManager::GetInstance()->DrawDebugRect(Colors::Red, drawRect);
+	GameRenderManager::GetInstance()->DrawDebugRect(Colors::Red, m_aaBoxCollider->GetShape());
 }
