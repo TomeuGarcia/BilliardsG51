@@ -93,7 +93,7 @@ BilliardBall* CustomPrefabUtilities::CreateBilliardsBall(const Vector2<float>& p
 
 	const float ballRadius{ image->p_scale.x / 4.0f };
 
-	std::shared_ptr<PhysicMaterial> physicMaterial = std::make_shared<PhysicMaterial>(0.5f, 10.0f);
+	std::shared_ptr<PhysicMaterial> physicMaterial = std::make_shared<PhysicMaterial>(0.5f, 16.0f);
 	std::shared_ptr<Rigidbody2D> rigidbody = m_sceneCreateUtilities->CreateRigidbodyComponent(ballGameObject, physicMaterial, 1.0f, 0.0f);
 	std::shared_ptr<CircleCollider2D> collider = m_sceneCreateUtilities->CreateCircleColliderComponent(ballGameObject, rigidbody.get(), false, ballRadius);
 	
