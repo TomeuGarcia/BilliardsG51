@@ -3,6 +3,7 @@
 #include <vector>
 #include <string_view>
 #include <type_traits>
+#include <concepts>
 
 #include "Transform.h"
 #include "Behaviours/Behaviour.h"
@@ -27,9 +28,10 @@ public:
 	void AddTag(const GameObjectTag& tag);
 	bool HasTag(const GameObjectTag& tag);
 
-	template<typename T>
-	typename std::enable_if<std::is_base_of<Behaviour, T>::value, bool>::type
-	TryGetBehaviour(T*& out) const;
+	//template<typename T>
+	//typename std::enable_if<std::is_base_of<Behaviour, T>::value, bool>::type
+	template<std::derived_from<Behaviour> T>
+	bool TryGetBehaviour(T*& out) const;
 
 public:
 	Transform* const GetTransform();	
@@ -46,9 +48,10 @@ private:
 
 
 
-template<typename T>
-typename std::enable_if<std::is_base_of<Behaviour, T>::value, bool>::type
-inline GameObject::TryGetBehaviour(T*& out) const
+//template<typename T>
+//typename std::enable_if<std::is_base_of<Behaviour, T>::value, bool>::type
+template<std::derived_from<Behaviour> T>
+inline bool GameObject::TryGetBehaviour(T*& out) const
 {
 	for (auto it = m_behaviours.begin(); it != m_behaviours.end(); ++it)
 	{
