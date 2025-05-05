@@ -1,9 +1,13 @@
 # Billiards Game Engine
-A GameEngine programmed in C++ (20) using the SDL library.
-(Build with Visual Studio)
+A 2D Game Engine programmed in C++ (20) using the SDL library.
+
+The build runs a local Billiards multiplayer game with ranking tracking.
+
+## How to Build
+Build with Visual Studio IDE (Windows x64).
 
 
-## HOW TO PLAY
+## How to play
 - YOU CAN ONLY HIT THE WHITE BALL
 - Hold 'MouseLeft' to pin the Stick
 - Drag the Mouse while holding 'MouseLeft' to aim
@@ -11,7 +15,7 @@ A GameEngine programmed in C++ (20) using the SDL library.
 - Click 'MouseRight' to stop aiming
 
 
-## Other Inputs (while in Game)
+### Other Inputs (while in Game)
 - Press 'Esc' to Pause
 - Press 'X' to toggle Ball direction preview
 - Press 'C' to toggle collider visibility
