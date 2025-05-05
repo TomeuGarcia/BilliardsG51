@@ -2,7 +2,7 @@
 A 2D Game Engine programmed in C++ (std 20) using the SDL library.
 
 ### Engine Content
-- **Physics**: Circle & AABox collision/trigger detection.
+- **Physics**: Circle & AABox collision/trigger detection. Raycasting & CircleOverlap.
 - **Rendering**: Images & Texts. Tweening.
 - **Audio**: Music & SFX cueues.
 - **Input**: Mouse & Keybord keys abstractions.
@@ -16,14 +16,14 @@ Build with Visual Studio IDE (Windows x64).
 
 
 ## How to play
-- YOU CAN ONLY HIT THE WHITE BALL
-- Hold 'MouseLeft' to pin the Stick
-- Drag the Mouse while holding 'MouseLeft' to aim
-- Release 'MouseLeft' to hit with the Stick
-- Click 'MouseRight' to stop aiming
+- YOU CAN ONLY HIT THE WHITE BALL.
+- Hold 'MouseLeft' to pin the Stick.
+- Drag the Mouse while holding 'MouseLeft' to aim.
+- Release 'MouseLeft' to hit with the Stick.
+- Click 'MouseRight' to stop aiming.
 
 
-### Other Inputs (while in Game)
-- Press 'Esc' to Pause
-- Press 'X' to toggle Ball direction preview
-- Press 'C' to toggle collider visibility
+### Other Inputs (only during game)
+- Press 'Esc' to Pause.
+- Press 'X' to toggle Ball direction preview.
+- Press 'C' to toggle collider visibility.
