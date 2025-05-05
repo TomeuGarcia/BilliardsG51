@@ -1,7 +1,15 @@
 # Billiards Game Engine
-A 2D Game Engine programmed in C++ (20) using the SDL library.
+A 2D Game Engine programmed in C++ (std 20) using the SDL library.
 
-The build runs a local Billiards multiplayer game with ranking tracking.
+### Engine Content
+- **Physics**: Circle & AABox collision/trigger detection.
+- **Rendering**: Images & Texts. Tweening.
+- **Audio**: Music & SFX cueues.
+- **Input**: Mouse & Keybord keys abstractions.
+
+### Build Content
+- The build runs a local multiplayer Billiards game with ranking tracking.
+
 
 ## How to Build
 Build with Visual Studio IDE (Windows x64).
