@@ -1,9 +1,9 @@
-Windows x64, C++ 20
+# Billiards Game Engine
+A GameEngine programmed in C++ (20) using the SDL library.
 (Build with Visual Studio)
 
 
-HOW TO PLAY
-===========
+## HOW TO PLAY
 - YOU CAN ONLY HIT THE WHITE BALL
 - Hold 'MouseLeft' to pin the Stick
 - Drag the Mouse while holding 'MouseLeft' to aim
@@ -11,8 +11,7 @@ HOW TO PLAY
 - Click 'MouseRight' to stop aiming
 
 
-Other Inputs (while in Game)
-------------
+## Other Inputs (while in Game)
 - Press 'Esc' to Pause
 - Press 'X' to toggle Ball direction preview
 - Press 'C' to toggle collider visibility
